@@ -59,6 +59,13 @@ var all = {
             pass: process.env.MAILER_AUTH_PASS || 'password'
         },
         from: 'noreply@examaple.com'
+    },
+    liqpay: {
+        publicKey: process.env.LIQPAY_PUBLIC_KEY || '***REMOVED***',
+        privateKey: process.env.LIQPAY_PRIVATE_KEY || '***REMOVED***',
+        sandboxMode: process.env.LIQPAY_SANDBOX_MODE || 1,
+        callbackUrl: (process.env.DOMAIN || '') + '/payment/liqpay/callback',
+        redirectUrl: (process.env.DOMAIN || '') + '/payment/liqpay/redirect'
     }
 };
 
@@ -67,4 +74,5 @@ var all = {
 module.exports = _.merge(
     all,
     require('./shared'),
-    require('./' + process.env.NODE_ENV + '.js') || {});
+    require('./' + process.env.NODE_ENV + '.js') || {}
+);

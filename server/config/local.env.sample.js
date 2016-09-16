@@ -20,4 +20,8 @@ module.exports = {
 
     MAILER_AUTH_USER: 'example@gmail.com',
     MAILER_AUTH_PASS: 'p@ssword',
+
+    LIQPAY_PUBLIC_KEY: '***REMOVED***',
+    LIQPAY_PRIVATE_KEY: '***REMOVED***',
+    LIQPAY_SANDBOX_MODE: 1, // 0 or 1
 };

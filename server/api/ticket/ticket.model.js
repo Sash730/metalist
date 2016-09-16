@@ -9,7 +9,8 @@ var TicketSchema = new mongoose.Schema({
     used: {
         type: String,
         default: false
-    }
+    },
+    orderDetails: mongoose.Schema.Types.Mixed
 });
 
 export default mongoose.model('Ticket', TicketSchema);

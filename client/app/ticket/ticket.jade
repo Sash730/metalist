@@ -13,8 +13,10 @@
                         label(class="label label-{{ ticket.available ? 'success' : 'danger' }}")
                             | {{ ticket.available ? 'Available' : 'Sold' }}
                     .col-sm-2
-                        a.btn.btn-primary(ng-click='controller.buyTicket(ticket)', ng-hide='!ticket.available')
-                            | Buy ticket
+                        //a.btn.btn-primary(ng-click='controller.buyTicket(ticket)', ng-hide='!ticket.available')
+                        //    | Buy ticket
+                        a.btn.btn-primary(href='{{ ticket.buyNowLink }}', ng-hide='!ticket.available')
+                            | Buy Now via LiqPay
                         a.btn.btn-info(href='/api/tickets/{{ ticket.code }}/print', target="_blank", ng-hide='ticket.available')
                                 | Print Ticket
                     .col-sm-4

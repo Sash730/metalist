@@ -1,10 +1,10 @@
 'use strict';
 
 import Ticket from './ticket.model';
-import * as mailer from '../../mailer/mailer.js';
-import * as crypto from 'crypto';
+import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';
-import * as fs from 'fs';
+import * as _ from 'lodash';
+import liqpay from '../../liqpay';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -34,29 +34,34 @@ function handleEntityNotFound(res) {
 
 export function index(req, res) {
     return Ticket.find().exec()
-        .then(respondWithResult(res))
-        .catch(handleError(res));
-}
+        .then(tickets => {
+            var result = _.map(tickets, (ticket) => {
 
-export function buy(req, res) {
-    return Ticket.findById(req.params.id).exec()
-        .then(handleEntityNotFound(res))
-        .then(ticket => {
-            ticket.available = false;
-            ticket.code = crypto.randomBytes(16).toString('hex');
+                var paymentParams = {
+                    'action': 'pay',
+                    'amount': '0.01',
+
+                    'currency': 'UAH',
+                    'description': ticket.text,
+                    'order_id': ticket.id,
+                    'sandbox': config.liqpay.sandboxMode,
+                    'server_url': config.liqpay.callbackUrl,
+                    'result_url': config.liqpay.redirectUrl,
+                };
 
 
+                return {
+                    '_id': ticket.id,
+                    'text': ticket.text,
+                    'available': ticket.available,
+                    'used': ticket.used,
+                    'code': ticket.code,
+                    'buyNowLink': ticket.available ? liqpay.generatePaymentLink(paymentParams) : null
+                };
+            });
 
-            var emailContent = 'Ticket is sold!';
-            // mailer.sendMail('ruslan.polutsygan@gmail.com', 'Test subject', emailContent);
-
-            return ticket.save()
-                .then((updated) => {
-                    return updated;
-                });
-
+            return res.status(200).json(result);
         })
-        .then(respondWithResult(res))
         .catch(handleError(res));
 }
 
