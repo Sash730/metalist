@@ -12,8 +12,8 @@ function LiqPay(publicKey, privateKey) {
         params.***REMOVED*** = this.publicKey;
         params.version = this.apiVersion;
 
-        var data = this.signParams(params);
-        var signature = this.sign(data);
+        var data = this.paramsToDataString(params);
+        var signature = this.signString(data);
 
         return this.apiEndpoint + '?data=' + data + '&signature=' + signature;
     };
@@ -25,11 +25,9 @@ function LiqPay(publicKey, privateKey) {
         return sha1.digest('base64');
     };
 
-    this.signParams = function(params) {
-        var data = new Buffer(JSON.stringify(params)).toString('base64');
-
-        return this.signString(data);
-    };
+    this.paramsToDataString = function (params) {
+        return new Buffer(JSON.stringify(params)).toString('base64');
+    }
 }
 
 export default new LiqPay(config.liqpay.publicKey, config.liqpay.privateKey);
