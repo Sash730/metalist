@@ -371,7 +371,7 @@ gulp.task('serve', cb => {
         ['lint:scripts', 'inject'],
         ['wiredep:client'],
         ['transpile:client', 'styles'],
-        ['start:server', 'start:client'],
+        ['start:server'],
         'watch',
         cb);
 });
