@@ -7,7 +7,36 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Upcoming Matches</h1>
-            <em>soon.. </em>
+            <div class="col-sm-10 col-sm-offset-1 matches">
+                <div ng-repeat="match in $ctrl.matches" class="match col-sm-12">
+                    <div class="round">Round {{ match.round }}.</div>
+                    <div class="clearfix details">
+                        <div class="col-sm-3 date">
+                            <span ng-if="match.date">{{ match.date|date : 'MMM d, y HH:mm:ss' }}</span>
+                            <span ng-if="!match.date && match.dateApproximate">{{ match.dateApproximate }}
+                                <span class="glyphicon glyphicon-info-sign date-info" uib-tooltip="Precise date to be defined later"></span>
+                            </span>
+                        </div>
+                        <div class="col-sm-3 home">
+                            <span ng-if="match.homeMatch">Metallist</span>
+                            <span ng-if="!match.homeMatch">{{ match.rival }}</span>
+                        </div>
+                        <div class="col-sm-1 vs">VS</div>
+                        <div class="col-sm-3 away">
+                            <span ng-if="match.homeMatch">{{ match.rival }}</span>
+                            <span ng-if="!match.homeMatch">Metallist</span>
+                        </div>
+                        <div class="col-sm-2 tickets">
+                            <a class="btn btn-success btn-xs" ng-show="match.homeMatch && match.date">View tickets</a>
+                            <span ng-show="!match.homeMatch || !match.date">
+                                &nbsp;
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="info clearfix" ng-if="match.info.length">{{ match.info }}</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

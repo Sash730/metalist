@@ -13,6 +13,12 @@ import {Order} from '../api/models/order.model';
 Match.find({}).remove()
     .then(() => {
         Match.create({
+            rival: "Dnipro",
+            homeMatch: true,
+            date: new Date('2016-09-15 15:00:00'),
+            round: 6,
+            info: 'passed event'
+        }, {
             rival: "Dynamo",
             homeMatch: true,
             date: new Date('2016-10-15 15:00:00'),

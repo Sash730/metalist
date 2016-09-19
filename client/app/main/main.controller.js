@@ -6,6 +6,14 @@
 
         constructor($http) {
             this.$http = $http;
+            this.matches = [];
+        }
+
+        $onInit() {
+            this.$http.get('/api/matches')
+                .then((response) => {
+                    this.matches = response.data;
+                })
         }
     }
 

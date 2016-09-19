@@ -10,6 +10,7 @@ import path from 'path';
 export default function (app) {
     // Insert routes below
     app.use('/api/users', require('./api/user'));
+    app.use('/api/matches', require('./api/match'));
     app.use('/api/tickets', require('./api/ticket'));
     app.use('/payment/liqpay', require('./api/payment/liqpay'));
 
