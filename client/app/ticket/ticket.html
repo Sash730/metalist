@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Buy tickets</h1>
+        </div>
+        <div class="col-sm-12">
+            <h3>Available Ticket</h3>
+            <p>{{ controller.message }}</p>
+            <div class="col-sm-8 col-sm-offset-1 tickets">
+                <div ng-repeat="ticket in controller.tickets" class="ticket col-sm-12">
+                    <div class="col-sm-2">{{ ticket.text }}</div>
+                    <div class="col-sm-2">
+                        <label class="label label-{{ ticket.available ? 'success' : 'danger' }}">{{ ticket.available ? 'Available' : 'Sold' }}</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="{{ ticket.buyNowLink }}" ng-hide="!ticket.available" class="btn btn-primary">Buy Now via LiqPay</a>
+                        <a href="/api/tickets/{{ ticket.code }}/print" target="_blank" ng-hide="ticket.available" class="btn btn-info">Print Ticket</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="has-{{ controller.statuses[ticket._id].type }}"><span class="help-block">{{ controller.statuses[ticket._id].message }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

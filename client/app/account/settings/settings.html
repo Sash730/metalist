@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Change Password</h1>
+        </div>
+        <div class="col-sm-12">
+            <form name="form" ng-submit="vm.changePassword(form)" novalidate="" class="form">
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" name="password" ng-model="vm.user.oldPassword" mongoose-error="" class="form-control"/>
+                    <p ng-show="form.password.$error.mongoose" class="help-block">{{ vm.errors.other }}</p>
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" name="newPassword" ng-model="vm.user.newPassword" ng-minlength="3" required="" class="form-control"/>
+                    <p ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)" class="help-block">Password must be at least 3 characters.</p>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" name="confirmPassword" ng-model="vm.user.confirmPassword" match="vm.user.newPassword" ng-minlength="3" required="" class="form-control"/>
+                    <p ng-show="fvm.orm.confirmPassword.$error.match && vm.submitted" class="help-block">Passwords must match.</p>
+                </div>
+                <p class="help-block"> {{ vm.message }}</p>
+                <button type="submit" class="btn btn-lg btn-primary">Save changes</button>
+            </form>
+        </div>
+    </div>
+</div>
