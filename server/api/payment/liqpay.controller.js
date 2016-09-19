@@ -10,7 +10,7 @@
 'use strict';
 
 import _ from 'lodash';
-import Ticket from './../ticket/ticket.model';
+import Ticket from './../models/ticket.model';
 import liqpay from '../../liqpay';
 import * as crypto from 'crypto';
 

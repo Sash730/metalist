@@ -4,48 +4,154 @@
  */
 
 'use strict';
-import Thing from '../api/thing/thing.model';
-import User from '../api/user/user.model';
-import Ticket from '../api/ticket/ticket.model';
+import User from '../api/models/user.model';
+import Ticket from '../api/models/ticket.model';
+import Match from '../api/models/match.model';
+import Seat from '../api/models/seat.model';
+import {Order} from '../api/models/order.model';
 
-Thing.find({}).remove()
+Match.find({}).remove()
     .then(() => {
-        Thing.create({
-            name: 'Development Tools',
-            info: 'Integration with popular tools such as Bower, Grunt, Babel, Karma, ' +
-            'Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, ' +
-            'Stylus, Sass, and Less.'
+        Match.create({
+            rival: "Dynamo",
+            homeMatch: true,
+            date: new Date('2016-10-15 15:00:00'),
+            round: 8,
+            info: 'some very useful information about the match'
         }, {
-            name: 'Server and Client integration',
-            info: 'Built with a powerful and fun stack: MongoDB, Express, ' +
-            'AngularJS, and Node.'
+            rival: "Karpaty",
+            homeMatch: true,
+            date: new Date('2016-10-19 16:00:00'),
+            round: 9,
+            info: 'some very useful information about the match 2'
         }, {
-            name: 'Smart Build System',
-            info: 'Build system ignores `spec` files, allowing you to keep ' +
-            'tests alongside code. Automatic injection of scripts and ' +
-            'styles into your index.html'
+            rival: "Shakhtar",
+            homeMatch: false,
+            date: new Date('2016-10-25 16:00:00'),
+            round: 10,
+            info: 'some very useful information about the match 3'
         }, {
-            name: 'Modular Structure',
-            info: 'Best practice client and server structures allow for more ' +
-            'code reusability and maximum scalability'
-        }, {
-            name: 'Optimized Build',
-            info: 'Build process packs up your templates as a single JavaScript ' +
-            'payload, minifies your scripts/css/images, and rewrites asset ' +
-            'names for caching.'
-        }, {
-            name: 'Deployment Ready',
-            info: 'Easily deploy your app to Heroku or Openshift with the heroku ' +
-            'and openshift subgenerators'
+            rival: "Olympic",
+            homeMatch: true,
+            dateApproximate: '30 October - 1 November',
+            round: 11,
+            info: 'Date to be specified later. Other useful information about the match 4'
         })
             .then(() => {
-                console.log('finished populating things');
+                console.log('finished populating matches');
+            });
+    });
+
+
+Seat.find({}).remove()
+    .then(() => {
+        Seat.create({
+            sector: 1,
+            row: 1,
+            number: 1,
+            price: 7000,
+        }, {
+            sector: 1,
+            row: 1,
+            number: 2,
+            price: 7000,
+        }, {
+            sector: 1,
+            row: 1,
+            number: 3,
+            price: 7000,
+        }, {
+            sector: 1,
+            row: 1,
+            number: 4,
+            price: 7000,
+        }, {
+            sector: 1,
+            row: 1,
+            number: 5,
+            price: 7000,
+        }, {
+            sector: 2,
+            row: 1,
+            number: 1,
+            price: 7800,
+        }, {
+            sector: 3,
+            row: 2,
+            number: 1,
+            price: 8000,
+        }, {
+            sector: 3,
+            row: 2,
+            number: 2,
+            price: 8000,
+        }, {
+            sector: 3,
+            row: 2,
+            number: 3,
+            price: 8000,
+        })
+            .then(() => {
+                console.log('finished populating seats');
+            });
+    });
+
+Order.find({}).remove()
+    .then(() => {
+        Order.create({
+            orderNumber: 'order_number_1',
+            amount: 7000,
+            status: 'paid',
+            type: 'order',
+            context: 'website',
+            paymentDetails: {key: 'value'},
+            items: [ {
+                seatId: 1,
+                matchId: 1,
+                amount: 7000
+            } ],
+            user: 'user_1',
+        }, {
+            orderNumber: 'order_number_2',
+            amount: 15000,
+            status: 'paid',
+            type: 'order',
+            context: 'website',
+            paymentDetails: {key: 'value'},
+            items: [ {
+                seatId: 1,
+                matchId: 1,
+                amount: 7000
+            }, {
+                seatId: 2,
+                matchId: 1,
+                amount: 8000
+            } ],
+            user: 'user_2',
+        })
+            .then(() => {
+                console.log('finished populating orders');
             });
     });
 
 User.find({}).remove()
     .then(() => {
         User.create({
+            provider: 'local',
+            name: 'Test User',
+            email: 'test@example.com',
+            password: 'test'
+        }, {
+            provider: 'local',
+            name: 'Test Steward',
+            email: 'steward@example.com',
+            password: 'test'
+        }, {
+            provider: 'local',
+            name: 'Test Cashier',
+            email: 'cashier@example.com',
+            password: 'test'
+        }, {
             provider: 'local',
             name: 'Test User',
             email: 'test@example.com',
@@ -65,25 +171,41 @@ User.find({}).remove()
 Ticket.find({}).remove()
     .then(() => {
         Ticket.create({
-            text: 'Seat #1',
-            available: true,
-            code: null
+            orderNumber: 'order_number_1',
+            accessCode: 'access_code_1',
+            match: '1',
+            seat: '1',
+            user: '1',
+            status: 'new',
+            valid: {
+                from: new Date('2016-10-15 13:00:00'),
+                to: new Date('2016-10-15 17:00:00'),
+            },
+            timesUsed: 0
         }, {
-            text: 'Seat #2',
-            available: false,
-            code: 'random_code_2'
+            orderNumber: 'order_number_2',
+            accessCode: 'access_code_2_1',
+            match: '2',
+            seat: '2',
+            user: '2',
+            status: 'new',
+            valid: {
+                from: new Date('2016-10-19 14:00:00'),
+                to: new Date('2016-10-19 18:00:00'),
+            },
+            timesUsed: 0
         }, {
-            text: 'Seat #3',
-            available: false,
-            code: 'random_code_3'
-        }, {
-            text: 'Seat #4',
-            available: true,
-            code: null
-        }, {
-            text: 'Seat #5',
-            available: true,
-            code: null
+            orderNumber: 'order_number_2',
+            accessCode: 'access_code_2_2',
+            match: '2',
+            seat: '3',
+            user: '2',
+            status: 'new',
+            valid: {
+                from: new Date('2016-10-19 14:00:00'),
+                to: new Date('2016-10-19 18:00:00'),
+            },
+            timesUsed: 0
         })
             .then(() => {
                 console.log('finished populating tickets');

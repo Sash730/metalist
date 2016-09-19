@@ -1,7 +1,7 @@
 'use strict';
 
 import app from '../..';
-import User from './user.model';
+import User from './../models/user.model';
 import request from 'supertest';
 
 describe('User API:', function () {
