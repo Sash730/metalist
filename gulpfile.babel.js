@@ -32,7 +32,7 @@ const paths = {
         ],
         styles: [`${clientPath}/{app,components}/**/*.less`],
         mainStyle: `${clientPath}/app/app.less`,
-        views: `${clientPath}/{app,components}/**/*.jade`,
+        views: `${clientPath}/{app,components}/**/*.html`,
         mainView: `${clientPath}/index.html`,
         test: [`${clientPath}/{app,components}/**/*.{spec,mock}.js`],
         e2e: ['e2e/**/*.spec.js'],
@@ -347,7 +347,6 @@ gulp.task('watch', () => {
     });
 
     plugins.watch(paths.client.views)
-        .pipe(plugins.jade())
         .pipe(gulp.dest('.tmp'))
         .pipe(plugins.plumber())
         .pipe(plugins.livereload());
@@ -368,7 +367,7 @@ gulp.task('watch', () => {
 
 gulp.task('serve', cb => {
     runSequence(['clean:tmp', 'constant', 'env:all'],
-        ['lint:scripts', 'inject'],
+        ['lint:scripts', 'inject', 'views'],
         ['wiredep:client'],
         ['transpile:client', 'styles'],
         ['start:server'],
@@ -387,7 +386,7 @@ gulp.task('serve:dist', cb => {
 
 gulp.task('serve:debug', cb => {
     runSequence(['clean:tmp', 'constant'],
-        ['lint:scripts', 'inject'],
+        ['lint:scripts', 'inject', 'views'],
         ['wiredep:client'],
         ['transpile:client', 'styles'],
         'start:inspector',
@@ -471,6 +470,7 @@ gulp.task('build', cb => {
             'clean:dist',
             'clean:tmp'
         ],
+        'views',
         'inject',
         'wiredep:client',
         [
@@ -525,6 +525,10 @@ gulp.task('html', function () {
         .pipe(plugins.angularTemplatecache({
             module: 'metallistTicketsApp'
         }))
+        .pipe(gulp.dest('.tmp'));
+});
+gulp.task('views', function () {
+    gulp.src(paths.client.views)
         .pipe(gulp.dest('.tmp'));
 });
 
