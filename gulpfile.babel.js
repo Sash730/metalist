@@ -368,7 +368,7 @@ gulp.task('watch', () => {
 
 gulp.task('serve', cb => {
     runSequence(['clean:tmp', 'constant', 'env:all'],
-        ['lint:scripts', 'inject', 'jade'],
+        ['lint:scripts', 'inject'],
         ['wiredep:client'],
         ['transpile:client', 'styles'],
         ['start:server', 'start:client'],
@@ -387,7 +387,7 @@ gulp.task('serve:dist', cb => {
 
 gulp.task('serve:debug', cb => {
     runSequence(['clean:tmp', 'constant'],
-        ['lint:scripts', 'inject', 'jade'],
+        ['lint:scripts', 'inject'],
         ['wiredep:client'],
         ['transpile:client', 'styles'],
         'start:inspector',
@@ -471,7 +471,6 @@ gulp.task('build', cb => {
             'clean:dist',
             'clean:tmp'
         ],
-        'jade',
         'inject',
         'wiredep:client',
         [
@@ -526,11 +525,6 @@ gulp.task('html', function () {
         .pipe(plugins.angularTemplatecache({
             module: 'metallistTicketsApp'
         }))
-        .pipe(gulp.dest('.tmp'));
-});
-gulp.task('jade', function () {
-    gulp.src(paths.client.views)
-        .pipe(plugins.jade())
         .pipe(gulp.dest('.tmp'));
 });
 
