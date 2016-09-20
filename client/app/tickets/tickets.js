@@ -7,5 +7,23 @@ angular.module('metallistTicketsApp')
             templateUrl: 'app/tickets/match-seats.html',
             controller: 'MatchSeatsController',
             controllerAs: 'controller',
+
+            resolve: {
+                match: (MatchSeatsService, $stateParams, $state) => {
+                    return MatchSeatsService
+                        .fetchMatch($stateParams.id)
+                        .catch((error) => {
+                            $state.go('404');
+                        })
+                    ;
+                },
+                seats: (MatchSeatsService, $stateParams, $state) => {
+                    return MatchSeatsService.fetchMatchSeats($stateParams.id)
+                        .catch((error) => {
+                            $state.go('404');
+                        })
+                    ;
+                }
+            }
         });
     });

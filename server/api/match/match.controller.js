@@ -46,7 +46,6 @@ export function index(req, res) {
 }
 
 export function view(req, res) {
-
     return Match.findById(req.params.id).exec()
         // .then(matches => {
         //     var result = _.map(matches, (match) => {
@@ -65,6 +64,7 @@ export function view(req, res) {
 }
 
 export function seats(req, res) {
+    // return res.status(400).json({});
     return Seat.find().exec()
         // .then(matches => {
         //     var result = _.map(matches, (match) => {

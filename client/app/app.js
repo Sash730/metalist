@@ -5,7 +5,7 @@ angular.module('metallistTicketsApp', ['metallistTicketsApp.auth', 'metallistTic
     'ui.bootstrap', 'validation.match'
 ])
     .config(function ($urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
 
         $locationProvider.html5Mode(true);
     });
