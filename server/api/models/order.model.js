@@ -12,10 +12,15 @@ var OrderItemSchema = new Schema({
         type: Number,
         required: true
     }
+}, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
 });
 OrderItemSchema
     .virtual('formattedAmount')
-    .get(formatMoney)
+    .get(function() {
+        return formatMoney(this.amount);
+    })
 ;
 
 var OrderSchema = new Schema({
@@ -49,10 +54,15 @@ var OrderSchema = new Schema({
         type: Date,
         default: Date.now
     },
+}, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
 });
 OrderSchema
     .virtual('formattedAmount')
-    .get(formatMoney)
+    .get(function() {
+        return formatMoney(this.amount);
+    })
 ;
 export var Order = mongoose.model('Order', OrderSchema);
 export var OrderItem = mongoose.model('OrderItem', OrderItemSchema);

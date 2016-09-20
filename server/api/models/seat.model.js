@@ -22,10 +22,15 @@ var SeatSchema = new Schema({
         type: Number,
         required: true
     }
+}, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
 });
 SeatSchema
     .virtual('formattedPrice')
-    .get(formatMoney)
+    .get(function() {
+        return formatMoney(this.price);
+    })
 ;
 SeatSchema.index({sector: 1, row: 1, number: 1}, {unique: true});
 

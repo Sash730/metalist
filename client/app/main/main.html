@@ -12,7 +12,7 @@
                     <div class="round">Round {{ match.round }}.</div>
                     <div class="clearfix details">
                         <div class="col-sm-3 date">
-                            <span ng-if="match.date">{{ match.date|date : 'MMM d, y HH:mm:ss' }}</span>
+                            <span ng-if="match.date">{{ match.date|date : 'MMM d, y HH:mm' }}</span>
                             <span ng-if="!match.date && match.dateApproximate">{{ match.dateApproximate }}
                                 <span class="glyphicon glyphicon-info-sign date-info" uib-tooltip="Precise date to be defined later"></span>
                             </span>
@@ -27,7 +27,7 @@
                             <span ng-if="!match.homeMatch">Metallist</span>
                         </div>
                         <div class="col-sm-2 tickets">
-                            <a class="btn btn-success btn-xs" ng-show="match.homeMatch && match.date">View tickets</a>
+                            <a ui-sref="match-seats({id: match._id})" class="btn btn-success btn-xs" ng-show="match.homeMatch && match.date">View tickets</a>
                             <span ng-show="!match.homeMatch || !match.date">
                                 &nbsp;
                             </span>
@@ -36,6 +36,7 @@
                     </div>
                     <div class="info clearfix" ng-if="match.info.length">{{ match.info }}</div>
                 </div>
+                <div class="empty" ng-hide="$ctrl.matches.length">There are no upcoming matches</div>
             </div>
         </div>
     </div>

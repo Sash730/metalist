@@ -13,7 +13,7 @@
             this.$http.get('/api/matches')
                 .then((response) => {
                     this.matches = response.data;
-                })
+                });
         }
     }
 
