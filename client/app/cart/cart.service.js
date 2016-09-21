@@ -20,6 +20,14 @@
             }];
         }
 
+        addItem(seat, match) {
+            this.items.push({
+                seatId: seat._id,
+                matchId: match._id,
+                amount: seat.price
+            });
+        }
+
         removeItem(index) {
             this.items.splice(index, 1);
         }

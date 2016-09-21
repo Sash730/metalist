@@ -17,7 +17,8 @@
                         <div class="seat-price">Price: {{ seat.formattedPrice }}UAH</div>
 
                         <div class="buttons">
-                            <a ui-shref="add-to-cart" class="btn btn-success btn-xs">Add to Cart</a>
+                            <!--<a ui-shref="add-to-cart" class="btn btn-success btn-xs">Add to Cart</a>-->
+                            <add-to-cart seat="seat" match="controller.match"></add-to-cart>
                             <a ui-shref="buy-now" class="btn btn-warning btn-xs disabled">Buy Now</a>
                         </div>
                     </div>
