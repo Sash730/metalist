@@ -8,8 +8,8 @@
                 <div>Rival: {{ controller.match.rival }}</div>
                 <div>Date: {{ controller.match.date|date:'MMM d, y HH:mm' }}</div>
             </div>
-            <div class="col-sm-12 seats">
-                <div ng-repeat="seat in controller.seats" class="seat col-sm-3 col-sm-offset-1 thumbnail">
+            <div class="col-sm-8 seats">
+                <div ng-repeat="seat in controller.seats" class="seat col-sm-3 thumbnail">
                     <div class="caption">
                         <div class="seat-sector">Sector: {{ seat.sector }}</div>
                         <div class="seat-row">Row: {{ seat.row }}</div>
@@ -17,12 +17,15 @@
                         <div class="seat-price">Price: {{ seat.formattedPrice }}UAH</div>
 
                         <div class="buttons">
-                            <a ui-shref="add-to-cart" class="btn btn-success">Add to Cart</a>
-                            <a ui-shref="buy-now" class="btn btn-warning disabled">Buy Now</a>
+                            <a ui-shref="add-to-cart" class="btn btn-success btn-xs">Add to Cart</a>
+                            <a ui-shref="buy-now" class="btn btn-warning btn-xs disabled">Buy Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="empty" ng-hide="controller.seats.length">There are no seats available</div>
+            </div>
+            <div class="col-sm-4 cart">
+                <cart></cart>
             </div>
         </div>
     </div>

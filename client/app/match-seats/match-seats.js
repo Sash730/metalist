@@ -13,6 +13,7 @@ angular.module('metallistTicketsApp')
                     return MatchSeatsService
                         .fetchMatch($stateParams.id)
                         .catch((error) => {
+                            console.log(error);
                             $state.go('404');
                         })
                     ;
@@ -20,6 +21,7 @@ angular.module('metallistTicketsApp')
                 seats: (MatchSeatsService, $stateParams, $state) => {
                     return MatchSeatsService.fetchMatchSeats($stateParams.id)
                         .catch((error) => {
+                            console.log(error);
                             $state.go('404');
                         })
                     ;
