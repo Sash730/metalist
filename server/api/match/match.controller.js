@@ -14,10 +14,19 @@ function respondWithResult(res, statusCode) {
     };
 }
 
+function handleEntityNotFound(res) {
+    return function (entity) {
+        if (!entity) {
+            res.status(404).end();
+            return null;
+        }
+        return entity;
+    };
+}
+
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function (err) {
-        console.log(err);
         res.status(statusCode).send(err);
     };
 }
@@ -59,6 +68,7 @@ export function view(req, res) {
         //
         //     return res.status(200).json(result);
         // })
+        .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
