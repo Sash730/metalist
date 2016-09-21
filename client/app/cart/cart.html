@@ -3,7 +3,7 @@
 <table class="cart-items table table-condensed">
     <tr class="cart-item" ng-repeat="item in cc.cart.items">
         <td>Seat id: {{ item.seatId }}, match id: {{ item.matchId }}</td>
-        <td>{{ (item.amount / 100).toFixed(2) }}UAH</td>
+        <td>{{ item.amount | money }}</td>
         <td>
             <button class="btn btn-danger btn-xs" ng-click="cc.cart.removeItem($index)">
                 <i class="glyphicon glyphicon-remove"></i>
@@ -11,6 +11,6 @@
         </td>
     </tr>
     <tr ng-show="cc.cart.count()">
-        <td colspan="3"><strong>{{ cc.cart.count() }}</strong> tickets for <strong>{{ (cc.cart.amount() / 100).toFixed(2) }}UAH</strong></td>
+        <td colspan="3"><strong>{{ cc.cart.count() }}</strong> tickets for <strong>{{ cc.cart.amount() | money }}</strong></td>
     </tr>
 </table>

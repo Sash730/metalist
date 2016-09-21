@@ -10,6 +10,7 @@
 
         addToCart() {
             this.cart.addItem(this.seat, this.match);
+            this.seat.sector = 500;
         }
     }
 
