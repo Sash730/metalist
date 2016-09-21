@@ -8,6 +8,22 @@
             this.cart = CartService;
         }
 
+        getTotalItems() {
+            return this.cart.getTotalItems();
+        }
+
+        getTotalAmount() {
+            return this.cart.getTotalAmount();
+        }
+
+        getItems() {
+            return this.cart.getItems();
+        }
+
+        removeItem(index) {
+            return this.cart.removeItem(index);
+        }
+
 
     }
 
@@ -16,6 +32,6 @@
         .component('cart', {
             templateUrl: 'app/cart/cart.html',
             controller: CartController,
-            controllerAs: 'cc'
+            controllerAs: 'vm'
         });
 })();

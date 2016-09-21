@@ -20,6 +20,10 @@
             }];
         }
 
+        getItems() {
+            return this.items;
+        }
+
         addItem(seat, match) {
             this.items.push({
                 seatId: seat._id,
@@ -32,14 +36,14 @@
             this.items.splice(index, 1);
         }
 
-        count() {
+        getTotalItems() {
             return this.items.length;
         }
 
-        amount() {
+        getTotalAmount() {
             return _.reduce(this.items, (amount, item) => {
                 return amount + item.amount;
-            }, 0)
+            }, 0);
         }
     }
 

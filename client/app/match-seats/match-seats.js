@@ -6,7 +6,7 @@ angular.module('metallistTicketsApp')
             url: '/match/:id/seats',
             templateUrl: 'app/match-seats/match-seats.html',
             controller: 'MatchSeatsController',
-            controllerAs: 'controller',
+            controllerAs: 'vm',
 
             resolve: {
                 match: (MatchSeatsService, $stateParams, $state) => {

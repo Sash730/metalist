@@ -1,16 +1,16 @@
 <h3>Your Cart</h3>
-<div class="empty" ng-hide="cc.cart.count()">Your cart is empty</div>
+<div class="empty" ng-hide="vm.getTotalItems()">Your cart is empty</div>
 <table class="cart-items table table-condensed">
-    <tr class="cart-item" ng-repeat="item in cc.cart.items">
+    <tr class="cart-item" ng-repeat="item in vm.getItems()">
         <td>Seat id: {{ item.seatId }}, match id: {{ item.matchId }}</td>
         <td>{{ item.amount | money }}</td>
         <td>
-            <button class="btn btn-danger btn-xs" ng-click="cc.cart.removeItem($index)">
+            <button class="btn btn-danger btn-xs" ng-click="vm.removeItem($index)">
                 <i class="glyphicon glyphicon-remove"></i>
             </button>
         </td>
     </tr>
-    <tr ng-show="cc.cart.count()">
-        <td colspan="3"><strong>{{ cc.cart.count() }}</strong> tickets for <strong>{{ cc.cart.amount() | money }}</strong></td>
+    <tr ng-show="vm.getTotalItems()">
+        <td colspan="3"><strong>{{ vm.getTotalItems() }}</strong> tickets for <strong>{{ vm.getTotalAmount() | money }}</strong></td>
     </tr>
 </table>

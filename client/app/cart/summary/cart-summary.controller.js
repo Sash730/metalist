@@ -8,18 +8,18 @@
             this.cart = CartService;
         }
 
-        totalItems() {
-            return this.cart.count();
+        getTotalItems() {
+            return this.cart.getTotalItems();
         }
 
-        totalAmount() {
-            return this.cart.amount();
+        getTotalAmount() {
+            return this.cart.getTotalAmount();
         }
     }
 
     angular.module('metallistTicketsApp')
         .component('cartSummary', {
-            templateUrl: 'app/cart/cart-summary.html',
+            templateUrl: 'app/cart/summary/cart-summary.html',
             controller: CartSummaryController,
             controllerAs: 'vm',
         });
