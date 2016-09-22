@@ -58,9 +58,7 @@
         }
 
         convertCartToOrder(user) {
-            console.log(user);
-            console.log(user.id);
-            // return this.$http.post('/api/orders/convert', {user: user});
+            return this.$http.post('/api/orders/cart/convert', {user: user});
         }
 
     }

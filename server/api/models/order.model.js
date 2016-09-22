@@ -55,7 +55,11 @@ var OrderSchema = new Schema({
     },
     paymentDetails: Schema.Types.Mixed,
     items: [ OrderItemSchema ],
-    user: String,
+    user: {
+        id: String,
+        email: String,
+        name: String,
+    },
     created: {
         type: Date,
         default: Date.now

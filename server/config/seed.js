@@ -116,7 +116,7 @@ Order.find({}).remove()
                 matchId: 1,
                 amount: 7000
             } ],
-            user: 'user_1',
+            user: {name: 'user_1', email: 'user_1@example.com'},
         }, {
             orderNumber: 'order_number_2',
             amount: 15000,
@@ -133,7 +133,7 @@ Order.find({}).remove()
                 matchId: 1,
                 amount: 8000
             } ],
-            user: 'user_2',
+            user: {name: 'user_2', email: 'user_2@example.com'},
         })
             .then(() => {
                 console.log('finished populating orders');

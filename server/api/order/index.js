@@ -8,5 +8,6 @@ var router = express.Router();
 router.post('/cart', controller.updateCart);
 router.get('/cart', controller.getCart);
 router.delete('/cart/items/:itemId', controller.deleteItemFromCart);
+router.post('/cart/convert', controller.convertCartToOrder);
 
 module.exports = router;
