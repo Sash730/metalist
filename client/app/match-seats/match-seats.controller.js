@@ -13,6 +13,10 @@
         addToCart(seat) {
             this.cart.addItem(seat, this.match);
         }
+
+        getTotalItems() {
+            return this.cart.getTotalItems();
+        }
     }
 
     angular.module('metallistTicketsApp')

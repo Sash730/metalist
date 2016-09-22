@@ -39,6 +39,9 @@ var UserSchema = new Schema({
     facebook: {},
     google: {},
     github: {}
+}, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
 });
 
 /**

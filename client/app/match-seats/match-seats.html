@@ -26,6 +26,9 @@
             </div>
             <div class="col-sm-4 cart">
                 <cart></cart>
+                <div ng-show="vm.getTotalItems()">
+                    <a ui-sref="checkout" class="btn btn-info btn-block">Proceed to Checkout</a>
+                </div>
             </div>
         </div>
     </div>

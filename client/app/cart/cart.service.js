@@ -4,9 +4,10 @@
 
     class CartService {
 
-        constructor($http) {
+        constructor($http, Auth) {
             this.$http = $http;
-
+            this.Auth = Auth;
+            this.items = [];
             $http.get('/api/orders/cart')
                 .then(response => {
                     this.items = response.data.items;
@@ -47,6 +48,21 @@
                 return amount + item.amount;
             }, 0);
         }
+
+        convertCartToOrderAsUser() {
+            return this.convertCartToOrder(this.Auth.getCurrentUser());
+        }
+
+        convertCartToOrderAsGuest(guest) {
+            return this.convertCartToOrder(guest);
+        }
+
+        convertCartToOrder(user) {
+            console.log(user);
+            console.log(user.id);
+            // return this.$http.post('/api/orders/convert', {user: user});
+        }
+
     }
 
     angular.module('metallistTicketsApp')
