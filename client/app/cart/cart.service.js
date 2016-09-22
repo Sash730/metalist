@@ -4,20 +4,14 @@
 
     class CartService {
 
-        constructor() {
-            this.items = [{
-                seatId: 1,
-                matchId: 1,
-                amount: 7000,
-            }, {
-                seatId: 2,
-                matchId: 1,
-                amount: 7000,
-            }, {
-                seatId: 3,
-                matchId: 1,
-                amount: 9000,
-            }];
+        constructor($http) {
+            this.$http = $http;
+
+            $http.get('/api/orders/cart')
+                .then(response => {
+                    this.items = response.data.items;
+                })
+            ;
         }
 
         getItems() {
@@ -25,15 +19,23 @@
         }
 
         addItem(seat, match) {
-            this.items.push({
-                seatId: seat._id,
-                matchId: match._id,
-                amount: seat.price
-            });
+
+            this.$http.post('/api/orders/cart', {
+                seatId: seat.id,
+                matchId: match.id
+            })
+                .then(response => {
+                    this.items = response.data.items;
+                })
+            ;
         }
 
-        removeItem(index) {
-            this.items.splice(index, 1);
+        removeItem(id) {
+            this.$http.delete('/api/orders/cart/items/' + id)
+                .then(response => {
+                    this.items = response.data.items;
+                })
+            ;
         }
 
         getTotalItems() {

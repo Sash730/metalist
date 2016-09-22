@@ -27,7 +27,7 @@
                             <span ng-if="!match.homeMatch">Metallist</span>
                         </div>
                         <div class="col-sm-2 tickets">
-                            <a ui-sref="match-seats({id: match._id})" class="btn btn-success btn-xs" ng-show="match.homeMatch && match.date">View tickets</a>
+                            <a ui-sref="match-seats({id: match.id})" class="btn btn-success btn-xs" ng-show="match.homeMatch && match.date">View tickets</a>
                             <span ng-show="!match.homeMatch || !match.date">
                                 &nbsp;
                             </span>

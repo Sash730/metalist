@@ -12,6 +12,7 @@ export default function (app) {
     app.use('/api/users', require('./api/user'));
     app.use('/api/matches', require('./api/match'));
     app.use('/api/tickets', require('./api/ticket'));
+    app.use('/api/orders', require('./api/order'));
     app.use('/payment/liqpay', require('./api/payment/liqpay'));
 
     app.use('/auth', require('./auth').default);

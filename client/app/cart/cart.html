@@ -5,7 +5,7 @@
         <td>Seat id: {{ item.seatId }}, match id: {{ item.matchId }}</td>
         <td>{{ item.amount | money }}</td>
         <td>
-            <button class="btn btn-danger btn-xs" ng-click="vm.removeItem($index)">
+            <button class="btn btn-danger btn-xs" ng-click="vm.removeItem(item.id)">
                 <i class="glyphicon glyphicon-remove"></i>
             </button>
         </td>

@@ -26,6 +26,9 @@ var MatchSchema = new Schema({
         required: true,
     },
     info: String,
+}, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
 });
 MatchSchema
     .virtual('awayMatch')
