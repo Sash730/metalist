@@ -26,26 +26,32 @@ OrderItemSchema
 var OrderSchema = new Schema({
     orderNumber: {
         type: String,
-        required: true,
+        required: function(value) {
+            return this.type === 'order';
+        },
     },
     amount: {
         type: Number,
         required: true,
+        default: 0,
     },
     status: {
         type: String,
         enum: [ 'new', 'paid' ],
         required: true,
+        default: 'new',
     },
     type: {
         type: String,
         enum: [ 'order', 'cart' ],
         required: true,
+        default: 'cart',
     },
     context: {
         type: String,
         enum: [ 'website', 'cashbox' ],
         required: true,
+        default: 'website',
     },
     paymentDetails: Schema.Types.Mixed,
     items: [ OrderItemSchema ],
