@@ -64,8 +64,8 @@ var all = {
         publicKey: process.env.LIQPAY_PUBLIC_KEY || '***REMOVED***',
         privateKey: process.env.LIQPAY_PRIVATE_KEY || '***REMOVED***',
         sandboxMode: process.env.LIQPAY_SANDBOX_MODE || 1,
-        callbackUrl: (process.env.DOMAIN || '') + '/payment/liqpay/callback',
-        redirectUrl: (process.env.DOMAIN || '') + '/payment/liqpay/redirect'
+        callbackUrl: (process.env.DOMAIN || '') + '/api/orders/liqpay-callback',
+        redirectUrl: (process.env.DOMAIN || '') + '/api/orders/liqpay-redirect'
     }
 };
 

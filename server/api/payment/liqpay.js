@@ -5,6 +5,6 @@ var controller = require('./liqpay.controller');
 
 var router = express.Router();
 
-router.post('/callback', controller.callback);
+// router.post('/callback', controller.callback);
 
 module.exports = router;

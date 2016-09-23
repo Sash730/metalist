@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import * as config from "../../config/environment"
 import * as crypto from "crypto";
 import liqpay from '../../liqpay';
+import * as uuid from 'node-uuid';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -31,7 +32,7 @@ function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function (err) {
         console.log(err);
-        res.status(statusCode).send(err);
+        res.status(err.statusCode || statusCode).send(err);
     };
 }
 
@@ -129,12 +130,11 @@ console.log('session ===========> ', req.session);
         .then(([user, cart]) => {
             cart.user = user;
             cart.type = 'order';
-            cart.orderNumber = crypto.randomBytes(16).toString('hex');
+            cart.orderNumber = uuid.v1();
 
             return cart.save();
         })
         .then(order => {
-            console.log('order converted', order);
             delete req.session.cart;
 
             return order;
@@ -143,7 +143,7 @@ console.log('session ===========> ', req.session);
             console.log('payment link');
 
             var orderDescription = _.reduce(order.items, (description, item) => {
-                orderDescription += 'Match: ' + item.matchId + '; seatId: ' + item.seatId + "\n";
+                return description + 'Match: ' + item.matchId + '; seatId: ' + item.seatId + '';
             }, '');
 
             var paymentParams = {
@@ -159,6 +159,55 @@ console.log('session ===========> ', req.session);
 
             return {'paymentLink': liqpay.generatePaymentLink(paymentParams)};
         })
+        .then(respondWithResult(res))
+        .catch(handleError(res))
+    ;
+}
+
+export function liqpayRedirect(req, res, next) {
+    if(!req.body.data || !req.body.signature) {
+        console.log('data or signature missing');
+        console.log(req.body);
+        return res.status(400).send();
+    }
+
+    if(liqpay.signString(req.body.data) !== req.body.signature) {
+        console.log('signature is wrong');
+        console.log(req.body);
+        return res.status(400).send();
+    }
+
+    var params = JSON.parse(new Buffer(req.body.data, 'base64').toString('ascii'));
+
+    return Order.findOne({orderNumber: params.order_id})
+        .then((order) => {
+            if(!order) {
+                throw new Error('Order not found');
+            }
+
+            return order;
+        })
+        .then(order => {
+            console.log(order);
+            if(params.status === 'success' || params.status === 'sandbox') {
+                order.status = 'paid';
+            }
+
+            order.paymentDetails = params;
+
+            return order.save();
+        })
+        .then(order => {
+            return res.redirect('/my/orders/'+order.orderNumber);
+        })
+        .catch(handleError(res))
+    ;
+}
+
+export function getOrderByNumber(req, res) {
+    console.log('-------------->', req.params.orderNumber);
+    Order.findOne({orderNumber: req.params.orderNumber, type: 'order'})
+        .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res))
     ;

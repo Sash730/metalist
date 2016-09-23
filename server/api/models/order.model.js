@@ -37,7 +37,7 @@ var OrderSchema = new Schema({
     },
     status: {
         type: String,
-        enum: [ 'new', 'paid' ],
+        enum: [ 'new', 'paid', 'canceled' ],
         required: true,
         default: 'new',
     },

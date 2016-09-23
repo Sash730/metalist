@@ -4,7 +4,8 @@
 
     class CheckoutController {
 
-        constructor(CartService, Auth) {
+        constructor($window, CartService, Auth) {
+            this.$window = $window;
             this.cart = CartService;
             this.isLoggedIn = Auth.isLoggedIn;
         }
@@ -22,12 +23,18 @@
             form.name.$setDirty();
 
             if(form.$valid) {
-                this.cart.convertCartToOrderAsGuest(user);
+                this.handleCheckoutResponse(this.cart.convertCartToOrderAsGuest(user));
             }
         }
 
         checkout() {
-            this.cart.convertCartToOrderAsUser();
+            this.handleCheckoutResponse(this.cart.convertCartToOrderAsUser());
+        }
+
+        handleCheckoutResponse(responsePromise) {
+            responsePromise.then(response => {
+                this.$window.location.href=response.data.paymentLink;
+            });
         }
     }
 
