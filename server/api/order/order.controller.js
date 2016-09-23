@@ -36,6 +36,65 @@ function handleError(res, statusCode) {
     };
 }
 
+var processLiqpayRequest = (request) => {
+    return new Promise((resolve, reject) => {
+        if(!request.body.data || !request.body.signature) {
+            console.log('data or signature missing');
+            console.log(request.body);
+
+            return reject(new Error('data or signature missing'));
+        }
+
+        if(liqpay.signString(request.body.data) !== request.body.signature) {
+            console.log('signature is wrong');
+            console.log(request.body);
+
+            return reject(new Error('signature is wrong'));
+        }
+
+        return resolve(JSON.parse(new Buffer(request.body.data, 'base64').toString('ascii')));
+    })
+        .then(params => {
+            return Promise.all([
+                Order.findOne({orderNumber: params.order_id, type: 'order', status: 'new'}),
+                params
+            ]);
+        })
+        .then(([order, params]) => {
+            if(!order) {
+                throw new Error('Order not found');
+            }
+            if(params.status === 'success' || params.status === 'sandbox') {
+                order.status = 'paid';
+            } else {
+                order.status = 'failed';
+            }
+            order.paymentDetails = params;
+
+            return order.save();
+        })
+        ;
+};
+
+var createPaymentLink = (order) => {
+    var orderDescription = _.reduce(order.items, (description, item) => {
+        return description + 'Match: ' + item.matchId + '; seatId: ' + item.seatId + '';
+    }, '');
+
+    var paymentParams = {
+        'action': 'pay',
+        'amount': order.formattedAmount,
+        'currency': 'UAH',
+        'description': orderDescription,
+        'order_id': order.orderNumber,
+        'sandbox': config.liqpay.sandboxMode,
+        'server_url': config.liqpay.callbackUrl,
+        'result_url': config.liqpay.redirectUrl,
+    };
+
+    return liqpay.generatePaymentLink(paymentParams);
+};
+
 export function updateCart(req, res) {
     var cartId = req.session.cart;
 
@@ -140,22 +199,7 @@ console.log('session ===========> ', req.session);
             return order;
         })
         .then(order => {
-            var orderDescription = _.reduce(order.items, (description, item) => {
-                return description + 'Match: ' + item.matchId + '; seatId: ' + item.seatId + '';
-            }, '');
-
-            var paymentParams = {
-                'action': 'pay',
-                'amount': order.formattedAmount,
-                'currency': 'UAH',
-                'description': orderDescription,
-                'order_id': order.orderNumber,
-                'sandbox': config.liqpay.sandboxMode,
-                'server_url': config.liqpay.callbackUrl,
-                'result_url': config.liqpay.redirectUrl,
-            };
-
-            return {'paymentLink': liqpay.generatePaymentLink(paymentParams)};
+            return {'paymentLink': createPaymentLink(order)};
         })
         .then(respondWithResult(res))
         .catch(handleError(res))
@@ -163,43 +207,17 @@ console.log('session ===========> ', req.session);
 }
 
 export function liqpayRedirect(req, res, next) {
-    if(!req.body.data || !req.body.signature) {
-        console.log('data or signature missing');
-        console.log(req.body);
-        return res.status(400).send();
-    }
-
-    if(liqpay.signString(req.body.data) !== req.body.signature) {
-        console.log('signature is wrong');
-        console.log(req.body);
-        return res.status(400).send();
-    }
-
-    var params = JSON.parse(new Buffer(req.body.data, 'base64').toString('ascii'));
-    console.log(params);
-
-    return Order.findOne({orderNumber: params.order_id})
-        .then((order) => {
-            if(!order) {
-                throw new Error('Order not found');
-            }
-
-            return order;
-        })
-        .then(order => {
-            if(params.status === 'success' || params.status === 'sandbox') {
-                order.status = 'paid';
-            } else {
-                order.status = 'failed';
-            }
-
-            order.paymentDetails = params;
-
-            return order.save();
-        })
+    return processLiqpayRequest(req)
         .then(order => {
             return res.redirect('/my/orders/'+order.orderNumber);
         })
+        .catch(handleError(res))
+    ;
+}
+
+export function liqpayCallback(req, res, next) {
+    return processLiqpayRequest(req)
+        .then(respondWithResult(res))
         .catch(handleError(res))
     ;
 }
@@ -216,21 +234,7 @@ export function getOrderByNumber(req, res) {
         .then(order => {
             order = order.toObject();
             if(order.statusNew) {
-                var orderDescription = _.reduce(order.items, (description, item) => {
-                    return description + 'Match: ' + item.matchId + '; seatId: ' + item.seatId + '';
-                }, '');
-
-                var paymentParams = {
-                    'action': 'pay',
-                    'amount': order.formattedAmount,
-                    'currency': 'UAH',
-                    'description': orderDescription,
-                    'order_id': order.orderNumber,
-                    'sandbox': config.liqpay.sandboxMode,
-                    'server_url': config.liqpay.callbackUrl,
-                    'result_url': config.liqpay.redirectUrl,
-                };
-                order.paymentLink = liqpay.generatePaymentLink(paymentParams);
+                order.paymentLink = createPaymentLink(order);
             }
 
             return order;
