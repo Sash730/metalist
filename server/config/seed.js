@@ -107,7 +107,7 @@ Order.find({}).remove()
         Order.create({
             orderNumber: 'order_number_1',
             amount: 7000,
-            status: 'paid',
+            status: 'failed',
             type: 'order',
             context: 'website',
             paymentDetails: {key: 'value'},
@@ -134,6 +134,22 @@ Order.find({}).remove()
                 amount: 8000
             } ],
             user: {name: 'user_2', email: 'user_2@example.com'},
+        }, {
+            orderNumber: 'order_number_3',
+            amount: 12000,
+            status: 'new',
+            type: 'order',
+            context: 'website',
+            items: [ {
+                seatId: 2,
+                matchId: 3,
+                amount: 9000
+            }, {
+                seatId: 2,
+                matchId: 1,
+                amount: 9000
+            } ],
+            user: {name: 'user_3', email: 'user_3@example.com'},
         })
             .then(() => {
                 console.log('finished populating orders');

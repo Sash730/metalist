@@ -13,7 +13,7 @@ angular.module('metallistTicketsApp')
                         .catch((error) => {
                             console.log(error);
                             $state.go('404');
-                        })
+                        });
                 }
             }
         });

@@ -6,7 +6,6 @@
 
         constructor(order) {
             this.order = order;
-            console.log(order);
         }
     }
 

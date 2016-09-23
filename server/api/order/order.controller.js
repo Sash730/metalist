@@ -140,8 +140,6 @@ console.log('session ===========> ', req.session);
             return order;
         })
         .then(order => {
-            console.log('payment link');
-
             var orderDescription = _.reduce(order.items, (description, item) => {
                 return description + 'Match: ' + item.matchId + '; seatId: ' + item.seatId + '';
             }, '');
@@ -178,6 +176,7 @@ export function liqpayRedirect(req, res, next) {
     }
 
     var params = JSON.parse(new Buffer(req.body.data, 'base64').toString('ascii'));
+    console.log(params);
 
     return Order.findOne({orderNumber: params.order_id})
         .then((order) => {
@@ -188,9 +187,10 @@ export function liqpayRedirect(req, res, next) {
             return order;
         })
         .then(order => {
-            console.log(order);
             if(params.status === 'success' || params.status === 'sandbox') {
                 order.status = 'paid';
+            } else {
+                order.status = 'failed';
             }
 
             order.paymentDetails = params;
@@ -205,9 +205,36 @@ export function liqpayRedirect(req, res, next) {
 }
 
 export function getOrderByNumber(req, res) {
-    console.log('-------------->', req.params.orderNumber);
     Order.findOne({orderNumber: req.params.orderNumber, type: 'order'})
-        .then(handleEntityNotFound(res))
+        .then((order) => {
+            if(!order) {
+                throw new Error('Order not found');
+            }
+
+            return order;
+        })
+        .then(order => {
+            order = order.toObject();
+            if(order.statusNew) {
+                var orderDescription = _.reduce(order.items, (description, item) => {
+                    return description + 'Match: ' + item.matchId + '; seatId: ' + item.seatId + '';
+                }, '');
+
+                var paymentParams = {
+                    'action': 'pay',
+                    'amount': order.formattedAmount,
+                    'currency': 'UAH',
+                    'description': orderDescription,
+                    'order_id': order.orderNumber,
+                    'sandbox': config.liqpay.sandboxMode,
+                    'server_url': config.liqpay.callbackUrl,
+                    'result_url': config.liqpay.redirectUrl,
+                };
+                order.paymentLink = liqpay.generatePaymentLink(paymentParams);
+            }
+
+            return order;
+        })
         .then(respondWithResult(res))
         .catch(handleError(res))
     ;

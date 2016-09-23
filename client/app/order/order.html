@@ -3,8 +3,32 @@
         <div class="col-sm-12">
             <h1>Order</h1>
         </div>
-        <div class="col-sm-12">
-            order number - {{ vm.order.orderNumber }}
+        <div class="col-sm-10">
+            <div class="col-sm-6">
+                <h3>Summary</h3>
+                <div><strong>Order Number</strong> - {{ vm.order.orderNumber }}</div>
+                <div><strong>Amount</strong> - {{ vm.order.amount | money }}</div>
+                <div><strong>Created</strong> - {{ vm.order.created | date:'MMM d, y HH:mm' }}</div>
+                <div><strong>Status</strong> - <span class="label" ng-class="{ 'label-success': vm.order.statusPaid, 'label-danger': vm.order.statusFailed, 'label-warning': vm.order.statusNew }">{{ vm.order.status }}</span></div>
+                <div ng-show="vm.order.statusNew">
+                    <hr/>
+                    <a href="{{ vm.order.paymentLink }}" class="btn btn-success">Pay now</a>
+                </div>
+                <hr/>
+                <h3>Customer</h3>
+                <div><strong>Name</strong> - {{ vm.order.user.name }}</div>
+                <div><strong>Email</strong> - {{ vm.order.user.email }}</div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Tickets</h3>
+                <div class="order-item" ng-repeat="item in vm.order.items">
+                    <div>Match: {{ item.matchId }}</div>
+                    <div>Seat: {{ item.seatId }}</div>
+                    <div><a href="#" class="btn btn-success" ng-show="vm.order.statusPaid ">Print Ticket</a></div>
+                    <hr/>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
