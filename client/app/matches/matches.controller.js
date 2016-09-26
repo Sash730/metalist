@@ -4,7 +4,7 @@
 
     class MatchesController {
 
-        constructor($http, temp, contacts) {
+        constructor($http, temp) {
             this.$http = $http;
             this.matches = [];
 
@@ -14,7 +14,6 @@
                 });
 
             console.log('main', temp);
-            console.log('main', contacts.all());
         }
 
     }
