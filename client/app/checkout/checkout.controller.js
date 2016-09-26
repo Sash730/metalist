@@ -8,6 +8,8 @@
             this.$window = $window;
             this.cart = CartService;
             this.isLoggedIn = Auth.isLoggedIn;
+
+            // console.log('checkout', temp);
         }
 
         addToCart(seat) {
