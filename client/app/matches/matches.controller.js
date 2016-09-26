@@ -2,7 +2,7 @@
 
 (function () {
 
-    class MainController {
+    class MatchesController {
 
         constructor($http, temp, contacts) {
             this.$http = $http;
@@ -20,5 +20,5 @@
     }
 
     angular.module('metallistTicketsApp')
-        .controller('MainController', MainController);
+        .controller('MatchesController', MatchesController);
 })();

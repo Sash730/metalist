@@ -3,10 +3,9 @@
 angular.module('metallistTicketsApp')
     .config(function ($stateProvider) {
         $stateProvider.state('main', {
+            abstract: true,
             url: '/',
-            controller: 'MainController',
-            templateUrl: 'app/main/main.html',
-            controllerAs: 'vm',
+            template: '<ui-view />',
             resolve: {
                 temp: () => {
                     return {a: 1};
