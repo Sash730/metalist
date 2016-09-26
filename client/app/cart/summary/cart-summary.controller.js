@@ -5,15 +5,7 @@
     class CartSummaryController {
 
         constructor(CartService) {
-            this.cart = CartService;
-        }
-
-        getTotalItems() {
-            return this.cart.getTotalItems();
-        }
-
-        getTotalAmount() {
-            return this.cart.getTotalAmount();
+            this.cart = CartService.cart;
         }
     }
 

@@ -1,7 +1,7 @@
 <h3>Your Cart</h3>
-<div class="empty" ng-hide="vm.getTotalItems()">Your cart is empty</div>
+<div class="empty" ng-hide="vm.cart.size">Your cart is empty</div>
 <table class="cart-items table table-condensed">
-    <tr class="cart-item" ng-repeat="item in vm.getItems()">
+    <tr class="cart-item" ng-repeat="item in vm.cart.items">
         <td>Seat id: {{ item.seatId }}, match id: {{ item.matchId }}</td>
         <td>{{ item.amount | money }}</td>
         <td>
@@ -10,7 +10,7 @@
             </button>
         </td>
     </tr>
-    <tr ng-show="vm.getTotalItems()">
-        <td colspan="3"><strong>{{ vm.getTotalItems() }}</strong> tickets for <strong>{{ vm.getTotalAmount() | money }}</strong></td>
+    <tr ng-show="vm.cart.size">
+        <td colspan="3"><strong>{{ vm.cart.size }}</strong> tickets for <strong>{{ vm.cart.amount | money }}</strong></td>
     </tr>
 </table>

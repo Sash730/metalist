@@ -8,15 +8,17 @@
             this.$http = $http;
             this.Auth = Auth;
             this.items = [];
-            $http.get('/api/orders/cart')
-                .then(response => {
-                    this.items = response.data.items;
-                })
-            ;
+            this.cart = new Cart();
+
+            this.loadCart();
         }
 
-        getItems() {
-            return this.items;
+        loadCart($http) {
+            this.$http.get('/api/orders/cart')
+                .then(response => {
+                    this.cart.items = response.data.items;
+                })
+            ;
         }
 
         addItem(seat, match) {
@@ -26,7 +28,7 @@
                 matchId: match.id
             })
                 .then(response => {
-                    this.items = response.data.items;
+                    this.cart.items = response.data.items;
                 })
             ;
         }
@@ -34,19 +36,9 @@
         removeItem(id) {
             this.$http.delete('/api/orders/cart/items/' + id)
                 .then(response => {
-                    this.items = response.data.items;
+                    this.cart.items = response.data.items;
                 })
             ;
-        }
-
-        getTotalItems() {
-            return this.items.length;
-        }
-
-        getTotalAmount() {
-            return _.reduce(this.items, (amount, item) => {
-                return amount + item.amount;
-            }, 0);
         }
 
         convertCartToOrderAsUser() {

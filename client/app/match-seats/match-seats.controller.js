@@ -4,18 +4,11 @@
 
     class MatchSeatsController {
 
-        constructor(match, seats, CartService) {
+        constructor(match, seats, cart, CartService) {
             this.match = match;
             this.seats = seats;
-            this.cart = CartService;
-        }
-
-        addToCart(seat) {
-            this.cart.addItem(seat, this.match);
-        }
-
-        getTotalItems() {
-            return this.cart.getTotalItems();
+            this.cart = cart;
+            this.addToCart = CartService.addItem.bind(CartService);
         }
     }
 

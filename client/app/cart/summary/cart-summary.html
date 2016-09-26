@@ -1,4 +1,4 @@
 <a ui-sref="checkout" class="cart-summary">
     <span class="glyphicon glyphicon-shopping-cart"></span>
-    {{vm.getTotalItems()}} items for {{ vm.getTotalAmount() | money }}
+    {{vm.cart.size}} items for {{ vm.cart.amount | money }}
 </a>

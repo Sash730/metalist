@@ -6,17 +6,9 @@
 
         constructor($window, CartService, Auth) {
             this.$window = $window;
-            this.cart = CartService;
+            this.cart = CartService.cart;
+            this.cartService = CartService;
             this.isLoggedIn = Auth.isLoggedIn;
-
-            // console.log('checkout', temp);
-        }
-
-        addToCart(seat) {
-            this.cart.addItem(seat, this.match);
-        }
-        getTotalItems() {
-            return this.cart.getTotalItems();
         }
 
         checkoutAsGuest(form, user) {
@@ -25,12 +17,12 @@
             form.name.$setDirty();
 
             if(form.$valid) {
-                this.handleCheckoutResponse(this.cart.convertCartToOrderAsGuest(user));
+                this.handleCheckoutResponse(this.cartService.convertCartToOrderAsGuest(user));
             }
         }
 
         checkout() {
-            this.handleCheckoutResponse(this.cart.convertCartToOrderAsUser());
+            this.handleCheckoutResponse(this.cartService.convertCartToOrderAsUser());
         }
 
         handleCheckoutResponse(responsePromise) {

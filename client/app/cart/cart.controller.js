@@ -5,28 +5,10 @@
     class CartController {
 
         constructor(CartService) {
-            this.cart = CartService;
+            this.cart = CartService.cart;
+            this.removeItem = CartService.removeItem.bind(CartService);
         }
-
-        getTotalItems() {
-            return this.cart.getTotalItems();
-        }
-
-        getTotalAmount() {
-            return this.cart.getTotalAmount();
-        }
-
-        getItems() {
-            return this.cart.getItems();
-        }
-
-        removeItem(index) {
-            return this.cart.removeItem(index);
-        }
-
-
     }
-
 
     angular.module('metallistTicketsApp')
         .component('cart', {

@@ -25,6 +25,9 @@ angular.module('metallistTicketsApp')
                             $state.go('404');
                         })
                     ;
+                },
+                cart: (CartService) => {
+                    return CartService.cart;
                 }
             }
         });
