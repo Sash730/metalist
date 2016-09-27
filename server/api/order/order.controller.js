@@ -39,16 +39,10 @@ function handleError(res, statusCode) {
 var processLiqpayRequest = (request) => {
     return new Promise((resolve, reject) => {
         if(!request.body.data || !request.body.signature) {
-            console.log('data or signature missing');
-            console.log(request.body);
-
             return reject(new Error('data or signature missing'));
         }
 
         if(liqpay.signString(request.body.data) !== request.body.signature) {
-            console.log('signature is wrong');
-            console.log(request.body);
-
             return reject(new Error('signature is wrong'));
         }
 
@@ -161,8 +155,6 @@ export function getCart(req, res) {
 export function convertCartToOrder(req, res) {
     var cartId = req.session.cart;
     var requestUserId = req.body.user.id;
-console.log('req user ===========> ', req.user);
-console.log('session ===========> ', req.session);
 
     var userPromise = new Promise((resolve, reject) => {
         if(requestUserId && requestUserId === req.user.id) {

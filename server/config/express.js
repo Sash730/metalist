@@ -44,7 +44,6 @@ export default function (app) {
     app.use(bodyParser.json());
     app.use(methodOverride());
     app.use(cookieParser());
-    app.use(passport.initialize());
 
     // Persist sessions with MongoStore / sequelizeStore
     // We need to enable sessions for passport-twitter because it's an
@@ -58,6 +57,8 @@ export default function (app) {
             db: 'metallist-tickets'
         })
     }));
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     app.use(cart.createCart);
 
