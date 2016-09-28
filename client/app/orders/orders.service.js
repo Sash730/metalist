@@ -2,7 +2,7 @@
 
 (function () {
 
-    class OrderService {
+    class OrdersService {
 
         constructor($http) {
             this.$http = $http;
@@ -14,8 +14,14 @@
             ;
         }
 
+        findMyOrders(orderNumber) {
+            return this.$http.get('/api/orders/my')
+                .then(response => response.data)
+            ;
+        }
+
     }
 
     angular.module('metallistTicketsApp')
-        .service('OrderService', OrderService);
+        .service('OrdersService', OrdersService);
 })();

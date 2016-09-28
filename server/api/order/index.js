@@ -11,6 +11,7 @@ router.delete('/cart/items/:itemId', controller.deleteItemFromCart);
 router.post('/cart/convert', controller.convertCartToOrder);
 router.post('/liqpay-redirect', controller.liqpayRedirect);
 router.post('/liqpay-callback', controller.liqpayCallback);
+router.get('/my', controller.getMyOrders);
 router.get('/by-number/:orderNumber', controller.getOrderByNumber);
 
 module.exports = router;

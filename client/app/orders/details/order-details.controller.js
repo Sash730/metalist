@@ -2,7 +2,7 @@
 
 (function () {
 
-    class OrderController {
+    class OrderDetailsController {
 
         constructor(order) {
             this.order = order;
@@ -10,5 +10,5 @@
     }
 
     angular.module('metallistTicketsApp')
-        .controller('OrderController', OrderController);
+        .controller('OrderDetailsController', OrderDetailsController);
 })();

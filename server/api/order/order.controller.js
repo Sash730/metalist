@@ -198,6 +198,10 @@ export function convertCartToOrder(req, res) {
         })
         .then(order => {
             delete req.session.cart;
+            if(!req.session.orderIds) {
+                req.session.orderIds = [];
+            }
+            req.session.orderIds.push(order.id);
 
             return order;
         })
@@ -245,4 +249,18 @@ export function getOrderByNumber(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res))
     ;
+}
+
+export function getMyOrders(req, res) {
+    if(req.user && req.user.id) {
+        Order.find({'user.id': req.user.id}).sort({created: -1})
+            .then(respondWithResult(res))
+        ;
+    } else {
+        var sessionOrderIds = req.session.orderIds || [];
+        console.log(sessionOrderIds);
+        Order.find({_id: { $in: sessionOrderIds }}).sort({created: -1})
+            .then(respondWithResult(res))
+        ;
+    }
 }
