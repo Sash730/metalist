@@ -22,8 +22,10 @@
             <div class="col-sm-6">
                 <h3>Tickets</h3>
                 <div class="order-item" ng-repeat="item in vm.order.items">
-                    <div>Match: {{ item.matchId }}</div>
-                    <div>Seat: {{ item.seatId }}</div>
+                    <div>Match: <strong>{{ item.match.headline }}</strong></div>
+                    <div>Sector: <strong>{{ item.seat.sector }}</strong></div>
+                    <div>Row: <strong>{{ item.seat.row }}</strong></div>
+                    <div>Seat number: <strong>{{ item.seat.number }}</strong></div>
                     <div><a href="#" class="btn btn-success" ng-show="vm.order.statusPaid ">Print Ticket</a></div>
                     <hr/>
                 </div>

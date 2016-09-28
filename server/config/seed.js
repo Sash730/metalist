@@ -112,8 +112,18 @@ Order.find({}).remove()
             context: 'website',
             paymentDetails: {key: 'value'},
             items: [ {
-                seatId: 1,
-                matchId: 1,
+                seat: {
+                    id: 1,
+                    sector: 1,
+                    row: 1,
+                    number: 1,
+                },
+                match: {
+                    id: 1,
+                    headline: 'Metallist vs Dnipro',
+                    round: 6,
+                    date: new Date('2016-09-15 15:00:00')
+                },
                 amount: 7000
             } ],
             user: {name: 'user_1', email: 'user_1@example.com'},
@@ -125,12 +135,27 @@ Order.find({}).remove()
             context: 'website',
             paymentDetails: {key: 'value'},
             items: [ {
-                seatId: 1,
+                seat: {
+                    id: 33,
+                    sector: 2,
+                    row: 3,
+                    number: 4,
+                },
                 matchId: 1,
                 amount: 7000
             }, {
-                seatId: 2,
-                matchId: 1,
+                seat: {
+                    id: 3,
+                    sector: 4,
+                    row: 5,
+                    number: 6,
+                },
+                match: {
+                    id: 2,
+                    headline: 'Metallist vs Dynamo',
+                    round: 8,
+                    date: new Date('2016-10-15 15:00:00')
+                },
                 amount: 8000
             } ],
             user: {name: 'user_2', email: 'user_2@example.com'},
@@ -141,12 +166,32 @@ Order.find({}).remove()
             type: 'order',
             context: 'website',
             items: [ {
-                seatId: 2,
-                matchId: 3,
+                seat: {
+                    id: 5524,
+                    sector: 21,
+                    row: 35,
+                    number: 67,
+                },
+                match: {
+                    id: 2,
+                    headline: 'Metallist vs Dynamo',
+                    round: 8,
+                    date: new Date('2016-10-15 15:00:00')
+                },
                 amount: 9000
             }, {
-                seatId: 2,
-                matchId: 1,
+                seat: {
+                    id: 2212,
+                    sector: 65,
+                    row: 15,
+                    number: 78,
+                },
+                match: {
+                    id: 1,
+                    headline: 'Metallist vs Dnipro',
+                    round: 6,
+                    date: new Date('2016-09-15 15:00:00')
+                },
                 amount: 9000
             } ],
             user: {name: 'user_3', email: 'user_3@example.com'},

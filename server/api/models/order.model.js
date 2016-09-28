@@ -6,8 +6,18 @@ import {Schema} from 'mongoose';
 import {formatMoney} from '../../util';
 
 var OrderItemSchema = new Schema({
-    seatId: String,
-    matchId: String,
+    seat: {
+        id: String,
+        sector: Number,
+        row: Number,
+        number: Number
+    },
+    match: {
+        id: String,
+        headline: String,
+        round: Number,
+        date: Date
+    },
     amount: {
         type: Number,
         required: true

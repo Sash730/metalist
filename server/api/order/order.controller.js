@@ -72,7 +72,8 @@ var processLiqpayRequest = (request) => {
 
 var createPaymentLink = (order) => {
     var orderDescription = _.reduce(order.items, (description, item) => {
-        return description + 'Match: ' + item.matchId + '; seatId: ' + item.seatId + '';
+        // return description + 'Match: ' + item.match.headline + 'seatId: ' + item.seatId + '';
+        return `${description} ${item.match.headline} (sector #${item.seat.sector}, row #${item.seat.row}, number #${item.seat.number}) | `;
     }, '');
 
     var paymentParams = {
@@ -109,8 +110,18 @@ export function updateCart(req, res) {
             }
 
             cart.items.push(new OrderItem({
-                seatId: seat.id,
-                matchId: match.id,
+                seat: {
+                    id: seat.id,
+                    sector: seat.sector,
+                    row: seat.row,
+                    number: seat.number
+                },
+                match: {
+                    id: match.id,
+                    headline: match.headline,
+                    round: match.round,
+                    date: match.date
+                },
                 amount: seat.price,
             }));
             cart.amount += seat.price;

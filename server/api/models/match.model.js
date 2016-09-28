@@ -39,5 +39,11 @@ MatchSchema
         this.homeMatch = !value;
     })
 ;
+MatchSchema
+    .virtual('headline')
+    .get(function() {
+        return this.homeMatch ? 'Metallist vs ' + this.rival : this.rival + 'vs Metallist';
+    })
+;
 
 export default mongoose.model('Match', MatchSchema);

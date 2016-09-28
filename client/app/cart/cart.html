@@ -2,7 +2,11 @@
 <div class="empty" ng-hide="vm.cart.size">Your cart is empty</div>
 <table class="cart-items table table-condensed">
     <tr class="cart-item" ng-repeat="item in vm.cart.items">
-        <td>Seat id: {{ item.seatId }}, match id: {{ item.matchId }}</td>
+        <td>
+            {{ item.match.headline }}<br/>
+            ({{ item.match.date|date:'d MMM' }} at {{ item.match.date|date:'HH:mm' }} )<br/>
+            sector #{{ item.seat.sector }}, row #{{ item.seat.row }}, seat #{{ item.seat.number }}
+        </td>
         <td>{{ item.amount | money }}</td>
         <td>
             <button class="btn btn-danger btn-xs" ng-click="vm.removeItem(item.id)">
