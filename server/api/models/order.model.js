@@ -21,7 +21,8 @@ var OrderItemSchema = new Schema({
     amount: {
         type: Number,
         required: true
-    }
+    },
+    accessCode: String,
 }, {
     toObject: { virtuals: true },
     toJSON: { virtuals: true },

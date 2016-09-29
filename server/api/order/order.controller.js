@@ -1,6 +1,8 @@
 'use strict';
 
 import Match from './../models/match.model';
+import Ticket from './../models/ticket.model';
+import User from './../models/user.model';
 import Seat from './../models/seat.model';
 import {Order, OrderItem} from './../models/order.model';
 import * as _ from 'lodash';
@@ -58,21 +60,57 @@ var processLiqpayRequest = (request) => {
             if(!order) {
                 throw new Error('Order not found');
             }
+            order.paymentDetails = params;
+
+            var ticketPromises = [];
             if(params.status === 'success' || params.status === 'sandbox') {
                 order.status = 'paid';
+
+                ticketPromises = createTickets(order);
+
             } else {
                 order.status = 'failed';
             }
-            order.paymentDetails = params;
 
-            return order.save();
-        })
-        ;
+            return Promise.all([order.save()].concat(ticketPromises));
+        });
+};
+
+var createTickets = (order) => {
+    return order.items.map( (item) => {
+        var ticket = new Ticket({
+
+            orderNumber: order.orderNumber,
+            accessCode: uuid.v1(),
+            match:  {
+                headline: item.match.headline,
+                round: item.match.round,
+                date: item.match.date
+
+            },
+            seat: {
+                sector: item.seat.sector,
+                row: item.seat.row,
+                number: item.seat.number,
+            },
+            user: {
+                email: order.user.email,
+                name: order.user.name
+            },
+            status: 'new',
+            valid: {
+                from: ((d) => { var d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(item.match.date),
+                to: ((d) => { var d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(item.match.date),
+            },
+            timesUsed: 0
+        });
+
+        return ticket.save();
+    });
 };
 
 var createPaymentLink = (order) => {
     var orderDescription = _.reduce(order.items, (description, item) => {
-        // return description + 'Match: ' + item.match.headline + 'seatId: ' + item.seatId + '';
         return `${description} ${item.match.headline} (sector #${item.seat.sector}, row #${item.seat.row}, number #${item.seat.number}) | `;
     }, '');
 
@@ -193,6 +231,7 @@ export function convertCartToOrder(req, res) {
             cart.user = user;
             cart.type = 'order';
             cart.orderNumber = uuid.v1();
+            cart.created = new Date();
 
             return cart.save();
         })
@@ -215,7 +254,7 @@ export function convertCartToOrder(req, res) {
 
 export function liqpayRedirect(req, res, next) {
     return processLiqpayRequest(req)
-        .then(order => {
+        .then(([order]) => {
             return res.redirect('/my/orders/'+order.orderNumber);
         })
         .catch(handleError(res))
@@ -258,7 +297,6 @@ export function getMyOrders(req, res) {
         ;
     } else {
         var sessionOrderIds = req.session.orderIds || [];
-        console.log(sessionOrderIds);
         Order.find({_id: { $in: sessionOrderIds }}).sort({created: -1})
             .then(respondWithResult(res))
         ;

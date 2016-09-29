@@ -11,17 +11,19 @@ var TicketSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    match: {
-        type: String,
-        required: true
-    },
     seat: {
-        type: String,
-        required: true
+        sector: {type: Number, requried: true},
+        row: {type: Number, requried: true},
+        number: {type: Number, requried: true},
+    },
+    match: {
+        headline: {type: String, requried: true},
+        round: {type: Number, requried: true},
+        date: {type: Date, requried: true},
     },
     user: {
-        type: String,
-        required: true
+        email: {type: String, requried: true},
+        name: {type: String, requried: true},
     },
     status: {
         type: String,
