@@ -14,7 +14,7 @@
             ;
         }
 
-        findMyOrders(orderNumber) {
+        findMyOrders() {
             return this.$http.get('/api/orders/my')
                 .then(response => response.data)
             ;

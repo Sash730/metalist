@@ -38,6 +38,39 @@ function handleError(res, statusCode) {
     };
 }
 
+var createTickets = (order) => {
+    return order.items.map( (item) => {
+        var ticket = new Ticket({
+
+            orderNumber: order.orderNumber,
+            accessCode: uuid.v1(),
+            match:  {
+                headline: item.match.headline,
+                round: item.match.round,
+                date: item.match.date
+
+            },
+            seat: {
+                sector: item.seat.sector,
+                row: item.seat.row,
+                number: item.seat.number,
+            },
+            user: {
+                email: order.user.email,
+                name: order.user.name
+            },
+            status: 'new',
+            valid: {
+                from: ((d) => { var d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(item.match.date),
+                to: ((d) => { var d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(item.match.date),
+            },
+            timesUsed: 0
+        });
+
+        return ticket.save();
+    });
+};
+
 var processLiqpayRequest = (request) => {
     return new Promise((resolve, reject) => {
         if(!request.body.data || !request.body.signature) {
@@ -74,39 +107,6 @@ var processLiqpayRequest = (request) => {
 
             return Promise.all([order.save()].concat(ticketPromises));
         });
-};
-
-var createTickets = (order) => {
-    return order.items.map( (item) => {
-        var ticket = new Ticket({
-
-            orderNumber: order.orderNumber,
-            accessCode: uuid.v1(),
-            match:  {
-                headline: item.match.headline,
-                round: item.match.round,
-                date: item.match.date
-
-            },
-            seat: {
-                sector: item.seat.sector,
-                row: item.seat.row,
-                number: item.seat.number,
-            },
-            user: {
-                email: order.user.email,
-                name: order.user.name
-            },
-            status: 'new',
-            valid: {
-                from: ((d) => { var d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(item.match.date),
-                to: ((d) => { var d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(item.match.date),
-            },
-            timesUsed: 0
-        });
-
-        return ticket.save();
-    });
 };
 
 var createPaymentLink = (order) => {

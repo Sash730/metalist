@@ -3,7 +3,7 @@
 class Cart {
 
     constructor() {
-        this._items = []
+        this._items = [];
     }
 
     get items() {
