@@ -10,6 +10,7 @@ import * as config from "../../config/environment"
 import * as crypto from "crypto";
 import liqpay from '../../liqpay';
 import * as uuid from 'node-uuid';
+import * as barcode from 'bwip-js';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -289,6 +290,40 @@ export function getOrderByNumber(req, res) {
         .catch(handleError(res))
     ;
 }
+
+export function getOrderedTickets(req, res) {
+    Ticket.find({orderNumber: req.params.orderNumber})
+        .then((tickets) => {
+            return Promise.all(tickets.map(ticket => {
+                ticket = ticket.toObject();
+
+                return new Promise((resolve, reject) => {
+                    barcode.toBuffer({
+                        bcid:        'code128',       // Barcode type
+                        text:        ticket.accessCode,     // Text to encode
+                        scale:       3,               // 3x scaling factor
+                        height:      10,              // Bar height, in millimeters
+                        includetext: true,            // Show human-readable text
+                        textxalign:  'center',        // Always good to set this
+                        textsize:    13               // Font size, in points
+                    }, function (err, png) {
+                        // png is a Buffer. can be saved into file if needed  fs.writeFile(ticket._id + '.png', png)
+
+                        if (err) {
+                            reject(err);
+                        } else {
+                            ticket.barcodeUri =  'data:image/png;base64,' + png.toString('base64');
+                            resolve(ticket);
+                        }
+                    })
+                });
+            }));
+        })
+        .then(respondWithResult(res))
+        .catch(handleError(res))
+    ;
+}
+
 
 export function getMyOrders(req, res) {
     if(req.user && req.user.id) {

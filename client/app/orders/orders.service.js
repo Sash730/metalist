@@ -14,6 +14,12 @@
             ;
         }
 
+        getOrderedTickets(order) {
+            return this.$http.get('/api/orders/by-number/' + order.orderNumber + '/tickets')
+                .then(response => response.data)
+            ;
+        }
+
         findMyOrders() {
             return this.$http.get('/api/orders/my')
                 .then(response => response.data)

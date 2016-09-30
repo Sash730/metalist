@@ -4,8 +4,9 @@
 
     class OrderDetailsController {
 
-        constructor(order) {
+        constructor(order, tickets) {
             this.order = order;
+            this.tickets = tickets;
         }
     }
 

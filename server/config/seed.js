@@ -141,7 +141,12 @@ Order.find({}).remove()
                     row: 3,
                     number: 4,
                 },
-                matchId: 1,
+                match: {
+                    id: 1,
+                    headline: 'Metallist vs Dnipro',
+                    round: 6,
+                    date: new Date('2016-09-15 15:00:00')
+                },
                 amount: 7000
             }, {
                 seat: {
@@ -240,9 +245,17 @@ Ticket.find({}).remove()
         Ticket.create({
             orderNumber: 'order_number_1',
             accessCode: 'access_code_1',
-            match: '1',
-            seat: '1',
-            user: '1',
+            seat: {
+                sector: 1,
+                row: 1,
+                number: 1,
+            },
+            match: {
+                headline: 'Metallist vs Dnipro',
+                round: 6,
+                date: new Date('2016-09-15 15:00:00')
+            },
+            user: {name: 'user_1', email: 'user_1@example.com'},
             status: 'new',
             valid: {
                 from: new Date('2016-10-15 13:00:00'),
@@ -252,9 +265,19 @@ Ticket.find({}).remove()
         }, {
             orderNumber: 'order_number_2',
             accessCode: 'access_code_2_1',
-            match: '2',
-            seat: '2',
-            user: '2',
+            seat: {
+                id: 3,
+                    sector: 4,
+                    row: 5,
+                    number: 6,
+            },
+            match: {
+                id: 2,
+                    headline: 'Metallist vs Dynamo',
+                    round: 8,
+                    date: new Date('2016-10-15 15:00:00')
+            },
+            user: {name: 'user_2', email: 'user_2@example.com'},
             status: 'new',
             valid: {
                 from: new Date('2016-10-19 14:00:00'),
@@ -264,9 +287,19 @@ Ticket.find({}).remove()
         }, {
             orderNumber: 'order_number_2',
             accessCode: 'access_code_2_2',
-            match: '2',
-            seat: '3',
-            user: '2',
+            seat: {
+                id: 33,
+                    sector: 2,
+                    row: 3,
+                    number: 4,
+            },
+            match: {
+                id: 1,
+                    headline: 'Metallist vs Dnipro',
+                    round: 6,
+                    date: new Date('2016-09-15 15:00:00')
+            },
+            user: {name: 'user_2', email: 'user_2@example.com'},
             status: 'new',
             valid: {
                 from: new Date('2016-10-19 14:00:00'),

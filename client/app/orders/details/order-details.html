@@ -19,14 +19,52 @@
                 <div><strong>Name</strong> - {{ vm.order.user.name }}</div>
                 <div><strong>Email</strong> - {{ vm.order.user.email }}</div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" ng-show="vm.order.statusPaid">
                 <h3>Tickets</h3>
+                <div class="ticket" ng-repeat="ticket in vm.tickets" id="ticket-{{ ticket.id }}">
+                    <div>Match: <strong>{{ ticket.match.headline }}</strong></div>
+                    <div>Sector: <strong>{{ ticket.seat.sector }}</strong></div>
+                    <div>Row: <strong>{{ ticket.seat.row }}</strong></div>
+                    <div>Seat number: <strong>{{ ticket.seat.number }}</strong></div>
+                    <div><a class="btn btn-success" ng-print print-element-id="printable-ticket-{{ ticket.id }}">Print Ticket</a></div>
+                    <div class="printable-ticket col-sm-12 col-sm-offset-0" id="printable-ticket-{{ ticket.id }}">
+                        <table class="table table-condensed table-bordered">
+                            <tr>
+                                <td colspan="2"><h4>{{ ticket.match.headline }} <em><small>{{ ticket.match.date | date:'MMM d, HH:mm' }}</small></em> </h4></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>Sector: <strong>{{ ticket.seat.sector }}</strong></div>
+                                    <div>Row: <strong>{{ ticket.seat.row }}</strong></div>
+                                    <div>Seat number: <strong>{{ ticket.seat.number }}</strong></div>
+                                </td>
+                                <td>
+                                    <div>Visitor: <strong>{{ ticket.user.name }}</strong></div>
+                                    <div>Valid: <strong>{{ ticket.valid.from|date:"MMM d, HH:mm" }} - {{ ticket.valid.to|date:"HH:mm" }} </strong></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <img ng-src="{{ ticket.barcodeUri }}" alt="ticket bar code" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <em>* Print this ticket or remember the code</em>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+            <div class="col-sm-6" ng-hide="vm.order.statusPaid">
+                <h3>Order Items</h3>
                 <div class="order-item" ng-repeat="item in vm.order.items">
                     <div>Match: <strong>{{ item.match.headline }}</strong></div>
                     <div>Sector: <strong>{{ item.seat.sector }}</strong></div>
                     <div>Row: <strong>{{ item.seat.row }}</strong></div>
                     <div>Seat number: <strong>{{ item.seat.number }}</strong></div>
-                    <div><a href="#" class="btn btn-success" ng-show="vm.order.statusPaid ">Print Ticket</a></div>
                     <hr/>
                 </div>
             </div>

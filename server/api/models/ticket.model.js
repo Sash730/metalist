@@ -38,6 +38,9 @@ var TicketSchema = new mongoose.Schema({
         type: Number,
         default: 0
     }
+}, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
 });
 
 export default mongoose.model('Ticket', TicketSchema);

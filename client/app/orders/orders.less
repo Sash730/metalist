@@ -1,0 +1,23 @@
+@media screen {
+    .ticket .printable-ticket {
+        display: none;
+    }
+
+}
+
+@media print {
+    #printSection .printable-ticket {
+        div {
+            display: block;
+        }
+        table {
+            display: table;
+        }
+        tr {
+            display: table-row;
+        }
+        td {
+            display: table-cell;
+        }
+    }
+}
