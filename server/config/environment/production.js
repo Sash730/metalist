@@ -13,12 +13,10 @@ module.exports = {
     process.env.PORT ||
     8080,
 
+  // MongoDB connection options
+  mongo: {
+    uri: 'mongodb://' + (process.env.MONGO_1_PORT_27017_TCP_ADDR || 'localhost') + ':27017/metallisttickets'
+  }
     // MongoDB connection options
-    mongo: {
-        uri: process.env.MONGODB_URI ||
-        process.env.MONGOHQ_URL ||
-        process.env.OPENSHIFT_MONGODB_DB_URL +
-        process.env.OPENSHIFT_APP_NAME ||
-        'mongodb://localhost/metallisttickets'
-    }
+
 };

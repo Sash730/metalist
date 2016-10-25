@@ -32,7 +32,7 @@ Match.find({}).remove()
             info: 'some very useful information about the match 2'
         }, {
             rival: "Shakhtar",
-            homeMatch: false,
+            homeMatch: true,
             date: new Date('2016-10-25 16:00:00'),
             round: 10,
             info: 'some very useful information about the match 3'

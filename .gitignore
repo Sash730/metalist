@@ -1,10 +1,11 @@
 node_modules
-public
 .tmp
 .idea
 client/bower_components
 client/app/app.constant.js
-dist
-/server/config/local.env.js
+dist/client
+dist/server
+dist/package.json
+dist/bower.json
+server/config/local.env.js
 npm-debug.log
-coverage
