@@ -14,6 +14,6 @@
         }
     }
 
-    angular.module('metallistTicketsApp.admin')
+    angular.module('metalistTicketsApp.admin')
         .controller('AdminController', AdminController);
 })();

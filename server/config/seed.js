@@ -120,7 +120,7 @@ Order.find({}).remove()
                 },
                 match: {
                     id: 1,
-                    headline: 'Metallist vs Dnipro',
+                    headline: 'Metalist vs Dnipro',
                     round: 6,
                     date: new Date('2016-09-15 15:00:00')
                 },
@@ -143,7 +143,7 @@ Order.find({}).remove()
                 },
                 match: {
                     id: 1,
-                    headline: 'Metallist vs Dnipro',
+                    headline: 'Metalist vs Dnipro',
                     round: 6,
                     date: new Date('2016-09-15 15:00:00')
                 },
@@ -157,7 +157,7 @@ Order.find({}).remove()
                 },
                 match: {
                     id: 2,
-                    headline: 'Metallist vs Dynamo',
+                    headline: 'Metalist vs Dynamo',
                     round: 8,
                     date: new Date('2016-10-15 15:00:00')
                 },
@@ -179,7 +179,7 @@ Order.find({}).remove()
                 },
                 match: {
                     id: 2,
-                    headline: 'Metallist vs Dynamo',
+                    headline: 'Metalist vs Dynamo',
                     round: 8,
                     date: new Date('2016-10-15 15:00:00')
                 },
@@ -193,7 +193,7 @@ Order.find({}).remove()
                 },
                 match: {
                     id: 1,
-                    headline: 'Metallist vs Dnipro',
+                    headline: 'Metalist vs Dnipro',
                     round: 6,
                     date: new Date('2016-09-15 15:00:00')
                 },
@@ -251,7 +251,7 @@ Ticket.find({}).remove()
                 number: 1,
             },
             match: {
-                headline: 'Metallist vs Dnipro',
+                headline: 'Metalist vs Dnipro',
                 round: 6,
                 date: new Date('2016-09-15 15:00:00')
             },
@@ -273,7 +273,7 @@ Ticket.find({}).remove()
             },
             match: {
                 id: 2,
-                    headline: 'Metallist vs Dynamo',
+                    headline: 'Metalist vs Dynamo',
                     round: 8,
                     date: new Date('2016-10-15 15:00:00')
             },
@@ -295,7 +295,7 @@ Ticket.find({}).remove()
             },
             match: {
                 id: 1,
-                    headline: 'Metallist vs Dnipro',
+                    headline: 'Metalist vs Dnipro',
                     round: 6,
                     date: new Date('2016-09-15 15:00:00')
             },

@@ -7,7 +7,7 @@
 
 module.exports = {
     DOMAIN: 'http://localhost:9000',
-    SESSION_SECRET: 'metallisttickets-secret',
+    SESSION_SECRET: 'metalisttickets-secret',
 
     FACEBOOK_ID: 'app-id',
     FACEBOOK_SECRET: 'secret',

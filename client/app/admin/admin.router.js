@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('metallistTicketsApp.admin')
+angular.module('metalistTicketsApp.admin')
     .config(function ($stateProvider) {
         $stateProvider.state('admin', {
             url: '/admin',

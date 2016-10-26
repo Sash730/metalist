@@ -23,5 +23,5 @@ class SettingsController {
     }
 }
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .controller('SettingsController', SettingsController);

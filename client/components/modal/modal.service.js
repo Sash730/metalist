@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .factory('Modal', function ($rootScope, $uibModal) {
         /**
          * Opens a modal

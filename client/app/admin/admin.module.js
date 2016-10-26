@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('metallistTicketsApp.admin', ['metallistTicketsApp.auth', 'ui.router']);
+angular.module('metalistTicketsApp.admin', ['metalistTicketsApp.auth', 'ui.router']);

@@ -12,6 +12,6 @@
         }
     }
 
-    angular.module('metallistTicketsApp')
+    angular.module('metalistTicketsApp')
         .controller('MatchSeatsController', MatchSeatsController);
 })();

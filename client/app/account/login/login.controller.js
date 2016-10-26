@@ -29,5 +29,5 @@ class LoginController {
     }
 }
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .controller('LoginController', LoginController);

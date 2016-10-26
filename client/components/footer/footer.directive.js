@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .directive('footer', function () {
         return {
             templateUrl: 'components/footer/footer.html',

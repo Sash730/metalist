@@ -18,6 +18,6 @@
 
     }
 
-    angular.module('metallistTicketsApp')
+    angular.module('metalistTicketsApp')
         .controller('MatchesController', MatchesController);
 })();

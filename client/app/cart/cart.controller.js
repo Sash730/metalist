@@ -10,7 +10,7 @@
         }
     }
 
-    angular.module('metallistTicketsApp')
+    angular.module('metalistTicketsApp')
         .component('cart', {
             templateUrl: 'app/cart/cart.html',
             controller: CartController,

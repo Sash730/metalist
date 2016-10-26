@@ -3,7 +3,7 @@
 describe('Controller: OauthButtonsCtrl', function () {
 
     // load the controller's module
-    beforeEach(module('metallistTicketsApp'));
+    beforeEach(module('metalistTicketsApp'));
 
     var OauthButtonsCtrl, $window;
 

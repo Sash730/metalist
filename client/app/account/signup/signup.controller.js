@@ -38,5 +38,5 @@ class SignupController {
     }
 }
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .controller('SignupController', SignupController);

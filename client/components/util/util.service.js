@@ -65,6 +65,6 @@
         return Util;
     }
 
-    angular.module('metallistTicketsApp.util')
+    angular.module('metalistTicketsApp.util')
         .factory('Util', UtilService);
 })();

@@ -9,6 +9,6 @@
         }
     }
 
-    angular.module('metallistTicketsApp')
+    angular.module('metalistTicketsApp')
         .controller('OrdersController', OrdersController);
 })();

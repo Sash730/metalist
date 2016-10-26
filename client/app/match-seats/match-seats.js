@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .config(function ($stateProvider) {
         $stateProvider.state('match-seats', {
             url: '/match/:id/seats',

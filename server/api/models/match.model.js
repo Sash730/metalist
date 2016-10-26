@@ -42,7 +42,7 @@ MatchSchema
 MatchSchema
     .virtual('headline')
     .get(function() {
-        return this.homeMatch ? 'Metallist vs ' + this.rival : this.rival + 'vs Metallist';
+        return this.homeMatch ? 'Metalist vs ' + this.rival : this.rival + 'vs Metalist';
     })
 ;
 

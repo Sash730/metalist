@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .directive('navbar', () => ({
         templateUrl: 'components/navbar/navbar.html',
         restrict: 'E',

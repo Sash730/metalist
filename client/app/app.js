@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('metallistTicketsApp', ['metallistTicketsApp.auth', 'metallistTicketsApp.admin',
-    'metallistTicketsApp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router',
+angular.module('metalistTicketsApp', ['metalistTicketsApp.auth', 'metalistTicketsApp.admin',
+    'metalistTicketsApp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router',
     'ui.bootstrap', 'validation.match', 'ngPrint'
 ])
     .config(function ($urlRouterProvider, $locationProvider) {

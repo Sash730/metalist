@@ -1,6 +1,6 @@
 <header id="banner" class="hero-unit">
     <div class="container">
-        <h1>Metallist tickets application</h1>
+        <h1>Metalist tickets application</h1>
     </div>
 </header>
 <div class="container">
@@ -18,13 +18,13 @@
                             </span>
                         </div>
                         <div class="col-sm-3 home">
-                            <span ng-if="match.homeMatch">Metallist</span>
+                            <span ng-if="match.homeMatch">Metalist</span>
                             <span ng-if="!match.homeMatch">{{ match.rival }}</span>
                         </div>
                         <div class="col-sm-1 vs">VS</div>
                         <div class="col-sm-3 away">
                             <span ng-if="match.homeMatch">{{ match.rival }}</span>
-                            <span ng-if="!match.homeMatch">Metallist</span>
+                            <span ng-if="!match.homeMatch">Metalist</span>
                         </div>
                         <div class="col-sm-2 tickets">
                             <a ui-sref="match-seats({id: match.id})" class="btn btn-success btn-xs" ng-show="match.homeMatch && match.date">View tickets</a>

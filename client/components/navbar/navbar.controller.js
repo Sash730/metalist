@@ -12,5 +12,5 @@ class NavbarController {
 
 }
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .controller('NavbarController', NavbarController);

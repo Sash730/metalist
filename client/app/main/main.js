@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .config(function ($stateProvider) {
         $stateProvider.state('main', {
             abstract: true,

@@ -55,6 +55,6 @@
 
     }
 
-    angular.module('metallistTicketsApp')
+    angular.module('metalistTicketsApp')
         .service('CartService', CartService);
 })();

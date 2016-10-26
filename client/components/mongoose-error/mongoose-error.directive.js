@@ -4,7 +4,7 @@
  * Removes server error when user updates input
  */
 
-angular.module('metallistTicketsApp')
+angular.module('metalistTicketsApp')
     .directive('mongooseError', function () {
         return {
             restrict: 'A',

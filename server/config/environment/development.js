@@ -6,7 +6,7 @@ module.exports = {
 
     // MongoDB connection options
     mongo: {
-        uri: 'mongodb://localhost/metallisttickets-dev'
+        uri: 'mongodb://localhost/metalisttickets-dev'
     },
 
     // Seed database on startup

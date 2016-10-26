@@ -185,6 +185,6 @@
         return Auth;
     }
 
-    angular.module('metallistTicketsApp.auth')
+    angular.module('metalistTicketsApp.auth')
         .factory('Auth', AuthService);
 })();

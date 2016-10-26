@@ -10,6 +10,6 @@
         }
     }
 
-    angular.module('metallistTicketsApp')
+    angular.module('metalistTicketsApp')
         .controller('404Controller', NotFoundController);
 })();

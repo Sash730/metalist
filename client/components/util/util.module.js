@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('metallistTicketsApp.util', []);
+angular.module('metalistTicketsApp.util', []);
