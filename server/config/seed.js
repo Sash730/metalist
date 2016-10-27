@@ -15,25 +15,25 @@ Match.find({}).remove()
         Match.create({
             rival: "Dnipro",
             homeMatch: true,
-            date: new Date('2016-09-15 15:00:00'),
+            date: new Date('2016-11-15 15:00:00'),
             round: 6,
             info: 'passed event'
         }, {
             rival: "Dynamo",
             homeMatch: true,
-            date: new Date('2016-10-15 15:00:00'),
+            date: new Date('2016-11-15 15:00:00'),
             round: 8,
             info: 'some very useful information about the match'
         }, {
             rival: "Karpaty",
             homeMatch: true,
-            date: new Date('2016-10-19 16:00:00'),
+            date: new Date('2016-11-19 16:00:00'),
             round: 9,
             info: 'some very useful information about the match 2'
         }, {
             rival: "Shakhtar",
             homeMatch: true,
-            date: new Date('2016-10-25 16:00:00'),
+            date: new Date('2016-11-25 16:00:00'),
             round: 10,
             info: 'some very useful information about the match 3'
         }, {
@@ -122,7 +122,7 @@ Order.find({}).remove()
                     id: 1,
                     headline: 'Metalist vs Dnipro',
                     round: 6,
-                    date: new Date('2016-09-15 15:00:00')
+                    date: new Date('2016-11-15 15:00:00')
                 },
                 amount: 7000
             } ],
@@ -145,7 +145,7 @@ Order.find({}).remove()
                     id: 1,
                     headline: 'Metalist vs Dnipro',
                     round: 6,
-                    date: new Date('2016-09-15 15:00:00')
+                    date: new Date('2016-11-15 15:00:00')
                 },
                 amount: 7000
             }, {
@@ -159,7 +159,7 @@ Order.find({}).remove()
                     id: 2,
                     headline: 'Metalist vs Dynamo',
                     round: 8,
-                    date: new Date('2016-10-15 15:00:00')
+                    date: new Date('2016-11-15 15:00:00')
                 },
                 amount: 8000
             } ],
@@ -181,7 +181,7 @@ Order.find({}).remove()
                     id: 2,
                     headline: 'Metalist vs Dynamo',
                     round: 8,
-                    date: new Date('2016-10-15 15:00:00')
+                    date: new Date('2016-11-15 15:00:00')
                 },
                 amount: 9000
             }, {
@@ -195,7 +195,7 @@ Order.find({}).remove()
                     id: 1,
                     headline: 'Metalist vs Dnipro',
                     round: 6,
-                    date: new Date('2016-09-15 15:00:00')
+                    date: new Date('2016-11-15 15:00:00')
                 },
                 amount: 9000
             } ],
@@ -253,13 +253,13 @@ Ticket.find({}).remove()
             match: {
                 headline: 'Metalist vs Dnipro',
                 round: 6,
-                date: new Date('2016-09-15 15:00:00')
+                date: new Date('2016-11-15 15:00:00')
             },
             user: {name: 'user_1', email: 'user_1@example.com'},
             status: 'new',
             valid: {
-                from: new Date('2016-10-15 13:00:00'),
-                to: new Date('2016-10-15 17:00:00'),
+                from: new Date('2016-11-15 13:00:00'),
+                to: new Date('2016-11-15 17:00:00'),
             },
             timesUsed: 0
         }, {
@@ -275,13 +275,13 @@ Ticket.find({}).remove()
                 id: 2,
                     headline: 'Metalist vs Dynamo',
                     round: 8,
-                    date: new Date('2016-10-15 15:00:00')
+                    date: new Date('2016-11-15 15:00:00')
             },
             user: {name: 'user_2', email: 'user_2@example.com'},
             status: 'new',
             valid: {
-                from: new Date('2016-10-19 14:00:00'),
-                to: new Date('2016-10-19 18:00:00'),
+                from: new Date('2016-11-19 14:00:00'),
+                to: new Date('2016-11-19 18:00:00'),
             },
             timesUsed: 0
         }, {
@@ -297,13 +297,13 @@ Ticket.find({}).remove()
                 id: 1,
                     headline: 'Metalist vs Dnipro',
                     round: 6,
-                    date: new Date('2016-09-15 15:00:00')
+                    date: new Date('2016-11-15 15:00:00')
             },
             user: {name: 'user_2', email: 'user_2@example.com'},
             status: 'new',
             valid: {
-                from: new Date('2016-10-19 14:00:00'),
-                to: new Date('2016-10-19 18:00:00'),
+                from: new Date('2016-11-19 14:00:00'),
+                to: new Date('2016-11-19 18:00:00'),
             },
             timesUsed: 0
         })

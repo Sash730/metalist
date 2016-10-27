@@ -9,36 +9,21 @@ var MatchSchema = new Schema({
         type: String,
         required: true,
     },
-    homeMatch: {
-        type: Boolean,
-        default: true,
-    },
     date: {
         type: Date,
         default: null
-    },
-    dateApproximate: {
-        type: String,
-        default: null,
     },
     round: {
         type: Number,
         required: true,
     },
     info: String,
+    poster: String,
 }, {
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
 });
-MatchSchema
-    .virtual('awayMatch')
-    .get(function() {
-        return !this.homeMatch;
-    })
-    .set(function(value) {
-        this.homeMatch = !value;
-    })
-;
+
 MatchSchema
     .virtual('headline')
     .get(function() {
