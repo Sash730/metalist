@@ -2,22 +2,22 @@
 
 (function () {
 
-    class MatchesController {
+  class MatchesController {
 
-        constructor($http, temp) {
-            this.$http = $http;
-            this.matches = [];
+    constructor($http, temp) {
+      this.$http = $http;
+      this.matches = [];
 
-            this.$http.get('/api/matches')
-                .then((response) => {
-                    this.matches = response.data;
-                });
-
-            console.log('main', temp);
-        }
+      this.$http.get('/api/matches')
+        .then((response) => {
+          this.matches = response.data;
+        });
 
     }
 
-    angular.module('metalistTicketsApp')
-        .controller('MatchesController', MatchesController);
+
+  }
+
+  angular.module('metalistTicketsApp')
+    .controller('MatchesController', MatchesController);
 })();
