@@ -1,6 +1,104 @@
 <div class="container">
     <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-    <ul class="list-group">
-        <li ng-repeat="user in admin.users" class="list-group-item"><strong>{{user.name}}</strong><br/><span class="text-muted">{{user.email}}</span><a ng-click="admin.delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a></li>
-    </ul>
+
+  <uib-tabset active="activeUsers" justified="true">
+    <uib-tab index="0" heading="Users">
+      <ul class="list-group">
+      <li ng-repeat="user in admin.users" class="list-group-item">
+        <strong>{{user.name}}</strong><br/>
+        <span class="text-muted">{{user.email}}</span>
+        <a ng-click="admin.delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a></li>
+      </ul>
+    </uib-tab>
+    <uib-tab index="1" heading="Matches">
+
+      <!--<table class="table">-->
+        <!--<thead>-->
+        <!--<tr>-->
+          <!--<th>#</th>-->
+          <!--<th>Firstname</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+          <!--<td>1</td>-->
+          <!--<td>Anna</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td>2</td>-->
+          <!--<td>Debbie</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td>3</td>-->
+          <!--<td>John</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+      <!--</table>-->
+
+      <table class="table">
+      <thead>
+      <tr>
+
+        <th>poster</th>
+        <th>date</th>
+        <th>headline</th>
+        <th>rival</th>
+        <th>round</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+
+        <td><input type="text" name="poster" ng-model="admin.newMatch.poster" required="" /></td>
+        <td><input type="text" name="date" ng-model="admin.newMatch.date" required="" /></td>
+        <td><input type="text" name="headline" ng-model="admin.newMatch.headline" required="" /></td>
+        <td><input type="text" name="rival" ng-model="admin.newMatch.rival" required="" /></td>
+        <td><input type="text" name="round" ng-model="admin.newMatch.round" required="" /></td>
+        <td>
+          <button class="btn btn-primary btn-sm" ng-click="admin.save(admin.newMatch, '1')" ><span class="glyphicon glyphicon-ok"></span></button>
+        </td>
+      </tr>
+
+        <tr ng-repeat="match in admin.matches">
+          <td>
+            <input type="text" name="poster" ng-model= "match.poster" required="" />
+          </td>
+          <td>
+            <!--{{ match.date }} '2016-11-15 13:00:00' -->
+            <!--<input type="text" name="poster" ng-model= "match.date | date:'yyyy-MM-dd H:mm ' " required="" />-->
+            <input type="text" name="poster" ng-model= "match.date | date:'yyyy-MM-dd H:mm '" required="" />
+          </td>
+          <td>
+            <input type="text" name="poster" ng-model= "match.headline" required="" />
+          </td>
+          <td>
+            <input type="text" name="poster" ng-model= "match.rival" required="" />
+          </td>
+          <td>
+            <input type="text" name="poster" ng-model= "match.round" required="" />
+          </td>
+          <td>
+          <button class="btn btn-primary btn-sm" ng-click="admin.editMatch(match)" ><span class="glyphicon glyphicon-pencil"></span></button>
+          </td>
+          <td>
+            <button class="btn btn-primary btn-sm" ng-click="admin.deleteMatch(match)" ><span class="glyphicon glyphicon-remove"></span></button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+
+      {{ admin.newMatch }}
+      <!--<ul class="list-group">-->
+        <!--<li ng-repeat="match in admin.matches" class="list-group-item">-->
+
+          <!--{{ match.poster }} {{ match.date }} {{ match.headline }} {{ match.rival }}.{{ match.round }}.-->
+          <!--<input type="text" name="name" ng-model="vm.user.name" required="" class=".col-md-4"/>-->
+          <!--&lt;!&ndash;<p ng-show="form.name.$error.required && vm.submitted" class="help-block">A name is required</p>&ndash;&gt;-->
+        <!--</li>-->
+      <!--</ul>-->
+
+    </uib-tab>
+    <uib-tab index="2" heading="Orders">Short Labeled Justified content</uib-tab>
+  </uib-tabset>
+
 </div>

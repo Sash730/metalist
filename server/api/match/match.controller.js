@@ -99,4 +99,43 @@ export function seats(req, res) {
         .catch(handleError(res));
 }
 
+export function creatMatch(req, res) {
+  var newMatch = new Match({
+      rival: req.body.rival,
+      round: req.body.round,
+      info: req.body.info,
+      date: req.body.date
+    });
+  return newMatch.save()
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+}
 
+
+export function deleteMatch(req, res) {
+  return Match.findByIdAndRemove(req.params.id).exec()
+    .then(function () {
+      res.status(204).end();
+    })
+    .catch(handleError(res));
+}
+
+export function updateMatch(req, res) {
+  var matchId = req.body._id;
+  Match.findOne({_id: matchId})
+    .then((curentMatch) => {
+      if(!curentMatch) {
+      throw new Error('not found');
+      }
+    return curentMatch;
+    })
+    .then((match)  => {
+      match.round = req.body.round;
+      match.rival = req.body.rival;
+      match.date = req.body.date;
+      return match.save()
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
+}
