@@ -27,7 +27,7 @@ var MatchSchema = new Schema({
 MatchSchema
     .virtual('headline')
     .get(function() {
-        return this.homeMatch ? 'Metalist vs ' + this.rival : this.rival + 'vs Metalist';
+        return this.homeMatch ? 'Metalist vs ' + this.rival : this.rival + ' vs Metalist';
     })
 ;
 

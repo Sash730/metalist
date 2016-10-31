@@ -66,7 +66,7 @@
           <td>
             <!--{{ match.date }} '2016-11-15 13:00:00' -->
             <!--<input type="text" name="poster" ng-model= "match.date | date:'yyyy-MM-dd H:mm ' " required="" />-->
-            <input type="text" name="poster" ng-model= "match.date | date:'yyyy-MM-dd H:mm '" required="" />
+            <input type="text" name="poster" ng-model= "match.date | date:'yyyy-MM-dd H:mm'" required="" />
           </td>
           <td>
             <input type="text" name="poster" ng-model= "match.headline" required="" />
@@ -98,7 +98,34 @@
       <!--</ul>-->
 
     </uib-tab>
-    <uib-tab index="2" heading="Orders">Short Labeled Justified content</uib-tab>
+    <uib-tab index="2" heading="Orders">
+      <form name="myForm"><br>
+        <label for="repeatSelect"> Выберите матч: </label>
+        <select name="repeat" id="repeatSelect" ng-model="admin.match" ng-change="admin.getCountPaidOrders(admin.match)">
+          <option ng-repeat="option in admin.matches" value="{{option.date}}">{{option.headline}}</option>
+        </select>
+      </form>
+      <hr>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Match date</th>
+          <th>west tribune</th>
+          <th>east tribune</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td ng-bind="admin.match | date:'dd-MM-yyyy HH:mm:ss'">
+          </td>
+          <td ng-bind="admin.paidOrders[0].number">
+          </td>
+          <td ng-bind="admin.paidOrders[1].number">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </uib-tab>
   </uib-tabset>
 
 </div>

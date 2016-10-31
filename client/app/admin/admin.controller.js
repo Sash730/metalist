@@ -3,18 +3,18 @@
 (function () {
 
     class AdminController {
-        constructor(User, $http,) {
+        constructor(User, $http) {
           this.newMatch = {};
-
+          this.paidOrders = [];
           this.matches = [];
 
-            this.users = User.query();
+          this.users = User.query();
 
-            this.$http = $http;
-            this.matches = [];
+          this.$http = $http;
+          this.matches = [];
 
-            this.$http.get('/api/matches')
-              .then((response) => {
+          this.$http.get('/api/matches')
+            .then((response) => {
               this.matches = response.data;
           });
 
@@ -60,6 +60,17 @@
           .then((response) => {
           this.matches = response.data;
       });
+      }
+
+      getCountPaidOrders(a){
+        this.$http( {
+          method: 'get',
+          url:'/api/orders/' + a,
+          headers: {'Accept': 'application/json'}
+        })
+          .then((response) => {
+            this.paidOrders = response.data;
+          });
       }
 
       delete(user) {
