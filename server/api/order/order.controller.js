@@ -82,7 +82,7 @@ var processLiqpayRequest = (request) => {
             return reject(new Error('signature is wrong'));
         }
 
-        return resolve(JSON.parse(new Buffer(request.body.data, 'base64').toString('ascii')));
+        return resolve(JSON.parse(new Buffer(request.body.data, 'base64').toString('utf-8')));
     })
         .then(params => {
             return Promise.all([
