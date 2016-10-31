@@ -54,7 +54,7 @@ var createTickets = (order) => {
             seat: {
                 sector: item.seat.sector,
                 row: item.seat.row,
-                number: item.seat.number,
+                number: item.seat.number
             },
             user: {
                 email: order.user.email,
@@ -63,7 +63,7 @@ var createTickets = (order) => {
             status: 'new',
             valid: {
                 from: ((d) => { var d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(item.match.date),
-                to: ((d) => { var d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(item.match.date),
+                to: ((d) => { var d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(item.match.date)
             },
             timesUsed: 0
         });
@@ -123,11 +123,25 @@ var createPaymentLink = (order) => {
         'order_id': order.orderNumber,
         'sandbox': config.liqpay.sandboxMode,
         'server_url': config.liqpay.callbackUrl,
-        'result_url': config.liqpay.redirectUrl,
+        'result_url': config.liqpay.redirectUrl
     };
 
     return liqpay.generatePaymentLink(paymentParams);
 };
+
+export function getCountPaidOrders(req, res){
+  var date = new Date(req.params.date);
+
+  Order.aggregate([
+    {$match: {status: 'paid'}}, {$project: {orderNumber: 1, _id: 0, items: 1}},
+    {$unwind: "$items"}, {$match: {'items.match.date': date}},
+    {$project: {sector: '$items.seat.sector'}},
+    {$group: {_id: "$sector", number: {$sum: 1}}},
+    {$sort: {_id: 1}}])
+  .exec()
+  .then(respondWithResult(res))
+  .catch(handleError(res));
+}
 
 export function updateCart(req, res) {
     var cartId = req.session.cart;
@@ -135,7 +149,7 @@ export function updateCart(req, res) {
     Promise.all([
         Order.findOne({_id: cartId, type: 'cart'}),
         Match.findById(req.body.matchId),
-        Seat.findById(req.body.seatId),
+        Seat.findById(req.body.seatId)
     ])
         .then(([cart, match, seat]) => {
             if(!cart) {
@@ -161,7 +175,7 @@ export function updateCart(req, res) {
                     round: match.round,
                     date: match.date
                 },
-                amount: seat.price,
+                amount: seat.price
             }));
             cart.amount += seat.price;
 

@@ -21,7 +21,7 @@ Match.find({}).remove()
         }, {
             rival: "Dynamo",
             homeMatch: true,
-            date: new Date('2016-11-15 15:00:00'),
+            date: new Date('2016-11-19 15:00:00'),
             round: 8,
             info: 'some very useful information about the match'
         }, {
@@ -55,47 +55,47 @@ Seat.find({}).remove()
             sector: 1,
             row: 1,
             number: 1,
-            price: 7000,
+            price: 7000
         }, {
             sector: 1,
             row: 1,
             number: 2,
-            price: 7000,
+            price: 7000
         }, {
             sector: 1,
             row: 1,
             number: 3,
-            price: 7000,
+            price: 7000
         }, {
             sector: 1,
             row: 1,
             number: 4,
-            price: 7000,
+            price: 7000
         }, {
             sector: 1,
             row: 1,
             number: 5,
-            price: 7000,
+            price: 7000
         }, {
             sector: 2,
             row: 1,
             number: 1,
-            price: 7800,
+            price: 7800
         }, {
             sector: 3,
             row: 2,
             number: 1,
-            price: 8000,
+            price: 8000
         }, {
             sector: 3,
             row: 2,
             number: 2,
-            price: 8000,
+            price: 8000
         }, {
             sector: 3,
             row: 2,
             number: 3,
-            price: 8000,
+            price: 8000
         })
             .then(() => {
                 console.log('finished populating seats');
@@ -116,7 +116,7 @@ Order.find({}).remove()
                     id: 1,
                     sector: 1,
                     row: 1,
-                    number: 1,
+                    number: 1
                 },
                 match: {
                     id: 1,
@@ -126,7 +126,30 @@ Order.find({}).remove()
                 },
                 amount: 7000
             } ],
-            user: {name: 'user_1', email: 'user_1@example.com'},
+            user: {name: 'user_1', email: 'user_1@example.com'}
+        },{
+          orderNumber: 'order_number_5',
+          amount: 7000,
+          status: 'paid',
+          type: 'order',
+          context: 'website',
+          paymentDetails: {key: 'value'},
+          items: [ {
+            seat: {
+              id: 1,
+              sector: 1,
+              row: 1,
+              number: 1
+            },
+            match: {
+              id: 1,
+              headline: 'Metalist vs Dnipro',
+              round: 6,
+              date: new Date('2016-11-15 15:00:00')
+            },
+            amount: 7000
+          } ],
+          user: {name: 'user_1', email: 'user_1@example.com'}
         }, {
             orderNumber: 'order_number_2',
             amount: 15000,
@@ -139,7 +162,7 @@ Order.find({}).remove()
                     id: 33,
                     sector: 2,
                     row: 3,
-                    number: 4,
+                    number: 4
                 },
                 match: {
                     id: 1,
@@ -151,21 +174,94 @@ Order.find({}).remove()
             }, {
                 seat: {
                     id: 3,
-                    sector: 4,
+                    sector: 1,
                     row: 5,
-                    number: 6,
+                    number: 6
                 },
                 match: {
                     id: 2,
                     headline: 'Metalist vs Dynamo',
                     round: 8,
-                    date: new Date('2016-11-15 15:00:00')
+                    date: new Date('2016-11-19 15:00:00')
                 },
                 amount: 8000
             } ],
-            user: {name: 'user_2', email: 'user_2@example.com'},
+            user: {name: 'user_2', email: 'user_2@example.com'}
+        },{
+          orderNumber: 'order_number_3',
+          amount: 15000,
+          status: 'paid',
+          type: 'order',
+          context: 'website',
+          paymentDetails: {key: 'value'},
+          items: [ {
+            seat: {
+              id: 33,
+              sector: 1,
+              row: 3,
+              number: 4
+            },
+            match: {
+              id: 1,
+              headline: 'Metalist vs Dnipro',
+              round: 6,
+              date: new Date('2016-11-15 15:00:00')
+            },
+            amount: 7000
+          }, {
+            seat: {
+              id: 3,
+              sector: 2,
+              row: 5,
+              number: 6
+            },
+            match: {
+              id: 2,
+              headline: 'Metalist vs Dynamo',
+              round: 8,
+              date: new Date('2016-11-19 15:00:00')
+            },
+            amount: 8000
+          } ],
+          user: {name: 'user_2', email: 'user_2@example.com'}
+        },{
+          orderNumber: 'order_number_6',
+          amount: 12000,
+          status: 'paid',
+          type: 'order',
+          context: 'website',
+          items: [ {
+            seat: {
+              id: 5524,
+              sector: 1,
+              row: 35,
+              number: 67
+            },
+            match: {
+              id: 2,
+              headline: 'Metalist vs Dynamo',
+              round: 8,
+              date: new Date('2016-11-19 15:00:00')
+            },
+            amount: 9000
+          }, {
+            seat: {
+              id: 2212,
+              sector: 1,
+              row: 15,
+              number: 78
+            },
+            match: {
+              id: 1,
+              headline: 'Metalist vs Dnipro',
+              round: 6,
+              date: new Date('2016-11-15 15:00:00')
+            },
+            amount: 9000
+          }],
+          user: {name: 'user_3', email: 'user_3@example.com'}
         }, {
-            orderNumber: 'order_number_3',
+            orderNumber: 'order_number_4',
             amount: 12000,
             status: 'new',
             type: 'order',
@@ -173,9 +269,9 @@ Order.find({}).remove()
             items: [ {
                 seat: {
                     id: 5524,
-                    sector: 21,
+                    sector: 1,
                     row: 35,
-                    number: 67,
+                    number: 67
                 },
                 match: {
                     id: 2,
@@ -187,9 +283,9 @@ Order.find({}).remove()
             }, {
                 seat: {
                     id: 2212,
-                    sector: 65,
+                    sector: 1,
                     row: 15,
-                    number: 78,
+                    number: 78
                 },
                 match: {
                     id: 1,
@@ -199,7 +295,7 @@ Order.find({}).remove()
                 },
                 amount: 9000
             } ],
-            user: {name: 'user_3', email: 'user_3@example.com'},
+            user: {name: 'user_3', email: 'user_3@example.com'}
         })
             .then(() => {
                 console.log('finished populating orders');
@@ -248,7 +344,7 @@ Ticket.find({}).remove()
             seat: {
                 sector: 1,
                 row: 1,
-                number: 1,
+                number: 1
             },
             match: {
                 headline: 'Metalist vs Dnipro',
@@ -259,7 +355,7 @@ Ticket.find({}).remove()
             status: 'new',
             valid: {
                 from: new Date('2016-11-15 13:00:00'),
-                to: new Date('2016-11-15 17:00:00'),
+                to: new Date('2016-11-15 17:00:00')
             },
             timesUsed: 0
         }, {
@@ -269,7 +365,7 @@ Ticket.find({}).remove()
                 id: 3,
                     sector: 4,
                     row: 5,
-                    number: 6,
+                    number: 6
             },
             match: {
                 id: 2,
@@ -281,7 +377,7 @@ Ticket.find({}).remove()
             status: 'new',
             valid: {
                 from: new Date('2016-11-19 14:00:00'),
-                to: new Date('2016-11-19 18:00:00'),
+                to: new Date('2016-11-19 18:00:00')
             },
             timesUsed: 0
         }, {
@@ -291,7 +387,7 @@ Ticket.find({}).remove()
                 id: 33,
                     sector: 2,
                     row: 3,
-                    number: 4,
+                    number: 4
             },
             match: {
                 id: 1,
@@ -303,7 +399,7 @@ Ticket.find({}).remove()
             status: 'new',
             valid: {
                 from: new Date('2016-11-19 14:00:00'),
-                to: new Date('2016-11-19 18:00:00'),
+                to: new Date('2016-11-19 18:00:00')
             },
             timesUsed: 0
         })

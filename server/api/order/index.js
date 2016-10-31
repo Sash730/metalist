@@ -14,5 +14,6 @@ router.post('/liqpay-callback', controller.liqpayCallback);
 router.get('/my', controller.getMyOrders);
 router.get('/by-number/:orderNumber', controller.getOrderByNumber);
 router.get('/by-number/:orderNumber/tickets', controller.getOrderedTickets);
+router.get('/:date', controller.getCountPaidOrders);
 
 module.exports = router;
