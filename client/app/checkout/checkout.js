@@ -6,6 +6,6 @@ angular.module('metalistTicketsApp')
             url: '/checkout',
             templateUrl: 'app/checkout/checkout.html',
             controller: 'CheckoutController',
-            controllerAs: 'vm',
+            controllerAs: 'vm'
         });
     });

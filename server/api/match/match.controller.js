@@ -36,7 +36,7 @@ export function index(req, res) {
         $or: [
             {date: { $gt: Date.now() }},
             {date: null}
-        ],
+        ]
     }).sort({round: 1}).exec()
         // .then(matches => {
         //     var result = _.map(matches, (match) => {

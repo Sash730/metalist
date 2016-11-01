@@ -7,6 +7,7 @@
           this.newMatch = {};
           this.paidOrders = [];
           this.matches = [];
+          this.matchDate = '';
 
           this.users = User.query();
 

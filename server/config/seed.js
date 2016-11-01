@@ -211,7 +211,7 @@ Order.find({}).remove()
           }, {
             seat: {
               id: 3,
-              sector: 2,
+              sector: 1,
               row: 5,
               number: 6
             },
