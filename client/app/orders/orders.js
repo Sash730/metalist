@@ -43,7 +43,7 @@ angular.module('metalistTicketsApp')
                     } else {
                         return [];
                     }
-                },
+                }
             }
         });
     });

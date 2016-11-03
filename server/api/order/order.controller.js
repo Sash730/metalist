@@ -139,15 +139,46 @@ function randomNumericString(length) {
 export function getCountPaidOrders(req, res){
   var date = new Date(req.params.date);
 
-  Order.aggregate([
-    {$match: {status: 'paid'}}, {$project: {orderNumber: 1, _id: 0, items: 1}},
-    {$unwind: "$items"}, {$match: {'items.match.date': date}},
-    {$project: {sector: '$items.seat.sector'}},
-    {$group: {_id: "$sector", number: {$sum: 1}}},
-    {$sort: {_id: 1}}])
-  .exec()
-  .then(respondWithResult(res))
-  .catch(handleError(res));
+  var countOrdersPromise =  Order.aggregate([
+      {$match: {status: 'paid'}},
+      {$project: {orderNumber: 1, _id: 0, items: 1}},
+      {$unwind: "$items"},
+      {$match: {'items.match.date': date}},
+      {$project: {sector: '$items.seat.sector'}},
+      {$group: {_id: "$sector", number: {$sum: 1}}},
+      {$sort: {_id: 1}}])
+      .then(handleEntityNotFound(res))
+    ;
+  var totalPricePromise  =  Order.aggregate([
+    {$match: {status: 'paid'}},
+    {$project: {orderNumber: 1, _id: 0, items: 1}},
+    {$unwind: "$items"},
+    {$match: {'items.match.date': date}},
+    {$group: {_id: "orderNumber", total: {$sum: '$items.amount'}}}
+    ])
+    .then(handleEntityNotFound(res));
+
+  Promise
+    .all([countOrdersPromise, totalPricePromise])
+    .then(([count, total]) => {
+      var arr = count.concat(total),
+          stat = {};
+
+      if(arr.length !== 0){
+
+        for (var i = 0; i < arr.length; i++){
+
+          if(arr[i]._id === 1) stat.west = arr[i].number;
+          if(arr[i]._id === 2) stat.east = arr[i].number;
+          if(arr[i]._id === 'orderNumber') stat.total = arr[i].total;
+        }
+      }
+
+      return stat;
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
 }
 
 export function updateCart(req, res) {

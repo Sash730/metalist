@@ -100,8 +100,8 @@
     </uib-tab>
     <uib-tab index="2" heading="Orders">
       <form name="myForm"><br>
-        <label for="repeatSelect"> Выберите матч: </label>
-        <select name="repeat" id="repeatSelect" ng-model="admin.match" ng-change="admin.getCountPaidOrders(admin.match)">
+        <label> Выберите матч: </label>
+        <select class="form-control" name="repeat" id="repeatSelect" ng-change="admin.getCountPaidOrders(admin.matchDate)" ng-model="admin.matchDate">
           <option ng-repeat="option in admin.matches" value="{{option.date}}">{{option.headline}}</option>
         </select>
       </form>
@@ -110,17 +110,20 @@
         <thead>
         <tr>
           <th>Match date</th>
-          <th>west tribune</th>
-          <th>east tribune</th>
+          <th>West tribune</th>
+          <th>East tribune</th>
+          <th>Total price</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td ng-bind="admin.match | date:'dd-MM-yyyy HH:mm:ss'">
+          <td ng-bind="admin.matchDate | date:'dd-MM-yyyy HH:mm:ss'">
           </td>
-          <td ng-bind="admin.paidOrders[0].number">
+          <td ng-bind="admin.paidOrders.west">
           </td>
-          <td ng-bind="admin.paidOrders[1].number">
+          <td ng-bind="admin.paidOrders.east">
+          </td>
+          <td ng-bind="admin.paidOrders.total | money">
           </td>
         </tr>
         </tbody>
