@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import * as config from "../../config/environment"
 import * as crypto from "crypto";
 import liqpay from '../../liqpay';
+import * as Mailer from '../../mailer/mailer.js';
 import * as uuid from 'node-uuid';
 import * as barcode from 'bwip-js';
 
@@ -39,6 +40,11 @@ function handleError(res, statusCode) {
     };
 }
 
+function SendMessage(order, ticket) {
+  Mailer.sendMail( ticket.user.email, order, ticket);
+    return order;
+}
+
 var createTickets = (order) => {
     return order.items.map( (item) => {
         var ticket = new Ticket({
@@ -67,7 +73,7 @@ var createTickets = (order) => {
             },
             timesUsed: 0
         });
-
+  SendMessage(order, ticket);
         return ticket.save();
     });
 };
@@ -308,8 +314,8 @@ export function convertCartToOrder(req, res) {
 export function liqpayRedirect(req, res, next) {
     return processLiqpayRequest(req)
         .then(([order]) => {
-            return res.redirect('/my/orders/'+order.orderNumber);
-        })
+        return res.redirect('/my/orders/'+order.orderNumber);
+         })
         .catch(handleError(res))
     ;
 }
