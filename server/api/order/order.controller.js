@@ -44,7 +44,7 @@ var createTickets = (order) => {
         var ticket = new Ticket({
 
             orderNumber: order.orderNumber,
-            accessCode: uuid.v1(),
+            accessCode: randomNumericString(16),
             match:  {
                 headline: item.match.headline,
                 round: item.match.round,
@@ -128,6 +128,13 @@ var createPaymentLink = (order) => {
 
     return liqpay.generatePaymentLink(paymentParams);
 };
+
+function randomNumericString(length) {
+  let chars = '0123456789';
+  let result = '';
+  for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+  return result;
+}
 
 export function getCountPaidOrders(req, res){
   var date = new Date(req.params.date);
