@@ -378,14 +378,22 @@ export function getOrderedTickets(req, res) {
 
 
 export function getMyOrders(req, res) {
+
     if(req.user && req.user.id) {
+
         Order.find({'user.id': req.user.id}).sort({created: -1})
             .then(respondWithResult(res))
         ;
+    } else  if (req.cookies.guest){
+
+      Order.find({'user.email': req.cookies.guest}).sort({created: -1})
+        .then(respondWithResult(res))
+      ;
     } else {
-        var sessionOrderIds = req.session.orderIds || [];
-        Order.find({_id: { $in: sessionOrderIds }}).sort({created: -1})
-            .then(respondWithResult(res))
-        ;
+      var sessionOrderIds = req.session.orderIds || [];
+
+      Order.find({_id: { $in: sessionOrderIds }}).sort({created: -1})
+        .then(respondWithResult(res))
+      ;
     }
 }
