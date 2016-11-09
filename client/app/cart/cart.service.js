@@ -4,19 +4,25 @@
 
     class CartService {
 
-        constructor($http, Auth) {
+        constructor($http, Auth, $cookies) {
             this.$http = $http;
             this.Auth = Auth;
+            this.$cookies = $cookies;
             this.items = [];
             this.cart = new Cart();
 
             this.loadCart();
         }
 
-        loadCart($http) {
+        loadCart() {
             this.$http.get('/api/orders/cart')
                 .then(response => {
                     this.cart.items = response.data.items;
+
+                if (!this.$cookies.get('cart') ||
+                          this.$cookies.get('cart') !==  response.data.id) {
+                  this.$cookies.put('cart', response.data.id);
+                }
                 })
             ;
         }
@@ -46,6 +52,8 @@
         }
 
         convertCartToOrderAsGuest(guest) {
+            this.$cookies.put('guest', guest.email);
+
             return this.convertCartToOrder(guest);
         }
 

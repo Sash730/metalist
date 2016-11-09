@@ -3,7 +3,8 @@
 angular.module('metalistTicketsApp')
     .filter('money', () => {
         return (amount) => {
-          if(!amount) return '';
+          if(amount) {
             return (amount / 100).toFixed(2) + 'UAH';
+          }
         };
     });

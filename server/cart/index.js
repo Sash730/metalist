@@ -1,10 +1,14 @@
 import {Order} from '../api/models/order.model';
 
 export var createCart = (request, response, next) => {
-    Promise.resolve(request.session.cart)
-        .then(cartId => {
-            if(cartId) {
-                return Order.findOne({_id: cartId, type: 'cart'});
+    Promise.resolve(request)
+        .then(request => {
+
+            if(request.session.cart) {
+                return Order.findOne({_id: request.session.cart, type: 'cart'});
+            }
+            if(request.cookies.cart && !request.session.cart){
+              return Order.findOne({_id: request.cookies.cart, type: 'cart'});
             }
 
             return null;
