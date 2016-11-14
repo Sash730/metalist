@@ -4,6 +4,9 @@ import User from './../models/user.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import * as log4js from 'log4js';
+
+var logger = log4js.getLogger('User');
 
 function validationError(res, statusCode) {
     statusCode = statusCode || 422;
@@ -15,6 +18,7 @@ function validationError(res, statusCode) {
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function (err) {
+      logger.error('handleError '+err);
         res.status(statusCode).send(err);
     };
 }
@@ -24,6 +28,7 @@ function handleError(res, statusCode) {
  * restriction: 'admin'
  */
 export function index(req, res) {
+  logger.debug("order index");
     return User.find({}, '-salt -password').exec()
         .then(users => {
             res.status(200).json(users);
