@@ -76,3 +76,14 @@ module.exports = _.merge(
     require('./shared'),
     require('./' + process.env.NODE_ENV + '.js') || {}
 );
+
+log4js.configure(
+  {
+    appenders: [
+      { type: 'console' },
+      // { type: 'file', filename: 'logs/cheese.log', category: 'cheese' },
+      // { type: 'file', filename: 'logs/order.log', category: 'order' },
+      { type: 'file', filename: 'logs/all.log' }
+    ]
+  }
+);

@@ -12,18 +12,23 @@ import liqpay from '../../liqpay';
 import * as Mailer from '../../mailer/mailer.js';
 import * as uuid from 'node-uuid';
 import * as barcode from 'bwip-js';
+import * as log4js from 'log4js';
+
+var logger = log4js.getLogger('Order');
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function (entity) {
         if (entity) {
+          logger.info("respondWithResult "+entity);
             return res.status(statusCode).json(entity);
         }
     };
 }
 
 function handleEntityNotFound(res) {
-    return function (entity) {
+      return function (entity) {
+        logger.info("handleEntityNotFound "+ entity);
         if (!entity) {
             res.status(404).end();
             return null;
@@ -35,7 +40,7 @@ function handleEntityNotFound(res) {
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function (err) {
-        console.log(err);
+      logger.error('handleError '+err);
         res.status(err.statusCode || statusCode).send(err);
     };
 }

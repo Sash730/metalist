@@ -4,11 +4,15 @@ import Match from './../models/match.model';
 import Seat from './../models/seat.model';
 import * as _ from 'lodash';
 import * as config from "../../config/environment"
+import * as log4js from 'log4js';
+
+var logger = log4js.getLogger('Match');
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function (entity) {
         if (entity) {
+          logger.info('respondWithResult '+entity);
             return res.status(statusCode).json(entity);
         }
     };
@@ -16,6 +20,7 @@ function respondWithResult(res, statusCode) {
 
 function handleEntityNotFound(res) {
     return function (entity) {
+      logger.info("handleEntityNotFound "+ entity);
         if (!entity) {
             res.status(404).end();
             return null;
@@ -27,6 +32,7 @@ function handleEntityNotFound(res) {
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function (err) {
+      logger.error('handleError '+err);
         res.status(statusCode).send(err);
     };
 }
@@ -47,7 +53,6 @@ export function index(req, res) {
         //         //     '_id': match.id,
         //         // };
         //     });
-        //
         //     return res.status(200).json(result);
         // })
         .then(respondWithResult(res))
