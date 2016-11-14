@@ -12,29 +12,6 @@
     </uib-tab>
     <uib-tab index="1" heading="Matches">
 
-      <!--<table class="table">-->
-        <!--<thead>-->
-        <!--<tr>-->
-          <!--<th>#</th>-->
-          <!--<th>Firstname</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr>-->
-          <!--<td>1</td>-->
-          <!--<td>Anna</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<td>2</td>-->
-          <!--<td>Debbie</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<td>3</td>-->
-          <!--<td>John</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-      <!--</table>-->
-
       <table class="table">
       <thead>
       <tr>
@@ -50,7 +27,7 @@
       <tr>
 
         <td><input type="text" name="poster" ng-model="admin.newMatch.poster" required="" /></td>
-        <td><input type="text" name="date" ng-model="admin.newMatch.date" required="" /></td>
+        <td><input type="datetime-local" name="date" ng-model="admin.newMatch.date" placeholder="yyyy-MM-dd H:mm" required="" /></td>
         <td><input type="text" name="headline" ng-model="admin.newMatch.headline" required="" /></td>
         <td><input type="text" name="rival" ng-model="admin.newMatch.rival" required="" /></td>
         <td><input type="text" name="round" ng-model="admin.newMatch.round" required="" /></td>
@@ -64,9 +41,7 @@
             <input type="text" name="poster" ng-model= "match.poster" required="" />
           </td>
           <td>
-            <!--{{ match.date }} '2016-11-15 13:00:00' -->
-            <!--<input type="text" name="poster" ng-model= "match.date | date:'yyyy-MM-dd H:mm ' " required="" />-->
-            <input type="text" name="poster" ng-model= "match.date | date:'yyyy-MM-dd H:mm'" required="" />
+            <input type="datetime-local" ng-model="match.date" placeholder="yyyy-MM-dd H:mm" required />
           </td>
           <td>
             <input type="text" name="poster" ng-model= "match.headline" required="" />
@@ -88,14 +63,7 @@
       </table>
 
       {{ admin.newMatch }}
-      <!--<ul class="list-group">-->
-        <!--<li ng-repeat="match in admin.matches" class="list-group-item">-->
 
-          <!--{{ match.poster }} {{ match.date }} {{ match.headline }} {{ match.rival }}.{{ match.round }}.-->
-          <!--<input type="text" name="name" ng-model="vm.user.name" required="" class=".col-md-4"/>-->
-          <!--&lt;!&ndash;<p ng-show="form.name.$error.required && vm.submitted" class="help-block">A name is required</p>&ndash;&gt;-->
-        <!--</li>-->
-      <!--</ul>-->
 
     </uib-tab>
     <uib-tab index="2" heading="Orders">

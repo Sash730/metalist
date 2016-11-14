@@ -2,6 +2,7 @@
 
 var path = require('path');
 var _ = require('lodash');
+import * as log4js from 'log4js';
 
 function requiredProcessEnv(name) {
     if (!process.env[name]) {

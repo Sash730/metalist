@@ -2,6 +2,9 @@
 import * as barcode from 'bwip-js';
 import * as fs from 'fs';
 import moment from 'moment';
+import * as log4js from 'log4js';
+
+var logger = log4js.getLogger('createPdfFile');
 var PDFDocument = require('../../node_modules/pdfkit');
 
 function createPdfFile(ticket, png, cb) {
@@ -32,11 +35,11 @@ export function ticketBySendMail(ticket, callback) {
     textsize:    13               // Font size, in points
   }, function (err, png) {
     if (err) {
-      console.log(err)
+      logger.error('ticketBySendMail '+err);
     } else {
       createPdfFile(ticket, png, function (err, res) {
         if (err) {
-          console.log('Post cb err', err);
+          logger.error('createPdfFile '+err);
         }
         else {
           callback(null, res);

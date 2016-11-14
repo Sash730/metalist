@@ -12,7 +12,7 @@ function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function (entity) {
         if (entity) {
-          logger.info('respondWithResult '+entity);
+          logger.info('respondWithResult '+entity._id);
             return res.status(statusCode).json(entity);
         }
     };
@@ -135,9 +135,12 @@ export function updateMatch(req, res) {
     return curentMatch;
     })
     .then((match)  => {
+      console.log('updateMatch', req.body);
       match.round = req.body.round;
       match.rival = req.body.rival;
       match.date = req.body.date;
+      match.poster = req.body.poster;
+      match.info = req.body.info;
       return match.save()
     })
     .then(respondWithResult(res))
