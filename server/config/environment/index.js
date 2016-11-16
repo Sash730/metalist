@@ -84,7 +84,7 @@ log4js.configure(
       { type: 'console' },
       // { type: 'file', filename: 'logs/cheese.log', category: 'cheese' },
       // { type: 'file', filename: 'logs/order.log', category: 'order' },
-      { type: 'file', filename: 'logs/all.log' }
+      { type: 'file', filename: 'all.log' }
     ]
   }
 );
