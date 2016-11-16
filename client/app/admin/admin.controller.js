@@ -1,13 +1,20 @@
 'use strict';
 
+function convertDataStingToObject (data) {
+  for(let i=0; i < data.length; i++ ){
+    data[i].date = new Date(data[i].date);
+  }
+  return data;
+}
 (function () {
 
-    class AdminController {
+  class AdminController {
         constructor(User, $http) {
           this.newMatch = {};
+          this.newMatch.date = new Date()
           this.paidOrders = [];
           this.matches = [];
-          this.matchDate = '';
+           this.matchDate = '';
 
           this.users = User.query();
 
@@ -16,8 +23,9 @@
 
           this.$http.get('/api/matches')
             .then((response) => {
-              this.matches = response.data;
+              this.matches = convertDataStingToObject(response.data);
           });
+
 
         }
 
@@ -31,12 +39,13 @@
 
         this.$http.get('/api/matches')
           .then((response) => {
-          this.matches = response.data;
+          this.matches = convertDataStingToObject(response.data);
       });
 
       }
 
       editMatch(a) {
+        console.log('editMatch', a);
         this.$http({
           method: 'PUT',
           url: '/api/matches/' + a._id,
@@ -46,7 +55,7 @@
 
         this.$http.get('/api/matches')
           .then((response) => {
-          this.matches = response.data;
+           this.matches = convertDataStingToObject(response.data);
       });
       }
 
@@ -59,7 +68,7 @@
 
         this.$http.get('/api/matches')
           .then((response) => {
-          this.matches = response.data;
+          this.matches = convertDataStingToObject(response.data);
       });
       }
 
@@ -70,7 +79,7 @@
           headers: {'Accept': 'application/json'}
         })
           .then((response) => {
-            this.paidOrders = response.data;
+            this.paidOrders = convertDataStingToObject(response.data);
           });
       }
 
