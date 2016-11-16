@@ -28,7 +28,7 @@ function respondWithResult(res, statusCode) {
 
 function handleEntityNotFound(res) {
       return function (entity) {
-        logger.info("handleEntityNotFound "+ entity);
+        logger.info("handleEntityNotFound "+ entity._id);
         if (!entity) {
             res.status(404).end();
             return null;
@@ -41,6 +41,7 @@ function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function (err) {
       logger.error('handleError '+err);
+      //logger.error('handleError '+res.req.headers);
         res.status(err.statusCode || statusCode).send(err);
     };
 }
