@@ -49,6 +49,7 @@
              */
             logout() {
                 $cookies.remove('token');
+                $cookies.remove('cart');
                 currentUser = {};
             },
 

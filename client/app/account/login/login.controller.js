@@ -1,13 +1,15 @@
 'use strict';
 
 class LoginController {
-    constructor(Auth, $state) {
+    constructor(Auth, $state, CartService) {
         this.user = {};
         this.errors = {};
         this.submitted = false;
 
         this.Auth = Auth;
         this.$state = $state;
+        this.CartService = CartService;
+        this.referrer = $state.params.referrer || $state.current.referrer || 'main';
     }
 
     login(form) {
@@ -19,8 +21,10 @@ class LoginController {
                 password: this.user.password
             })
                 .then(() => {
+                    //get user`s cart
+                    this.CartService.loadCart();
                     // Logged in, redirect to home
-                    this.$state.go('main.matches');
+                    this.$state.go(this.referrer);
                 })
                 .catch(err => {
                     this.errors.other = err.message;

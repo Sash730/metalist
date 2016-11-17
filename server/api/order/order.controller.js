@@ -84,6 +84,16 @@ var createTickets = (order) => {
     });
 };
 
+let addUserToGuestCard = (guestCart, user) => {
+  guestCart.user = {
+    id: user.id,
+    email: user.email,
+    name: user.name
+  };
+
+  return guestCart.save();
+};
+
 var processLiqpayRequest = (request) => {
     return new Promise((resolve, reject) => {
         if(!request.body.data || !request.body.signature) {
@@ -264,6 +274,37 @@ export function getCart(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res))
     ;
+}
+
+export function getUserCart(req, res) {
+  var userId = req.user.id;
+  var cartId = req.session.cart;
+
+  Promise.all([
+    Order.findOne({_id: cartId, type: 'cart'}),
+    Order.findOne({'user.id': userId, type: 'cart'}),
+    User.findById(userId)
+  ])
+    .then(([guestCart, userCart, user]) => {
+      if(!userCart) {
+        return addUserToGuestCard(guestCart, user);
+      } else {
+
+        if (!guestCart.items.length) {
+          req.session.cart = userCart.id;
+          guestCart.remove();
+
+          return userCart;
+        }
+        userCart.remove();
+
+        return addUserToGuestCard(guestCart, user);
+      }
+    })
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
 }
 
 export function convertCartToOrder(req, res) {

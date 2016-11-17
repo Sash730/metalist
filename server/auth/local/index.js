@@ -27,4 +27,14 @@ router.post('/', function (req, res, next) {
     })(req, res, next)
 });
 
+router.get('/logout', function (req, res, next) {
+  req.session.destroy(function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      return res.status(200).json({message: 'Session destroy.'});
+    }
+  });
+});
+
 export default router;

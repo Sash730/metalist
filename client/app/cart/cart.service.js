@@ -15,20 +15,37 @@
         }
 
         loadCart() {
-            this.$http.get('/api/orders/cart')
-                .then(response => {
-                    this.cart.items = response.data.items;
+          if (!this.$cookies.get('token')) {
+            return this.loadGuestCart();
+          }
 
-                if (!this.$cookies.get('cart') ||
-                          this.$cookies.get('cart') !==  response.data.id) {
-                  this.$cookies.put('cart', response.data.id);
-                }
-                })
-            ;
+          return this.loadUserCart();
+        }
+
+        loadUserCart() {
+          return this.$http.get('/api/orders/user-cart')
+            .then(response => {
+              this.cart.items = response.data.items;
+
+              if (this.$cookies.get('cart') !==  response.data.id) {
+                this.$cookies.put('cart', response.data.id);
+              }
+            });
+        }
+
+        loadGuestCart() {
+          this.$http.get('/api/orders/cart')
+            .then(response => {
+              this.cart.items = response.data.items;
+              console.log('Guest cart', response.data.id);
+              if (!this.$cookies.get('cart') ||
+                this.$cookies.get('cart') !==  response.data.id) {
+                this.$cookies.put('cart', response.data.id);
+              }
+            });
         }
 
         addItem(seat, match) {
-
             this.$http.post('/api/orders/cart', {
                 seatId: seat.id,
                 matchId: match.id
@@ -52,8 +69,6 @@
         }
 
         convertCartToOrderAsGuest(guest) {
-            this.$cookies.put('guest', guest.email);
-
             return this.convertCartToOrder(guest);
         }
 
