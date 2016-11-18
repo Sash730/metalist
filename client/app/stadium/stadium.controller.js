@@ -2,13 +2,17 @@
 
 (function () {
 
-  class StadiumController {
+    class StadiumController {
 
-    constructor($http) {
-      this.$http = $http;
+        constructor(place) {
+            this.stadium = place.stadium;
+        }
     }
-  }
 
-  angular.module('metalistTicketsApp')
-    .controller('StadiumController', StadiumController);
+    angular.module('metalistTicketsApp')
+        .component('stadium', {
+            templateUrl: 'app/stadium/stadium.html',
+            controller: StadiumController,
+            controllerAs: 'vm'
+        });
 })();
