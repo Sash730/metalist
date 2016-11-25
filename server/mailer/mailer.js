@@ -40,3 +40,23 @@ export function sendMail(to, order, ticket) {
   });
 
 }
+
+export function sendMailTemporaryPassword(to, password) {
+      var success = true;
+      var mailOptions = {
+        from: to,
+        to: to,
+        // cc: 'polyakov_as@ukr.net',
+        subject: 'Temporary guest password' ,
+        text: 'Ваш временный пароль  ' + password
+      };
+
+      transport.sendMail(mailOptions, (error) => {
+        if(error){
+          logger.error('sendMail '+error);
+          success = false;
+        } else {
+          logger.info("[INFO] Password sent");
+        }
+      });
+}
