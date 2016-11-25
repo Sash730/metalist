@@ -5,6 +5,8 @@ import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import * as log4js from 'log4js';
+import * as Mailer from '../../mailer/mailer.js';
+import * as passwordGenerator from "../../passwordGenerator"
 
 var logger = log4js.getLogger('User');
 
@@ -118,6 +120,43 @@ export function me(req, res, next) {
             return res.json(user);
         })
         .catch(err => next(err));
+}
+
+/**
+ * Generate temporary password
+ */
+export function generatePassword(req, res, next) {
+  var email = String(req.body.email);
+  var password = passwordGenerator.generatePassByMail();
+  var newUser = {};
+
+  return User.findOne({email: email}).exec()
+    .then(user => {
+      if (user && user.name) {
+        return res.status(200).json({message: 'Вы уже зарегистрированы.'});
+      }
+      if (user && !user.name) {
+        newUser = user;
+        newUser.password = password;
+      }
+      if (!user) {
+        newUser = new User();
+        newUser.email = email;
+        newUser.password = password;
+      }
+
+        newUser.save().
+          then((newUser) => {
+            Mailer.sendMailTemporaryPassword(newUser.email, password);
+
+            return res.status(200).json({message: 'На ваш email был выслан временный пароль.'});
+          }
+        )
+        .catch(() => {
+          return res.status(500).json({message: 'Что-то пошло не так... Попробуйте еще раз.'});
+        });
+    })
+    .catch(err => next(err));
 }
 
 /**
