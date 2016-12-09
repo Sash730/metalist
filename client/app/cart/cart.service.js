@@ -8,8 +8,8 @@
             this.$http = $http;
             this.Auth = Auth;
             this.$cookies = $cookies;
-            this.items = [];
             this.cart = new Cart();
+            this.message = '';
 
             this.loadCart();
         }
@@ -23,9 +23,9 @@
         }
 
         loadUserCart() {
-          return this.$http.get('/api/orders/user-cart')
+          this.$http.get('/api/orders/user-cart')
             .then(response => {
-              this.cart.items = response.data.items;
+              this.cart.tickets = response.data.tickets;
 
               if (this.$cookies.get('cart') !==  response.data.id) {
                 this.$cookies.put('cart', response.data.id);
@@ -36,8 +36,8 @@
         loadGuestCart() {
           this.$http.get('/api/orders/cart')
             .then(response => {
-              this.cart.items = response.data.items;
-              console.log('Guest cart', response.data.id);
+              this.cart.tickets = response.data.tickets;
+
               if (!this.$cookies.get('cart') ||
                 this.$cookies.get('cart') !==  response.data.id) {
                 this.$cookies.put('cart', response.data.id);
@@ -45,21 +45,25 @@
             });
         }
 
-        addItem(seat, match) {
+        addTicket(seat, match) {
             this.$http.post('/api/orders/cart', {
                 seatId: seat.id,
                 matchId: match.id
             })
                 .then(response => {
-                    this.cart.items = response.data.items;
+                  if (response.data.message) {
+                    this.message = response.data.message;
+                  } else {
+                    this.cart.tickets = response.data.tickets;
+                  }
                 })
             ;
         }
 
-        removeItem(id) {
-            this.$http.delete('/api/orders/cart/items/' + id)
+        removeTicket(id) {
+            this.$http.delete('/api/orders/cart/tickets/' + id)
                 .then(response => {
-                    this.cart.items = response.data.items;
+                    this.cart.tickets = response.data.tickets;
                 })
             ;
         }

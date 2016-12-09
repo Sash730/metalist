@@ -9,7 +9,7 @@ var router = express.Router();
 router.post('/cart', controller.updateCart);
 router.get('/cart', controller.getCart);
 router.get('/user-cart', auth.isAuthenticated(), controller.getUserCart);
-router.delete('/cart/items/:itemId', controller.deleteItemFromCart);
+router.delete('/cart/tickets/:ticketId', controller.deleteItemFromCart);
 router.post('/cart/convert', controller.convertCartToOrder);
 router.post('/liqpay-redirect', controller.liqpayRedirect);
 router.post('/liqpay-callback', controller.liqpayCallback);
