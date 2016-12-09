@@ -1,22 +1,27 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import {formatMoney} from '../../util';
 
-var TicketSchema = new mongoose.Schema({
-    orderNumber: {
-        type: String,
-        required: true
+const TicketSchema = new mongoose.Schema({
+  cartId: {
+    type: String
+  },
+  orderNumber: {
+        type: String
     },
     accessCode: {
         type: String,
         required: true
     },
     seat: {
+        id: {type: String, requried: true},
         sector: {type: Number, requried: true},
         row: {type: Number, requried: true},
         number: {type: Number, requried: true},
     },
     match: {
+        id: {type: String, requried: true},
         headline: {type: String, requried: true},
         round: {type: Number, requried: true},
         date: {type: Date, requried: true},
@@ -25,9 +30,17 @@ var TicketSchema = new mongoose.Schema({
         email: {type: String, requried: true},
         name: {type: String, requried: true},
     },
+    amount: {
+      type: Number,
+      required: true,
+      default: 0
+    },
+    reserveDate: {
+      type: Date
+    },
     status: {
         type: String,
-        enum: [ 'new', 'used' ],
+        enum: [ 'new','paid', 'used' ],
         required: true
     },
     valid: {
@@ -42,5 +55,10 @@ var TicketSchema = new mongoose.Schema({
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
 });
+TicketSchema
+  .virtual('formattedAmount')
+  .get(function() {
+    return formatMoney(this.amount);
+  });
 
 export default mongoose.model('Ticket', TicketSchema);

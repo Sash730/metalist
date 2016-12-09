@@ -8,8 +8,8 @@
             this.$http = $http;
             this.Auth = Auth;
             this.$cookies = $cookies;
-            this.items = [];
             this.cart = new Cart();
+            this.message = '';
 
             this.loadCart();
         }
@@ -17,7 +17,7 @@
         loadCart() {
             this.$http.get('/api/orders/cart')
                 .then(response => {
-                    this.cart.items = response.data.items;
+                    this.cart.tickets = response.data.tickets;
 
                 if (!this.$cookies.get('cart') ||
                           this.$cookies.get('cart') !==  response.data.id) {
@@ -34,15 +34,20 @@
                 matchId: match.id
             })
                 .then(response => {
-                    this.cart.items = response.data.items;
+                  if (response.data.message) {
+                    this.message = response.data.message;
+                    console.log(this.message);
+                  } else {
+                    this.cart.tickets = response.data.tickets;
+                  }
                 })
             ;
         }
 
         removeItem(id) {
-            this.$http.delete('/api/orders/cart/items/' + id)
+            this.$http.delete('/api/orders/cart/tickets/' + id)
                 .then(response => {
-                    this.cart.items = response.data.items;
+                    this.cart.tickets = response.data.tickets;
                 })
             ;
         }
@@ -52,8 +57,6 @@
         }
 
         convertCartToOrderAsGuest(guest) {
-            this.$cookies.put('guest', guest.email);
-
             return this.convertCartToOrder(guest);
         }
 
