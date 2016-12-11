@@ -4,10 +4,10 @@ export var createCart = (request, response, next) => {
     Promise.resolve(request)
         .then(request => {
 
-            if(request.session.cart) {
+           if(!request.cookies.cart && request.session.cart) {
                 return Order.findOne({_id: request.session.cart, type: 'cart'});
-            }
-            if(request.cookies.cart && !request.session.cart){
+           }
+            if(request.cookies.cart){
               return Order.findOne({_id: request.cookies.cart, type: 'cart'});
             }
 
@@ -15,7 +15,7 @@ export var createCart = (request, response, next) => {
         })
         .then(cart => {
             if(cart) {
-                return cart;
+              return cart;
             }
 
             cart = new Order({

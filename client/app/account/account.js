@@ -3,20 +3,16 @@
 angular.module('metalistTicketsApp')
     .config(function ($stateProvider) {
         $stateProvider.state('login', {
-            url: '/login',
+            url: '/login?referrer',
+            referrer: 'main',
             templateUrl: 'app/account/login/login.html',
             controller: 'LoginController',
             controllerAs: 'vm'
         })
             .state('logout', {
-                url: '/logout?referrer',
-                referrer: 'main',
+                url: '/logout',
                 template: '',
-                controller: function ($state, Auth) {
-                    var referrer = $state.params.referrer || $state.current.referrer || 'main';
-                    Auth.logout();
-                    $state.go(referrer);
-                }
+                controller: 'LogoutController'
             })
             .state('signup', {
                 url: '/signup',
@@ -34,7 +30,7 @@ angular.module('metalistTicketsApp')
     })
     .run(function ($rootScope) {
         $rootScope.$on('$stateChangeStart', function (event, next, nextParams, current) {
-            if (next.name === 'logout' && current && current.name && !current.authenticate) {
+            if (next.name === 'login' && current && current.name && !current.authenticate) {
                 next.referrer = current.name;
             }
         });
