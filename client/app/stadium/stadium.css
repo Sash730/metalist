@@ -1,0 +1,220 @@
+@media all and (orientation:portrait) {
+  svg{
+    width: 100%;
+  }
+}
+@media all and (orientation:landscape) {
+  svg{
+    width: 80%;
+  }
+}
+
+.StadiumController{
+  position: relative;
+}
+#banner .container {
+  margin-top: -20px;
+}
+
+.gradient{
+  margin: 40px 0 10px 0;
+  width: 100%;
+  height: 1px;
+  background: radial-gradient(circle, rgba(133, 133, 133, 0.68), rgba(75, 75, 75, 0));
+}
+
+.eventInfo {
+  background-color: #ececec;
+  border-bottom: 1px solid #c0c0c0;
+  height: 51px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.eventDate {
+  position: absolute;
+  width: 235px;
+  left: 0;
+  top: 0;
+  height: 41px;
+  text-align: center;
+  font-size: 30px;
+  padding: 10px 0 0 5px;
+  border-bottom: 1px solid #c0c0c0;
+
+  background-color: #ececec;
+  color: #333137;
+}
+
+.eventDate i {
+  font-size: 30px;
+  margin: auto auto;
+  color: #c0c0c0;
+  margin-right: 2px;
+}
+
+.eventDate table td {
+  padding: 0 0 0 5px;
+}
+
+.eventDate .monthInfo {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+.eventDate .yearInfo {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+#map-show-name {
+  margin: 10px 0 0 0;
+  line-height: 18px;
+  font-size: 18px;
+  text-overflow: ellipsis;
+}
+
+/* Sectors scheme */
+.sectorsTooltipContainer {
+  opacity: 1 !important;
+}
+
+.sectorsTooltipContainer .tooltip-inner {
+  background-color: #fff;
+  color: #3c3c3c;
+  border: 1px solid #ccc;
+}
+
+.sectorsTooltipContainer .tooltip-arrow {
+  border-top-color: #fff !important;
+}
+
+.sectorsTooltipContainer .name {
+  color: #317EAC;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.sectorsList {
+  text-align: center;
+}
+
+.sectorsList svg {
+}
+
+.sectorsList text {
+  text-shadow: 0 0 3px #000;
+  font-weight: bold;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+
+  fill: #fff !important;
+}
+
+.sectorsList .hall65 text {
+  font-size: 90px;
+}
+
+.sectorsList .hall65 .smallText text {
+  font-size: 50px;
+}
+
+.sectorsList .sector {
+  pointer-events: all;
+  cursor: pointer;
+
+  transition: all 50ms linear;
+}
+
+.sectorsList .sector.empty {
+  fill: #ccc;
+}
+
+.sectorsList .sector.nonempty {
+  fill: #fff;
+}
+
+.sectorsList .sector.disabled {
+  cursor: not-allowed;
+  fill: #eee;
+  transition: none;
+}
+
+.sectorsList path.sector.disabled {
+  fill-opacity: 0.8;
+}
+
+.sectorsList .sector:hover, .sectorsList .sector.hover {
+  fill: #414141;
+}
+
+.sectorsList .sector.selected {
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+.sectorsList .sector.disabled:hover, .sectorsList .sector.disabled.hover {
+  fill: #eee;
+}
+
+.tooltip {
+  background-color: #fff;
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.3;
+  height: 60px;
+  width: 149px;
+}
+
+.tooltip div.name {
+  color: #660000;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.hide { display: none !important; }
+
+
+/*FontsStart*/
+@font-face { font-family:"Arial";font-variant:normal;font-style:normal;font-weight:bold;src:url("#FontID1") format(svg)}
+@font-face { font-family:"Arial";font-variant:normal;font-style:normal;font-weight:normal;src:url("#FontID0") format(svg)}
+.str1 {stroke:#C04001;stroke-width:0.886411}
+.str0 {stroke:#CF5E01;stroke-width:0.886411}
+.fil17 {fill:#FEFEFE}
+.fil1 {fill:black}
+.fil2 {fill:#008ED3}
+.fil9 {fill:#1B8D3C}
+.fil13 {fill:#2B338A}
+.fil8 {fill:#373538}
+.fil6 {fill:#5860A6}
+.fil14 {fill:#777B82}
+.fil3 {fill:#7CAE35}
+.fil11 {fill:#7F7E83}
+.fil10 {fill:#99CEF2}
+.fil18 {fill:#C04001}
+.fil5 {fill:#C40006}
+.fil16 {fill:#CF5E01}
+.fil7 {fill:#CF6400}
+.fil12 {fill:#CFAE3C}
+.fil15 {fill:#F1F6EB}
+.fil0 {fill:#FFEC00}
+.fil4 {fill:white}
+.fnt5 {font-weight:normal;font-size:6.70482px;font-family:'Arial'}
+.fnt10 {font-weight:normal;font-size:9.12649px;font-family:'Arial'}
+.fnt9 {font-weight:normal;font-size:9.30111px;font-family:'Arial'}
+.fnt13 {font-weight:bold;font-size:9.38089px;font-family:'Arial'}
+.fnt8 {font-weight:normal;font-size:9.57945px;font-family:'Arial'}
+.fnt12 {font-weight:normal;font-size:9.70266px;font-family:'Arial'}
+.fnt7 {font-weight:normal;font-size:9.77667px;font-family:'Arial'}
+.fnt11 {font-weight:normal;font-size:10.2824px;font-family:'Arial'}
+.fnt6 {font-weight:normal;font-size:10.2828px;font-family:'Arial'}
+.fnt3 {font-weight:normal;font-size:14.343px;font-family:'Arial'}
+.fnt1 {font-weight:normal;font-size:14.3439px;font-family:'Arial'}
+.fnt0 {font-weight:normal;font-size:14.3444px;font-family:'Arial'}
+.fnt2 {font-weight:normal;font-size:14.3448px;font-family:'Arial'}
+.fnt4 {font-weight:normal;font-size:14.3452px;font-family:'Arial'}
+/*FontsEnd*/
