@@ -1,15 +1,15 @@
 <h3>Your Cart</h3>
 <div class="empty" ng-hide="vm.cart.size">Your cart is empty</div>
 <table class="cart-items table table-condensed">
-    <tr class="cart-item" ng-repeat="item in vm.cart.items">
+    <tr class="cart-item" ng-repeat="ticket in vm.cart.tickets">
         <td>
-            {{ item.match.headline }}<br/>
-            ({{ item.match.date|date:'d MMM' }} at {{ item.match.date|date:'HH:mm' }} )<br/>
-            sector #{{ item.seat.sector }}, row #{{ item.seat.row }}, seat #{{ item.seat.number }}
+          {{ ticket.match.headline }}<br/>
+          ({{ ticket.match.date|date:'d MMM' }} at {{ ticket.match.date|date:'HH:mm' }} )<br/>
+          sector #{{ ticket.seat.sector }}, row #{{ ticket.seat.row }}, seat #{{ ticket.seat.number }}
         </td>
-        <td>{{ item.amount | money }}</td>
+        <td>{{ ticket.amount | money }}</td>
         <td>
-            <button class="btn btn-danger btn-xs" ng-click="vm.removeItem(item.id)">
+            <button class="btn btn-danger btn-xs" ng-click="vm.removeItem(ticket.id)">
                 <i class="glyphicon glyphicon-remove"></i>
             </button>
         </td>

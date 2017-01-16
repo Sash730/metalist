@@ -8,7 +8,7 @@ angular.module('metalistTicketsApp', ['metalistTicketsApp.auth', 'metalistTicket
         $urlRouterProvider.otherwise('/404');
 
         var n = new Date();
-        $cookiesProvider.defaults.expires = new Date(n.getFullYear(), n.getMonth()+1, n.getDate());
+        $cookiesProvider.defaults.expires = new Date(n.getFullYear(), n.getMonth(), n.getDate(), n.getHours()+6);
 
         $locationProvider.html5Mode(true);
     });

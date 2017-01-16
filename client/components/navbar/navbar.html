@@ -12,9 +12,7 @@
         <div id="navbar-main" uib-collapse="nav.isCollapsed" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li ng-repeat="item in nav.menu" ui-sref-active="active"><a ui-sref="{{item.state}}">{{item.title}}</a></li>
-                <li ui-sref-active="active"><a ui-sref="orders">
-                    {{ nav.isLoggedIn() ? 'My Orders' : 'My Session Orders' }}
-                </a></li>
+                <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="orders">My Orders</a></li>
                 <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

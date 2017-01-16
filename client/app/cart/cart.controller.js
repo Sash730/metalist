@@ -6,7 +6,7 @@
 
         constructor(CartService) {
             this.cart = CartService.cart;
-            this.removeItem = CartService.removeItem.bind(CartService);
+            this.removeItem = CartService.removeTicket.bind(CartService);
         }
     }
 

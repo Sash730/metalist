@@ -4,35 +4,8 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import {Schema} from 'mongoose';
 import {formatMoney} from '../../util';
+import  {Ticket} from './ticket.model';
 
-var OrderItemSchema = new Schema({
-    seat: {
-        id: String,
-        sector: Number,
-        row: Number,
-        number: Number
-    },
-    match: {
-        id: String,
-        headline: String,
-        round: Number,
-        date: Date
-    },
-    amount: {
-        type: Number,
-        required: true
-    },
-    accessCode: String,
-}, {
-    toObject: { virtuals: true },
-    toJSON: { virtuals: true },
-});
-OrderItemSchema
-    .virtual('formattedAmount')
-    .get(function() {
-        return formatMoney(this.amount);
-    })
-;
 
 var OrderSchema = new Schema({
     orderNumber: {
@@ -44,7 +17,7 @@ var OrderSchema = new Schema({
     amount: {
         type: Number,
         required: true,
-        default: 0,
+        default: 0
     },
     status: {
         type: String,
@@ -65,7 +38,7 @@ var OrderSchema = new Schema({
         default: 'website',
     },
     paymentDetails: Schema.Types.Mixed,
-    items: [ OrderItemSchema ],
+    tickets: [ {type: Schema.Types.ObjectId, ref: 'Ticket'} ],
     user: {
         id: String,
         email: String,
@@ -102,5 +75,4 @@ OrderSchema
     })
 ;
 export var Order = mongoose.model('Order', OrderSchema);
-export var OrderItem = mongoose.model('OrderItem', OrderItemSchema);
 

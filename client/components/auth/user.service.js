@@ -12,6 +12,12 @@
                     controller: 'password'
                 }
             },
+            generateGuestPassword: {
+              method: 'PUT',
+              params: {
+                controller: 'temporary-password'
+              }
+            },
             get: {
                 method: 'GET',
                 params: {

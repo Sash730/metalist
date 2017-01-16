@@ -59,8 +59,8 @@
                 </div>
             </div>
             <div class="col-sm-6" ng-hide="vm.order.statusPaid">
-                <h3>Order Items</h3>
-                <div class="order-item" ng-repeat="item in vm.order.items">
+                <h3>Order Tickets</h3>
+                <div class="order-item" ng-repeat="item in vm.order.tickets">
                     <div>Match: <strong>{{ item.match.headline }}</strong></div>
                     <div>Sector: <strong>{{ item.seat.sector }}</strong></div>
                     <div>Row: <strong>{{ item.seat.row }}</strong></div>

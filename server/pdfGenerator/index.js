@@ -9,18 +9,18 @@ var PDFDocument = require('../../node_modules/pdfkit');
 
 function createPdfFile(ticket, png, cb) {
   var doc = new PDFDocument();
-  doc.pipe(fs.createWriteStream('./server/pdfGenerator/temp/'+ticket.accessCode+'.pdf'))
+  doc.pipe(fs.createWriteStream('./server/pdfGenerator/temp/'+ticket.accessCode+'.pdf'));
 
-  doc.image('./server/pdfGenerator/ticket.png', 0, 0, {width:600})
+  doc.image('./server/pdfGenerator/ticket.png', 0, 0, {width:600});
   doc.fontSize(20)
     .text('Match - ' +ticket.match.headline, 180, 240)
     .text('Date - ' + moment(ticket.match.date).format('MMM d, HH:mm'), 180, 260)
     .text('Sector - ' +ticket.seat.sector, 200, 560)
     .text('Row - ' +ticket.seat.row, 200, 580)
-    .text(ticket.match, 200, 600)
+    .text(ticket.match, 200, 600);
 
-  doc.image(png, 200, 150, {width:200})
-  doc.end()
+  doc.image(png, 200, 150, {width:200});
+  doc.end();
 
   cb(null);
 }
