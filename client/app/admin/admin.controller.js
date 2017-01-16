@@ -11,7 +11,7 @@ function convertDataStingToObject (data) {
   class AdminController {
         constructor(User, $http) {
           this.newMatch = {};
-          this.newMatch.date = new Date()
+          this.newMatch.date = new Date();
           this.paidOrders = [];
           this.matches = [];
            this.matchDate = '';

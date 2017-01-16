@@ -8,7 +8,7 @@
             this.match = match;
             this.seats = seats;
             this.cart = cart;
-            this.addToCart = CartService.addItem.bind(CartService);
+            this.addToCart = CartService.addTicket.bind(CartService);
         }
     }
 
