@@ -121,8 +121,11 @@
   margin: 0 auto;
 }
 .sectorName{
+  font-weight: bold;
+  color: #636363;
   position: absolute;
-  top: 5px;
+  top: 9px;
+  font-size: 0.9em;
 }
 
 ul.rows {
@@ -137,10 +140,11 @@ ul.rows li:before {
 }
 
 .popover {
+  height: 80px!important;
   border-radius: 20px!important;
-  padding-top: 0;
+  padding: 0 0 0 0!important;
 }
-txt{
-  font-weight: bold;
+.popover p {
   color: #636363;
+  font-size: 1em;
 }
