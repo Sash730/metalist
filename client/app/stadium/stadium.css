@@ -1,3 +1,19 @@
+
+@media all and (orientation:portrait) {
+  svg{
+    width: 100%;
+  }
+}
+@media all and (orientation:landscape) {
+  svg{
+    width: 80%;
+  }
+}
+
+.StadiumController{
+  position: relative;
+}
+
 #banner .container {
   margin-top: -20px;
 }
@@ -5,7 +21,9 @@
 .gradient{
   margin: 40px 0 10px 0;
   width: 100%;
-  height: 0.1em;
+
+  height: 1px;
+
   background: radial-gradient(circle, rgba(133, 133, 133, 0.68), rgba(75, 75, 75, 0));
 }
 
@@ -108,31 +126,6 @@
   font-size: 50px;
 }
 
-/*.sectorsList path.sector, .sectorsList polygon.sector, .sectorsList rect.sector {
-  filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444')";
-  filter: url(/stadium#drop-shadow);
-  -webkit-filter: drop-shadow(0 0 1px rgba(0, 0, 0, 1));
-  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 1));
-}
-
-  .sectorsList .hall65 path.sector, .sectorsList .hall65 polygon.sector, .sectorsList .hall65 rect.sector {
-    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444')";
-    filter: url(/stadium#drop-shadow);
-    -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 1));
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 1));
-
-  .sectorsList .hall65 path.sector, .sectorsList .hall65 polygon.sector, .sectorsList .hall65 rect.sector {
-    filter: url(/stadium#drop-shadow);
-  }
-}
-}*/
-/*Shadows of svg "DONT WORK"*/
-/*@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-  .sectorsList path.sector, .sectorsList polygon.sector, .sectorsList rect.sector {
-    filter: url(#drop-shadow);
-  }
-}*/
-/*Shadows of svg "DONT WORK"*/
 
 .sectorsList .sector {
   pointer-events: all;
