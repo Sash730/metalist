@@ -102,15 +102,33 @@
            * @return {Promise}
            */
             generateGuestPassword(email, callback) {
-            return User.generateGuestPassword({
-              email: email
-            }, function () {
-              return safeCb(callback)(null);
-            }, function (err) {
-              return safeCb(callback)(err);
-            })
-              .$promise;
-          },
+              return User.generateGuestPassword({
+                email: email
+              }, function () {
+                return safeCb(callback)(null);
+              }, function (err) {
+                return safeCb(callback)(err);
+              })
+                .$promise;
+            },
+
+            /**
+             * Recovery Password
+             *
+             * @param  {String}   email
+             * @param  {Function} callback    - optional, function(error)
+             * @return {Promise}
+             */
+            recoveryPassword(email, callback) {
+              return User.recoveryPassword({
+                email: email
+              }, function () {
+                return safeCb(callback)(null);
+              }, function (err) {
+                return safeCb(callback)(err);
+              })
+                .$promise;
+            },
 
             /**
              * Gets all available info on a user

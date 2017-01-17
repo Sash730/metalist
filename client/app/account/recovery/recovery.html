@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Восстановление пароля</h1>
+            <p>Для восстановления пароля вы должны указать свой e-mail.<br />
+                Если вы укажете верные данные, то на e-mail будет отправлено письмо с временным  паролем.</p>
+            <p ng-show="vm.message " ng-bind="vm.message "></p>
+        </div>
+        <div class="col-sm-12">
+            <form name="form" ng-submit="vm.recovery(form, email)" novalidate="" class="form">
+                <div class="form-group" ng-class="{'has-error': form.email.$invalid && form.email.$dirty}">
+                    <label>Email</label>
+                    <input type="email" name="email" ng-model="email" placeholder="Enter your email" class="form-control" required="required"/>
+                    <div class="help-block" ng-show="form.email.$error.required && form.email.$dirty">Email is required</div>
+                    <div class="help-block" ng-show="form.email.$error.email && form.email.$dirty">Invalid email</div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-inverse btn-lg btn-login">Reset password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr/>
+</div>

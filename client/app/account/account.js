@@ -20,6 +20,12 @@ angular.module('metalistTicketsApp')
                 controller: 'SignupController',
                 controllerAs: 'vm'
             })
+            .state('recovery', {
+              url: '/recovery',
+              templateUrl: 'app/account/recovery/recovery.html',
+              controller: 'RecoveryController',
+              controllerAs: 'vm'
+            })
             .state('settings', {
                 url: '/settings',
                 templateUrl: 'app/account/settings/settings.html',

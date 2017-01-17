@@ -19,8 +19,10 @@
           form.$setDirty();
           form.email.$setDirty();
 
+          let email =  user.email;
+
           if(form.$valid) {
-            this.Auth.generateGuestPassword(user.email)
+            this.Auth.generateGuestPassword(email)
               .then((response) => {
                 this.confirm = true;
                 this.message = response.message;
