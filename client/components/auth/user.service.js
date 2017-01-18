@@ -18,6 +18,12 @@
                 controller: 'temporary-password'
               }
             },
+            recoveryPassword:{
+              method: 'PUT',
+              params: {
+                controller: 'recovery-password'
+              }
+            },
             get: {
                 method: 'GET',
                 params: {

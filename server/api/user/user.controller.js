@@ -87,9 +87,9 @@ export function destroy(req, res) {
  * Change a users password
  */
 export function changePassword(req, res, next) {
-    var userId = req.user._id;
-    var oldPass = String(req.body.oldPassword);
-    var newPass = String(req.body.newPassword);
+    let userId = req.user._id,
+        oldPass = String(req.body.oldPassword),
+        newPass = String(req.body.newPassword);
 
     return User.findById(userId).exec()
         .then(user => {
@@ -126,9 +126,9 @@ export function me(req, res, next) {
  * Generate temporary password
  */
 export function generatePassword(req, res, next) {
-  var email = String(req.body.email);
-  var password = passwordGenerator.generatePassByMail();
-  var newUser = {};
+  let email = String(req.body.email),
+      password = passwordGenerator.generatePassByMail(),
+      newUser = {};
 
   return User.findOne({email: email}).exec()
     .then(user => {
@@ -152,6 +152,36 @@ export function generatePassword(req, res, next) {
             return res.status(200).json({message: 'На ваш email был выслан временный пароль.'});
           }
         )
+        .catch(() => {
+          return res.status(500).json({message: 'Что-то пошло не так... Попробуйте еще раз.'});
+        });
+    })
+    .catch(err => next(err));
+}
+
+/**
+ * Reset forget password and send temporary password
+ */
+export function recoveryPassword(req, res, next) {
+  let email = String(req.body.email),
+      password = passwordGenerator.generatePassByMail();
+
+  return User.findOne({email: email}).exec()
+    .then(user => {
+      if (!user) {
+        return res.status(200).json({message: 'Данный имейл не зарегистрирован.'});
+      } else {
+        user.password = password;
+      }
+
+      user.save()
+        .then((user) => {
+          console.log('recovery');
+          Mailer.sendMailTemporaryPassword(user.email, password);
+
+          return res.status(200).json({message: 'На ваш email был выслан временный пароль.'});
+        }
+      )
         .catch(() => {
           return res.status(500).json({message: 'Что-то пошло не так... Попробуйте еще раз.'});
         });
