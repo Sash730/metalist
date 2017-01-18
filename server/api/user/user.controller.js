@@ -42,7 +42,7 @@ export function index(req, res) {
  * Creates a new user
  */
 export function create(req, res, next) {
-    var newUser = new User(req.body);
+    let newUser = new User(req.body);
     newUser.provider = 'local';
     newUser.role = 'user';
     newUser.save()
@@ -59,7 +59,7 @@ export function create(req, res, next) {
  * Get a single user
  */
 export function show(req, res, next) {
-    var userId = req.params.id;
+  let userId = req.params.id;
 
     return User.findById(userId).exec()
         .then(user => {
@@ -110,7 +110,7 @@ export function changePassword(req, res, next) {
  * Get my info
  */
 export function me(req, res, next) {
-    var userId = req.user._id;
+  let userId = req.user._id;
 
     return User.findOne({_id: userId}, '-salt -password').exec()
         .then(user => { // don't ever give out the password or salt

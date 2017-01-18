@@ -11,6 +11,11 @@ function localAuthenticate(User, email, password, done) {
                     message: 'This email is not registered.'
                 });
             }
+            if (user && user.provider !== 'local') {
+              return done(null, false, {
+                message: 'The specified email address is already in use. Perhaps you entered via social links'
+              });
+            }
             user.authenticate(password, function (authError, authenticated) {
                 if (authError) {
                     return done(authError);

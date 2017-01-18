@@ -3,7 +3,7 @@
 class LoginController {
     constructor(Auth, $state, CartService) {
         this.user = {};
-        this.errors = {};
+        this.errors = '';
         this.submitted = false;
 
         this.Auth = Auth;
@@ -27,7 +27,7 @@ class LoginController {
                     this.$state.go(this.referrer);
                 })
                 .catch(err => {
-                    this.errors.other = err.message;
+                    this.errors = err.message;
                 });
         }
     }
