@@ -6,6 +6,7 @@ class SignupController {
     constructor(Auth, $state) {
         this.Auth = Auth;
         this.$state = $state;
+        this.errors = {};
     }
 
     //start-non-standard
@@ -26,7 +27,6 @@ class SignupController {
                 })
                 .catch(err => {
                     err = err.data;
-                    this.errors = {};
 
                     // Update validity of form fields that match the mongoose errors
                     angular.forEach(err.errors, (error, field) => {

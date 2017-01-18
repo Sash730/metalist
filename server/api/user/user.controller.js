@@ -42,7 +42,7 @@ export function index(req, res) {
  * Creates a new user
  */
 export function create(req, res, next) {
-    var newUser = new User(req.body);
+    let newUser = new User(req.body);
     newUser.provider = 'local';
     newUser.role = 'user';
     newUser.save()
@@ -59,7 +59,7 @@ export function create(req, res, next) {
  * Get a single user
  */
 export function show(req, res, next) {
-    var userId = req.params.id;
+  let userId = req.params.id;
 
     return User.findById(userId).exec()
         .then(user => {
@@ -87,9 +87,9 @@ export function destroy(req, res) {
  * Change a users password
  */
 export function changePassword(req, res, next) {
-    var userId = req.user._id;
-    var oldPass = String(req.body.oldPassword);
-    var newPass = String(req.body.newPassword);
+    let userId = req.user._id,
+        oldPass = String(req.body.oldPassword),
+        newPass = String(req.body.newPassword);
 
     return User.findById(userId).exec()
         .then(user => {
@@ -110,7 +110,7 @@ export function changePassword(req, res, next) {
  * Get my info
  */
 export function me(req, res, next) {
-    var userId = req.user._id;
+  let userId = req.user._id;
 
     return User.findOne({_id: userId}, '-salt -password').exec()
         .then(user => { // don't ever give out the password or salt
@@ -126,9 +126,9 @@ export function me(req, res, next) {
  * Generate temporary password
  */
 export function generatePassword(req, res, next) {
-  var email = String(req.body.email);
-  var password = passwordGenerator.generatePassByMail();
-  var newUser = {};
+  let email = String(req.body.email),
+      password = passwordGenerator.generatePassByMail(),
+      newUser = {};
 
   return User.findOne({email: email}).exec()
     .then(user => {

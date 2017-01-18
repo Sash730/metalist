@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group has-error">
                     <p ng-show="form.email.$error.required && form.password.$error.required && vm.submitted" class="help-block">Please enter your email and password.</p>
-                    <p class="help-block">{{ vm.errors.other }}</p>
+                    <p class="help-block">{{ vm.errors }}</p>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-inverse btn-lg btn-login">Login</button> <a ui-sref="signup" class="btn btn-default btn-lg btn-register">Register</a>

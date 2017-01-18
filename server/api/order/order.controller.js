@@ -344,15 +344,15 @@ export function getCart(req, res) {
 }
 
 export function getUserCart(req, res) {
-  var userId = req.user.id;
-  var cartId = req.session.cart;
+  let userId = req.user.id,
+      cartId = req.session.cart;
 
   Promise.all([
     Order.findOne({_id: cartId, type: 'cart'})
          .populate({path: 'tickets'}),
     Order.findOne({'user.id': userId, type: 'cart'})
          .populate({path: 'tickets'}),
-    User.findById(userId)
+    User.findOne({_id: userId})
   ])
     .then(([guestCart, userCart, user]) => {
       if(!userCart) {
@@ -504,19 +504,8 @@ export function getOrderedTickets(req, res) {
 
 export function getMyOrders(req, res) {
 
-    if(req.user && req.user.id) {
-
-        Order.find({'user.id': req.user.id, type: 'order'}).sort({created: -1})
-             .populate({path: 'tickets'})
-             .then(respondWithResult(res))
-        ;
-    } else {
-      const sessionOrderIds = req.session.orderIds || [];
-
-      Order.find({_id: { $in: sessionOrderIds, type: 'order' }})
-        .populate({path: 'tickets'})
-        .sort({created: -1})
-        .then(respondWithResult(res))
-      ;
-    }
+  Order.find({'user.id': req.user.id, type: 'order'}).sort({created: -1})
+    .populate({path: 'tickets'})
+    .then(respondWithResult(res))
+  ;
 }
