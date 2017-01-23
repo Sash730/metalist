@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/:id', controller.view);
 router.get('/:id/seats', controller.seats);
-router.put('/', controller.creatMatch);
+router.post('/', controller.createMatch);
 router.put('/:id', controller.updateMatch);
 router.delete('/:id', controller.deleteMatch);
 

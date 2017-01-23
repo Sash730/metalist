@@ -32,7 +32,7 @@
         <td><input type="text" name="rival" ng-model="admin.newMatch.rival" required="" /></td>
         <td><input type="text" name="round" ng-model="admin.newMatch.round" required="" /></td>
         <td>
-          <button class="btn btn-primary btn-sm" ng-click="admin.save(admin.newMatch, '1')" ><span class="glyphicon glyphicon-ok"></span></button>
+          <button class="btn btn-primary btn-sm" ng-click="admin.createMatch(admin.newMatch, '1')" ><span class="glyphicon glyphicon-ok"></span></button>
         </td>
       </tr>
 
@@ -92,6 +92,41 @@
           <td ng-bind="admin.paidOrders.east">
           </td>
           <td ng-bind="admin.paidOrders.total | money">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </uib-tab>
+    <uib-tab index="3" heading="Tickets">
+      <form name="myForm"><br>
+        <label for="code"> Введите код: </label>
+        <input type="text" id="code" ng-model="code" placeholder="Enter barcode">
+        <button ng-click="admin.checkTicket(code)">Check ticket</button>
+        <br>
+        <span ng-show="admin.message"  ng-bind="admin.message"></span>
+        <span ng-show="admin.ticket.seat">Ticket valid. Seat - {{admin.ticket.seat.number}}, row - {{admin.ticket.seat.row}},
+         sector - {{admin.ticket.seat.sector}}</span>
+      </form>
+      <button ng-click="admin.getTickets()">Load tickets</button>
+      <hr>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>sector</th>
+          <th>row</th>
+          <th>amount</th>
+          <th>number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="ticket in admin.tickets">
+          <td ng-bind="ticket.seat.sector">
+          </td>
+          <td ng-bind="ticket.seat.row">
+          </td>
+          <td ng-bind="ticket.amount | money">
+          </td>
+          <td ng-bind="ticket.seat.number">
           </td>
         </tr>
         </tbody>

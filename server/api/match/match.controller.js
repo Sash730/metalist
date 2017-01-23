@@ -104,8 +104,8 @@ export function seats(req, res) {
         .catch(handleError(res));
 }
 
-export function creatMatch(req, res) {
-  var newMatch = new Match({
+export function createMatch(req, res) {
+  let newMatch = new Match({
       rival: req.body.rival,
       round: req.body.round,
       info: req.body.info,
@@ -126,13 +126,15 @@ export function deleteMatch(req, res) {
 }
 
 export function updateMatch(req, res) {
-  var matchId = req.body._id;
+  let matchId = req.body._id;
+
   Match.findOne({_id: matchId})
-    .then((curentMatch) => {
-      if(!curentMatch) {
+    .then(currentMatch => {
+      if(!currentMatch) {
       throw new Error('not found');
       }
-    return curentMatch;
+
+    return currentMatch;
     })
     .then((match)  => {
       console.log('updateMatch', req.body);
@@ -141,6 +143,7 @@ export function updateMatch(req, res) {
       match.date = req.body.date;
       match.poster = req.body.poster;
       match.info = req.body.info;
+
       return match.save()
     })
     .then(respondWithResult(res))

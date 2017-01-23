@@ -344,15 +344,15 @@ export function getCart(req, res) {
 }
 
 export function getUserCart(req, res) {
-  let userId = req.user.id,
-      cartId = req.session.cart;
+  var userId = req.user.id;
+  var cartId = req.session.cart;
 
   Promise.all([
     Order.findOne({_id: cartId, type: 'cart'})
          .populate({path: 'tickets'}),
     Order.findOne({'user.id': userId, type: 'cart'})
          .populate({path: 'tickets'}),
-    User.findOne({_id: userId})
+    User.findById(userId)
   ])
     .then(([guestCart, userCart, user]) => {
       if(!userCart) {

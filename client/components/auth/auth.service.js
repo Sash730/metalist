@@ -3,15 +3,15 @@
 (function () {
 
     function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
-        var safeCb = Util.safeCb;
-        var currentUser = {};
-        var userRoles = appConfig.userRoles || [];
+        let safeCb = Util.safeCb,
+            currentUser = {},
+            userRoles = appConfig.userRoles || [];
 
         if ($cookies.get('token') && $location.path() !== '/logout') {
             currentUser = User.get();
         }
 
-        var Auth = {
+        let Auth = {
 
             /**
              * Authenticate user and save token
@@ -142,7 +142,7 @@
                     return currentUser;
                 }
 
-                var value = currentUser.hasOwnProperty('$promise') ? currentUser.$promise : currentUser;
+                let value = currentUser.hasOwnProperty('$promise') ? currentUser.$promise : currentUser;
                 return $q.when(value)
                     .then(user => {
                         safeCb(callback)(user);
@@ -167,7 +167,7 @@
 
                 return Auth.getCurrentUser(null)
                     .then(user => {
-                        var is = user.hasOwnProperty('role');
+                        let is = user.hasOwnProperty('role');
                         safeCb(callback)(is);
                         return is;
                     });
@@ -182,7 +182,7 @@
              * @return {Bool|Promise}
              */
             hasRole(role, callback) {
-                var hasRole = function (r, h) {
+                let hasRole = function (r, h) {
                     return userRoles.indexOf(r) >= userRoles.indexOf(h);
                 };
 
@@ -192,7 +192,7 @@
 
                 return Auth.getCurrentUser(null)
                     .then(user => {
-                        var has = user.hasOwnProperty('role') ? hasRole(user.role, role) : false;
+                        let has = user.hasOwnProperty('role') ? hasRole(user.role, role) : false;
                         safeCb(callback)(has);
                         return has;
                     });
@@ -208,6 +208,17 @@
             isAdmin() {
                 return Auth.hasRole.apply(Auth, [].concat.apply(['admin'], arguments));
             },
+
+          /**
+           * Check if a user is an steward
+           *   (synchronous|asynchronous)
+           *
+           * @param  {Function|*} callback - optional, function(is)
+           * @return {Bool|Promise}
+           */
+          isSteward() {
+            return Auth.hasRole.apply(Auth, [].concat.apply(['steward'], arguments));
+          },
 
             /**
              * Get auth token
