@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import liqpay from '../../liqpay';
 import * as log4js from 'log4js';
 
-var logger = log4js.getLogger('Ticket');
+const logger = log4js.getLogger('Ticket');
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -105,21 +105,59 @@ export function print(req, res, next) {
 }
 
 export function use(req, res, next) {
-    return Ticket.findOne({code: req.params.code}).exec()
-        .then(handleEntityNotFound(res))
-        .then((ticket) => {
-            if(ticket) {
-                ticket.used = true;
-                return ticket.save()
-                    .then((updated) => {
-                        return res
-                            .status(200)
-                            .json(ticket)
-                        ;
-                    });
-            }
-        })
-        .catch(handleError(res));
+    let dateNow = new Date();
+
+    return Ticket.findOne({accessCode: req.params.code, status: 'paid'})
+                 .where({$and: [
+                   {'valid.from': { $lte: dateNow }},
+                   {'valid.to': { $gt: dateNow }}
+                 ]})
+                 .exec()
+                 .then((ticket) => {
+                     if(!ticket) {
+                       return res.status(200).json({message: 'Ticket not found'});
+                     }
+                   ticket.status = 'used';
+                   return ticket.save()
+                     .then((ticket) => {
+                       let result = {
+                         'seat': ticket.seat,
+                         'headLine': ticket.match.headline,
+                         'used': ticket.used,
+                         'code': ticket.accessCode,
+                         'amount': ticket.amount
+                       };
+                       return res.status(200).json(result);
+                     });
+                 })
+                 .catch(handleError(res));
+}
+
+export function getTicketsForCheckMobile(req, res) {
+  let dateNow = new Date();
+
+  return Ticket.find({status: 'new'})
+               .where({$and: [
+                 {'valid.from': { $lte: dateNow }},
+                 {'valid.to': { $gt: dateNow }}
+               ]})
+               .exec()
+               .then(tickets => {
+                 let result = _.map(tickets, (ticket) => {
+
+                   return {
+                     '_id': ticket.id,
+                     'seat': ticket.seat,
+                     'headLine': ticket.match.headline,
+                     'used': ticket.used,
+                     'code': ticket.accessCode,
+                     'amount': ticket.amount
+                   };
+                 });
+
+                 return res.status(200).json(result);
+               })
+               .catch(handleError(res));
 }
 
 

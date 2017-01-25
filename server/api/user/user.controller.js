@@ -33,7 +33,7 @@ export function index(req, res) {
   logger.debug("order index");
     return User.find({}, '-salt -password').exec()
         .then(users => {
-            res.status(200).json(users);
+            return res.status(200).json(users);
         })
         .catch(handleError(res));
 }
