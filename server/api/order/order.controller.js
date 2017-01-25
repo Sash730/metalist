@@ -269,7 +269,7 @@ export function updateCart(req, res) {
                  Ticket.findOne(
                    { status: 'new',
                     'match.id': req.body.matchId,
-                    'seat.id': req.body.seatId
+                    'seat.sector': req.body.seatId
                    }
                  )
                 ])

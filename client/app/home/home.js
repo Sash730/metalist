@@ -2,10 +2,10 @@
 
 angular.module('metalistTicketsApp')
     .config(function ($stateProvider) {
-        $stateProvider.state('main.matches',{
+        $stateProvider.state('main.home',{
             url: '',
             controller: 'MatchesController',
-            templateUrl: 'app/matches/matches.html',
+            templateUrl: 'app/home/home.html',
             controllerAs: 'vm',
         });
     });

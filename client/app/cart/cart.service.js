@@ -33,7 +33,7 @@
             });
         }
 
-        loadGuestCart() {
+loadGuestCart() {
           this.$http.get('/api/orders/cart')
             .then(response => {
               this.cart.tickets = response.data.tickets;
@@ -47,7 +47,7 @@
 
         addTicket(seat, match) {
             this.$http.post('/api/orders/cart', {
-                seatId: seat.id,
+                seatId: seat,
                 matchId: match.id
             })
                 .then(response => {
