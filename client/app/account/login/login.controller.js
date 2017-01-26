@@ -9,7 +9,8 @@ class LoginController {
         this.Auth = Auth;
         this.$state = $state;
         this.CartService = CartService;
-        this.referrer = $state.params.referrer || $state.current.referrer || 'main';
+        this.referrer = $state.params.referrer || $state.current.referrer || 'main.home';
+        this.params = $state.current.params || {};
     }
 
     login(form) {
@@ -24,7 +25,7 @@ class LoginController {
                     //get user`s cart
                     this.CartService.loadCart();
                     // Logged in, redirect to home
-                    this.$state.go(this.referrer);
+                    this.$state.go(this.referrer, this.params);
                 })
                 .catch(err => {
                     this.errors = err.message;
