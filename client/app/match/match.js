@@ -2,9 +2,9 @@
 
 angular.module('metalistTicketsApp')
     .config(function ($stateProvider) {
-        $stateProvider.state('match-seats', {
+        $stateProvider.state('match', {
             url: '/match/:id/seats',
-            templateUrl: 'app/match-seats/match-seats.html',
+            templateUrl: 'app/match/match.html',
             controller: 'MatchSeatsController',
             controllerAs: 'vm',
 

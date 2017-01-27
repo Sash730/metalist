@@ -1,0 +1,39 @@
+
+<div class="col-sm-12">
+  <div class="match-info">
+    <div>Rival: {{ sector.match.rival }}</div>
+    <div>Date: {{ sector.match.date|date:'MMM d, y HH:mm' }}</div>
+  </div>
+  <div class="col-sm-8 seats">
+
+    <div class="wrapper">
+      <div class="stadiumFieldWrap"><img src="../../app/sector/img/field.png" class="stadiumField"></div>
+      <div id="sectors">
+        <br />
+        <div class="sectorName"><p>{{sector.sectorName}}-{{sector.sectorId}}</p></div>
+        <div class="gradientSeats"></div>
+        <ul class="rows">
+          <li ng-repeat="row in sector.sector[sector.sectorId]"><span class="rowText">{{row.row}}</span>
+            <img src="app/sector/img/seat.png" ng-click="sector.addToCart( s+sector.sectorId+row.row+(1+$index), sector.match)" id="s{{sector.sectorId}}{{row.row}}{{1+$index}}"
+
+                 class="imgSeatsStyle" ng-repeat="seat in sector.makeArrayFromNumber(row.seats)"
+                 uib-popover-html="'<p>Металлист: <b>{{row.tribune}}-{{sector.sectorId}}</b><br />Ряд: <b>{{row.row}}</b><br />Место: <b>{{seat}}</b></p>'"
+                 popover-trigger="'mouseenter'">
+          </li>
+        </ul>
+        <div class="gradientSeats"></div>
+      </div>
+      <div class="backBtn"><a onclick="history.back()" class="btn btn-default" title="Go back">Back</a></div>
+    </div>
+    </div>
+
+<div class="col-sm-4 cart">
+  <cart></cart>
+  <div ng-show="sector.cart.size">
+    <a ui-sref="checkout" class="btn btn-info btn-block">Proceed to Checkout</a>
+  </div>
+</div>
+</div>
+
+
+
