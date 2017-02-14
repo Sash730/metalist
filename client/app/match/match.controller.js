@@ -2,44 +2,28 @@
 
 (function () {
 
-    class MatchSeatsController {
+    class MatchController {
 
-        constructor(match, seats, cart, CartService) {
-            this.match = match;
-            this.seats = seats;
-            this.cart = cart;
-            //this.addToCart = CartService.addItem.bind(CartService);
+        constructor(match, cart, PriceSchemaService) {
+          this.priceSchemaService = PriceSchemaService;
+
+          this.match = match;
+          this.cart = cart;
         }
 
-      getSectorsFill(i) {
-        //console.log('getSectorsFill', this.prices);
-        if (i < 1) {
-          //console.log('getSectorsFill 1- 9 ', i);
-          return i = "#ff9999";
+      getSectorsFill(tribuneName, sectorNumber) {
+        let defaultColor = '#808080',
+            priceSchema = this.match.priceSchema.priceSchema,
+            price = this.priceSchemaService.getPriceBySector(tribuneName, sectorNumber, priceSchema);
+
+        if (!price) {
+          return defaultColor;
         } else {
-          if (i > 0 && i < 10) {
-            //console.log('getSectorsFill 1- 9 ', i);
-            return i = "#ff9999";
-          } else {
-            if (i > 9 && i < 21) {
-              //console.log('getSectorsFill 10- 20 ', i);
-              return i = "#9900ff";
-            } else {
-              if (i > 20 && i < 30) {
-                //console.log('getSectorsFill 20- 29 ', i);
-                return i = "#006600";
-              } else {
-                if (i > 29 && i < 45) {
-                  console.log('getSectorsFill 29- 44 ', i);
-                  return i = "#000066";
-                }
-              }
-            }
-          }
+          return this.priceSchemaService.getColorByPrice(price);
         }
-        }
+      }
     }
 
     angular.module('metalistTicketsApp')
-        .controller('MatchSeatsController', MatchSeatsController);
+        .controller('MatchController', MatchController);
 })();

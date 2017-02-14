@@ -43,7 +43,7 @@ export function index(req, res) {
             {date: { $gt: Date.now() }},
             {date: null}
         ]
-    }).sort({round: 1}).exec()
+    }).populate("priceSchema").sort({round: 1}).exec()
         // .then(matches => {
         //     var result = _.map(matches, (match) => {
         //
@@ -60,7 +60,7 @@ export function index(req, res) {
 }
 
 export function view(req, res) {
-    return Match.findById(req.params.id).exec()
+    return Match.findById(req.params.id).populate("priceSchema").exec()
         // .then(matches => {
         //     var result = _.map(matches, (match) => {
         //
@@ -105,11 +105,13 @@ export function seats(req, res) {
 }
 
 export function createMatch(req, res) {
+  console.log('createMatch', req.body.priceSchema);
   let newMatch = new Match({
       rival: req.body.rival,
       round: req.body.round,
       info: req.body.info,
-      date: req.body.date
+      date: req.body.date,
+      priceSchema: req.body.priceSchema.id
     });
   return newMatch.save()
     .then(respondWithResult(res))
@@ -143,6 +145,7 @@ export function updateMatch(req, res) {
       match.date = req.body.date;
       match.poster = req.body.poster;
       match.info = req.body.info;
+      match.priceSchema = req.body.priceSchema.id;
 
       return match.save()
     })

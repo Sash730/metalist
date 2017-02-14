@@ -17,6 +17,7 @@ var MatchSchema = new Schema({
         type: Number,
         required: true,
     },
+    priceSchema: { type: Schema.ObjectId, ref: 'PriceSchema'},
     info: String,
     poster: String,
 }, {

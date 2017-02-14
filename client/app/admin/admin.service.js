@@ -10,42 +10,42 @@
 
     loadMatches() {
       return this.$http.get('/api/matches/')
-                 .then((response) => AdminService.convertDataStingToObject(response.data));
+        .then((response) => AdminService.convertDataStingToObject(response.data));
     }
 
     createMatch(a) {
       return this.$http({
-                          method: 'POST',
-                          url: '/api/matches',
-                          data: a,
-                          headers: {'Accept': 'application/json'}
-                        });
+        method: 'POST',
+        url: '/api/matches',
+        data: a,
+        headers: {'Accept': 'application/json'}
+      });
     }
 
     editMatch(a) {
       return this.$http({
-                          method: 'PUT',
-                          url: '/api/matches/' + a._id,
-                          data: a,
-                          headers: {'Accept': 'application/json'}
-                        });
+        method: 'PUT',
+        url: '/api/matches/' + a._id,
+        data: a,
+        headers: {'Accept': 'application/json'}
+      });
     }
 
     deleteMatch(a) {
       return this.$http({
-                          method: 'delete',
-                          url: '/api/matches/' + a._id,
-                          headers: {'Accept': 'application/json'}
-                        });
+        method: 'delete',
+        url: '/api/matches/' + a._id,
+        headers: {'Accept': 'application/json'}
+      });
     }
 
     getCountPaidOrders(a){
       return this.$http({
-                          method: 'get',
-                          url:'/api/orders/' + a,
-                          headers: {'Accept': 'application/json'}
-                        })
-                        .then((response) => AdminService.convertDataStingToObject(response.data));
+        method: 'get',
+        url:'/api/orders/' + a,
+        headers: {'Accept': 'application/json'}
+      })
+        .then((response) => AdminService.convertDataStingToObject(response.data));
     }
 
     checkTicket(code) {

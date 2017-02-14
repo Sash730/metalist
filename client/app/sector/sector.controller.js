@@ -3,30 +3,30 @@
 
 (function () {
 
-  class SectorSeatsController {
+  class SectorController {
 
-    constructor(match, seats, cart, sector, $stateParams, CartService) {
+    constructor(match, cart, sector, $stateParams, CartService) {
 
       this.match = match;
-      this.seats = seats;
       this.cart = cart;
-      this.sectorId = $stateParams.sector;
-      this.sectorName = 'Сектор';
-      this.addToCart = CartService.addTicket.bind(CartService);;
+      this.tribuneName = $stateParams.tribune;
       this.sector = sector;
 
-      this.makeArrayFromNumber = function(number) {
-        return Array.apply(null, {length: number + 1}).map(Number.call, Number).filter(Boolean);
-      };
-
-      this.showAlert = function(event){
-        alert(event.target.id);
-      };
-
+      this.addToCart = CartService.addTicket.bind(CartService);
+      console.log('tribuneName', this.tribuneName);
     }
 
+    makeArrayFromNumber (row, number) {
+      let seats = Array.apply(null, {length: number + 1}).map(Number.call, Number).filter(Boolean);
+      console.log('seats-'+row, number , seats);
+      return seats;
+    };
+
+    showAlert (event){
+      alert(event.target.id);
+    };
   }
 
   angular.module('metalistTicketsApp')
-    .controller('SectorSeatsController', SectorSeatsController);
+    .controller('SectorController', SectorController);
 })();
