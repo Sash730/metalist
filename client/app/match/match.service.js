@@ -2,7 +2,7 @@
 
 (function () {
 
-    class MatchSeatsService {
+    class MatchService {
 
         constructor($http) {
             this.$http = $http;
@@ -22,5 +22,5 @@
     }
 
     angular.module('metalistTicketsApp')
-        .service('MatchSeatsService', MatchSeatsService);
+        .service('MatchService', MatchService);
 })();

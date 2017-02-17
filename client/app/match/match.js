@@ -3,23 +3,15 @@
 angular.module('metalistTicketsApp')
     .config(function ($stateProvider) {
         $stateProvider.state('match', {
-            url: '/match/:id/seats',
+            url: '/match/:id/sectors',
             templateUrl: 'app/match/match.html',
-            controller: 'MatchSeatsController',
+            controller: 'MatchController',
             controllerAs: 'vm',
 
             resolve: {
-                match: (MatchSeatsService, $stateParams, $state) => {
-                    return MatchSeatsService
+                match: (MatchService, $stateParams, $state) => {
+                    return MatchService
                         .fetchMatch($stateParams.id)
-                        .catch((error) => {
-                            console.log(error);
-                            $state.go('404');
-                        })
-                    ;
-                },
-                seats: (MatchSeatsService, $stateParams, $state) => {
-                    return MatchSeatsService.fetchMatchSeats($stateParams.id)
                         .catch((error) => {
                             console.log(error);
                             $state.go('404');
