@@ -1,6 +1,6 @@
 'use strict';
 
-import Match from './../models/match.model';
+import Match from './../match/match.model';
 import Ticket from './../models/ticket.model';
 import User from './../models/user.model';
 import Seat from './../models/seat.model';

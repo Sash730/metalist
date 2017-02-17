@@ -8,11 +8,6 @@
       this.$http = $http;
     }
 
-    loadMatches() {
-      return this.$http.get('/api/matches/')
-        .then((response) => AdminService.convertDataStingToObject(response.data));
-    }
-
     createMatch(a) {
       return this.$http({
         method: 'POST',

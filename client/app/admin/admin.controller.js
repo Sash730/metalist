@@ -3,10 +3,9 @@
 (function () {
 
   class AdminController {
-    constructor(User, AdminService, PriceSchemaService) {
+    constructor(User, AdminService) {
       this.users = User.query();
       this.adminService = AdminService;
-      this.priceSchemaService = PriceSchemaService;
 
       this.matchDate = '';
       this.newMatch = {};
@@ -19,21 +18,6 @@
 
       this.priceSchemas = [];
 
-      this.loadPriceSchemas();
-      this.loadMatch();
-    }
-
-
-    loadMatch() {
-      this.adminService.loadMatches()
-        .then(response => this.matches = response);
-    }
-
-    loadPriceSchemas() {
-      this.priceSchemaService.loadPrices()
-        .then(response => {
-          this.priceSchemas = response.data;
-        });
     }
 
     createMatch(match) {

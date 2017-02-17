@@ -1,0 +1,34 @@
+<div class="row">
+  <hr>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">Матчи</div>
+      <ul class="list-group" ng-repeat="match in $ctrl.matches">
+        <li class="list-group-item">{{match.headline}}
+          <button class="btn btn-default" ng-click="$ctrl.edit(match)">Edit</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label>Новый Матч</label>
+    <form>
+      <div class="form-group">
+        <label>Соперник</label>
+        <input type="text" class="form-control" ng-model="$ctrl.rival">
+      </div>
+      <div class="form-group">
+        <label>Дата и Время</label>
+        <input type="date" class="form-control" ng-model="$ctrl.date">
+      </div>
+      <select class="form-control"
+              ng-model="$ctrl.priceSchema"
+              ng-options="option.priceSchema.name for option in $ctrl.priceSchemas track by option._id"></select>
+      <button type="submit" class="btn btn-default" ng-click="$ctrl.addMatch()">Добавить</button>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <pre>{{$ctrl.matches| json}}</pre>
+  </div>
+</div>
+

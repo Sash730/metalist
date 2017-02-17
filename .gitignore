@@ -10,3 +10,4 @@ dist/bower.json
 server/config/local.env.js
 npm-debug.log
 production.yml
+all.log

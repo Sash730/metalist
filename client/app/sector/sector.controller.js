@@ -16,10 +16,8 @@
       console.log('tribuneName', this.tribuneName);
     }
 
-    makeArrayFromNumber (row, number) {
-      let seats = Array.apply(null, {length: number + 1}).map(Number.call, Number).filter(Boolean);
-      console.log('seats-'+row, number , seats);
-      return seats;
+    makeArrayFromNumber (number) {
+      return [...Array(parseInt(number)).keys()];
     };
 
     showAlert (event){

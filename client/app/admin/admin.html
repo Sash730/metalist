@@ -11,66 +11,7 @@
       </ul>
     </uib-tab>
     <uib-tab index="1" heading="Matches">
-
-      <table class="table">
-        <thead>
-        <tr>
-
-          <th>poster</th>
-          <th>date</th>
-          <th>headline</th>
-          <th>rival</th>
-          <th>round</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-
-          <td><input type="text" name="poster" ng-model="admin.newMatch.poster" required="" /></td>
-          <td><input type="datetime-local" name="date" ng-model="admin.newMatch.date" placeholder="yyyy-MM-dd H:mm" required="" /></td>
-          <td><input type="text" name="headline" ng-model="admin.newMatch.headline" required="" /></td>
-          <td><input type="text" name="rival" ng-model="admin.newMatch.rival" required="" /></td>
-          <td><input type="text" name="round" ng-model="admin.newMatch.round" required="" /></td>
-          <td>
-            <select class="form-control" ng-model="admin.newMatch.priceSchema" ng-options="option.priceSchema.name for option in admin.priceSchemas track by option.id"></select>
-          <td>
-          <td>
-            <button class="btn btn-primary btn-sm" ng-click="admin.createMatch(admin.newMatch, '1')" ><span class="glyphicon glyphicon-ok"></span></button>
-          </td>
-        </tr>
-
-        <tr ng-repeat="match in admin.matches">
-          <td>
-            <input type="text" name="poster" ng-model= "match.poster" required="" />
-          </td>
-          <td>
-            <input type="datetime-local" ng-model="match.date" placeholder="yyyy-MM-dd H:mm" required />
-          </td>
-          <td>
-            <input type="text" name="poster" ng-model= "match.headline" required="" />
-          </td>
-          <td>
-            <input type="text" name="poster" ng-model= "match.rival" required="" />
-          </td>
-          <td>
-            <input type="text" name="poster" ng-model= "match.round" required="" />
-          </td>
-          <td>
-            <select class="form-control" ng-model="match.priceSchema" ng-options="option.priceSchema.name for option in admin.priceSchemas track by option._id"></select>
-          <td>
-          <td>
-            <button class="btn btn-primary btn-sm" ng-click="admin.editMatch(match)" ><span class="glyphicon glyphicon-pencil"></span></button>
-          </td>
-          <td>
-            <button class="btn btn-primary btn-sm" ng-click="admin.deleteMatch(match)" ><span class="glyphicon glyphicon-remove"></span></button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-
-      {{ admin.newMatch }}
-
-
+      <match-editor></match-editor>
     </uib-tab>
     <uib-tab index="2" heading="Orders">
       <form name="myForm"><br>
