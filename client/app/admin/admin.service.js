@@ -8,32 +8,6 @@
       this.$http = $http;
     }
 
-    createMatch(a) {
-      return this.$http({
-        method: 'POST',
-        url: '/api/matches',
-        data: a,
-        headers: {'Accept': 'application/json'}
-      });
-    }
-
-    editMatch(a) {
-      return this.$http({
-        method: 'PUT',
-        url: '/api/matches/' + a._id,
-        data: a,
-        headers: {'Accept': 'application/json'}
-      });
-    }
-
-    deleteMatch(a) {
-      return this.$http({
-        method: 'delete',
-        url: '/api/matches/' + a._id,
-        headers: {'Accept': 'application/json'}
-      });
-    }
-
     getCountPaidOrders(a){
       return this.$http({
         method: 'get',
