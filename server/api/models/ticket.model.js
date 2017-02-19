@@ -4,10 +4,10 @@ import mongoose from 'mongoose';
 import {formatMoney} from '../../util';
 
 const TicketSchema = new mongoose.Schema({
-  cartId: {
-    type: String
-  },
-  orderNumber: {
+    cartId: {
+      type: String
+    },
+    orderNumber: {
         type: String
     },
     accessCode: {

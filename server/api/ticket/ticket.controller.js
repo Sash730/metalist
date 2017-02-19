@@ -169,4 +169,37 @@ export function getTicketsForCheckMobile(req, res) {
                .catch(handleError(res));
 }
 
+export function getCountPaidOrders(req, res) {
+  let date = new Date(req.params.date);
 
+  let countOrdersPromise =  Ticket.aggregate([
+    {$match: {status: 'paid', 'match.date': date}},
+    {$project: {tribune: '$seat.tribune'}},
+    {$group: {_id: "$tribune", number: {$sum: 1}}}])
+    .then(handleEntityNotFound(res));
+
+  let totalPricePromise  =  Ticket.aggregate([
+    {$match: {status: 'paid', 'match.date': date}},
+    {$project: {amount: 1, _id: 0, 'match.headline': 1}},
+    {$group: {_id: '$match.headline', number: {$sum: '$amount'}}}
+    ])
+    .then(handleEntityNotFound(res));
+
+  Promise
+    .all([countOrdersPromise, totalPricePromise])
+    .then(([count, total]) => {
+      let statistic = {};
+
+      count.map(chain => {
+        statistic[chain._id] =  chain.number;
+      });
+      return {
+              stadium: statistic,
+              headline: total[0]._id,
+              totalSum: total[0].number
+             };
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
+}

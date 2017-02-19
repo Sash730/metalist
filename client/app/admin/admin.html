@@ -14,35 +14,7 @@
       <match-editor></match-editor>
     </uib-tab>
     <uib-tab index="2" heading="Orders">
-      <form name="myForm"><br>
-        <label> Выберите матч: </label>
-        <select class="form-control" name="repeat" id="repeatSelect" ng-change="admin.getCountPaidOrders(admin.matchDate)" ng-model="admin.matchDate">
-          <option ng-repeat="option in admin.matches" value="{{option.date}}">{{option.headline}}</option>
-        </select>
-      </form>
-      <hr>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>Match date</th>
-          <th>West tribune</th>
-          <th>East tribune</th>
-          <th>Total price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td ng-bind="admin.matchDate | date:'dd-MM-yyyy HH:mm:ss'">
-          </td>
-          <td ng-bind="admin.paidOrders.west">
-          </td>
-          <td ng-bind="admin.paidOrders.east">
-          </td>
-          <td ng-bind="admin.paidOrders.total | money">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <tickets-statistic></tickets-statistic>
     </uib-tab>
     <uib-tab index="3" heading="Tickets">
       <form name="myForm"><br>
