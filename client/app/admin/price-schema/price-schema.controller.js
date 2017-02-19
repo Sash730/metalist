@@ -13,7 +13,9 @@
       this.currentTribune = {};
       this.currentSector = {};
       this.message = '';
+    }
 
+    $onInit() {
       this.loadPriceSchemas();
     }
 
@@ -101,7 +103,8 @@
       form.sectorPrice.$setDirty();
 
       if(!tribuneName) {
-        return this.message = "Выберите сектор."
+        this.message = "Выберите сектор.";
+        return;
       }
 
       if(form.$valid) {

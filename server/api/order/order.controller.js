@@ -3,8 +3,9 @@
 import Match from './../match/match.model';
 import Ticket from './../models/ticket.model';
 import User from './../models/user.model';
-import Seat from './../models/seat.model';
 import {Order} from './../models/order.model';
+import PriceSchema from "./../priceSchema/priceSchema.model";
+import {Stadium} from '../../stadium';
 import * as _ from 'lodash';
 import * as config from "../../config/environment"
 import * as crypto from "crypto";
@@ -51,7 +52,7 @@ let sendMessage = (order, ticket) => {
   Mailer.sendMail( ticket.user.email, order, ticket);
 };
 
-let createNewTicket = (cart, match, seat) => {
+let createNewTicket = (cart, match, price, seat) => {
   let ticket = new Ticket({
     cartId: cart.id,
     accessCode: randomNumericString(16),
@@ -63,11 +64,12 @@ let createNewTicket = (cart, match, seat) => {
     },
     seat: {
       id: seat.id,
+      tribune: seat.tribune,
       sector: seat.sector,
       row: seat.row,
       number: seat.number
     },
-    amount: seat.price,
+    amount: parseInt(price) * 100,//money formatted(for liqpay)
     reserveDate: moment(),
     status: 'new',
     valid: {
@@ -80,9 +82,9 @@ let createNewTicket = (cart, match, seat) => {
   return ticket.save();
 };
 
-let createOrUpdateTicket = (cart, match, seat, ticket) => {
+let createOrUpdateTicket = (cart, match, ticket,  price, seat) => {
   if (!ticket) {
-    return createNewTicket(cart, match, seat);
+    return createNewTicket(cart, match, price, seat);
   }
 
   ticket.cartId = cart._id;
@@ -100,6 +102,44 @@ let updateTicketsInCheckout = (order) => {
         return ticket.save();
     });
   });
+};
+
+let getPriceInPriceSchema = (priceSchema, tribuneName, sectorName) => {
+  let schema = priceSchema.priceSchema;
+
+  if (!schema['tribune_'+tribuneName]) {
+    return false;
+  }
+  if (schema['tribune_'+tribuneName]['sector_'+sectorName]) {
+    let price  = schema['tribune_'+tribuneName]['sector_'+sectorName].price;
+
+    if (!price) {
+      return schema['tribune_'+tribuneName].price;
+    }
+    return price;
+  } else {
+    return schema['tribune_'+tribuneName].price;
+  }
+};
+
+let checkPriceInPriceSchema = (priceSchemaId, tribuneName, sectorName, price) => {
+  return PriceSchema.findById(priceSchemaId)
+    .then(priceSchema => {
+      if(!priceSchema) {
+        throw new Error('Price schema not found');
+      }
+      let priceInPriceSchema = getPriceInPriceSchema(priceSchema, tribuneName, sectorName);
+
+      if(!priceInPriceSchema) {
+        throw new Error('Price in price schema not found');
+      }
+
+      if (priceInPriceSchema !== price) {
+        throw new Error('Стоимость билета и прайс схемы не совпадает');
+      } else {
+        return price;
+      }
+    });
 };
 
 let addUserToGuestCard = (guestCart, user) => {
@@ -172,7 +212,7 @@ let processLiqpayRequest = (request) => {
             }
             order.paymentDetails = params;
 
-            var ticketPromises = [];
+            let ticketPromises = [];
             if(params.status === 'success' || params.status === 'sandbox') {
                 order.status = 'paid';
 
@@ -259,51 +299,66 @@ export function getCountPaidOrders(req, res) {
 
 export function updateCart(req, res) {
     let cartId = req.session.cart,
-      timeEndTicketReserve = moment().subtract(30, 'minutes');
+        seat = req.body.seat,
+        tribuneName = req.body.tribuneName,
+        sectorName = req.body.sectorName,
+        rowName = req.body.rowName,
+        seatId = 's' + sectorName + rowName + seat,
+        priceSchemaId = req.body.match.priceSchema.id,
+        timeEndTicketReserve = moment().subtract(30, 'minutes'),
+        price = req.body.price;
 
-    Promise.all([
-                 Order.findOne({_id: cartId, type: 'cart'})
-                      .populate({path: 'tickets'}),
-                 Match.findById(req.body.matchId),
-                 Seat.findById(req.body.seatId),
-                 Ticket.findOne(
-                   { status: 'new',
-                    'match.id': req.body.matchId,
-                    'seat.sector': req.body.seatId
-                   }
-                 )
-                ])
-        .then(([cart, match, seat, ticket]) => {
-            if(!cart) {
-                throw new Error('Cart not found');
-            }
-            if(!match) {
-                throw new Error('Match not found');
-            }
-            if(!seat) {
-                throw new Error('Seat not found');
-            }
-            if (ticket && ticket.reserveDate > timeEndTicketReserve) {
-              return {
-                      message: 'This ticket is already taken.'
-                     };
-            }
+  let checkSeatInStadium = new Promise((resolve, reject) => {
+    let row = Stadium['tribune_'+tribuneName]['sector_'+sectorName]
+      .rows.filter(row => row.name === rowName);
 
-          return createOrUpdateTicket(cart, match, seat, ticket)
-            .then(ticket => {
-              cart.tickets.push(ticket._id);
-              cart.amount += seat.price;
+    if(row.length && seat <= row[0].seats) {
+      resolve({
+        id: seatId,
+        tribune: tribuneName,
+        sector: sectorName,
+        row: rowName,
+        number: seat
+      });
+    } else {
+      reject(new Error('cannot find seat in the stadium'));
+    }
+  });
 
-              return cart.save();
-            })
-            .then((cart) => {
-              return Order.findOne({_id: cart.id})
-                   .populate({path: 'tickets'});
-            })
-        })
-        .then(respondWithResult(res))
-        .catch(handleError(res))
-    ;
+  Promise.all([
+               Order.findOne({_id: cartId, type: 'cart'})
+                    .populate({path: 'tickets'}),
+               Match.findById(req.body.match.id),
+               Ticket.findOne({ 'match.id': req.body.match.id, 'seat.id': seatId }),
+               checkPriceInPriceSchema(priceSchemaId, tribuneName, sectorName, price),
+               checkSeatInStadium
+              ])
+      .then(([cart, match, ticket, price, seat]) => {
+          if(!cart) {
+              throw new Error('Cart not found');
+          }
+          if(!match) {
+              throw new Error('Match not found');
+          }
+          if (ticket && ( ticket.status === 'paid' || ticket.reserveDate > timeEndTicketReserve )) {
+            return {
+                    tickets: cart.tickets,
+                    message: 'This ticket is already taken.'
+                   };
+          }
+         return createOrUpdateTicket(cart, match, ticket,  price, seat)
+          .then(ticket => {
+            cart.tickets.push(ticket._id);
+            cart.amount += ticket.amount;
+             return cart.save();
+          })
+          .then((cart) => {
+            return Order.findOne({_id: cart.id})
+                 .populate({path: 'tickets'});
+          })
+      })
+      .then(respondWithResult(res))
+      .catch(handleError(res));
 }
 
 export function deleteItemFromCart(req, res) {
@@ -344,8 +399,8 @@ export function getCart(req, res) {
 }
 
 export function getUserCart(req, res) {
-  var userId = req.user.id;
-  var cartId = req.session.cart;
+  let userId = req.user.id,
+      cartId = req.session.cart;
 
   Promise.all([
     Order.findOne({_id: cartId, type: 'cart'})
@@ -361,11 +416,9 @@ export function getUserCart(req, res) {
 
         if (!guestCart.tickets.length) {
           req.session.cart = userCart.id;
-          guestCart.remove();
 
           return userCart;
         }
-        userCart.remove();
 
         return addUserToGuestCard(guestCart, user);
       }

@@ -3,15 +3,20 @@ import {Order} from '../api/models/order.model';
 export var createCart = (request, response, next) => {
     Promise.resolve(request)
         .then(request => {
+          if(request.cookies.cart){
+            return Order.findOne({_id: request.cookies.cart, type: 'cart'})
+                        .then(cart => {
+                          if (!cart) {
+                            return Order.findOne({_id: request.session.cart, type: 'cart'});
+                          }
+                          return cart;
+                        });
+          }
+          if(request.session.cart) {
+            return Order.findOne({_id: request.session.cart, type: 'cart'});
+          }
 
-           if(!request.cookies.cart && request.session.cart) {
-                return Order.findOne({_id: request.session.cart, type: 'cart'});
-           }
-            if(request.cookies.cart){
-              return Order.findOne({_id: request.cookies.cart, type: 'cart'});
-            }
-
-            return null;
+          return null;
         })
         .then(cart => {
             if(cart) {

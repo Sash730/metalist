@@ -7,12 +7,11 @@ angular.module('metalistTicketsApp')
       templateUrl: 'app/sector/sector.html',
       controller: 'SectorController',
       controllerAs: 'vm',
-
       resolve: {
         sector: (Stadium, $stateParams) => {
           return Stadium['tribune_'+$stateParams.tribune]['sector_'+$stateParams.sector];
         },
-          match: (MatchService, $stateParams, $state) => {
+        match: (MatchService, $stateParams, $state) => {
               return MatchService
                 .fetchMatch($stateParams.id)
                 .catch((error) => {
@@ -20,11 +19,18 @@ angular.module('metalistTicketsApp')
                     $state.go('404');
                   });
                 },
-          cart: (CartService) => {
+        tickets: (TicketsService, $stateParams) => {
+              return TicketsService.fetchReservedTickets($stateParams.id, $stateParams.sector)
+                .catch((error) => {
+                  console.log(error);
+                  $state.go('404');
+                });
+              },
+        cart: (CartService) => {
               return CartService.cart;
               }
-            }
-      });
+      }
+    });
 });
 
 
