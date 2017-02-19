@@ -13,7 +13,7 @@ function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function (entity) {
         if (entity) {
-          logger.info('respondWithResult '+entity);
+          logger.info('respondWithResult '+entity._id);
             return res.status(statusCode).json(entity);
         }
     };

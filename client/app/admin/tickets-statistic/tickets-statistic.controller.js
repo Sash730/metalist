@@ -3,8 +3,8 @@
 (function () {
 
   class TicketsStatisticController {
-    constructor(AdminService, MatchEditorService) {
-      this.adminService = AdminService;
+    constructor(TicketsService, MatchEditorService) {
+      this.ticketsService = TicketsService;
       this.matchEditorService = MatchEditorService;
 
       this.statistic = {};
@@ -20,7 +20,7 @@
     }
 
     getStatisticForTickets(date) {
-      this.adminService.getCountPaidTickets(date)
+      this.ticketsService.getCountPaidTickets(date)
         .then(statistic => { this.statistic = statistic; });
     }
 
