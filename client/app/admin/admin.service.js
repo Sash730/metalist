@@ -11,10 +11,10 @@
     getCountPaidOrders(a){
       return this.$http({
         method: 'get',
-        url:'/api/orders/' + a,
+        url:'/api/tickets/' + date,
         headers: {'Accept': 'application/json'}
       })
-        .then((response) => AdminService.convertDataStingToObject(response.data));
+        .then(response => response.data);
     }
 
     checkTicket(code) {

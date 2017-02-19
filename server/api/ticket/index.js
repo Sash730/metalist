@@ -11,6 +11,6 @@ router.get('/reserved-on-match/:id/sector/:sector', controller.getReservedticket
 router.get('/:code/print'/*, auth.isAuthenticated()*/, controller.print);
 router.get('/:code/check', auth.isAuthenticated(), controller.use);
 router.get('/sold-tickets', auth.isAuthenticated(), controller.getTicketsForCheckMobile);
-
+router.get('/:date', auth.isAuthenticated(), controller.getCountPaidOrders);
 
 module.exports = router;
