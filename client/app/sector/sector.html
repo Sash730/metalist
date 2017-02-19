@@ -10,14 +10,17 @@
       <div class="stadiumFieldWrap"><img src="../../app/sector/img/field.png" class="stadiumField"></div>
       <div id="sectors">
         <br />
-        <div class="sectorName"><p>Cектор - {{vm.sector.name}}</p></div>
+        <div class="sectorName">
+          <span>Cектор - {{vm.sector.name}}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>Price - {{vm.sectorPrice}} uah.</span>
+        </div>
         <div class="gradientSeats"></div>
         <ul class="rows">
           <li ng-repeat="row in vm.sector.rows">
             <span class="rowText">{{row.name}}</span>
-            <img src="../../app/sector/img/seat.png" ng-click="sector.addToCart( s+sector.name+row.name+(1+$index), sector.match)" id="s{{sector.name}}{{row.name}}{{1+$index}}"
-
-                 class="imgSeatsStyle" ng-repeat="seat in vm.makeArrayFromNumber(row.seats)"
+            <img src="../../app/sector/img/seat.png" id="s{{sector.name}}{{row.name}}{{1+$index}}" class="imgSeatsStyle"
+                 ng-repeat="seat in vm.makeArrayFromNumber(row.seats)"
+                 ng-click="vm.addToCart(vm.match, vm.tribuneName, vm.sector.name, row.name, seat, vm.sectorPrice)"
                  uib-popover-html="'<p>Трибуна: <b>{{vm.tribuneName}} {{sector.name}}</b><br />Ряд: <b>{{row.name}}</b><br />Место: <b>{{seat}}</b></p>'"
                  popover-trigger="'mouseenter'" />
           </li>
@@ -30,7 +33,7 @@
 
 <div class="col-sm-4 cart">
   <cart></cart>
-  <div ng-show="sector.cart.size">
+  <div ng-show="vm.cart.size">
     <a ui-sref="checkout" class="btn btn-info btn-block">Proceed to Checkout</a>
   </div>
 </div>

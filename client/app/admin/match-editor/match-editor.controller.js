@@ -7,6 +7,7 @@
     constructor(MatchEditorService, PriceSchemaService) {
       this.matchEditorService = MatchEditorService;
       this.priceSchemaService = PriceSchemaService;
+
       this.matches = [];
       this.priceSchemas = [];
       this.priceSchema = '';

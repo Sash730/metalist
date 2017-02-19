@@ -71,6 +71,15 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
+export function getReservedtickets(req, res) {
+  let matchId = req.params;
+      //sectorName = req.body.sectorName;
+  console.log('output', matchId);
+  return Ticket.find().exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+}
+
 export function print(req, res, next) {
     return Ticket.findOne({code: req.params.code, available: false}).exec()
         .then(handleEntityNotFound(res))

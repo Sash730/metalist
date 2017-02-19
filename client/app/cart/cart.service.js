@@ -8,10 +8,11 @@
             this.$http = $http;
             this.Auth = Auth;
             this.$cookies = $cookies;
+
             this.cart = new Cart();
             this.message = '';
 
-            this.loadCart();
+          this.loadCart();
         }
 
         loadCart() {
@@ -33,7 +34,7 @@
             });
         }
 
-loadGuestCart() {
+        loadGuestCart() {
           this.$http.get('/api/orders/cart')
             .then(response => {
               this.cart.tickets = response.data.tickets;
@@ -45,17 +46,19 @@ loadGuestCart() {
             });
         }
 
-        addTicket(seat, match) {
+        addTicket(match, tribuneName, sectorName, rowName, seat, price) {
             this.$http.post('/api/orders/cart', {
-                seatId: seat,
-                matchId: match.id
+                match: match,
+                tribuneName: tribuneName,
+                sectorName: sectorName,
+                rowName: rowName,
+                seat: seat,
+                price: price
             })
                 .then(response => {
-                  if (response.data.message) {
-                    this.message = response.data.message;
-                  } else {
-                    this.cart.tickets = response.data.tickets;
-                  }
+                  if (response.data.message)  this.message = response.data.message;
+                  console.log(this.message);
+                  this.cart.tickets = response.data.tickets;
                 })
             ;
         }
