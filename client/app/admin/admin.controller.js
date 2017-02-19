@@ -3,58 +3,21 @@
 (function () {
 
   class AdminController {
-    constructor(User, AdminService) {
+    constructor(User, TicketsService) {
       this.users = User.query();
-      this.adminService = AdminService;
+      this.ticketsService = TicketsService;
 
-      this.matchDate = '';
-      this.newMatch = {};
-      this.newMatch.date = new Date();
-      this.paidOrders = [];
-      this.matches = [];
       this.tickets = [];
       this.ticket = {};
       this.message = '';
 
-      this.priceSchemas = [];
-
-    }
-
-    createMatch(match) {
-      this.adminService.createMatch(match)
-        .then(() => {
-          this.loadMatch();
-          this.newMatch = {};
-          this.newMatch.date = new Date();
-        });
-    }
-
-    editMatch(match) {
-      this.adminService.editMatch(match)
-        .then(() => {
-          this.loadMatch();
-        });
-    }
-
-    deleteMatch(match) {
-      this.adminService.deleteMatch(match)
-        .then(() => {
-          this.loadMatch();
-        });
-    }
-
-    getCountPaidOrders(a) {
-      this.adminService.getCountPaidOrders(a)
-        .then(paidOrders => {
-          this.paidOrders = paidOrders;
-        });
     }
 
     checkTicket(code) {
       this.message = '';
       this.ticket = {};
 
-      this.adminService.checkTicket(code)
+      this.ticketsService.checkTicket(code)
         .then(response => {
           if (response.data.message) this.message = response.data.message;
           this.ticket = response.data;
@@ -62,7 +25,7 @@
     }
 
     getTickets() {
-      this.adminService.getTickets()
+      this.ticketsService.getTickets()
         .then(response => {
           this.tickets = response.data;
         })
