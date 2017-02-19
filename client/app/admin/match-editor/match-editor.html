@@ -11,21 +11,7 @@
     </div>
   </div>
   <div class="col-md-4">
-    <label>Новый Матч</label>
-    <form>
-      <div class="form-group">
-        <label>Соперник</label>
-        <input type="text" class="form-control" ng-model="$ctrl.rival">
-      </div>
-      <div class="form-group">
-        <label>Дата и Время</label>
-        <input type="date" class="form-control" ng-model="$ctrl.date">
-      </div>
-      <select class="form-control"
-              ng-model="$ctrl.priceSchema"
-              ng-options="option.priceSchema.name for option in $ctrl.priceSchemas track by option._id"></select>
-      <button type="submit" class="btn btn-default" ng-click="$ctrl.addMatch()">Добавить</button>
-    </form>
+    <editor match-to-edit="$ctrl.matchToEdit"></editor>
   </div>
   <div class="col-md-4">
     <pre>{{$ctrl.matches| json}}</pre>
