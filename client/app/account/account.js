@@ -4,7 +4,7 @@ angular.module('metalistTicketsApp')
     .config(function ($stateProvider) {
         $stateProvider.state('login', {
             url: '/login?referrer',
-            referrer: 'main',
+            referrer: 'main.home',
             templateUrl: 'app/account/login/login.html',
             controller: 'LoginController',
             controllerAs: 'vm'
@@ -35,9 +35,10 @@ angular.module('metalistTicketsApp')
             });
     })
     .run(function ($rootScope) {
-        $rootScope.$on('$stateChangeStart', function (event, next, nextParams, current) {
-            if (next.name === 'login' && current && current.name && !current.authenticate) {
-                next.referrer = current.name;
+        $rootScope.$on('$stateChangeStart', function (event, next, nextParams,  prev, prevParams) {
+            if (next.name === 'login' && prev && prev.name && !prev.authenticate) {
+              next.referrer = prev.name;
+              next.params = prevParams;
             }
         });
     });

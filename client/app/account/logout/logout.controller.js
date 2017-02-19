@@ -17,7 +17,7 @@ class LogoutController {
       .then(() => {
         this.loadCart();
 
-        this.$state.go('main.matches');
+        this.$state.go('main.home');
       })
       .catch((error) => {
         console.log(error);
