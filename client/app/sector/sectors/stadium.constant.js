@@ -349,11 +349,11 @@
               name: '3',
               rows: [
                 {
-                  name: '–02',
+                  name: '–2',
                   seats: '3'
                 },
                 {
-                  name: '–01',
+                  name: '–1',
                   seats: '3'
                 },
                 {
