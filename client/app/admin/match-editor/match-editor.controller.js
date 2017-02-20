@@ -10,11 +10,8 @@
 
       this.matches = [];
       this.priceSchemas = [];
-      this.priceSchema = '';
-      this.rival = '';
-      this.date = new Date();
-      this.date.setDate(this.date.getDate() + 1);
-      this.matchToEdit = {"rival": this.rival, "date": this.date};
+      this.matchToEdit = {};
+      this.matchId = '';
     }
 
     $onInit() {
@@ -26,25 +23,42 @@
       this.matchToEdit = Object.assign({}, match);
     }
 
+    remove() {
+      this.deleteMatch(this.matchId);
+      this.edit({});
+    }
+
+    onMatchUpdate(event) {
+      if (event.match.id) {
+        this.saveMatch(event.match)
+      } else {
+        this.addMatch(event.match)
+      }
+      this.edit({});
+    }
+
     loadPriceSchemas() {
       return this.priceSchemaService.loadPrices()
-        .then(response => {
-          this.priceSchemas = response.data;
-          this.priceSchema = this.priceSchemas[0];
-        });
+        .then( response => this.priceSchemas = response.data );
     }
 
     loadMatches() {
-      return this.matchEditorService.loadMatches().then(mathces => this.matches = mathces)
+      return this.matchEditorService.loadMatches()
+        .then( mathces => this.matches = mathces )
     }
 
-    addMatch() {
-      this.matchEditorService.createMatch({rival: this.matchToEdit.rival, date: this.matchToEdit.date, priceSchema: this.priceSchema})
+    deleteMatch(matchId) {
+      return this.matchEditorService.deleteMatch(matchId)
         .then(() => this.loadMatches());
     }
 
-    saveMatch() {
-      this.matchEditorService.editMatch(this.matchToEdit)
+    addMatch(match) {
+      this.matchEditorService.createMatch(match)
+        .then(() => this.loadMatches());
+    }
+
+    saveMatch(match) {
+      this.matchEditorService.editMatch(match)
         .then(() => this.loadMatches());
     }
 

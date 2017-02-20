@@ -5,9 +5,11 @@
   angular.module('metalistTicketsApp.admin')
     .component('editor', {
       templateUrl: 'app/admin/match-editor/editor/editor.html',
-      controller: 'MatchEditorController',
+      controller: 'EditorController',
       bindings: {
-        matchToEdit: '='
+        matchToEdit: '<',
+        priceSchemas: '<',
+        onChange: '&'
       }
     });
 })();

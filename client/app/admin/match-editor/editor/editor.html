@@ -1,18 +1,17 @@
-<label ng-show="$ctrl.matchToEdit._id === undefined">Новый Матч</label>
-<label ng-show="$ctrl.matchToEdit._id !== undefined">Редактировать Матч</label>
+<label ng-show="!$ctrl.match.id">Новый Матч</label>
+<label ng-show="$ctrl.match.id">Редактировать Матч</label>
+<span class="label label-default">{{$ctrl.match.id}}</span>
     <form>
       <div class="form-group">
         <label>Соперник</label>
-        <label> ! {{$ctrl.matchToEdit}} ! </label> <br>
-        <input type="text" class="form-control" ng-model="$ctrl.matchToEdit.rival">
+        <input type="text" class="form-control" ng-model="$ctrl.match.rival">
       </div>
       <div class="form-group">
         <label>Дата и Время</label>
-        <input type="date" class="form-control" ng-model="$ctrl.matchToEdit.date">
+        <input type="date" class="form-control" ng-model="$ctrl.match.date">
       </div>
       <select class="form-control"
-              ng-model="$ctrl.priceSchema"
+              ng-model="$ctrl.match.priceSchema"
               ng-options="option.priceSchema.name for option in $ctrl.priceSchemas track by option._id"></select>
-      <button ng-show="$ctrl.matchToEdit._id === undefined" type="submit" class="btn btn-default" ng-click="$ctrl.addMatch()">Добавить</button>
-      <button ng-show="$ctrl.matchToEdit._id !== undefined" type="submit" class="btn btn-default" ng-click="$ctrl.saveMatch()">Сохранить</button>
+      <button type="submit" class="btn btn-default" ng-click="$ctrl.update()" ng-bind="$ctrl.match.id ? 'Coхранить': 'Добавить'"></button>
     </form>

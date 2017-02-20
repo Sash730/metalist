@@ -1,20 +1,28 @@
 <div class="row">
   <hr>
   <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">Матчи</div>
-      <ul class="list-group" ng-repeat="match in $ctrl.matches">
-        <li class="list-group-item">{{match.headline}}
-          <button class="btn btn-default" ng-click="$ctrl.edit(match)">Edit</button>
-        </li>
-      </ul>
-    </div>
+    <label>Список матчей</label>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="match in $ctrl.matches">
+        <span class="badge" ng-click="$ctrl.edit(match)" style="cursor: pointer;">Edit</span>
+        {{match.headline}}
+      </li>
+    </ul>
+    <form class="form-inline">
+      <button class="btn btn-default" ng-click="$ctrl.edit({})">new</button>
+    </form>
   </div>
   <div class="col-md-4">
-    <editor match-to-edit="$ctrl.matchToEdit"></editor>
+    <editor match-to-edit="$ctrl.matchToEdit" price-schemas="$ctrl.priceSchemas" on-change="$ctrl.onMatchUpdate($event)"></editor>
   </div>
   <div class="col-md-4">
-    <pre>{{$ctrl.matches| json}}</pre>
+    <label>удалить матч</label>
+    <form class="form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="match Id" ng-model="$ctrl.matchId">
+      </div>
+      <button type="submit" class="btn btn-default" ng-click="$ctrl.remove()">Удалить</button>
+    </form>
   </div>
 </div>
 

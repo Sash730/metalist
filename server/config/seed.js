@@ -10,24 +10,24 @@ import Match from '../api/match/match.model';
 import PriceSchema from '../api/priceSchema/priceSchema.model';
 import {Order} from '../api/models/order.model';
 
-// PriceSchema.find({}).remove()
-//   .then(() => {
-//     PriceSchema.create({
-//       "priceSchema": {
-//         "tribune_north": {
-//           "price": 10,
-//           "name": "north"
-//         },
-//         "name": "amators"
-//       }
-//     })
-//       .then(() => {
-//         console.log('finished populating PriceSchemas');
-//       });
-//   });
+PriceSchema.find({}).remove()
+  // .then(() => {
+    // PriceSchema.create({
+    //   "priceSchema": {
+    //     "tribune_north": {
+    //       "price": 10,
+    //       "name": "north"
+    //     },
+    //     "name": "amators"
+    //   }
+    // })
+      .then(() => {
+        console.log('finished populating PriceSchemas');
+      });
+  // });
 
 
-// Match.find({}).remove()
+Match.find({}).remove()
 //   .then(() => {
 //     Match.create({
 //       rival: "Dnipro",
@@ -41,12 +41,12 @@ import {Order} from '../api/models/order.model';
 //       rival: "Olympic",
 //       info: 'Date to be specified later. Other useful information about the match 4'
 //     })
-//       .then(() => {
-//         console.log('finished populating matches');
-//       });
+      .then(() => {
+        console.log('finished populating matches');
+      });
 //   });
 
-// Order.find({}).remove()
+Order.find({}).remove()
 //   .then(() => {
 //     Order.create({
 //       orderNumber: 'order_number_1',
@@ -241,9 +241,9 @@ import {Order} from '../api/models/order.model';
 //       }],
 //       user: {name: 'user_3', email: 'user_3@example.com'}
 //     })
-//       .then(() => {
-//         console.log('finished populating orders');
-//       });
+      .then(() => {
+        console.log('finished populating orders');
+      });
 //   });
 
 User.find({}).remove()
@@ -280,7 +280,7 @@ User.find({}).remove()
       });
   });
 
-// Ticket.find({}).remove()
+Ticket.find({}).remove()
 //   .then(() => {
 //     Ticket.create({
 //       orderNumber: 'order_number_1',
@@ -347,7 +347,7 @@ User.find({}).remove()
 //       },
 //       timesUsed: 0
 //     })
-//       .then(() => {
-//         console.log('finished populating tickets');
-//       });
+      .then(() => {
+        console.log('finished populating tickets');
+      });
 //   });
