@@ -1,20 +1,20 @@
-<h3>Your Cart</h3>
-<div class="empty" ng-hide="vm.cart.size">Your cart is empty</div>
+<h4>Ваша корзина:</h4>
+<div class="empty" ng-hide="vm.cart.size">Пустая</div>
 <table class="cart-items table table-condensed">
     <tr class="cart-item" ng-repeat="ticket in vm.cart.tickets">
         <td>
-          {{ ticket.match.headline }}<br/>
-          ({{ ticket.match.date|date:'d MMM' }} at {{ ticket.match.date|date:'HH:mm' }} )<br/>
-          sector #{{ ticket.seat.sector }}, row #{{ ticket.seat.row }}, seat #{{ ticket.seat.number }}
+         <!-- {{ ticket.match.headline }}<br/>
+          ({{ ticket.match.date|date:'d MMM' }} at {{ ticket.match.date|date:'HH:mm' }} )<br/>-->
+          {{ ticket.seat.sector }} сектор, {{ ticket.seat.row }} ряд, {{ ticket.seat.number }} место
         </td>
         <td>{{ ticket.amount | money }}</td>
         <td>
-            <button class="btn btn-danger btn-xs" ng-click="vm.removeItem(ticket.id)">
-                <i class="glyphicon glyphicon-remove"></i>
+            <button class="btn  btn-danger btn-xs" ng-click="vm.removeItem(ticket.id)">
+                <i class="fa fa-times"></i>
             </button>
         </td>
     </tr>
-    <tr ng-show="vm.cart.size">
+    <!--<tr ng-show="vm.cart.size">
         <td colspan="3"><strong>{{ vm.cart.size }}</strong> tickets for <strong>{{ vm.cart.amount | money }}</strong></td>
-    </tr>
+    </tr>-->
 </table>

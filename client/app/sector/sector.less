@@ -1,34 +1,6 @@
-@media all and (orientation:portrait){
-  .stadiumFieldWrap{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
-  .stadiumField{
-    width: 26em;
-    -webkit-filter: drop-shadow(0px 3px 5px #8f8f8f);
-    filter: drop-shadow(0px 3px 5px #8f8f8f);
-  }
-}
-
-@media all and (orientation:landscape){
-  .stadiumFieldWrap{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
-  .stadiumField{
-    width: 36em;
-    -webkit-filter: drop-shadow(0px 3px 5px #8f8f8f);
-    filter: drop-shadow(0px 3px 5px #8f8f8f);
-  }
-}
-
 .imgSeatsStyle {
-  height: 20px;
-  width: 17px;
+  font-size: 20px;
+  color: #487096;
   padding: 0px 1px 0px 1px;
   cursor: pointer;
   -moz-transition: all 0.2s;
@@ -41,86 +13,84 @@
   -moz-transform: scale(1.3);
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
-  -webkit-filter: drop-shadow(0px 0px 5px #3172ff);
-  filter: drop-shadow(0px 0px 5px #3172ff);
+  -webkit-filter: drop-shadow(0px 0px 5px #ffffff);
+  filter: drop-shadow(0px 0px 5px #ffffff);
 }
 
-.gradientSeats{
+.gradientSeats {
   margin: 5px 0 5px 0;
   width: 100%;
   height: 1px;
   background: radial-gradient(circle, rgba(133, 133, 133, 0.68), rgba(75, 75, 75, 0));
 }
 
-#sectors{
-  position: relative;
-  min-width: 450px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
 .content-main,
 .top-timeline-tweetbox {
-  float:right;
-  position:absolute;
-  width:880px;
+  float: right;
+  position: absolute;
+  width: 880px;
 }
-                                            /*skipping seats*/
-#s14011,#s2191,#s2192,#s2193,#s2194, #s2195,
-#s2171,#s2172,#s2173,#s2174,#s2175,
-#s2181,#s2182,#s2183,#s2184,#s2185{
+
+/*skipping seats*/
+#s14011, #s2191, #s2192, #s2193, #s2194, #s2195,
+#s2171, #s2172, #s2173, #s2174, #s2175,
+#s2181, #s2182, #s2183, #s2184, #s2185 {
   visibility: hidden;
 }
 
-.rowText{
+.rowText {
   font-weight: bold;
   color: #636363;
   text-align: left;
-  font-size: 0.8em;
+  font-size: 12px;
 }
 
-.battonSectores{
+.battonSectores {
   width: 100px;
   margin: auto;
 }
 
-.sectorNumber{
+.sectorNumber {
   position: absolute;
   margin: 4px 40px 40px;
   color: #999999;
 }
 
-.backBtn{
+.backBtn {
   display: table;
   margin: 0 auto;
 }
-.sectorName{
-  font-weight: bold;
-  color: #636363;
-  position: absolute;
-  top: 9px;
-  font-size: 0.9em;
-}
 
 ul.rows {
+  margin: 0;
+  padding: 0;
   list-style-type: none;
 }
+
 ul.rows li:before {
+  margin: 0;
+  padding: 0;
   content: 'Ряд: ';
   font-weight: bold;
   color: #636363;
   text-align: left;
-  font-size: 0.8em;
+  font-size: 12px;
 }
 
 [uib-popover-popup].popover,
 [uib-popover-html-popup].popover,
 [uib-popover-template-popup].popover {
   display: block !important;
-  border-radius: 10px!important;
+  border-radius: 10px !important;
 }
+
 .popover p {
   color: #636363;
   font-size: 1em;
-  margin: 0 0 0 0!important;
+  margin: 0 0 0 0 !important;
+}
+
+.checkout {
+  width: 150px;
+  margin: 38px 0 0 0;
 }
