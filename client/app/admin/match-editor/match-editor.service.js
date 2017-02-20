@@ -32,10 +32,10 @@
       });
     }
 
-    deleteMatch(match) {
+    deleteMatch(matchId) {
       return this.$http({
         method: 'delete',
-        url: '/api/matches/' + match._id,
+        url: '/api/matches/' + matchId,
         headers: {'Accept': 'application/json'}
       });
     }
