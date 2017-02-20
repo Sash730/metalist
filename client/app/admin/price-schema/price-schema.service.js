@@ -32,7 +32,6 @@
     }
 
     getPriceBySector(tribuneName, sectorNumber, priceSchema) {
-
       if ( !priceSchema['tribune_'+tribuneName] ) {
         return undefined;
       }

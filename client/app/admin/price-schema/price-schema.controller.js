@@ -38,8 +38,10 @@
       }
     }
 
-    getSectorForSetPrice(tribuneName, sectorNumber) {
-      let priceSchema = this.currentPriceSchema;
+    getSectorForSetPrice($event) {
+      let priceSchema = this.currentPriceSchema,
+          tribuneName = $event.tribune,
+          sectorNumber = $event.sector;
       this.message = '';
 
       if (!priceSchema['tribune_' + tribuneName]) {
@@ -56,9 +58,8 @@
       }
     }
 
-    getSectorsFill(tribuneName, sectorNumber) {
+    getSectorsFill(tribuneName, sectorNumber, priceSchema) {
       let defaultColor = '#808080',
-          priceSchema = this.currentPriceSchema,
           price = this.priceSchemaService.getPriceBySector(tribuneName, sectorNumber, priceSchema);
 
       if (!price) {

@@ -13,9 +13,9 @@
           this.priceSchema = this.match.priceSchema.priceSchema;
         }
 
-      getSectorsFill(tribuneName, sectorNumber) {
+      getSectorsFill(tribuneName, sectorNumber, priceSchema) {
         let defaultColor = '#808080',
-            price = this.priceSchemaService.getPriceBySector(tribuneName, sectorNumber, this.priceSchema);
+            price = this.priceSchemaService.getPriceBySector(tribuneName, sectorNumber, priceSchema);
 
         if (!price) {
           return defaultColor;
@@ -24,12 +24,12 @@
         }
       }
 
-      goToSector($event, tribuneName, sectorNumber) {
-        let price = this.priceSchemaService.getPriceBySector(tribuneName, sectorNumber, this.priceSchema);
-
-        $event.preventDefault();
+      goToSector($event) {
+        let price = this.priceSchemaService.getPriceBySector($event.tribune, $event.sector, this.priceSchema);
+          console.log('$event', $event);
+        //$event.preventDefault();
         if(price) {
-          this.$state.go('sector', {id: this.match.id, tribune: tribuneName, sector: sectorNumber});
+          this.$state.go('sector', {id: this.match.id, tribune: $event.tribune, sector: $event.sector});
         }
     }
 
