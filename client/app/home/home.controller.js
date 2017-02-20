@@ -4,7 +4,7 @@
 
   class MatchesController {
 
-    constructor($http, temp) {
+    constructor($http) {
       this.$http = $http;
       this.matches = [];
 

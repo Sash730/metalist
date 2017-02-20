@@ -26,11 +26,11 @@
 
     makeArrayFromNumber (number) {
       return [...Array(parseInt(number) + 1).keys()].filter(Boolean);
-    };
+    }
 
     showAlert (event){
       alert(event.target.id);
-    };
+    }
   }
 
   angular.module('metalistTicketsApp')

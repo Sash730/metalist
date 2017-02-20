@@ -103,7 +103,7 @@
       form.sectorPrice.$setDirty();
 
       if(!tribuneName) {
-        this.message = "Выберите сектор.";
+        this.message = 'Выберите сектор.';
         return;
       }
 

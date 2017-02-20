@@ -30,9 +30,9 @@
 
     onMatchUpdate(event) {
       if (event.match.id) {
-        this.saveMatch(event.match)
+        this.saveMatch(event.match);
       } else {
-        this.addMatch(event.match)
+        this.addMatch(event.match);
       }
       this.edit({});
     }
@@ -44,7 +44,7 @@
 
     loadMatches() {
       return this.matchEditorService.loadMatches()
-        .then( mathces => this.matches = mathces )
+        .then( mathces => this.matches = mathces );
     }
 
     deleteMatch(matchId) {

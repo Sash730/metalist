@@ -19,7 +19,9 @@
 
       this.ticketsService.checkTicket(code)
         .then(response => {
-          if (response.data.message) this.message = response.data.message;
+          if (response.data.message) {
+            this.message = response.data.message;
+          }
           this.ticket = response.data;
         });
     }

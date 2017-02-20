@@ -16,7 +16,7 @@
     }
 
     loadMatches() {
-      return this.matchEditorService.loadMatches().then(mathces => this.matches = mathces)
+      return this.matchEditorService.loadMatches().then(mathces => this.matches = mathces);
     }
 
     getStatisticForTickets(date) {
