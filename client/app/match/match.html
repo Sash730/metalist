@@ -1,21 +1,38 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Select desired seats</h1>
-        </div>
-        <div class="col-sm-12">
-            <div class="match-info">
-                <div>Rival: {{ vm.match.rival }}</div>
-                <div>Date: {{ vm.match.date|date:'MMM d, y HH:mm' }}</div>
-            </div>
-            <div class="col-sm-8 seats">
-                <div id="stad">
-                    <div class="stadium">
-                        <div id="mainContent">
-                            <div class="row">
-                                <div class="sectorsList span8">
-                                    <!--?xml version="1.0" encoding="UTF-8"?--><!-- Creator: CorelDRAW X8 -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="900px" height="616px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 896 613">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="btn-group btn-breadcrumb">
+        <a href="/" class="btn btn-warning">Все матчи</a>
+        <span class="btn btn-warning" style="cursor:default">Выбор сектора</span>
+        <span class="btn btn-default" style="cursor:default">Выбор места</span>
+        <span class="btn btn-default" style="cursor:default">Оформление заказа</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4"><h3 style="text-align: left; font-weight: bold">{{ vm.match.date|date:'MMM d, y' }}<br>
+      {{ vm.match.date|date:'HH:mm' }}</h3></div>
+    <div class="col-xs-4" style="text-align: center"><h3>Металлист 1925<br>{{ vm.match.rival }}</h3></div>
+    <div class="col-xs-4" style="text-align: right"><span
+      class="address">Стадион Металлист<br>ул. Плехановская, 65</span>
+      <br><span class="fa fa-subway" uib-popover="Станция метро" popover-trigger="'mouseenter'"
+                popover-placement="left"></span> Спортивная / Метростроителей
+    </div>
+  </div>
+  <div class="gradientSeats"></div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 style="text-align: center">Выбор сектора</h2>
+    </div>
+    <div class="col-sm-12">
+      <div class="text-center seats">
+        <div id="stad">
+          <div class="stadium">
+            <div id="mainContent">
+              <div class="row">
+                <div class="sectorsList span8">
+                  <!--?xml version="1.0" encoding="UTF-8"?--><!-- Creator: CorelDRAW X8 -->
+                  <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="900px" height="616px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 896 613">
 
               <defs>
 
@@ -697,7 +714,7 @@
                     </g>
                    </g>
                   </g>
-                  <!--polygon class="fil0" points="620,479 650,479 650,504 620,504 "/-->
+                <!--polygon class="fil0" points="620,479 650,479 650,504 620,504 "/-->
 
                   <g id="_1731978760304" ng-click="vm.goToSector($event, 'west', '1')">
                    <polygon class="sector sectorTooltip" sectorid="30665314" points="620,479 620,504 629,504 629,535 640,535 640,552 618,552 618,600 650,600 650,479 " showEvent(&#39;30665314&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад I&lt;/div&gt;0грн&lt;br /&gt;Свободно &lt;b&gt;617 мест&lt;/b&gt;" fill={{vm.getSectorsFill("west","1")}}></polygon>
@@ -711,7 +728,7 @@
                   <g id="_1731978761520" ng-click="vm.goToSector($event, 'west', '2')">
                    <polygon class="sector sectorTooltip" sectorid="30665934" points="573,535 623,535 623,507 617,507 617,479 581,479 581,508 573,508 " onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ showEvent(&#39;30665934&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад II&lt;/div&gt;150грн&lt;br /&gt;Свободно &lt;b&gt;1 359 мест&lt;/b&gt;" fill={{vm.getSectorsFill("west","2")}}></polygon>
                    <polygon class="sector sectorTooltip" sectorid="30665934" points="560,567 553,567 553,600 615,600 615,538 560,538 560,567 " onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ showEvent(&#39;30665934&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад II&lt;/div&gt;150грн&lt;br /&gt;Свободно &lt;b&gt;1 359 мест&lt;/b&gt;" fill={{vm.getSectorsFill("west","2")}}></polygon>
-                      <!--rect class="fil9" x="581" y="479" width="35.7592" height="21.7321"/-->
+                    <!--rect class="fil9" x="581" y="479" width="35.7592" height="21.7321"/-->
                    <g>
                     <g transform="matrix(1 0 0 1 127.754 291.647)">
                      <text x="450" y="300" class="sector sectorTooltip" sectorid="30665934" onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ showEvent(&#39;30665934&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад II&lt;/div&gt;150грн&lt;br /&gt;Свободно &lt;b&gt;1 359 мест&lt;/b&gt;" fill={{vm.getSectorsFill("west","2")}}>2</text>
@@ -803,7 +820,7 @@
                   <polygon class="sector sectorTooltip" sectorid="30668815" points="290,535 341,535 341,508 334,508 334,479 297,479 297,508 290,508 290,535 " onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ showEvent(&#39;30668815&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад VIII&lt;/div&gt;150грн&lt;br /&gt;Свободно &lt;b&gt;1 404 места&lt;/b&gt;" fill={{vm.getSectorsFill("west","8")}}></polygon>
                   <g id="_1731978779952" ng-click="vm.goToSector($event, 'west', '8')">
                    <polygon class="sector sectorTooltip" sectorid="30668815" points="352,538 297,538 297,600 359,600 359,566 352,566 " onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ showEvent(&#39;30668815&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад VIII&lt;/div&gt;150грн&lt;br /&gt;Свободно &lt;b&gt;1 404 места&lt;/b&gt;" fill={{vm.getSectorsFill("west","8")}}></polygon>
-                      <!--rect class="fil9 sector" sectorId="30668815" x="297" y="479" width="36.1089" height="21.7321"/-->
+                    <!--rect class="fil9 sector" sectorId="30668815" x="297" y="479" width="36.1089" height="21.7321"/-->
                    <g transform="matrix(1 0 0 1 -124.747 291.647)">
                     <text x="450" y="300" class="sector sectorTooltip" sectorid="30668815" onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ showEvent(&#39;30668815&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад VIII&lt;/div&gt;150грн&lt;br /&gt;Свободно &lt;b&gt;1 404 места&lt;/b&gt;" fill={{vm.getSectorsFill("west","8")}}>8</text>
                    </g>
@@ -813,7 +830,7 @@
                   </g>
                   <g id="_1731978783952" ng-click="vm.goToSector($event, 'west', '9')">
                    <polygon class="sector sectorTooltip" sectorid="30670221" points="270,535 284,535 284,505 294,505 294,479 255,479 255,503 260,503 260,519 261,519 261,529 255,529 255,600 294,600 294,553 270,553 " onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ " data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад IX&lt;/div&gt;0грн&lt;br /&gt;Свободно &lt;b&gt;728 мест&lt;/b&gt;" fill={{vm.getSectorsFill("west","9")}}></polygon>
-                      <!--polygon class="fil0 sector" sectorId="30670221" points="255,503 260,503 260,505 289,505 294,505 294,479 255,479 255,503 "/-->
+                    <!--polygon class="fil0 sector" sectorId="30670221" points="255,503 260,503 260,505 289,505 294,505 294,479 255,479 255,503 "/-->
                    <g>
                     <g transform="matrix(1 0 0 1 -180.632 284.776)">
                      <text x="450" y="300" class="sector sectorTooltip" sectorid="30670221" onclick="/*ttContainer.addClass(&#39;hide&#39;);*/ showEvent(&#39;30670221&#39;)" data-title="&lt;div class=&quot;name&quot;&gt;Металлист Запад IX&lt;/div&gt;0грн&lt;br /&gt;Свободно &lt;b&gt;728 мест&lt;/b&gt;" fill={{vm.getSectorsFill("west","9")}}>9</text>
@@ -879,18 +896,21 @@
                   </g>
                 </g>
               </a>        </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+              </div>
             </div>
-            <div class="col-sm-4 cart">
-                <cart></cart>
-                <div ng-show="vm.cart.size">
-                    <a ui-sref="checkout" class="btn btn-info btn-block">Proceed to Checkout</a>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12"><h3 style="text-align: left">Ценовая Категория</h3></div>
+    <div class="col-sm-12">
+      <span class=" fa fa-2x fa-square" style="color: #ffcc00;"></span> - 148 грн.
+      <span class=" fa fa-2x fa-square" style="color: #EA00BA;"></span> - 55 грн.
+      <span class=" fa fa-2x fa-square" style="color: #000000;"></span> - 20 грн.
+    </div>
+  </div>
+</div>
 </div>
