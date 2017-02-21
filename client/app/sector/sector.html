@@ -3,9 +3,10 @@
     <div class="col-sm-12">
       <div class="btn-group btn-breadcrumb">
         <a href="/" class="btn btn-warning" title="Все матчи">Все матчи</a>
-        <a onclick="history.back()" class="btn btn-warning" title="Выбор сектора">Выбор сектора</a>
+        <a class="btn btn-warning" title="Выбор сектора">Выбор сектора</a>
         <span class="btn btn-warning" style="cursor:default">Выбор места</span>
         <span class="btn btn-default" style="cursor:default">Оформление заказа</span>
+        <span class="btn btn-default" style="cursor:default">Оплата</span>
       </div>
     </div>
   </div>
@@ -25,11 +26,11 @@
     <div class="col-sm-12">
       <ul class="rows">
         <li ng-repeat="row in vm.sector.rows"><span class="rowText">{{row.name}}</span>
-          <img src="../../app/sector/img/seat.png" id="s{{sector.name}}{{row.name}}{{1+$index}}" class="imgSeatsStyle"
+          <div id="s{{vm.sector.name}}{{row.name}}{{1+$index}}" class="imgSeatsStyle"
                ng-repeat="seat in vm.makeArrayFromNumber(row.seats)"
                ng-click="vm.addToCart(vm.match, vm.tribuneName, vm.sector.name, row.name, seat, vm.sectorPrice)"
-               uib-popover-html="'<p>Трибуна: <b>{{vm.tribuneName}} {{sector.name}}</b><br />Ряд: <b>{{row.name}}</b><br />Место: <b>{{seat}}</b></p>'"
-             popover-trigger="'mouseenter'"/>
+               uib-popover-html="'<p>Трибуна: <b>{{vm.tribuneName}} {{vm.sector.name}}</b><br />Ряд: <b>{{row.name}}</b><br />Место: <b>{{seat}}</b></p>'"
+               popover-trigger="'mouseenter'"></div>
         </li>
       </ul>
       <div class="gradientSeats"></div>
