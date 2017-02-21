@@ -22,6 +22,7 @@
 }
 
 .matchList li {
+  vertical-align: top;
   border: solid 3px #ffffff;
   border-radius: 3px;
   box-shadow: 0 0 20px grey;
@@ -41,26 +42,39 @@
   min-width: 100px;
   width: 250px;
   height: 250px;
+  cursor: pointer;
+}
+
+.panel a:hover {
+  text-decoration: none;
+}
+
+.panel:hover{
+  -webkit-transition-duration: 200ms;
+  -moz-transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+  -webkit-filter: drop-shadow(0px 0px 5px #ffffff);
+  filter: drop-shadow(0px 0px 5px #ffffff);
 }
 
 .matches {
   text-align: center;
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding-bottom: 15%; /* = width for a 1:1 aspect ratio */
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-.commandsNames h4{
+.commandsNames h4 {
+  border-left: solid 5px rgba(0, 0, 0, 0);
+  border-right: solid 5px rgba(0, 0, 0, 0);
+  width: 245px;
+  white-space: nowrap; /* Запрещаем перенос строк */
+  overflow: hidden; /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis; /* Добавляем многоточие */
   margin: 20px 0 0 0;
   font-size: 1em;
   color: white;
 }
 
-.matchDate p{
+.matchDate p {
   margin-top: 0.1em; /* Отступ сверху */
   margin-bottom: -0.4em; /* Отступ снизу */
   font-size: 1.8em;
@@ -74,4 +88,17 @@
   font-weight: bold;
   cursor: pointer;
   border-radius: 0;
+}
+
+.bgTicket {
+  width: 250px;
+  height: 250px;
+}
+
+.buyTicket {
+  position: absolute;
+  margin-top: 220px;
+  width: 250px;
+  height: 20px;
+  font-weight: bold;
 }
