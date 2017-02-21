@@ -6,6 +6,7 @@ import User from './../models/user.model';
 import {Order} from './../models/order.model';
 import PriceSchema from "./../priceSchema/priceSchema.model";
 import {Stadium} from '../../stadium';
+import moment from 'moment';
 import * as _ from 'lodash';
 import * as config from "../../config/environment"
 import * as crypto from "crypto";
@@ -15,8 +16,7 @@ import * as uuid from 'node-uuid';
 import * as barcode from 'bwip-js';
 import * as log4js from 'log4js';
 
-const logger = log4js.getLogger('Order'),
-      moment = require('moment');
+const logger = log4js.getLogger('Order');
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -258,7 +258,7 @@ export function updateCart(req, res) {
         tribuneName = req.body.tribuneName,
         sectorName = req.body.sectorName,
         rowName = req.body.rowName,
-        seatId = 's' + sectorName + rowName + seat,
+        seatId = 's' + sectorName + rowName  + seat,
         priceSchemaId = req.body.match.priceSchema.id,
         timeEndTicketReserve = moment().subtract(30, 'minutes'),
         price = req.body.price;

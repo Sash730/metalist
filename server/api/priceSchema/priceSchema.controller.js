@@ -45,18 +45,20 @@ export function index(req, res) {
 }
 
 export function savePriceSchema(req, res) {
-  let priceSchema = req.body.schema;
-  //console.log('priceName', req);
-  PriceSchema.findOne({'priceSchema.name': priceSchema.name})
+  let schema = req.body.schema;
+  console.log('priceName', schema);
+  PriceSchema.findOne({'price.name': schema.price.name})
     .then((price)  => {
       if (!price) {
         let newPrice = new PriceSchema({
-          priceSchema: priceSchema
+          price: schema.price,
+          availability: schema.availability
         });
         return newPrice.save();
       }
-      console.log('updatePrice', priceSchema);
-      price.priceSchema = priceSchema;
+      console.log('updatePrice', schema);
+      price.price = schema.price;
+      price.availability = schema.availability;
       return price.save();
     })
     .then(respondWithResult(res))

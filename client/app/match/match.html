@@ -25,7 +25,9 @@
       <h2 style="text-align: center">Выбор сектора</h2>
     </div>
     <div class="col-sm-12">
-      <stadium price-schema="vm.priceSchema" on-sector-select="vm.goToSector($event)"></stadium>
+      <stadium price-schema="vm.priceSchema"
+               availability-schema="vm.availabilitySchema"
+               on-sector-select="vm.goToSector($event)"></stadium>
     </div>
   </div>
   <div class="row">

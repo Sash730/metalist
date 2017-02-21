@@ -15,30 +15,30 @@
         {color: '#a1a6b0', colorName: '6', price: '100'},
         {color: '#d4d4d4', colorName: 'red', price: '150'}
       ];
+
     }
 
     $onInit() {
     }
 
     onSectorClick($event, tribuneName, sectorNumber) {
-      let price = this.getPriceBySector(tribuneName, sectorNumber, this.priceSchema);
-
       $event.preventDefault();
-      if (price) {
+
         this.onSectorSelect({
           $event: {
             tribune: tribuneName,
             sector: sectorNumber
           }
         });
-      }
+
     }
 
     getColor(tribuneName, sectorNumber) {
       let defaultColor = '#808080',
-        price = this.getPriceBySector(tribuneName, sectorNumber, this.priceSchema);
+        availability = this.getAvailableStatus(tribuneName, sectorNumber),
+        price = this.getPriceBySector(tribuneName, sectorNumber);
 
-      if (!price) {
+      if (availability && !price || !availability) {
         return defaultColor;
       } else {
         return this.getColorByPrice(price);
@@ -51,7 +51,8 @@
         .map(color => color.color)[0];
     }
 
-    getPriceBySector(tribuneName, sectorNumber, priceSchema) {
+    getPriceBySector(tribuneName, sectorNumber) {
+      let priceSchema = this.priceSchema;
 
       if (!priceSchema['tribune_' + tribuneName]) {
         return undefined;
@@ -64,6 +65,20 @@
           return priceSchema['tribune_' + tribuneName].price;
         }
         return priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber].price;
+      }
+    }
+
+    getAvailableStatus(tribuneName, sectorNumber) {
+     // console.log('this.availabilitySchema', this.availabilitySchema);
+      let availabilitySchema = this.availabilitySchema;
+
+      if(!availabilitySchema['tribune_' + tribuneName] ) {
+        return true;
+      } else {
+        if (!availabilitySchema['tribune_' + tribuneName]['sector_' + sectorNumber]){
+          return availabilitySchema['tribune_' + tribuneName].availableStatus;
+        }
+        return availabilitySchema['tribune_' + tribuneName]['sector_' + sectorNumber].availableStatus
       }
     }
   }

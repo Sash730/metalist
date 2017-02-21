@@ -7,7 +7,7 @@
     constructor() {
 
       this.match = {};
-      this.priceSchema = '';
+      this.priceSchema = {};
       this.rival = '';
       this.date = new Date();
       this.date.setDate(this.date.getDate() + 1);
@@ -27,7 +27,7 @@
           this.match.date = new Date(this.matchToEdit.date);
         }
       }
-      if ( changes.priceSchemas ) {
+      if ( changes.priceSchemas) {
         this.match.priceSchema = this.priceSchemas[0];
       }
     }

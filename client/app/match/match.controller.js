@@ -9,12 +9,51 @@
 
       this.match = match;
       this.cart = cart;
-      this.priceSchema = this.match.priceSchema.priceSchema;
+      this.priceSchema = this.match.priceSchema.price;
+      this.availabilitySchema = this.match.priceSchema.availability || {};
     }
 
     goToSector($event) {
-      this.$state.go('sector', {id: this.match.id, tribune: $event.tribune, sector: $event.sector});
+      let tribuneName = $event.tribune,
+          sectorNumber = $event.sector,
+          availability = this.getAvailableStatus(tribuneName, sectorNumber),
+          price = this.getPriceBySector(tribuneName, sectorNumber);
+
+      if (availability && price) {
+        this.$state.go('sector', {id: this.match.id, tribune: tribuneName, sector: sectorNumber});
+      }
     }
+
+    getPriceBySector(tribuneName, sectorNumber) {
+      let priceSchema = this.priceSchema;
+
+      if (!priceSchema['tribune_' + tribuneName]) {
+        return undefined;
+      }
+
+      if (!priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber]) {
+        return priceSchema['tribune_' + tribuneName].price;
+      } else {
+        if (!priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber].price) {
+          return priceSchema['tribune_' + tribuneName].price;
+        }
+        return priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber].price;
+      }
+    }
+
+    getAvailableStatus(tribuneName, sectorNumber) {
+      let availabilitySchema = this.availabilitySchema;
+
+      if(!availabilitySchema['tribune_' + tribuneName] ) {
+        return true;
+      } else {
+        if (!availabilitySchema['tribune_' + tribuneName]['sector_' + sectorNumber]){
+          return availabilitySchema['tribune_' + tribuneName].availableStatus;
+        }
+        return availabilitySchema['tribune_' + tribuneName]['sector_' + sectorNumber].availableStatus
+      }
+    }
+
 
   }
 

@@ -8,6 +8,7 @@
       controller: 'StadiumController',
       bindings: {
         priceSchema: '<',
+        availabilitySchema: '<',
         onSectorSelect: '&'
       }
     });

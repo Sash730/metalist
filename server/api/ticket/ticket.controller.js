@@ -1,7 +1,8 @@
 'use strict';
 
 import Ticket from './../models/ticket.model';
-import * as config from "../../config/environment"
+import moment from 'moment';
+import * as config from "../../config/environment";
 import * as barcode from 'bwip-js';
 import * as _ from 'lodash';
 import liqpay from '../../liqpay';
@@ -41,9 +42,9 @@ function handleEntityNotFound(res) {
 export function index(req, res) {
     return Ticket.find().exec()
         .then(tickets => {
-            var result = _.map(tickets, (ticket) => {
+            let result = _.map(tickets, (ticket) => {
 
-                var paymentParams = {
+                let paymentParams = {
                     'action': 'pay',
                     'amount': '0.01',
 
@@ -72,10 +73,26 @@ export function index(req, res) {
 }
 
 export function getReservedtickets(req, res) {
-  let matchId = req.params;
-      //sectorName = req.body.sectorName;
-  console.log('output', matchId);
-  return Ticket.find().exec()
+  let matchId = req.params.id,
+      sectorNumber = req.params.sector,
+      timeEndTicketReserve = moment().subtract(30, 'minutes');
+
+  return Ticket.find({'match.id': matchId, 'seat.sector': sectorNumber})
+     .where({$or: [
+       {status: 'paid'},
+       {$and: [
+         {reserveDate: {$gt: timeEndTicketReserve}},
+         {cartId: {$ne: null}}
+       ]}
+     ]}).exec()
+    .then(tickets => {
+      return tickets.map(ticket => {
+              return {
+                'matchId': ticket.match.id,
+                'seatId': ticket.seat.id
+              };
+      });
+    })
     .then(respondWithResult(res))
     .catch(handleError(res))
 }

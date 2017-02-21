@@ -15,8 +15,8 @@
     }
 
     $onInit() {
-      this.loadPriceSchemas();
       this.loadMatches();
+      this.loadPriceSchemas();
     }
 
     edit(match) {
@@ -39,7 +39,9 @@
 
     loadPriceSchemas() {
       return this.priceSchemaService.loadPrices()
-        .then( response => this.priceSchemas = response.data );
+        .then( response => {
+          this.priceSchemas = response.data
+        } );
     }
 
     loadMatches() {
