@@ -18,13 +18,13 @@
   min-width: 200px;
   height: auto;
   text-align: center;
-  border-radius: 5px;
 }
 
 .matchList li {
-  border: solid 3px #ffffff;
-  border-radius: 3px;
-  box-shadow: 0 0 20px grey;
+  vertical-align: top;
+  border: solid 6px white;
+  box-shadow: 0 0 2px grey;
+  border-radius: 0;
   margin-right: 50px;
   text-align: center;
   display: inline-block;
@@ -35,32 +35,50 @@
   background-image: url("../../app/home/img/bgmatches.jpg");
 }
 
+
+.matchList li:hover {
+  box-shadow: 0 0 20px grey;
+
+}
+
 .panel {
   margin-right: 20px;
   max-width: 250px;
   min-width: 100px;
   width: 250px;
   height: 250px;
+  cursor: pointer;
+}
+
+.panel a:hover {
+  text-decoration: none;
+}
+
+a.link {
+  color: #141414;
+}
+
+a.link:hover{
+  color: #5395ff;
 }
 
 .matches {
   text-align: center;
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding-bottom: 15%; /* = width for a 1:1 aspect ratio */
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-.commandsNames h4{
-  margin: 20px 0 0 0;
+.commandsNames h4 {
+  border-left: solid 5px rgba(0, 0, 0, 0);
+  border-right: solid 5px rgba(0, 0, 0, 0);
+  width: 245px;
+  white-space: nowrap; /* Запрещаем перенос строк */
+  overflow: hidden; /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+  margin: 15px 0 0 0;
   font-size: 1em;
   color: white;
 }
 
-.matchDate p{
+.matchDate p {
   margin-top: 0.1em; /* Отступ сверху */
   margin-bottom: -0.4em; /* Отступ снизу */
   font-size: 1.8em;
@@ -74,4 +92,18 @@
   font-weight: bold;
   cursor: pointer;
   border-radius: 0;
+}
+
+.bgTicket {
+  width: 250px;
+  height: 250px;
+}
+
+.buyTicket {
+  text-decoration: underline;
+  position: absolute;
+  margin-top: 215px;
+  width: 250px;
+  height: 20px;
+  font-weight: bold;
 }

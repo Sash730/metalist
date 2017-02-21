@@ -1,3 +1,6 @@
+a#sectorsLayer:hover{
+  text-decoration: none;
+}
 .btn-group {
   display: flex;
 }
@@ -95,6 +98,10 @@
   box-shadow: none;
 }
 
+a.btn-warning:hover{
+ text-decoration: underline;
+}
+
 .btn-breadcrumb .btn.btn-warning:not(:last-child):after {
   border-left: 15px solid #ffcc00;
 }
@@ -157,14 +164,15 @@
   }
 }
 
-.address{
+.address {
   display: inline-block;
   margin: 20px 0 0 0;
 }
 
-.col-lg-12 h2{
+.col-lg-12 h2 {
   margin: 10px 0 20px 0;
 }
+
 .fa-square {
   vertical-align: -10%;
 }
@@ -182,109 +190,11 @@
   }
 }
 
-.StadiumController {
-  position: relative;
-}
-
-#banner .container {
-  margin-top: -20px;
-}
-
-.gradient {
-  margin: 40px 0 10px 0;
-  width: 100%;
-  height: 1px;
-  background: radial-gradient(circle, rgba(133, 133, 133, 0.68), rgba(75, 75, 75, 0));
-}
-
-.eventInfo {
-  background-color: #ececec;
-  border-bottom: 1px solid #c0c0c0;
-  height: 51px;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  right: 0;
-}
-
-.eventDate {
-  position: absolute;
-  width: 235px;
-  left: 0;
-  top: 0;
-  height: 41px;
-  text-align: center;
-  font-size: 30px;
-  padding: 10px 0 0 5px;
-  border-bottom: 1px solid #c0c0c0;
-
-  background-color: #ececec;
-  color: #333137;
-}
-
-.eventDate i {
-  font-size: 30px;
-  margin: auto auto;
-  color: #c0c0c0;
-  margin-right: 2px;
-}
-
-.eventDate table td {
-  padding: 0 0 0 5px;
-}
-
-.eventDate .monthInfo {
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 14px;
-}
-
-.eventDate .yearInfo {
-  font-size: 14px;
-  line-height: 14px;
-}
-
-#map-show-name {
-  margin: 10px 0 0 0;
-  line-height: 18px;
-  font-size: 18px;
-  text-overflow: ellipsis;
-}
-
 /* Sectors scheme */
-.sectorsTooltipContainer {
-  opacity: 1 !important;
-}
-
-.sectorsTooltipContainer .tooltip-inner {
-  background-color: #fff;
-  color: #3c3c3c;
-  border: 1px solid #ccc;
-}
-
-.sectorsTooltipContainer .tooltip-arrow {
-  border-top-color: #fff !important;
-}
-
-.sectorsTooltipContainer .name {
-  color: #317EAC;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.sectorsList {
-  text-align: center;
-}
-
-.sectorsList svg {
-}
 
 .sectorsList text {
   text-shadow: 0 0 3px #000;
   font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-
   fill: #fff !important;
 }
 
@@ -299,22 +209,7 @@
 .sectorsList .sector {
   pointer-events: all;
   cursor: pointer;
-
   transition: all 50ms linear;
-}
-
-.sectorsList .sector.empty {
-  fill: #ccc;
-}
-
-.sectorsList .sector.nonempty {
-  fill: #fff;
-}
-
-.sectorsList .sector.disabled {
-  cursor: not-allowed;
-  fill: #eee;
-  transition: none;
 }
 
 .sectorsList path.sector.disabled {
@@ -323,63 +218,11 @@
 
 .sectorsList .sector:hover, .sectorsList .sector.hover {
   fill: #414141;
-  content: attr(data-title); /* Выводим текст */
   position: absolute; /* Абсолютное позиционирование */
-  left: 20%;
-  top: 30%; /* Положение подсказки */
   z-index: 1; /* Отображаем подсказку поверх других элементов */
-  background: rgba(255, 255, 230, 0.9); /* Полупрозрачный цвет фона */
-  font-family: Arial, sans-serif; /* Гарнитура шрифта */
-  font-size: 11px; /* Размер текста подсказки */
+  //background: rgba(255, 255, 230, 0.9); /* Полупрозрачный цвет фона */
   padding: 5px 10px; /* Поля */
   border: 1px solid #333; /* Параметры рамки */
-
-}
-
-.sectorsList .sector.selected {
-  stroke: #fff;
-  stroke-width: 2px;
-}
-
-.sectorsList .sector.disabled:hover, .sectorsList .sector.disabled.hover {
-  fill: #eee;
-}
-
-.tooltip {
-  background-color: #fff;
-  padding: 7px;
-  border-radius: 5px;
-  font-size: 14px;
-  line-height: 1.3;
-  height: 60px;
-  width: 149px;
-}
-
-.tooltip div.name {
-  color: #660000;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.hide {
-  display: none !important;
-}
-
-/*FontsStart*/
-@font-face {
-  font-family: "Arial";
-  font-variant: normal;
-  font-style: normal;
-  font-weight: bold;
-  src: url("#FontID1") format(svg)
-}
-
-@font-face {
-  font-family: "Arial";
-  font-variant: normal;
-  font-style: normal;
-  font-weight: normal;
-  src: url("#FontID0") format(svg)
 }
 
 .str1 {
@@ -433,7 +276,7 @@
 }
 
 .fil10 {
-  fill: #99CEF2
+  fill: #ffffff
 }
 
 .fil18 {
@@ -467,91 +310,3 @@
 .fil4 {
   fill: white
 }
-
-.fnt5 {
-  font-weight: normal;
-  font-size: 6.70482px;
-  font-family: 'Arial'
-}
-
-.fnt10 {
-  font-weight: normal;
-  font-size: 9.12649px;
-  font-family: 'Arial'
-}
-
-.fnt9 {
-  font-weight: normal;
-  font-size: 9.30111px;
-  font-family: 'Arial'
-}
-
-.fnt13 {
-  font-weight: bold;
-  font-size: 9.38089px;
-  font-family: 'Arial'
-}
-
-.fnt8 {
-  font-weight: normal;
-  font-size: 9.57945px;
-  font-family: 'Arial'
-}
-
-.fnt12 {
-  font-weight: normal;
-  font-size: 9.70266px;
-  font-family: 'Arial'
-}
-
-.fnt7 {
-  font-weight: normal;
-  font-size: 9.77667px;
-  font-family: 'Arial'
-}
-
-.fnt11 {
-  font-weight: normal;
-  font-size: 10.2824px;
-  font-family: 'Arial'
-}
-
-.fnt6 {
-  font-weight: normal;
-  font-size: 10.2828px;
-  font-family: 'Arial'
-}
-
-.fnt3 {
-  font-weight: normal;
-  font-size: 14.343px;
-  font-family: 'Arial'
-}
-
-.fnt1 {
-  font-weight: normal;
-  font-size: 14.3439px;
-  font-family: 'Arial'
-}
-
-.fnt0 {
-  font-weight: normal;
-  font-size: 14.3444px;
-  font-family: 'Arial'
-}
-
-.fnt2 {
-  font-weight: normal;
-  font-size: 14.3448px;
-  font-family: 'Arial'
-}
-
-.fnt4 {
-  font-weight: normal;
-  font-size: 14.3452px;
-  font-family: 'Arial'
-}
-
-/*FontsEnd*/
-
-
