@@ -18,14 +18,13 @@
   min-width: 200px;
   height: auto;
   text-align: center;
-  border-radius: 5px;
 }
 
 .matchList li {
   vertical-align: top;
-  border: solid 3px #ffffff;
-  border-radius: 3px;
-  box-shadow: 0 0 20px grey;
+  border: solid 6px white;
+  box-shadow: 0 0 2px grey;
+  border-radius: 0;
   margin-right: 50px;
   text-align: center;
   display: inline-block;
@@ -34,6 +33,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("../../app/home/img/bgmatches.jpg");
+}
+
+
+.matchList li:hover {
+  box-shadow: 0 0 20px grey;
+
 }
 
 .panel {
@@ -49,13 +54,12 @@
   text-decoration: none;
 }
 
-.panel:hover{
-  -webkit-transition-duration: 200ms;
-  -moz-transform: scale(1.02);
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02);
-  -webkit-filter: drop-shadow(0px 0px 5px #ffffff);
-  filter: drop-shadow(0px 0px 5px #ffffff);
+a.link {
+  color: #141414;
+}
+
+a.link:hover{
+  color: #5395ff;
 }
 
 .matches {
@@ -69,7 +73,7 @@
   white-space: nowrap; /* Запрещаем перенос строк */
   overflow: hidden; /* Обрезаем все, что не помещается в область */
   text-overflow: ellipsis; /* Добавляем многоточие */
-  margin: 20px 0 0 0;
+  margin: 15px 0 0 0;
   font-size: 1em;
   color: white;
 }
@@ -96,8 +100,9 @@
 }
 
 .buyTicket {
+  text-decoration: underline;
   position: absolute;
-  margin-top: 220px;
+  margin-top: 215px;
   width: 250px;
   height: 20px;
   font-weight: bold;
