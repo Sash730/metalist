@@ -13,6 +13,7 @@
       this.currentTribune = {};
       this.currentSector = {};
       this.message = '';
+      this.toggleRows = true;
     }
 
     $onInit() {
@@ -54,6 +55,12 @@
           this.currentSector = priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber];
         }
       }
+
+      this.currentSector.rows.forEach(row => {
+        if (!'beInSell' in row) {
+          row.beInSell = true;
+        }
+      });
     }
 
     getSectorsFill(tribuneName, sectorNumber) {
@@ -72,8 +79,6 @@
       let priceSchema = this.currentPriceSchema,
           tribune = this.currentTribune,
           sector = this.currentSector;
-
-      delete sector.rows;
 
       if (priceSchema['tribune_'+tribuneName] && priceSchema['tribune_'+tribuneName]['sector_'+sectorNumber]) {
 
