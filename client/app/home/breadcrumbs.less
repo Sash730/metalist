@@ -1,0 +1,263 @@
+/** breadcrumbs **/
+@media (min-width: 1281px) and (max-width: 4096px) {
+  .crumbs ul {
+    width: 100%;
+  }
+
+  #crumbs {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #crumbs [crm] a {
+    text-align: center;
+    display: inline-block;
+    float: left;
+    width: 19.55%;
+    height: 60px;
+    background: #ffcc00;
+    position: relative;
+    margin: 0 5px 5px 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #212121;
+    padding: 20px 0 0 0;
+  }
+
+  #crumbs [crmdis] a {
+    text-align: center;
+    display: inline-block;
+    float: left;
+    width: 19.55%;
+    height: 60px;
+    background: #bcbcbc;
+    position: relative;
+    margin: 0 5px 5px 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #212121;
+    padding: 20px 0 0 0;
+  }
+
+  #crumbs [crm] a:after {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #ffcc00;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    z-index: 1;
+  }
+
+
+  #crumbs [crmdis] a:after {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #bcbcbc;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    z-index: 1;
+  }
+
+  #crumbs [crm] a:before {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #ffffff;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  #crumbs [crmdis] a:before {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #ffffff;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  #crumbs [crm]:first-child a {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  #crumbs [crm]:first-child a:before {
+    display: none;
+  }
+
+  #crumbs [crm]:last-child a {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  #crumbs [crm]:last-child a:after {
+    display: none;
+  }
+
+  #crumbs [crmdis]:first-child a {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  #crumbs [crmdis]:first-child a:before {
+    display: none;
+  }
+
+  #crumbs [crmdis]:last-child a {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  #crumbs [crmdis]:last-child a:after {
+    display: none;
+  }
+
+  #crumbs [crm] a:hover {
+    background: #ffa900;
+  }
+
+  #crumbs [crm] a:hover:after {
+    border-left-color: #ffa900;
+  }
+}
+@media (max-width: 1280px) {
+  .crumbs ul {
+    width: 100%;
+  }
+
+  #crumbs {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #crumbs [crm] a {
+    text-align: center;
+    display: inline-block;
+    float: left;
+    width: 19%;
+    height: 60px;
+    background: #ffcc00;
+    position: relative;
+    margin: 0 5px 5px 0;
+    font-size: 1.6vw;
+    text-decoration: none;
+    color: #212121;
+    padding: 22px 0 0 30px;
+  }
+
+  #crumbs [crmdis] a {
+    text-align: center;
+    display: inline-block;
+    float: left;
+    width: 19%;
+    height: 60px;
+    background: #bcbcbc;
+    position: relative;
+    margin: 0 5px 5px 0;
+    font-size: 1.6vw;
+    text-decoration: none;
+    color: #212121;
+    padding: 22px 0 0 30px;
+  }
+
+  #crumbs [crm] a:after {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #ffcc00;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    z-index: 1;
+  }
+
+
+  #crumbs [crmdis] a:after {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #bcbcbc;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    z-index: 1;
+  }
+
+  #crumbs [crm] a:before {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #ffffff;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  #crumbs [crmdis] a:before {
+    display: inline-block;
+    content: "";
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #ffffff;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  #crumbs [crm]:first-child a {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  #crumbs [crm]:first-child a:before {
+    display: none;
+  }
+
+  #crumbs [crm]:last-child a {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  #crumbs [crm]:last-child a:after {
+    display: none;
+  }
+
+  #crumbs [crmdis]:first-child a {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  #crumbs [crmdis]:first-child a:before {
+    display: none;
+  }
+
+  #crumbs [crmdis]:last-child a {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  #crumbs [crmdis]:last-child a:after {
+    display: none;
+  }
+
+  #crumbs [crm] a:hover {
+    background: #ffa900;
+  }
+
+  #crumbs [crm] a:hover:after {
+    border-left-color: #ffa900;
+  }
+}
