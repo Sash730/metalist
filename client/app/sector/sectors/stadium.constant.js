@@ -1163,7 +1163,7 @@
         },
         {
           name: '10',
-          seats: '13'
+          seats: '12'
         },
         {
           name: '11',
@@ -1171,87 +1171,87 @@
         },
         {
           name: '12',
-          seats: '13'
+          seats: '14'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '15'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '17'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '17',
-          seats: '13'
-        },
-        {
-          name: '18',
-          seats: '13'
-        },
-        {
-          name: '19',
           seats: '5'
         },
         {
+          name: '18',
+          seats: '15'
+        },
+        {
+          name: '19',
+          seats: '16'
+        },
+        {
           name: '20',
-          seats: '6'
+          seats: '17'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '19'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '27'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '33',
@@ -1279,63 +1279,63 @@
         },
         {
           name: '10',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '15'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '17'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '17'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '17'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '25',
@@ -1359,19 +1359,19 @@
         },
         {
           name: '30',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '25'
         }
       ]},
         sector_32: {
@@ -1379,7 +1379,7 @@
              rows: [
         {
           name: '01',
-          seats: '5'
+          seats: '28'
         },
         {
           name: '02',
@@ -1387,7 +1387,7 @@
         },
         {
           name: '03',
-          seats: '29'
+          seats: '28'
         },
         {
           name: '04',
@@ -1396,19 +1396,19 @@
         },
         {
           name: '05',
-          seats: '30'
+          seats: '29'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '12'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '12'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '12'
         },
         {
           name: '09',
@@ -1420,95 +1420,95 @@
         },
         {
           name: '11',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '29'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '38'
         }
       ]},
         sector_33: {
@@ -1516,136 +1516,136 @@
              rows: [
         {
           name: '01',
-          seats: '5'
-        },
-        {
-          name: '02',
-          seats: '28'
-        },
-        {
-          name: '03',
           seats: '29'
         },
         {
+          name: '02',
+          seats: '29'
+        },
+        {
+          name: '03',
+          seats: '30'
+        },
+        {
           name: '04',
-          seats: '29',
+          seats: '30',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '31'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '24'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '25'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '26'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '26'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '26'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '34'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '35'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '38'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '39'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '46'
         }
       ]},
         sector_34: {
@@ -1653,136 +1653,136 @@
              rows: [
         {
           name: '01',
-          seats: '5'
+          seats: '22'
         },
         {
           name: '02',
-          seats: '28'
+          seats: '22'
         },
         {
           name: '03',
-          seats: '29'
+          seats: '22'
         },
         {
           name: '04',
-          seats: '29',
+          seats: '22',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '23'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '23'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '21'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '21'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '21'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '21'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '21'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '21'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '22'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '22'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '22'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '25'
         }
       ]},
         sector_35: {
@@ -1790,136 +1790,136 @@
              rows: [
         {
           name: '01',
-          seats: '5'
+          seats: '21'
         },
         {
           name: '02',
-          seats: '28'
+          seats: '21'
         },
         {
           name: '03',
-          seats: '29'
+          seats: '22'
         },
         {
           name: '04',
-          seats: '29',
+          seats: '22',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '22'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '23'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '24'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '24'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '26'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '26'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '32'
         }
       ]},
         sector_36: {
@@ -1927,24 +1927,24 @@
              rows: [
         {
           name: '01',
-          seats: '5'
+          seats: '24'
         },
         {
           name: '02',
-          seats: '28'
+          seats: '24'
         },
         {
           name: '03',
-          seats: '29'
+          seats: '25'
         },
         {
           name: '04',
-          seats: '29',
+          seats: '25',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '26'
         },
         {
           name: '06',
@@ -1952,111 +1952,111 @@
         },
         {
           name: '07',
-          seats: '13'
+          seats: '17'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '16'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '17'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '18'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '22'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '34'
         }
       ]},
         sector_37: {
@@ -2080,95 +2080,95 @@
         },
         {
           name: '10',
-          seats: '13'
+          seats: '8'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '28'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '29'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '29'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '29'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '37'
         }
       ]},
         sector_38: {
@@ -2176,136 +2176,136 @@
              rows: [
         {
           name: '01',
-          seats: '5'
+          seats: '24'
         },
         {
           name: '02',
-          seats: '28'
+          seats: '24'
         },
         {
           name: '03',
-          seats: '29'
+          seats: '25'
         },
         {
           name: '04',
-          seats: '29',
+          seats: '25',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '25'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '16'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '17'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '17'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '15'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '16'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '17'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '18'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '29'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '29'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '41'
         }
       ]},
         sector_39: {
@@ -2313,132 +2313,132 @@
              rows: [
         {
           name: '01',
-          seats: '5'
+          seats: '21'
         },
         {
           name: '02',
-          seats: '28'
+          seats: '22'
         },
         {
           name: '03',
-          seats: '29'
+          seats: '22'
         },
         {
           name: '04',
-          seats: '29',
+          seats: '23',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '23'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '23'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '24'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '24'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '26'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '26'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '33',
@@ -2450,136 +2450,136 @@
              rows: [
         {
           name: '01',
-          seats: '5'
+          seats: '22'
         },
         {
           name: '02',
-          seats: '28'
+          seats: '22'
         },
         {
           name: '03',
-          seats: '29'
+          seats: '23'
         },
         {
           name: '04',
-          seats: '29',
+          seats: '23',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '23'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '23'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '19'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '21'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '21'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '39'
         }
       ]},
         sector_41: {
@@ -2587,136 +2587,136 @@
              rows: [
         {
           name: '01',
-          seats: '5'
-        },
-        {
-          name: '02',
-          seats: '28'
-        },
-        {
-          name: '03',
           seats: '29'
         },
         {
+          name: '02',
+          seats: '30'
+        },
+        {
+          name: '03',
+          seats: '30'
+        },
+        {
           name: '04',
-          seats: '29',
+          seats: '31',
 
         },
         {
           name: '05',
-          seats: '30'
+          seats: '32'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '23'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '24'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '33'
         }
       ]},
         sector_42: {
@@ -2745,19 +2745,19 @@
         },
         {
           name: '06',
-          seats: '17'
+          seats: '12'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '12'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '12'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '12'
         },
         {
           name: '10',
@@ -2765,95 +2765,95 @@
         },
         {
           name: '11',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '29'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '35'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '40'
         }
       ]},
         sector_43: {
@@ -2861,115 +2861,115 @@
              rows: [
         {
           name: '06',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '15'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '20'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '27'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '27'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '27'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '35'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '35'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '43'
         }
       ]},
         sector_44: {
@@ -2977,15 +2977,15 @@
              rows: [
         {
           name: '06',
-          seats: '17'
+          seats: '10'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '11'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '12'
         },
         {
           name: '09',
@@ -2993,87 +2993,87 @@
         },
         {
           name: '10',
-          seats: '13'
+          seats: '14'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '15'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '16'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '17'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '17',
-          seats: '13'
-        },
-        {
-          name: '18',
-          seats: '13'
-        },
-        {
-          name: '19',
           seats: '5'
         },
         {
+          name: '18',
+          seats: '7'
+        },
+        {
+          name: '19',
+          seats: '8'
+        },
+        {
           name: '20',
-          seats: '6'
+          seats: '9'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '10'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '11'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '12'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '12'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '13'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '14'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '15'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '16'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '17'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '18'
         },
         {
           name: '31',
@@ -3081,7 +3081,7 @@
         },
         {
           name: '32',
-          seats: '19'
+          seats: '13'
         }
       ]}
   },
@@ -3092,47 +3092,47 @@
              rows: [
         {
           name: '16',
-          seats: '13'
+          seats: '10'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '10'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '11'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '11'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '11'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '11'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '11'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '11'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '12'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '12'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '12'
         },
         {
           name: '27',
@@ -3140,27 +3140,27 @@
         },
         {
           name: '28',
-          seats: '19'
+          seats: '12'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '13'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '13'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '13'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '13'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '16'
         }
       ]},
         sector_22: {
@@ -3172,136 +3172,136 @@
         },
         {
           name: '01',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '21',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '20'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '20'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '20'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '20'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '20'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '20'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '20'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '23'
         }
       ]},
         sector_23: {
@@ -3309,84 +3309,84 @@
              rows: [
         {
           name: '00',
-          seats: '9'
+          seats: '11'
         },
         {
           name: '01',
-          seats: '17'
+          seats: '33'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '33'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '33'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '33',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '33'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '33'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '33'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '25'
         },
         {
           name: '20',
@@ -3394,19 +3394,19 @@
         },
         {
           name: '21',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '25',
@@ -3414,176 +3414,176 @@
         },
         {
           name: '26',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '28'
         }
       ]},
         sector_24: {
           name: '24',
              rows: [
-        {
-          name: '00',
-          seats: '9'
-        },
-        {
-          name: '01',
-          seats: '17'
-        },
-        {
-          name: '02',
-          seats: '17'
-        },
-        {
-          name: '03',
-          seats: '17'
-        },
-        {
-          name: '04',
-          seats: '17',
+               {
+                 name: '00',
+                 seats: '11'
+               },
+               {
+                 name: '01',
+                 seats: '33'
+               },
+               {
+                 name: '02',
+                 seats: '33'
+               },
+               {
+                 name: '03',
+                 seats: '33'
+               },
+               {
+                 name: '04',
+                 seats: '33',
 
-        },
-        {
-          name: '05',
-          seats: '17'
-        },
-        {
-          name: '06',
-          seats: '17'
-        },
-        {
-          name: '07',
-          seats: '13'
-        },
-        {
-          name: '08',
-          seats: '13'
-        },
-        {
-          name: '09',
-          seats: '13'
-        },
-        {
-          name: '10',
-          seats: '13'
-        },
-        {
-          name: '11',
-          seats: '13'
-        },
-        {
-          name: '12',
-          seats: '13'
-        },
+               },
+               {
+                 name: '05',
+                 seats: '33'
+               },
+               {
+                 name: '06',
+                 seats: '33'
+               },
+               {
+                 name: '07',
+                 seats: '33'
+               },
+               {
+                 name: '08',
+                 seats: '24'
+               },
+               {
+                 name: '09',
+                 seats: '24'
+               },
+               {
+                 name: '10',
+                 seats: '24'
+               },
+               {
+                 name: '11',
+                 seats: '24'
+               },
+               {
+                 name: '12',
+                 seats: '24'
+               },
         {
           name: '13',
-          seats: '13'
+          seats: '38'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '38'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '38'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '38'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '40'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '40'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '40'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '42'
         }
       ]},
         sector_25: {
@@ -3591,706 +3591,706 @@
              rows: [
         {
           name: '00',
-          seats: '9'
+          seats: '7'
         },
         {
           name: '01',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '21',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '18'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '18'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '18'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '23'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '23'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '23'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '23'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '23'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '23'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '23'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '26'
         }
       ]},
         sector_26: {
           name: '26',
-             rows: [
-        {
-          name: '00',
-          seats: '9'
-        },
-        {
-          name: '01',
-          seats: '17'
-        },
-        {
-          name: '02',
-          seats: '17'
-        },
-        {
-          name: '03',
-          seats: '17'
-        },
-        {
-          name: '04',
-          seats: '17',
+          rows: [
+            {
+              name: '00',
+              seats: '7'
+            },
+            {
+              name: '01',
+              seats: '21'
+            },
+            {
+              name: '02',
+              seats: '21'
+            },
+            {
+              name: '03',
+              seats: '21'
+            },
+            {
+              name: '04',
+              seats: '21',
 
-        },
-        {
-          name: '05',
-          seats: '17'
-        },
-        {
-          name: '06',
-          seats: '17'
-        },
-        {
-          name: '07',
-          seats: '13'
-        },
-        {
-          name: '08',
-          seats: '13'
-        },
-        {
-          name: '09',
-          seats: '13'
-        },
-        {
-          name: '10',
-          seats: '13'
-        },
-        {
-          name: '11',
-          seats: '13'
-        },
-        {
-          name: '12',
-          seats: '13'
-        },
-        {
-          name: '13',
-          seats: '13'
-        },
-        {
-          name: '14',
-          seats: '13'
-        },
-        {
-          name: '15',
-          seats: '13'
-        },
-        {
-          name: '16',
-          seats: '13'
-        },
-        {
-          name: '17',
-          seats: '13'
-        },
-        {
-          name: '18',
-          seats: '13'
-        },
-        {
-          name: '19',
-          seats: '5'
-        },
-        {
-          name: '20',
-          seats: '6'
-        },
-        {
-          name: '21',
-          seats: '6'
-        },
-        {
-          name: '22',
-          seats: '6'
-        },
-        {
-          name: '23',
-          seats: '6'
-        },
-        {
-          name: '24',
-          seats: '6'
-        },
-        {
-          name: '25',
-          seats: '19'
-        },
-        {
-          name: '26',
-          seats: '19'
-        },
-        {
-          name: '27',
-          seats: '19'
-        },
-        {
-          name: '28',
-          seats: '19'
-        },
-        {
-          name: '29',
-          seats: '19'
-        },
-        {
-          name: '30',
-          seats: '19'
-        },
-        {
-          name: '31',
-          seats: '19'
-        },
-        {
-          name: '32',
-          seats: '19'
-        },
-        {
-          name: '33',
-          seats: '19'
-        }
-      ]},
+            },
+            {
+              name: '05',
+              seats: '18'
+            },
+            {
+              name: '06',
+              seats: '18'
+            },
+            {
+              name: '07',
+              seats: '24'
+            },
+            {
+              name: '08',
+              seats: '18'
+            },
+            {
+              name: '09',
+              seats: '18'
+            },
+            {
+              name: '10',
+              seats: '18'
+            },
+            {
+              name: '11',
+              seats: '18'
+            },
+            {
+              name: '12',
+              seats: '18'
+            },
+            {
+              name: '13',
+              seats: '18'
+            },
+            {
+              name: '14',
+              seats: '18'
+            },
+            {
+              name: '15',
+              seats: '18'
+            },
+            {
+              name: '16',
+              seats: '23'
+            },
+            {
+              name: '17',
+              seats: '23'
+            },
+            {
+              name: '18',
+              seats: '23'
+            },
+            {
+              name: '19',
+              seats: '23'
+            },
+            {
+              name: '20',
+              seats: '23'
+            },
+            {
+              name: '21',
+              seats: '23'
+            },
+            {
+              name: '22',
+              seats: '23'
+            },
+            {
+              name: '23',
+              seats: '23'
+            },
+            {
+              name: '24',
+              seats: '23'
+            },
+            {
+              name: '25',
+              seats: '23'
+            },
+            {
+              name: '26',
+              seats: '23'
+            },
+            {
+              name: '27',
+              seats: '23'
+            },
+            {
+              name: '28',
+              seats: '23'
+            },
+            {
+              name: '29',
+              seats: '23'
+            },
+            {
+              name: '30',
+              seats: '23'
+            },
+            {
+              name: '31',
+              seats: '23'
+            },
+            {
+              name: '32',
+              seats: '23'
+            },
+            {
+              name: '33',
+              seats: '18'
+            }
+          ]},
         sector_27: {
           name: '27',
-             rows: [
-        {
-          name: '00',
-          seats: '9'
-        },
-        {
-          name: '01',
-          seats: '17'
-        },
-        {
-          name: '02',
-          seats: '17'
-        },
-        {
-          name: '03',
-          seats: '17'
-        },
-        {
-          name: '04',
-          seats: '17',
+          rows: [
+            {
+              name: '00',
+              seats: '11'
+            },
+            {
+              name: '01',
+              seats: '33'
+            },
+            {
+              name: '02',
+              seats: '33'
+            },
+            {
+              name: '03',
+              seats: '33'
+            },
+            {
+              name: '04',
+              seats: '33',
 
-        },
-        {
-          name: '05',
-          seats: '17'
-        },
-        {
-          name: '06',
-          seats: '17'
-        },
-        {
-          name: '07',
-          seats: '13'
-        },
-        {
-          name: '08',
-          seats: '13'
-        },
-        {
-          name: '09',
-          seats: '13'
-        },
-        {
-          name: '10',
-          seats: '13'
-        },
-        {
-          name: '11',
-          seats: '13'
-        },
-        {
-          name: '12',
-          seats: '13'
-        },
-        {
-          name: '13',
-          seats: '13'
-        },
-        {
-          name: '14',
-          seats: '13'
-        },
-        {
-          name: '15',
-          seats: '13'
-        },
-        {
-          name: '16',
-          seats: '13'
-        },
-        {
-          name: '17',
-          seats: '13'
-        },
-        {
-          name: '18',
-          seats: '13'
-        },
-        {
-          name: '19',
-          seats: '5'
-        },
-        {
-          name: '20',
-          seats: '6'
-        },
-        {
-          name: '21',
-          seats: '6'
-        },
-        {
-          name: '22',
-          seats: '6'
-        },
-        {
-          name: '23',
-          seats: '6'
-        },
-        {
-          name: '24',
-          seats: '6'
-        },
-        {
-          name: '25',
-          seats: '19'
-        },
-        {
-          name: '26',
-          seats: '19'
-        },
-        {
-          name: '27',
-          seats: '19'
-        },
-        {
-          name: '28',
-          seats: '19'
-        },
-        {
-          name: '29',
-          seats: '19'
-        },
-        {
-          name: '30',
-          seats: '19'
-        },
-        {
-          name: '31',
-          seats: '19'
-        },
-        {
-          name: '32',
-          seats: '19'
-        },
-        {
-          name: '33',
-          seats: '19'
-        }
-      ]},
+            },
+            {
+              name: '05',
+              seats: '33'
+            },
+            {
+              name: '06',
+              seats: '33'
+            },
+            {
+              name: '07',
+              seats: '33'
+            },
+            {
+              name: '08',
+              seats: '24'
+            },
+            {
+              name: '09',
+              seats: '24'
+            },
+            {
+              name: '10',
+              seats: '24'
+            },
+            {
+              name: '11',
+              seats: '24'
+            },
+            {
+              name: '12',
+              seats: '24'
+            },
+            {
+              name: '13',
+              seats: '38'
+            },
+            {
+              name: '14',
+              seats: '38'
+            },
+            {
+              name: '15',
+              seats: '38'
+            },
+            {
+              name: '16',
+              seats: '38'
+            },
+            {
+              name: '17',
+              seats: '40'
+            },
+            {
+              name: '18',
+              seats: '40'
+            },
+            {
+              name: '19',
+              seats: '40'
+            },
+            {
+              name: '20',
+              seats: '40'
+            },
+            {
+              name: '21',
+              seats: '40'
+            },
+            {
+              name: '22',
+              seats: '40'
+            },
+            {
+              name: '23',
+              seats: '40'
+            },
+            {
+              name: '24',
+              seats: '40'
+            },
+            {
+              name: '25',
+              seats: '40'
+            },
+            {
+              name: '26',
+              seats: '40'
+            },
+            {
+              name: '27',
+              seats: '40'
+            },
+            {
+              name: '28',
+              seats: '40'
+            },
+            {
+              name: '29',
+              seats: '40'
+            },
+            {
+              name: '30',
+              seats: '40'
+            },
+            {
+              name: '31',
+              seats: '40'
+            },
+            {
+              name: '32',
+              seats: '40'
+            },
+            {
+              name: '33',
+              seats: '43'
+            }
+          ]},
         sector_28: {
           name: '28',
              rows: [
-        {
-          name: '00',
-          seats: '9'
-        },
-        {
-          name: '01',
-          seats: '17'
-        },
-        {
-          name: '02',
-          seats: '17'
-        },
-        {
-          name: '03',
-          seats: '17'
-        },
-        {
-          name: '04',
-          seats: '17',
+               {
+                 name: '00',
+                 seats: '11'
+               },
+               {
+                 name: '01',
+                 seats: '33'
+               },
+               {
+                 name: '02',
+                 seats: '33'
+               },
+               {
+                 name: '03',
+                 seats: '33'
+               },
+               {
+                 name: '04',
+                 seats: '33',
 
-        },
-        {
-          name: '05',
-          seats: '17'
-        },
-        {
-          name: '06',
-          seats: '17'
-        },
-        {
-          name: '07',
-          seats: '13'
-        },
-        {
-          name: '08',
-          seats: '13'
-        },
-        {
-          name: '09',
-          seats: '13'
-        },
-        {
-          name: '10',
-          seats: '13'
-        },
-        {
-          name: '11',
-          seats: '13'
-        },
-        {
-          name: '12',
-          seats: '13'
-        },
+               },
+               {
+                 name: '05',
+                 seats: '33'
+               },
+               {
+                 name: '06',
+                 seats: '33'
+               },
+               {
+                 name: '07',
+                 seats: '33'
+               },
+               {
+                 name: '08',
+                 seats: '24'
+               },
+               {
+                 name: '09',
+                 seats: '24'
+               },
+               {
+                 name: '10',
+                 seats: '24'
+               },
+               {
+                 name: '11',
+                 seats: '24'
+               },
+               {
+                 name: '12',
+                 seats: '24'
+               },
         {
           name: '13',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '25'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '27'
         }
       ]},
         sector_29: {
           name: '29',
-             rows: [
-        {
-          name: '00',
-          seats: '9'
-        },
-        {
-          name: '01',
-          seats: '17'
-        },
-        {
-          name: '02',
-          seats: '17'
-        },
-        {
-          name: '03',
-          seats: '17'
-        },
-        {
-          name: '04',
-          seats: '17',
+          rows: [
+            {
+              name: '00',
+              seats: '10'
+            },
+            {
+              name: '01',
+              seats: '21'
+            },
+            {
+              name: '02',
+              seats: '21'
+            },
+            {
+              name: '03',
+              seats: '21'
+            },
+            {
+              name: '04',
+              seats: '21',
 
-        },
-        {
-          name: '05',
-          seats: '17'
-        },
-        {
-          name: '06',
-          seats: '17'
-        },
-        {
-          name: '07',
-          seats: '13'
-        },
-        {
-          name: '08',
-          seats: '13'
-        },
-        {
-          name: '09',
-          seats: '13'
-        },
-        {
-          name: '10',
-          seats: '13'
-        },
-        {
-          name: '11',
-          seats: '13'
-        },
-        {
-          name: '12',
-          seats: '13'
-        },
-        {
-          name: '13',
-          seats: '13'
-        },
-        {
-          name: '14',
-          seats: '13'
-        },
-        {
-          name: '15',
-          seats: '13'
-        },
-        {
-          name: '16',
-          seats: '13'
-        },
-        {
-          name: '17',
-          seats: '13'
-        },
-        {
-          name: '18',
-          seats: '13'
-        },
-        {
-          name: '19',
-          seats: '5'
-        },
-        {
-          name: '20',
-          seats: '6'
-        },
-        {
-          name: '21',
-          seats: '6'
-        },
-        {
-          name: '22',
-          seats: '6'
-        },
-        {
-          name: '23',
-          seats: '6'
-        },
-        {
-          name: '24',
-          seats: '6'
-        },
-        {
-          name: '25',
-          seats: '19'
-        },
-        {
-          name: '26',
-          seats: '19'
-        },
-        {
-          name: '27',
-          seats: '19'
-        },
-        {
-          name: '28',
-          seats: '19'
-        },
-        {
-          name: '29',
-          seats: '19'
-        },
-        {
-          name: '30',
-          seats: '19'
-        },
-        {
-          name: '31',
-          seats: '19'
-        },
-        {
-          name: '32',
-          seats: '19'
-        },
-        {
-          name: '33',
-          seats: '19'
-        }
-      ]}
+            },
+            {
+              name: '05',
+              seats: '21'
+            },
+            {
+              name: '06',
+              seats: '21'
+            },
+            {
+              name: '07',
+              seats: '21'
+            },
+            {
+              name: '08',
+              seats: '20'
+            },
+            {
+              name: '09',
+              seats: '20'
+            },
+            {
+              name: '10',
+              seats: '20'
+            },
+            {
+              name: '11',
+              seats: '20'
+            },
+            {
+              name: '12',
+              seats: '20'
+            },
+            {
+              name: '13',
+              seats: '20'
+            },
+            {
+              name: '14',
+              seats: '20'
+            },
+            {
+              name: '15',
+              seats: '20'
+            },
+            {
+              name: '16',
+              seats: '20'
+            },
+            {
+              name: '17',
+              seats: '20'
+            },
+            {
+              name: '18',
+              seats: '20'
+            },
+            {
+              name: '19',
+              seats: '20'
+            },
+            {
+              name: '20',
+              seats: '20'
+            },
+            {
+              name: '21',
+              seats: '20'
+            },
+            {
+              name: '22',
+              seats: '20'
+            },
+            {
+              name: '23',
+              seats: '20'
+            },
+            {
+              name: '24',
+              seats: '20'
+            },
+            {
+              name: '25',
+              seats: '20'
+            },
+            {
+              name: '26',
+              seats: '20'
+            },
+            {
+              name: '27',
+              seats: '20'
+            },
+            {
+              name: '28',
+              seats: '20'
+            },
+            {
+              name: '29',
+              seats: '20'
+            },
+            {
+              name: '30',
+              seats: '20'
+            },
+            {
+              name: '31',
+              seats: '20'
+            },
+            {
+              name: '32',
+              seats: '20'
+            },
+            {
+              name: '33',
+              seats: '24'
+            }
+          ]}
      },
       tribune_north: {
         name: 'north',
@@ -4299,168 +4299,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '11'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '11'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '12'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '18',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '19'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '20'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '30'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '38'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '38'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '39'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '48'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '49'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '49'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '50'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '51'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '51'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '57'
         }
       ]},
         sector_11: {
@@ -4468,168 +4468,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '19'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '19'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '20'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '20',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '21'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '22'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '22'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '22'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '33'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '33'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '33'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '38'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '38'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '39'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '39'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '43'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '50'
         }
       ]},
         sector_12: {
@@ -4637,168 +4637,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '29'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '30'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '30'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '31',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '31'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '32'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '33'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '33'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '34'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '34'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '27'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '27'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '39'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '49'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '55'
         }
       ]},
         sector_13: {
@@ -4806,168 +4806,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '31'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '32'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '32'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '33',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '33'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '34'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '34'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '37'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '37'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '37'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '28'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '39'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '39'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '39'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '48'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '53'
         }
       ]},
         sector_14: {
@@ -4975,168 +4975,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '36'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '37'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '37'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '38',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '38'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '39'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '39'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '40'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '40'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '41'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '41'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '42'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '42'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '43'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '24'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '24'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '24'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '25'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '30'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '32'
         }
       ]},
         sector_15: {
@@ -5144,111 +5144,111 @@
              rows: [
         {
           name: '15',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '29'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '29'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '30'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '31'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '31'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '32'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '33'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '34'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '22'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '30'
         }
       ]},
         sector_16: {
@@ -5256,168 +5256,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '35'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '36'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '36'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '37',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '38'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '38'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '39'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '39'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '40'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '40'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '41'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '42'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '42'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '43'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '24'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '24'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '24'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '35'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '35'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '36'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '38'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '38'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '38'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '43'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '50'
         }
       ]},
         sector_17: {
@@ -5425,168 +5425,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '31'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '32'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '32'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '33',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '33'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '34'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '34'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '37'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '37'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '27'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '28'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '28'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '38'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '38'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '47'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '53'
         }
       ]},
         sector_18: {
@@ -5594,168 +5594,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '29'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '29'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '30'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '30',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '31'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '31'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '31'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '32'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '33'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '33'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '34'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '35'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '36'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '27'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '27'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '27'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '38'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '39'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '40'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '44'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '45'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '46'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '47'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '49'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '49'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '56'
         }
       ]},
         sector_19: {
@@ -5763,168 +5763,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '18'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '18'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '19'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '19',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '20'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '20'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '20'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '21'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '22'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '22'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '23'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '23'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '24'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '24'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '24'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '25'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '26'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '27'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '28'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '29'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '30'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '30'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '33'
         }
       ]},
         sector_20: {
@@ -5932,168 +5932,168 @@
              rows: [
         {
           name: '01',
-          seats: '17'
+          seats: '12'
         },
         {
           name: '02',
-          seats: '17'
+          seats: '13'
         },
         {
           name: '03',
-          seats: '17'
+          seats: '13'
         },
         {
           name: '04',
-          seats: '17',
+          seats: '19',
 
         },
         {
           name: '05',
-          seats: '17'
+          seats: '19'
         },
         {
           name: '06',
-          seats: '17'
+          seats: '20'
         },
         {
           name: '07',
-          seats: '13'
+          seats: '21'
         },
         {
           name: '08',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '09',
-          seats: '13'
+          seats: '22'
         },
         {
           name: '10',
-          seats: '13'
+          seats: '23'
         },
         {
           name: '11',
-          seats: '13'
+          seats: '24'
         },
         {
           name: '12',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '13',
-          seats: '13'
+          seats: '25'
         },
         {
           name: '14',
-          seats: '13'
+          seats: '26'
         },
         {
           name: '15',
-          seats: '13'
+          seats: '28'
         },
         {
           name: '16',
-          seats: '13'
+          seats: '29'
         },
         {
           name: '17',
-          seats: '13'
+          seats: '30'
         },
         {
           name: '18',
-          seats: '13'
+          seats: '30'
         },
         {
           name: '19',
-          seats: '5'
+          seats: '31'
         },
         {
           name: '20',
-          seats: '6'
+          seats: '32'
         },
         {
           name: '21',
-          seats: '6'
+          seats: '32'
         },
         {
           name: '22',
-          seats: '6'
+          seats: '33'
         },
         {
           name: '23',
-          seats: '6'
+          seats: '33'
         },
         {
           name: '24',
-          seats: '6'
+          seats: '34'
         },
         {
           name: '25',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '26',
-          seats: '19'
+          seats: '35'
         },
         {
           name: '27',
-          seats: '19'
+          seats: '36'
         },
         {
           name: '28',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '29',
-          seats: '19'
+          seats: '37'
         },
         {
           name: '30',
-          seats: '19'
+          seats: '38'
         },
         {
           name: '31',
-          seats: '19'
+          seats: '39'
         },
         {
           name: '32',
-          seats: '19'
+          seats: '39'
         },
         {
           name: '33',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '34',
-          seats: '19'
+          seats: '40'
         },
         {
           name: '35',
-          seats: '19'
+          seats: '41'
         },
         {
           name: '36',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '37',
-          seats: '19'
+          seats: '42'
         },
         {
           name: '38',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '39',
-          seats: '19'
+          seats: '43'
         },
         {
           name: '40',
-          seats: '16'
+          seats: '44'
         },
         {
           name: '41',
-          seats: '20'
+          seats: '48'
         }
       ]}
       }
