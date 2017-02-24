@@ -25,7 +25,8 @@
     </div>
     <div class="col-sm-12 wrapRow">
       <ul class="rows">
-        <li ng-repeat="row in vm.sector.rows | orderBy:'-name':reverse:true"><span class="rowText">{{row.name}}</span>
+
+        <li ng-repeat="row in vm.sector.rows | orderBy:'-name'"><span class="rowText">{{row.name}}</span>
           <div id="s{{vm.sector.name}}{{row.name}}{{1+$index}}" class="imgSeatsStyle"
                ng-repeat="seat in vm.makeArrayFromNumber(row.seats)"
                ng-click="vm.addToCart(vm.match, vm.tribuneName, vm.sector.name, row.name, seat, vm.sectorPrice)"
