@@ -1,4 +1,4 @@
-@media (min-width: 320px) and (max-width: 600px) {
+@media (min-width: 320px) and (max-width: 610px) and (orientation: portrait) {
   .imgSeatsStyle {
     display: inline-block;
     background-color: #60709E;
@@ -6,94 +6,18 @@
     height: 4px;
     margin: 0 1px 0 0;
     cursor: pointer;
-  }
-
-  ul.rows li:before {
-    margin: 0;
     padding: 0;
-    content: 'Ряд: ';
-    font-weight: bold;
-    color: #636363;
-    text-align: left;
-    font-size: 8px;
   }
 
   .rowText {
     font-weight: bold;
     color: #636363;
     text-align: left;
-    font-size: 8px;
-  }
-
-  .sectorNumber {
-    position: absolute;
-    color: #999999;
-  }
-
-  ul.rows li {
-    margin-top: -10px;;
-    list-style-type: none;
-    margin-left: -40px;
+    font-size: 4px;
   }
 
   .address {
-    font-size: 2vw;
-  }
-
-  .checkout {
-    width: 150px;
-    display: table;
-    margin: 0 auto;
-  }
-
-  [cardSize] {
-    width: 100%;
-    display: table;
-    margin: 0 auto;
-    padding: 0;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 1280px) {
-  .imgSeatsStyle {
-    display: inline-block;
-    background-color: #60709E;
-    width: 10px;
-    height: 10px;
-    margin: 8px 1px 0px 0;
-    cursor: pointer;
-  }
-
-  ul.rows li:before {
-    margin: 0;
-    padding: 0;
-    content: 'Ряд: ';
-    font-weight: bold;
-    color: #636363;
-    text-align: left;
-    font-size: 12px;
-  }
-
-  .rowText {
-    font-weight: bold;
-    color: #636363;
-    text-align: left;
-    font-size: 12px;
-  }
-
-  .sectorNumber {
-    position: absolute;
-    color: #999999;
-  }
-
-  ul.rows li {
-    margin-top: -12px;;
-    list-style-type: none;
-    margin-left: -40px;
-  }
-
-  .address {
-    font-size: 1.5vw;
+    display: none;
   }
 
   .checkout {
@@ -108,44 +32,45 @@
     margin: 0 auto;
     padding: 0;
   }
+
+  .liststyle {
+    color: transparent;
+  }
+
+  .liststyle li {
+    padding-top: 0;
+    margin-bottom: -15px;
+  }
+
+  .seats {
+    width: 320px;
+    padding: 0 !important;
+  }
+
+  .rowNames {
+    width: 30px;
+    margin-left: -10px;
+    margin-top: -2px;
+    padding-right: 0 !important;
+  }
 }
 
-@media (min-width: 1281px) and (max-width: 4096px) {
+@media (min-width: 611px) and (max-width: 1280px) {
   .imgSeatsStyle {
     display: inline-block;
     background-color: #60709E;
-    width: 14px;
-    height: 14px;
-    margin: -5px 1px -5px 0;
+    width: 8px;
+    height: 8px;
+    margin: 0 1px 0 0;
     cursor: pointer;
-  }
-
-  ul.rows li:before {
-    margin: 0;
     padding: 0;
-    content: 'Ряд: ';
-    font-weight: bold;
-    color: #636363;
-    text-align: left;
-    font-size: 12px;
   }
 
   .rowText {
     font-weight: bold;
     color: #636363;
     text-align: left;
-    font-size: 12px;
-  }
-
-  .sectorNumber {
-    position: absolute;
-    color: #999999;
-  }
-
-  ul.rows li {
-    margin-top: -5px;;
-    list-style-type: none;
-    margin-left: -40px;
+    font-size: 10px;
   }
 
   .address {
@@ -163,6 +88,79 @@
     display: table;
     margin: 0 auto;
     padding: 0;
+  }
+
+  .liststyle {
+    color: transparent;
+  }
+
+  .liststyle li {
+    margin-bottom: -10px;
+  }
+
+  .seats {
+    width: 540px;
+    padding: 0 !important;
+  }
+
+  .rowNames {
+    width: 55px;
+    margin-top: -2px;
+    padding-right: 0 !important;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 4096px) {
+  .imgSeatsStyle {
+    display: inline-block;
+    background-color: #60709E;
+    width: 14px;
+    height: 14px;
+    margin: 0 1px 0 0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .rowText {
+    font-weight: bold;
+    color: #636363;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .address {
+    font-size: 0.8vw;
+  }
+
+  .checkout {
+    width: 150px;
+    display: table;
+    margin: 0 auto;
+  }
+
+  [cardSize] {
+    width: 50%;
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .liststyle {
+    color: transparent;
+  }
+
+  .liststyle li {
+    margin-bottom: -5px;
+  }
+
+  .seats {
+    padding: 0 !important;
+  }
+
+  .rowNames {
+    width: 65px;
+    margin-top: -2px;
+    padding-right: 0 !important;
   }
 }
 
@@ -224,4 +222,8 @@
   color: #636363;
   font-size: 1em;
   margin: 0 0 0 0 !important;
+}
+
+ul {
+  padding: 0;
 }

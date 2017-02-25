@@ -13,6 +13,7 @@
       this.tribuneName = $stateParams.tribune;
       this.priceSchemaService = PriceSchemaService;
       this.sectorPrice = '';
+      this.rowRow = 'Ряд';
 
       this.addToCart = CartService.addTicket.bind(CartService);
       console.log('tickets', this.reservedTickets);
