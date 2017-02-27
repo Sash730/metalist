@@ -19,13 +19,6 @@ angular.module('metalistTicketsApp')
                     $state.go('404');
                   });
                 },
-        tickets: (TicketsService, $stateParams, $state) => {
-              return TicketsService.fetchReservedTickets($stateParams.id, $stateParams.sector)
-                .catch((error) => {
-                  console.log(error);
-                  $state.go('404');
-                });
-              },
         cart: (CartService) => {
               return CartService.cart;
               }

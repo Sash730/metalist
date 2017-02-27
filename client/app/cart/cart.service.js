@@ -47,7 +47,7 @@
         }
 
         addTicket(match, tribuneName, sectorName, rowName, seat, price) {
-            this.$http.post('/api/orders/cart', {
+            return this.$http.post('/api/orders/cart', {
                 match: match,
                 tribuneName: tribuneName,
                 sectorName: sectorName,
@@ -64,8 +64,8 @@
             ;
         }
 
-        removeTicket(id) {
-            this.$http.delete('/api/orders/cart/tickets/' + id)
+        removeTicket(seatId) {
+            return this.$http.delete('/api/orders/cart/tickets/' + seatId)
                 .then(response => {
                     this.cart.tickets = response.data.tickets;
                 })
