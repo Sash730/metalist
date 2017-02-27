@@ -63,6 +63,10 @@
     height: 8px;
     margin: 0 1px 0 0;
     cursor: pointer;
+  }
+
+  ul.rows li:before {
+    margin: 0;
     padding: 0;
   }
 
@@ -121,6 +125,16 @@
     padding: 0;
   }
 
+  .blockedSeat {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: #ffcc00;
+    margin: 0 1px 0 0;
+    padding: 0;
+    cursor: default;
+  }
+
   .rowText {
     font-weight: bold;
     color: #636363;
@@ -162,13 +176,6 @@
     margin-top: -2px;
     padding-right: 0 !important;
   }
-}
-
-.blockedSeat {
-  font-size: 20px;
-  color: #ffcc00;
-  padding: 0 1px 0 1px;
-  cursor: default;
 }
 
 .imgSeatsStyle:hover {

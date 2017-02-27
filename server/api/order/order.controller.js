@@ -73,8 +73,8 @@ let createNewTicket = (cart, match, price, seat) => {
     reserveDate: moment(),
     status: 'new',
     valid: {
-      from: ((d) => { var d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(match.date),
-      to: ((d) => { var d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(match.date)
+      from: ((d) => { let d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(match.date),
+      to: ((d) => { let d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(match.date)
     },
     timesUsed: 0
   });
