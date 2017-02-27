@@ -59,7 +59,6 @@
                   if (response.data.message) {
                     this.message = response.data.message;
                   }
-                  console.log(this.message);
                   this.cart.tickets = response.data.tickets;
                 })
             ;

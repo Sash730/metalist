@@ -35,9 +35,10 @@
         <div class="col-xs-11 seats">
           <ul class="liststyle">
             <li ng-repeat="row in vm.sector.rows | orderBy:'-'">
-              <div id="s{{vm.sector.name}}{{row.name}}{{1+$index}}" class="imgSeatsStyle"
+              <div id="s{{vm.sector.name}}{{row.name}}{{1+$index}}"
+                   ng-class="vm.addClassByCheckSoldSeat('s'+vm.sector.name+row.name+(1+$index)) ? 'imgSeatsStyle' : 'blockedSeat'"
                    ng-repeat="seat in vm.makeArrayFromNumber(row.seats)"
-                   ng-click="vm.addToCart(vm.match, vm.tribuneName, vm.sector.name, row.name, seat, vm.sectorPrice)"
+                   ng-click="vm.addTicketToCart(vm.match, vm.tribuneName, vm.sector.name, row.name, seat, vm.sectorPrice)"
                    uib-popover-html="'<p>Трибуна: <b>{{vm.tribuneName}} {{vm.sector.name}}</b><br />Ряд: <b>{{row.name}}</b><br />Место: <b>{{seat}}</b></p>'"
                    popover-trigger="'mouseenter'"></div>
             </li>
