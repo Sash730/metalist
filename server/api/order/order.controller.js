@@ -172,9 +172,10 @@ let updateSoldTickets = (order) => {
   });
 };
 
-let deleteTicketFromCart = (cart, ticketId) => {
-  let ticket = _.filter(cart.tickets, function (ticket) {
-    if (ticket.id === ticketId) {
+let deleteTicketFromCart = (cart, seatId) => {
+  let [ ticket ] = _.filter(cart.tickets, function (ticket) {
+
+    if (ticket.seat.id === seatId) {
       return ticket;
     }
   });
@@ -182,8 +183,8 @@ let deleteTicketFromCart = (cart, ticketId) => {
   if(!ticket) {
     throw new Error('Ticket not found in cart')
   }
-  cart.amount -= ticket[0].amount;
-  cart.tickets.splice(cart.tickets.indexOf(ticket[0]), 1);
+  cart.amount -= ticket.amount;
+  cart.tickets.splice(cart.tickets.indexOf(ticket), 1);
 
   return cart.save();
 };
@@ -318,13 +319,13 @@ export function updateCart(req, res) {
 
 export function deleteItemFromCart(req, res) {
   let cartId = req.session.cart,
-      ticketId = req.params.ticketId;
+    seatId = req.params.seatId;
 
     Order.findOne({_id: cartId, type: 'cart'})
         .populate({path: 'tickets'})
         .then(handleEntityNotFound(res))
         .then(cart => {
-          return deleteTicketFromCart(cart, ticketId);
+          return deleteTicketFromCart(cart, seatId);
         })
         .then(cart => {
            Ticket.findOne({cartId: cart._id})

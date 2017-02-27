@@ -7,44 +7,44 @@ export const Stadium = {
       name: '1',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '5'
         },
         {
-          name: '01',
+          name: '1',
           seats: '17'
         },
         {
-          name: '02',
+          name: '2',
           seats: '17'
         },
         {
-          name: '03',
+          name: '3',
           seats: '17'
         },
         {
-          name: '04',
+          name: '4',
           seats: '17',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '17'
         },
         {
-          name: '06',
+          name: '6',
           seats: '17'
         },
         {
-          name: '07',
+          name: '7',
           seats: '13'
         },
         {
-          name: '08',
+          name: '8',
           seats: '13'
         },
         {
-          name: '09',
+          name: '9',
           seats: '13'
         },
         {
@@ -180,43 +180,43 @@ export const Stadium = {
       name: '2',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '9'
         },
         {
-          name: '01',
+          name: '1',
           seats: '27'
         },
         {
-          name: '02',
+          name: '2',
           seats: '27'
         },
         {
-          name: '03',
+          name: '3',
           seats: '27'
         },
         {
-          name: '04',
+          name: '4',
           seats: '27'
         },
         {
-          name: '05',
+          name: '5',
           seats: '27'
         },
         {
-          name: '06',
+          name: '6',
           seats: '27'
         },
         {
-          name: '07',
+          name: '7',
           seats: '27'
         },
         {
-          name: '08',
+          name: '8',
           seats: '27'
         },
         {
-          name: '09',
+          name: '9',
           seats: '35'
         },
         {
@@ -356,43 +356,43 @@ export const Stadium = {
           seats: '3'
         },
         {
-          name: '00',
+          name: '0',
           seats: '10'
         },
         {
-          name: '01',
+          name: '1',
           seats: '26'
         },
         {
-          name: '02',
+          name: '2',
           seats: '26'
         },
         {
-          name: '03',
+          name: '3',
           seats: '26'
         },
         {
-          name: '04',
+          name: '4',
           seats: '26'
         },
         {
-          name: '05',
+          name: '5',
           seats: '26'
         },
         {
-          name: '06',
+          name: '6',
           seats: '26'
         },
         {
-          name: '07',
+          name: '7',
           seats: '22'
         },
         {
-          name: '08',
+          name: '8',
           seats: '22'
         },
         {
-          name: '09',
+          name: '9',
           seats: '27'
         },
         {
@@ -436,31 +436,31 @@ export const Stadium = {
       name: '4',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '18'
         },
         {
-          name: '02',
+          name: '2',
           seats: '18'
         },
         {
-          name: '03',
+          name: '3',
           seats: '18'
         },
         {
-          name: '04',
+          name: '4',
           seats: '18'
         },
         {
-          name: '05',
+          name: '5',
           seats: '18'
         },
         {
-          name: '06',
+          name: '6',
           seats: '18'
         },
         {
-          name: '07',
+          name: '7',
           seats: '13'
         }
       ]},
@@ -468,23 +468,23 @@ export const Stadium = {
       name: '5',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '34'
         },
         {
-          name: '02',
+          name: '2',
           seats: '34'
         },
         {
-          name: '03',
+          name: '3',
           seats: '34'
         },
         {
-          name: '04',
+          name: '4',
           seats: '34'
         },
         {
-          name: '05',
+          name: '5',
           seats: '34'
         }
       ]},
@@ -492,31 +492,31 @@ export const Stadium = {
       name: '6',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '18'
         },
         {
-          name: '02',
+          name: '2',
           seats: '18'
         },
         {
-          name: '03',
+          name: '3',
           seats: '18'
         },
         {
-          name: '04',
+          name: '4',
           seats: '18'
         },
         {
-          name: '05',
+          name: '5',
           seats: '18'
         },
         {
-          name: '06',
+          name: '6',
           seats: '18'
         },
         {
-          name: '07',
+          name: '7',
           seats: '12'
         }
       ]},
@@ -524,51 +524,51 @@ export const Stadium = {
       name: '7',
       rows: [
         {
-          name: '–02',
+          name: '–2',
           seats: '4'
         },
         {
-          name: '–01',
+          name: '–1',
           seats: '4'
         },
         {
-          name: '00',
+          name: '0',
           seats: '11'
         },
         {
-          name: '01',
+          name: '1',
           seats: '25'
         },
         {
-          name: '02',
+          name: '2',
           seats: '25'
         },
         {
-          name: '03',
+          name: '3',
           seats: '25'
         },
         {
-          name: '04',
+          name: '4',
           seats: '25'
         },
         {
-          name: '05',
+          name: '5',
           seats: '25'
         },
         {
-          name: '06',
+          name: '6',
           seats: '25'
         },
         {
-          name: '07',
+          name: '7',
           seats: '21'
         },
         {
-          name: '08',
+          name: '8',
           seats: '21'
         },
         {
-          name: '09',
+          name: '9',
           seats: '27'
         },
         {
@@ -612,44 +612,44 @@ export const Stadium = {
       name: '8',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '9'
         },
         {
-          name: '01',
+          name: '1',
           seats: '28'
         },
         {
-          name: '02',
+          name: '2',
           seats: '28'
         },
         {
-          name: '03',
+          name: '3',
           seats: '28'
         },
         {
-          name: '04',
+          name: '4',
           seats: '28',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '28'
         },
         {
-          name: '06',
+          name: '6',
           seats: '28'
         },
         {
-          name: '07',
+          name: '7',
           seats: '28'
         },
         {
-          name: '08',
+          name: '8',
           seats: '28'
         },
         {
-          name: '09',
+          name: '9',
           seats: '36'
         },
         {
@@ -781,44 +781,44 @@ export const Stadium = {
       name: '9',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '5'
         },
         {
-          name: '01',
+          name: '1',
           seats: '17'
         },
         {
-          name: '02',
+          name: '2',
           seats: '17'
         },
         {
-          name: '03',
+          name: '3',
           seats: '17'
         },
         {
-          name: '04',
+          name: '4',
           seats: '17',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '17'
         },
         {
-          name: '06',
+          name: '6',
           seats: '17'
         },
         {
-          name: '07',
+          name: '7',
           seats: '13'
         },
         {
-          name: '08',
+          name: '8',
           seats: '13'
         },
         {
-          name: '09',
+          name: '9',
           seats: '13'
         },
         {
@@ -954,39 +954,39 @@ export const Stadium = {
       name: 'VIP B',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '45'
         },
         {
-          name: '02',
+          name: '2',
           seats: '45'
         },
         {
-          name: '03',
+          name: '3',
           seats: '45'
         },
         {
-          name: '04',
+          name: '4',
           seats: '45'
         },
         {
-          name: '05',
+          name: '5',
           seats: '45'
         },
         {
-          name: '06',
+          name: '6',
           seats: '32'
         },
         {
-          name: '07',
+          name: '7',
           seats: '34'
         },
         {
-          name: '08',
+          name: '8',
           seats: '35'
         },
         {
-          name: '09',
+          name: '9',
           seats: '35'
         },
         {
@@ -998,7 +998,7 @@ export const Stadium = {
       name: 'VIP A R',
       rows: [
         {
-          name: '09',
+          name: '9',
           seats: '15'
         },
         {
@@ -1034,7 +1034,7 @@ export const Stadium = {
       name: 'VIP A L',
       rows: [
         {
-          name: '09',
+          name: '9',
           seats: '14'
         },
         {
@@ -1145,19 +1145,19 @@ export const Stadium = {
       name: '30',
       rows: [
         {
-          name: '06',
+          name: '6',
           seats: '8'
         },
         {
-          name: '07',
+          name: '7',
           seats: '9'
         },
         {
-          name: '08',
+          name: '8',
           seats: '10'
         },
         {
-          name: '09',
+          name: '9',
           seats: '11'
         },
         {
@@ -1261,19 +1261,19 @@ export const Stadium = {
       name: '31',
       rows: [
         {
-          name: '06',
+          name: '6',
           seats: '20'
         },
         {
-          name: '07',
+          name: '7',
           seats: '20'
         },
         {
-          name: '08',
+          name: '8',
           seats: '20'
         },
         {
-          name: '09',
+          name: '9',
           seats: '20'
         },
         {
@@ -1377,40 +1377,40 @@ export const Stadium = {
       name: '32',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '28'
         },
         {
-          name: '02',
+          name: '2',
           seats: '28'
         },
         {
-          name: '03',
+          name: '3',
           seats: '28'
         },
         {
-          name: '04',
+          name: '4',
           seats: '29',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '29'
         },
         {
-          name: '06',
+          name: '6',
           seats: '12'
         },
         {
-          name: '07',
+          name: '7',
           seats: '12'
         },
         {
-          name: '08',
+          name: '8',
           seats: '12'
         },
         {
-          name: '09',
+          name: '9',
           seats: '13'
         },
         {
@@ -1514,40 +1514,40 @@ export const Stadium = {
       name: '33',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '29'
         },
         {
-          name: '02',
+          name: '2',
           seats: '29'
         },
         {
-          name: '03',
+          name: '3',
           seats: '30'
         },
         {
-          name: '04',
+          name: '4',
           seats: '30',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '31'
         },
         {
-          name: '06',
+          name: '6',
           seats: '24'
         },
         {
-          name: '07',
+          name: '7',
           seats: '24'
         },
         {
-          name: '08',
+          name: '8',
           seats: '25'
         },
         {
-          name: '09',
+          name: '9',
           seats: '25'
         },
         {
@@ -1651,40 +1651,40 @@ export const Stadium = {
       name: '34',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '22'
         },
         {
-          name: '02',
+          name: '2',
           seats: '22'
         },
         {
-          name: '03',
+          name: '3',
           seats: '22'
         },
         {
-          name: '04',
+          name: '4',
           seats: '22',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '23'
         },
         {
-          name: '06',
+          name: '6',
           seats: '23'
         },
         {
-          name: '07',
+          name: '7',
           seats: '23'
         },
         {
-          name: '08',
+          name: '8',
           seats: '23'
         },
         {
-          name: '09',
+          name: '9',
           seats: '24'
         },
         {
@@ -1788,40 +1788,40 @@ export const Stadium = {
       name: '35',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '21'
         },
         {
-          name: '02',
+          name: '2',
           seats: '21'
         },
         {
-          name: '03',
+          name: '3',
           seats: '22'
         },
         {
-          name: '04',
+          name: '4',
           seats: '22',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '22'
         },
         {
-          name: '06',
+          name: '6',
           seats: '23'
         },
         {
-          name: '07',
+          name: '7',
           seats: '24'
         },
         {
-          name: '08',
+          name: '8',
           seats: '24'
         },
         {
-          name: '09',
+          name: '9',
           seats: '24'
         },
         {
@@ -1925,40 +1925,40 @@ export const Stadium = {
       name: '36',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '24'
         },
         {
-          name: '02',
+          name: '2',
           seats: '24'
         },
         {
-          name: '03',
+          name: '3',
           seats: '25'
         },
         {
-          name: '04',
+          name: '4',
           seats: '25',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '26'
         },
         {
-          name: '06',
+          name: '6',
           seats: '17'
         },
         {
-          name: '07',
+          name: '7',
           seats: '17'
         },
         {
-          name: '08',
+          name: '8',
           seats: '18'
         },
         {
-          name: '09',
+          name: '9',
           seats: '18'
         },
         {
@@ -2062,19 +2062,19 @@ export const Stadium = {
       name: '37',
       rows: [
         {
-          name: '06',
+          name: '6',
           seats: '8'
         },
         {
-          name: '07',
+          name: '7',
           seats: '8'
         },
         {
-          name: '08',
+          name: '8',
           seats: '8'
         },
         {
-          name: '09',
+          name: '9',
           seats: '8'
         },
         {
@@ -2174,40 +2174,40 @@ export const Stadium = {
       name: '38',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '24'
         },
         {
-          name: '02',
+          name: '2',
           seats: '24'
         },
         {
-          name: '03',
+          name: '3',
           seats: '25'
         },
         {
-          name: '04',
+          name: '4',
           seats: '25',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '25'
         },
         {
-          name: '06',
+          name: '6',
           seats: '16'
         },
         {
-          name: '07',
+          name: '7',
           seats: '17'
         },
         {
-          name: '08',
+          name: '8',
           seats: '17'
         },
         {
-          name: '09',
+          name: '9',
           seats: '18'
         },
         {
@@ -2311,40 +2311,40 @@ export const Stadium = {
       name: '39',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '21'
         },
         {
-          name: '02',
+          name: '2',
           seats: '22'
         },
         {
-          name: '03',
+          name: '3',
           seats: '22'
         },
         {
-          name: '04',
+          name: '4',
           seats: '23',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '23'
         },
         {
-          name: '06',
+          name: '6',
           seats: '23'
         },
         {
-          name: '07',
+          name: '7',
           seats: '24'
         },
         {
-          name: '08',
+          name: '8',
           seats: '24'
         },
         {
-          name: '09',
+          name: '9',
           seats: '24'
         },
         {
@@ -2448,40 +2448,40 @@ export const Stadium = {
       name: '40',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '22'
         },
         {
-          name: '02',
+          name: '2',
           seats: '22'
         },
         {
-          name: '03',
+          name: '3',
           seats: '23'
         },
         {
-          name: '04',
+          name: '4',
           seats: '23',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '23'
         },
         {
-          name: '06',
+          name: '6',
           seats: '23'
         },
         {
-          name: '07',
+          name: '7',
           seats: '23'
         },
         {
-          name: '08',
+          name: '8',
           seats: '23'
         },
         {
-          name: '09',
+          name: '9',
           seats: '23'
         },
         {
@@ -2585,40 +2585,40 @@ export const Stadium = {
       name: '41',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '29'
         },
         {
-          name: '02',
+          name: '2',
           seats: '30'
         },
         {
-          name: '03',
+          name: '3',
           seats: '30'
         },
         {
-          name: '04',
+          name: '4',
           seats: '31',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '32'
         },
         {
-          name: '06',
+          name: '6',
           seats: '23'
         },
         {
-          name: '07',
+          name: '7',
           seats: '24'
         },
         {
-          name: '08',
+          name: '8',
           seats: '25'
         },
         {
-          name: '09',
+          name: '9',
           seats: '25'
         },
         {
@@ -2722,40 +2722,40 @@ export const Stadium = {
       name: '42',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '5'
         },
         {
-          name: '02',
+          name: '2',
           seats: '28'
         },
         {
-          name: '03',
+          name: '3',
           seats: '29'
         },
         {
-          name: '04',
+          name: '4',
           seats: '29',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '30'
         },
         {
-          name: '06',
+          name: '6',
           seats: '12'
         },
         {
-          name: '07',
+          name: '7',
           seats: '12'
         },
         {
-          name: '08',
+          name: '8',
           seats: '12'
         },
         {
-          name: '09',
+          name: '9',
           seats: '12'
         },
         {
@@ -2859,19 +2859,19 @@ export const Stadium = {
       name: '43',
       rows: [
         {
-          name: '06',
+          name: '6',
           seats: '21'
         },
         {
-          name: '07',
+          name: '7',
           seats: '21'
         },
         {
-          name: '08',
+          name: '8',
           seats: '21'
         },
         {
-          name: '09',
+          name: '9',
           seats: '21'
         },
         {
@@ -2975,19 +2975,19 @@ export const Stadium = {
       name: '44',
       rows: [
         {
-          name: '06',
+          name: '6',
           seats: '10'
         },
         {
-          name: '07',
+          name: '7',
           seats: '11'
         },
         {
-          name: '08',
+          name: '8',
           seats: '12'
         },
         {
-          name: '09',
+          name: '9',
           seats: '13'
         },
         {
@@ -3166,44 +3166,44 @@ export const Stadium = {
       name: '22',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '9'
         },
         {
-          name: '01',
+          name: '1',
           seats: '21'
         },
         {
-          name: '02',
+          name: '2',
           seats: '21'
         },
         {
-          name: '03',
+          name: '3',
           seats: '21'
         },
         {
-          name: '04',
+          name: '4',
           seats: '21',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '21'
         },
         {
-          name: '06',
+          name: '6',
           seats: '21'
         },
         {
-          name: '07',
+          name: '7',
           seats: '21'
         },
         {
-          name: '08',
+          name: '8',
           seats: '20'
         },
         {
-          name: '09',
+          name: '9',
           seats: '20'
         },
         {
@@ -3307,44 +3307,44 @@ export const Stadium = {
       name: '23',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '11'
         },
         {
-          name: '01',
+          name: '1',
           seats: '33'
         },
         {
-          name: '02',
+          name: '2',
           seats: '33'
         },
         {
-          name: '03',
+          name: '3',
           seats: '33'
         },
         {
-          name: '04',
+          name: '4',
           seats: '33',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '33'
         },
         {
-          name: '06',
+          name: '6',
           seats: '33'
         },
         {
-          name: '07',
+          name: '7',
           seats: '33'
         },
         {
-          name: '08',
+          name: '8',
           seats: '24'
         },
         {
-          name: '09',
+          name: '9',
           seats: '24'
         },
         {
@@ -3448,44 +3448,44 @@ export const Stadium = {
       name: '24',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '11'
         },
         {
-          name: '01',
+          name: '1',
           seats: '33'
         },
         {
-          name: '02',
+          name: '2',
           seats: '33'
         },
         {
-          name: '03',
+          name: '3',
           seats: '33'
         },
         {
-          name: '04',
+          name: '4',
           seats: '33',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '33'
         },
         {
-          name: '06',
+          name: '6',
           seats: '33'
         },
         {
-          name: '07',
+          name: '7',
           seats: '33'
         },
         {
-          name: '08',
+          name: '8',
           seats: '24'
         },
         {
-          name: '09',
+          name: '9',
           seats: '24'
         },
         {
@@ -3589,44 +3589,44 @@ export const Stadium = {
       name: '25',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '7'
         },
         {
-          name: '01',
+          name: '1',
           seats: '21'
         },
         {
-          name: '02',
+          name: '2',
           seats: '21'
         },
         {
-          name: '03',
+          name: '3',
           seats: '21'
         },
         {
-          name: '04',
+          name: '4',
           seats: '21',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '18'
         },
         {
-          name: '06',
+          name: '6',
           seats: '18'
         },
         {
-          name: '07',
+          name: '7',
           seats: '26'
         },
         {
-          name: '08',
+          name: '8',
           seats: '18'
         },
         {
-          name: '09',
+          name: '9',
           seats: '18'
         },
         {
@@ -3730,44 +3730,44 @@ export const Stadium = {
       name: '26',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '7'
         },
         {
-          name: '01',
+          name: '1',
           seats: '21'
         },
         {
-          name: '02',
+          name: '2',
           seats: '21'
         },
         {
-          name: '03',
+          name: '3',
           seats: '21'
         },
         {
-          name: '04',
+          name: '4',
           seats: '21',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '18'
         },
         {
-          name: '06',
+          name: '6',
           seats: '18'
         },
         {
-          name: '07',
+          name: '7',
           seats: '24'
         },
         {
-          name: '08',
+          name: '8',
           seats: '18'
         },
         {
-          name: '09',
+          name: '9',
           seats: '18'
         },
         {
@@ -3871,44 +3871,44 @@ export const Stadium = {
       name: '27',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '11'
         },
         {
-          name: '01',
+          name: '1',
           seats: '33'
         },
         {
-          name: '02',
+          name: '2',
           seats: '33'
         },
         {
-          name: '03',
+          name: '3',
           seats: '33'
         },
         {
-          name: '04',
+          name: '4',
           seats: '33',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '33'
         },
         {
-          name: '06',
+          name: '6',
           seats: '33'
         },
         {
-          name: '07',
+          name: '7',
           seats: '33'
         },
         {
-          name: '08',
+          name: '8',
           seats: '24'
         },
         {
-          name: '09',
+          name: '9',
           seats: '24'
         },
         {
@@ -4012,44 +4012,44 @@ export const Stadium = {
       name: '28',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '11'
         },
         {
-          name: '01',
+          name: '1',
           seats: '33'
         },
         {
-          name: '02',
+          name: '2',
           seats: '33'
         },
         {
-          name: '03',
+          name: '3',
           seats: '33'
         },
         {
-          name: '04',
+          name: '4',
           seats: '33',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '33'
         },
         {
-          name: '06',
+          name: '6',
           seats: '33'
         },
         {
-          name: '07',
+          name: '7',
           seats: '33'
         },
         {
-          name: '08',
+          name: '8',
           seats: '24'
         },
         {
-          name: '09',
+          name: '9',
           seats: '24'
         },
         {
@@ -4153,44 +4153,44 @@ export const Stadium = {
       name: '29',
       rows: [
         {
-          name: '00',
+          name: '0',
           seats: '10'
         },
         {
-          name: '01',
+          name: '1',
           seats: '21'
         },
         {
-          name: '02',
+          name: '2',
           seats: '21'
         },
         {
-          name: '03',
+          name: '3',
           seats: '21'
         },
         {
-          name: '04',
+          name: '4',
           seats: '21',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '21'
         },
         {
-          name: '06',
+          name: '6',
           seats: '21'
         },
         {
-          name: '07',
+          name: '7',
           seats: '21'
         },
         {
-          name: '08',
+          name: '8',
           seats: '20'
         },
         {
-          name: '09',
+          name: '9',
           seats: '20'
         },
         {
@@ -4297,40 +4297,40 @@ export const Stadium = {
       name: '10',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '11'
         },
         {
-          name: '02',
+          name: '2',
           seats: '11'
         },
         {
-          name: '03',
+          name: '3',
           seats: '12'
         },
         {
-          name: '04',
+          name: '4',
           seats: '18',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '19'
         },
         {
-          name: '06',
+          name: '6',
           seats: '20'
         },
         {
-          name: '07',
+          name: '7',
           seats: '20'
         },
         {
-          name: '08',
+          name: '8',
           seats: '21'
         },
         {
-          name: '09',
+          name: '9',
           seats: '22'
         },
         {
@@ -4466,40 +4466,40 @@ export const Stadium = {
       name: '11',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '19'
         },
         {
-          name: '02',
+          name: '2',
           seats: '19'
         },
         {
-          name: '03',
+          name: '3',
           seats: '20'
         },
         {
-          name: '04',
+          name: '4',
           seats: '20',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '21'
         },
         {
-          name: '06',
+          name: '6',
           seats: '21'
         },
         {
-          name: '07',
+          name: '7',
           seats: '22'
         },
         {
-          name: '08',
+          name: '8',
           seats: '22'
         },
         {
-          name: '09',
+          name: '9',
           seats: '23'
         },
         {
@@ -4635,40 +4635,40 @@ export const Stadium = {
       name: '12',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '29'
         },
         {
-          name: '02',
+          name: '2',
           seats: '30'
         },
         {
-          name: '03',
+          name: '3',
           seats: '30'
         },
         {
-          name: '04',
+          name: '4',
           seats: '31',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '31'
         },
         {
-          name: '06',
+          name: '6',
           seats: '32'
         },
         {
-          name: '07',
+          name: '7',
           seats: '33'
         },
         {
-          name: '08',
+          name: '8',
           seats: '33'
         },
         {
-          name: '09',
+          name: '9',
           seats: '34'
         },
         {
@@ -4804,40 +4804,40 @@ export const Stadium = {
       name: '13',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '31'
         },
         {
-          name: '02',
+          name: '2',
           seats: '32'
         },
         {
-          name: '03',
+          name: '3',
           seats: '32'
         },
         {
-          name: '04',
+          name: '4',
           seats: '33',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '33'
         },
         {
-          name: '06',
+          name: '6',
           seats: '34'
         },
         {
-          name: '07',
+          name: '7',
           seats: '34'
         },
         {
-          name: '08',
+          name: '8',
           seats: '35'
         },
         {
-          name: '09',
+          name: '9',
           seats: '35'
         },
         {
@@ -4973,40 +4973,40 @@ export const Stadium = {
       name: '14',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '36'
         },
         {
-          name: '02',
+          name: '2',
           seats: '37'
         },
         {
-          name: '03',
+          name: '3',
           seats: '37'
         },
         {
-          name: '04',
+          name: '4',
           seats: '38',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '38'
         },
         {
-          name: '06',
+          name: '6',
           seats: '39'
         },
         {
-          name: '07',
+          name: '7',
           seats: '39'
         },
         {
-          name: '08',
+          name: '8',
           seats: '40'
         },
         {
-          name: '09',
+          name: '9',
           seats: '40'
         },
         {
@@ -5254,40 +5254,40 @@ export const Stadium = {
       name: '16',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '35'
         },
         {
-          name: '02',
+          name: '2',
           seats: '36'
         },
         {
-          name: '03',
+          name: '3',
           seats: '36'
         },
         {
-          name: '04',
+          name: '4',
           seats: '37',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '38'
         },
         {
-          name: '06',
+          name: '6',
           seats: '38'
         },
         {
-          name: '07',
+          name: '7',
           seats: '39'
         },
         {
-          name: '08',
+          name: '8',
           seats: '39'
         },
         {
-          name: '09',
+          name: '9',
           seats: '40'
         },
         {
@@ -5423,40 +5423,40 @@ export const Stadium = {
       name: '17',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '31'
         },
         {
-          name: '02',
+          name: '2',
           seats: '32'
         },
         {
-          name: '03',
+          name: '3',
           seats: '32'
         },
         {
-          name: '04',
+          name: '4',
           seats: '33',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '33'
         },
         {
-          name: '06',
+          name: '6',
           seats: '34'
         },
         {
-          name: '07',
+          name: '7',
           seats: '34'
         },
         {
-          name: '08',
+          name: '8',
           seats: '35'
         },
         {
-          name: '09',
+          name: '9',
           seats: '35'
         },
         {
@@ -5592,40 +5592,40 @@ export const Stadium = {
       name: '18',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '29'
         },
         {
-          name: '02',
+          name: '2',
           seats: '29'
         },
         {
-          name: '03',
+          name: '3',
           seats: '30'
         },
         {
-          name: '04',
+          name: '4',
           seats: '30',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '31'
         },
         {
-          name: '06',
+          name: '6',
           seats: '31'
         },
         {
-          name: '07',
+          name: '7',
           seats: '31'
         },
         {
-          name: '08',
+          name: '8',
           seats: '32'
         },
         {
-          name: '09',
+          name: '9',
           seats: '33'
         },
         {
@@ -5761,40 +5761,40 @@ export const Stadium = {
       name: '19',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '18'
         },
         {
-          name: '02',
+          name: '2',
           seats: '18'
         },
         {
-          name: '03',
+          name: '3',
           seats: '19'
         },
         {
-          name: '04',
+          name: '4',
           seats: '19',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '20'
         },
         {
-          name: '06',
+          name: '6',
           seats: '20'
         },
         {
-          name: '07',
+          name: '7',
           seats: '21'
         },
         {
-          name: '08',
+          name: '8',
           seats: '21'
         },
         {
-          name: '09',
+          name: '9',
           seats: '22'
         },
         {
@@ -5930,40 +5930,40 @@ export const Stadium = {
       name: '20',
       rows: [
         {
-          name: '01',
+          name: '1',
           seats: '12'
         },
         {
-          name: '02',
+          name: '2',
           seats: '13'
         },
         {
-          name: '03',
+          name: '3',
           seats: '13'
         },
         {
-          name: '04',
+          name: '4',
           seats: '19',
 
         },
         {
-          name: '05',
+          name: '5',
           seats: '19'
         },
         {
-          name: '06',
+          name: '6',
           seats: '20'
         },
         {
-          name: '07',
+          name: '7',
           seats: '21'
         },
         {
-          name: '08',
+          name: '8',
           seats: '22'
         },
         {
-          name: '09',
+          name: '9',
           seats: '22'
         },
         {
