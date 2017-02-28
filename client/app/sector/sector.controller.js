@@ -33,6 +33,13 @@
         .then(tickets => this.reservedTickets = tickets);
     }
 
+    updateReservedTickets() {
+      let matchId = this.match.id,
+        sectorName = this.sector.name;
+
+      this.getReservedTickets(matchId, sectorName);
+    }
+
      addClassByCheckSoldSeat(seatId) {
       let checkTicket = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
 

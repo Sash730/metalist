@@ -1,7 +1,7 @@
 <h4>Ваша корзина:</h4>
-<div class="empty" ng-hide="vm.cart.size">Пустая</div>
+<div class="empty" ng-hide="$ctrl.cart.size">Пустая</div>
 <table class="cart-items table table-condensed">
-    <tr class="cart-item" ng-repeat="ticket in vm.cart.tickets">
+    <tr class="cart-item" ng-repeat="ticket in $ctrl.cart.tickets">
         <td>
          <!-- {{ ticket.match.headline }}<br/>
           ({{ ticket.match.date|date:'d MMM' }} at {{ ticket.match.date|date:'HH:mm' }} )<br/>-->
@@ -9,12 +9,12 @@
         </td>
         <td>{{ ticket.amount | money }}</td>
         <td>
-            <button class="btn  btn-danger btn-xs" ng-click="vm.removeItem(ticket.seat.id)">
+            <button class="btn  btn-danger btn-xs" ng-click="$ctrl.removeItem(ticket.seat.id)">
                 <i class="fa fa-times"></i>
             </button>
         </td>
     </tr>
-    <!--<tr ng-show="vm.cart.size">
-        <td colspan="3"><strong>{{ vm.cart.size }}</strong> tickets for <strong>{{ vm.cart.amount | money }}</strong></td>
+    <!--<tr ng-show="$ctrl.cart.size">
+        <td colspan="3"><strong>{{ $ctrl.cart.size }}</strong> tickets for <strong>{{ $ctrl.cart.amount | money }}</strong></td>
     </tr>-->
 </table>
