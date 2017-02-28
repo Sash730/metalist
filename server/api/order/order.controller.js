@@ -93,6 +93,30 @@ let createOrUpdateTicket = (cart, match, ticket,  price, seat) => {
   return ticket.save();
 };
 
+let doTicketsSecure = (cart) => {
+  cart.tickets =  cart.tickets.map(ticket => {
+    return {
+      cartId: ticket.cartId,
+      match:  {
+        id: ticket.match.id,
+        headline: ticket.match.headline,
+        round: ticket.match.round,
+        date: ticket.match.date
+      },
+      seat: {
+        id: ticket.seat.id,
+        tribune: ticket.seat.tribune,
+        sector: ticket.seat.sector,
+        row: ticket.seat.row,
+        number: ticket.seat.number
+      },
+      amount: ticket.amount,
+      status: ticket.status
+    };
+  });
+  return cart;
+};
+
 let updateTicketsInCheckout = (order) => {
   order.tickets.map((ticket) => {
     Ticket.findOne({_id: ticket.id})
@@ -312,6 +336,9 @@ export function updateCart(req, res) {
             return Order.findOne({_id: cart.id})
                  .populate({path: 'tickets'});
           })
+           .then(cart => {
+             return doTicketsSecure(cart);
+           })
       })
       .then(respondWithResult(res))
       .catch(handleError(res));
@@ -336,7 +363,7 @@ export function deleteItemFromCart(req, res) {
                 ticket.save();
              });
 
-          return cart;
+          return doTicketsSecure(cart);
         })
         .then(respondWithResult(res))
         .catch(handleError(res))
@@ -348,6 +375,9 @@ export function getCart(req, res) {
 
     Order.findOne({_id: cartId, type: 'cart'})
       .populate({path: 'tickets'})
+      .then(cart => {
+        return doTicketsSecure(cart);
+      })
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res))
@@ -378,6 +408,9 @@ export function getUserCart(req, res) {
 
         return addUserToGuestCard(guestCart, user);
       }
+    })
+    .then(cart => {
+      return doTicketsSecure(cart);
     })
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
