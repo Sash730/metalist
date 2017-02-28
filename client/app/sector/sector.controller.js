@@ -30,7 +30,7 @@
 
     getReservedTickets(matchId, sectorName) {
       this.ticketsService.fetchReservedTickets(matchId, sectorName)
-        .then(tickets => this.reservedTickets = tickets)
+        .then(tickets => this.reservedTickets = tickets);
     }
 
      addClassByCheckSoldSeat(seatId) {
@@ -40,7 +40,7 @@
     }
 
      addTicketToCart(match, tribuneName, sectorName, rowName, seat, sectorPrice) {
-      let seatId = 's' + sectorName + rowName + seat,
+      let seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
           [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
 
       if (checkTicket && this.selectedSeats.includes(seatId)) {
@@ -52,10 +52,10 @@
       }
 
       if( !checkTicket ) {
-        this.selectedSeats.push(seatId);
         this.CartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
           .then(() => {
             this.getReservedTickets(match.id, sectorName);
+            this.selectedSeats.push(seatId);
           });
       }
     }
