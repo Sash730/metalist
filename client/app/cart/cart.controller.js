@@ -6,14 +6,23 @@
 
         constructor(CartService) {
             this.cart = CartService.cart;
-            this.removeItem = CartService.removeTicket.bind(CartService);
+            this.cartService = CartService;
         }
+
+      removeItem(seatId) {
+        this.cartService.removeTicket(seatId)
+          .then(() => {
+            this.onDelete();
+          });
+      }
     }
 
     angular.module('metalistTicketsApp')
         .component('cart', {
             templateUrl: 'app/cart/cart.html',
             controller: CartController,
-            controllerAs: 'vm'
+            bindings: {
+              onDelete: '&'
+            }
         });
 })();

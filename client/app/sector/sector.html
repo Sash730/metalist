@@ -53,7 +53,7 @@
   </div>
   <div class="col-sm-12">
     <div cardSize>
-      <cart></cart>
+      <cart on-delete="vm.updateReservedTickets()"></cart>
     </div>
     <div checkoutBtn ng-show="vm.cart.size">
       <a ui-sref="checkout" class="checkout btn btn-link">Оформить заказ</a>
