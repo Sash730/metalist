@@ -259,7 +259,7 @@ export function updateCart(req, res) {
         tribuneName = req.body.tribuneName,
         sectorName = req.body.sectorName,
         rowName = req.body.rowName,
-        seatId = 's' + sectorName + rowName + seat,
+        seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
         priceSchemaId = req.body.match.priceSchema.id,
         timeEndTicketReserve = moment().subtract(30, 'minutes'),
         price = req.body.price;
@@ -328,7 +328,7 @@ export function deleteItemFromCart(req, res) {
           return deleteTicketFromCart(cart, seatId);
         })
         .then(cart => {
-           Ticket.findOne({cartId: cart._id})
+           Ticket.findOne({cartId: cart._id, 'seat.id': seatId})
              .then(ticket => {
                 ticket.cartId = '';
                 ticket.reserveDate = null;
