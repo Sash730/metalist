@@ -36,7 +36,7 @@
           <ul class="liststyle">
             <li ng-repeat="row in vm.sector.rows | orderBy:'-'">
               <div id="s{{vm.sector.name}}{{row.name}}{{1+$index}}"
-                   ng-class="vm.addClassByCheckSoldSeat('s'+vm.sector.name+'r'+row.name+'st'+(1+$index)) ? 'imgSeatsStyle' : 'blockedSeat'"
+                   ng-class="vm.addClassByCheckSoldSeat('s'+vm.sector.name+'r'+row.name+'st'+(1+$index))"
                    ng-repeat="seat in vm.makeArrayFromNumber(row.seats)"
                    ng-click="vm.addTicketToCart(vm.match, vm.tribuneName, vm.sector.name, row.name, seat, vm.sectorPrice)"
                    uib-popover-html="'<p>Трибуна: <b>{{vm.tribuneName}} {{vm.sector.name}}</b><br />Ряд: <b>{{row.name}}</b><br />Место: <b>{{seat}}</b></p>'"
@@ -53,7 +53,7 @@
   </div>
   <div class="col-sm-12">
     <div cardSize>
-      <cart on-delete="vm.updateReservedTickets()"></cart>
+      <cart on-delete="vm.updateReservedTickets($event)"></cart>
     </div>
     <div checkoutBtn ng-show="vm.cart.size">
       <a ui-sref="checkout" class="checkout btn btn-link">Оформить заказ</a>

@@ -20,7 +20,8 @@
       this.rowRow = 'Ряд';
 
       this.getPrice();
-      this.getReservedTickets(match.id, sector.name);
+      this.getReservedTickets();
+      this.getSelectedSeats();
     }
 
     getPrice() {
@@ -28,22 +29,37 @@
       this.sectorPrice = this.priceSchemaService.getPriceBySector(this.tribuneName, this.sector.name, priceSchema);
     }
 
-    getReservedTickets(matchId, sectorName) {
+    getReservedTickets() {
+      let matchId = this.match.id,
+        sectorName = this.sector.name;
+
       this.ticketsService.fetchReservedTickets(matchId, sectorName)
         .then(tickets => this.reservedTickets = tickets);
     }
 
-    updateReservedTickets() {
-      let matchId = this.match.id,
-        sectorName = this.sector.name;
+    getSelectedSeats(){
+        this.cart._tickets.forEach(ticket => {
+          this.selectedSeats.push(ticket.seat.id);
+        });
+    }
 
-      this.getReservedTickets(matchId, sectorName);
+    updateReservedTickets($event) {
+      this.getReservedTickets();
+      this.selectedSeats.splice(this.selectedSeats.indexOf($event.seatId), 1);
     }
 
      addClassByCheckSoldSeat(seatId) {
-      let checkTicket = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
+      let [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
 
-       return !checkTicket.length;
+      if (checkTicket && this.selectedSeats.includes(seatId)) {
+        return 'blockedSeat';
+      }
+
+       if (checkTicket && !this.selectedSeats.includes(seatId)) {
+         return 'soldSeat';
+       }
+
+       return 'imgSeatsStyle';
     }
 
      addTicketToCart(match, tribuneName, sectorName, rowName, seat, sectorPrice) {
@@ -53,7 +69,7 @@
       if (checkTicket && this.selectedSeats.includes(seatId)) {
         this.CartService.removeTicket(seatId)
           .then(() => {
-            this.getReservedTickets(match.id, sectorName);
+            this.getReservedTickets();
             this.selectedSeats.splice(this.selectedSeats.indexOf(seatId), 1);
           })
       }
@@ -61,7 +77,7 @@
       if( !checkTicket ) {
         this.CartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
           .then(() => {
-            this.getReservedTickets(match.id, sectorName);
+            this.getReservedTickets();
             this.selectedSeats.push(seatId);
           });
       }
