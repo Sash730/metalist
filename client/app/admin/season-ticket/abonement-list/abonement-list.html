@@ -1,0 +1,36 @@
+<label>Список абонементов</label>
+<form class="form">
+  <table class="table">
+    <thead>
+    <tr>
+        <th>№ абонемента</th>
+        <th>Сектор</th>
+        <th>Ряд</th>
+        <th>Место</th>
+        <th>Действителен</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="ticket in $ctrl.tickets track by ticket._id">
+        <td>
+            <input type="text" name="number" class="form-control" ng-model="ticket.number" />
+        </td>
+        <td>
+            <input type="text" name="sector" class="form-control" ng-model="ticket.sector" />
+        </td>
+        <td>
+            <input type="text" name="row" class="form-control" ng-model="ticket.row" />
+        </td>
+        <td>
+            <input type="text" name="seat" class="form-control" ng-model="ticket.seat" />
+        </td>
+        <td>
+            <input type="date" name="valid" class="form-control" ng-model="ticket.valid" />
+        </td>
+        <td>
+            <span class="badge" ng-click="$ctrl.edit(ticket)" style="cursor: pointer;">Edit</span>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+</form>

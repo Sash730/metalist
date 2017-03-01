@@ -14,6 +14,7 @@ export default function (app) {
   app.use('/api/tickets', require('./api/ticket'));
   app.use('/api/orders', require('./api/order'));
   app.use('/api/priceSchema', require('./api/priceSchema'));
+  app.use('/api/seasonTicket', require('./api/seasonTicket'));
   app.use('/payment/liqpay', require('./api/payment/liqpay'));
 
   app.use('/auth', require('./auth').default);

@@ -55,7 +55,7 @@
         return 'blockedSeat';
       }
 
-       if (checkTicket && !this.selectedSeats.includes(seatId)) {
+       if ( checkTicket && !this.selectedSeats.includes(seatId) ) {
          return 'soldSeat';
        }
 
@@ -66,7 +66,7 @@
       let seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
           [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
 
-      if (checkTicket && this.selectedSeats.includes(seatId)) {
+      if ( checkTicket && this.selectedSeats.includes(seatId) ) {
         this.CartService.removeTicket(seatId)
           .then(() => {
             this.getReservedTickets()
