@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="text-center"><img src="../../app/home/img/mxtick.jpg"></div>
+  <div class="text-center"><img src="assets/images/mxtick.jpg"></div>
   <h4 class="page-header">Следующие матчи</h4>
   <div class="row">
     <div class="matches">
@@ -9,11 +9,11 @@
           <a class="link"><div class="bgTicket">
             <div class="buyTicket"><p>Купить билет</p></div>
             <div>
-              <span class="teamLogos"><img src="../../app/home/teamLogo/4.png" alt="..."></span>
-              <span class="teamLogos"><img class="teamLogos" src="../../app/home/teamLogo/2.png" alt="..."></span>
+              <span class="teamLogos"><img src="assets/teamLogo/4.png" alt="..."></span>
+              <span class="teamLogos"><img class="teamLogos" src="assets/teamLogo/6.png" alt="..."></span>
             </div>
             <span class="commandsNames"><h4>Металист 1925 - {{match.rival}}</h4></span>
-            <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'MMM d, y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>
+            <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'd MMMM y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>
             <span class="commandsNames"><p ng-if="!match.date" class="panel-title">{{ match.dateApproximate }}</p></span>
           </div>  </a>
         </li>
@@ -22,11 +22,11 @@
           <div class="bgTicket">
             <div class="buyTicket">Купить билет</div>
             <div>
-              <span class="teamLogos"><img src="../../app/home/teamLogo/4.png" alt="..."></span>
-              <span class="teamLogos"><img class="teamLogos" src="../../app/home/teamLogo/2.png" alt="..."></span>
+              <span class="teamLogos"><img src="assets/teamLogo/4.png" alt="..."></span>
+              <span class="teamLogos"><img class="teamLogos" src="assets/teamLogo/6.png" alt="..."></span>
             </div>
             <span class="commandsNames"><h4>Металист 1925 - {{match.rival}}</h4></span>
-            <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'MMM d, y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>
+            <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'd MMMM y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>
             <span class="commandsNames"><p ng-if="!match.date" class="panel-title">{{ match.dateApproximate }}</p></span>
           </div>
         </li>

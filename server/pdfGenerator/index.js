@@ -5,7 +5,7 @@ import moment from 'moment';
 import * as log4js from 'log4js';
 
 var logger = log4js.getLogger('createPdfFile');
-var PDFDocument = require('../../node_modules/pdfkit');
+var PDFDocument = require('pdfkit');
 
 function createPdfFile(ticket, png, cb) {
   var doc = new PDFDocument();

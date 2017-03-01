@@ -1,6 +1,6 @@
 'use strict';
 
-const PasswordGenerator = require('../../node_modules/strict-password-generator').default;
+const PasswordGenerator = require('strict-password-generator').default;
 const passwordGenerator = new PasswordGenerator();
 
 const options = {
