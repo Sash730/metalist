@@ -31,6 +31,8 @@
       <table class="table">
         <thead>
         <tr>
+          <th>cart id</th>
+          <th>status</th>
           <th>sector</th>
           <th>row</th>
           <th>amount</th>
@@ -39,13 +41,19 @@
         </thead>
         <tbody>
         <tr ng-repeat="ticket in admin.tickets">
+          <td ng-bind="ticket.cartId">
+          </td>
+          <td ng-bind="ticket.seat.id">
+          </td>
+          <td ng-bind="ticket.status">
+          </td>
           <td ng-bind="ticket.seat.sector">
           </td>
           <td ng-bind="ticket.seat.row">
           </td>
-          <td ng-bind="ticket.amount | money">
-          </td>
           <td ng-bind="ticket.seat.number">
+          </td>
+          <td ng-bind="ticket.amount | money">
           </td>
         </tr>
         </tbody>

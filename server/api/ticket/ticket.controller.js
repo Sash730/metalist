@@ -163,17 +163,19 @@ export function use(req, res, next) {
 export function getTicketsForCheckMobile(req, res) {
   let dateNow = new Date();
 
-  return Ticket.find({status: 'new'})
-               .where({$and: [
+  return Ticket.find()//{status: 'new'}
+               /*.where({$and: [
                  {'valid.from': { $lte: dateNow }},
                  {'valid.to': { $gt: dateNow }}
-               ]})
+               ]})*/
                .exec()
                .then(tickets => {
                  let result = _.map(tickets, (ticket) => {
 
                    return {
                      '_id': ticket.id,
+                     'cartId': ticket.cartId,
+                     'status': ticket.status,
                      'seat': ticket.seat,
                      'headLine': ticket.match.headline,
                      'used': ticket.used,
@@ -191,13 +193,13 @@ export function getCountPaidOrders(req, res) {
   let date = new Date(req.params.date);
 
   let countOrdersPromise =  Ticket.aggregate([
-    {$match: {status: 'paid', 'match.date': date}},
+    //{$match: {status: 'paid', 'match.date': date}},
     {$project: {tribune: '$seat.tribune'}},
     {$group: {_id: "$tribune", number: {$sum: 1}}}])
     .then(handleEntityNotFound(res));
 
   let totalPricePromise  =  Ticket.aggregate([
-    {$match: {status: 'paid', 'match.date': date}},
+    //{$match: {status: 'paid', 'match.date': date}},
     {$project: {amount: 1, _id: 0, 'match.headline': 1}},
     {$group: {_id: '$match.headline', number: {$sum: '$amount'}}}
     ])
