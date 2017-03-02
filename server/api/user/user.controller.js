@@ -143,6 +143,7 @@ export function generatePassword(req, res, next) {
         newUser = new User();
         newUser.email = email;
         newUser.password = password;
+        newUser.provider = 'local';
       }
 
         newUser.save().

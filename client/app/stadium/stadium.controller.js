@@ -7,14 +7,13 @@
     constructor() {
 
       this.colors = [
-        {color: '#ff972f', colorName: '1', price: '10'},
-        {color: '#ffcc00', colorName: '2', price: '20'},
-        {color: '#54aa6a', colorName: '3', price: '30'},
-        {color: '#6f89c0', colorName: '4', price: '40'},
-        {color: '#6f89c0', colorName: '5', price: '50'},
-        {color: '#a1a6b0', colorName: '6', price: '100'},
-        {color: '#d4d4d4', colorName: 'red', price: '150'}
+        {color: '#ff972f', colorName: 'green', price: '30'},
+        {color: '#ffcc00', colorName: 'violet', price: '50'},
+        {color: '#54aa6a', colorName: 'yellow', price: '80'},
+        {color: '#6f89c0', colorName: 'blue', price: '100'},
+        {color: '#8b54aa', colorName: 'red', price: '150'}
       ];
+      this.prices = [];
     }
 
     $onInit() {
@@ -41,6 +40,10 @@
       if (!price) {
         return defaultColor;
       } else {
+        if ( !this.prices.includes(price) ) {
+          this.prices.push(price);
+        }
+
         return this.getColorByPrice(price);
       }
     }
@@ -49,6 +52,11 @@
       return this.colors
         .filter(color => color.price == price)
         .map(color => color.color)[0];
+    }
+
+    inPrices(price) {
+      return this.prices.includes(parseInt(price));
+
     }
 
     getPriceBySector(tribuneName, sectorNumber, priceSchema) {

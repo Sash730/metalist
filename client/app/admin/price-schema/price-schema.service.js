@@ -7,11 +7,11 @@
     constructor($http) {
       this.$http = $http;
 
-      this.colors = [{color: '#2bac21', colorName: 'green', price: '30'},
-        {color: '#d020ca', colorName: 'violet', price: '50'},
-        {color: '#fae30c', colorName: 'yellow', price: '80'},
-        {color: '#093ac0', colorName: 'blue', price: '100'},
-        {color: '#f02e2e', colorName: 'red', price: '150'}
+      this.colors = [{color: '#ff972f', colorName: 'green', price: '30'},
+        {color: '#ffcc00', colorName: 'violet', price: '50'},
+        {color: '#54aa6a', colorName: 'yellow', price: '80'},
+        {color: '#6f89c0', colorName: 'blue', price: '100'},
+        {color: '#8b54aa', colorName: 'red', price: '150'}
       ];
 
     }
