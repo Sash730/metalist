@@ -18,7 +18,6 @@ export function generatePaymentLink(params) {
 }
 
 export function signString(data) {
-  console.log('liq', data, privateKey, config);
   let sha1 = crypto.createHash('sha1');
   sha1.update(privateKey + data + privateKey);
 
