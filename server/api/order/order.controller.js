@@ -551,3 +551,11 @@ export function getMyOrders(req, res) {
     .then(respondWithResult(res))
   ;
 }
+
+export function getAllOrders(req, res) {
+
+  Order.find().sort({created: -1})
+    .populate({path: 'tickets'})
+    .then(respondWithResult(res))
+  ;
+}

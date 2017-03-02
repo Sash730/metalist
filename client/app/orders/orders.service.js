@@ -26,6 +26,12 @@
             ;
         }
 
+      getAllOrders() {
+        return this.$http.get('/api/orders/all')
+          .then(response => response.data)
+          ;
+      }
+
     }
 
     angular.module('metalistTicketsApp')

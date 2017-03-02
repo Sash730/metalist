@@ -9,8 +9,8 @@ let router = express.Router();
 router.get('/', auth.isAuthenticated(), controller.index);
 router.get('/reserved-on-match/:id/sector/:sector', controller.getReservedtickets);
 router.get('/:code/print'/*, auth.isAuthenticated()*/, controller.print);
-router.get('/:code/check', auth.isAuthenticated(), controller.use);
-router.get('/sold-tickets', auth.isAuthenticated(), controller.getTicketsForCheckMobile);
-router.get('/:date', auth.isAuthenticated(), controller.getCountPaidOrders);
+router.get('/:code/check', auth.hasRole('admin'), controller.use);
+router.get('/sold-tickets', auth.hasRole('admin'), controller.getTicketsForCheckMobile);
+router.get('/:date', auth.hasRole('admin'), controller.getCountPaidOrders);
 
 module.exports = router;
