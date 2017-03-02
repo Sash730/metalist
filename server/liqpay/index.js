@@ -1,33 +1,31 @@
-var crypto  = require('crypto');
+var crypto = require('crypto');
 import * as config from "../config/environment"
 
 
-function LiqPay(publicKey, privateKey) {
-    this.publicKey = publicKey;
-    this.privateKey = privateKey;
-    this.apiEndpoint = 'https://www.liqpay.com/api/3/checkout';
-    this.apiVersion = '3';
+const publicKey = config.liqpay.publicKey;
+const privateKey = config.liqpay.privateKey;
+const apiEndpoint = 'https://www.liqpay.com/api/3/checkout';
+const apiVersion = '3';
 
-    this.generatePaymentLink = function(params) {
-        params.***REMOVED*** = this.publicKey;
-        params.version = this.apiVersion;
+export function generatePaymentLink(params) {
+  params.***REMOVED*** = publicKey;
+  params.version = apiVersion;
 
-        var data = this.paramsToDataString(params);
-        var signature = this.signString(data);
+  let data = paramsToDataString(params);
+  let signature = signString(data);
 
-        return this.apiEndpoint + '?data=' + data + '&signature=' + signature;
-    };
-
-    this.signString = function(data) {
-        var sha1 = crypto.createHash('sha1');
-        sha1.update(this.privateKey + data + this.privateKey);
-
-        return sha1.digest('base64');
-    };
-
-    this.paramsToDataString = function (params) {
-        return new Buffer(JSON.stringify(params)).toString('base64');
-    }
+  return apiEndpoint + '?data=' + data + '&signature=' + signature;
 }
 
-export default new LiqPay(config.liqpay.publicKey, config.liqpay.privateKey);
+export function signString(data) {
+  console.log('liq', data, privateKey, config);
+  let sha1 = crypto.createHash('sha1');
+  sha1.update(privateKey + data + privateKey);
+
+  return sha1.digest('base64');
+}
+
+function paramsToDataString(params) {
+  return new Buffer(JSON.stringify(params)).toString('base64');
+}
+

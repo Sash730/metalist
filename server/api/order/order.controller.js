@@ -1,15 +1,15 @@
 'use strict';
 
-import Match from './../match/match.model';
-import Ticket from './../models/ticket.model';
-import User from './../models/user.model';
-import {Order} from './../models/order.model';
-import PriceSchema from "./../priceSchema/priceSchema.model";
+import Match from '../match/match.model';
+import Ticket from '../models/ticket.model';
+import User from '../models/user.model';
+import {Order} from '../models/order.model';
+import PriceSchema from "../priceSchema/priceSchema.model";
 import {Stadium} from '../../stadium';
 import * as _ from 'lodash';
 import * as config from "../../config/environment"
 import * as crypto from "crypto";
-import liqpay from '../../liqpay';
+import * as LiqPay from '../../liqpay';
 import * as Mailer from '../../mailer/mailer.js';
 import * as uuid from 'node-uuid';
 import * as barcode from 'bwip-js';
@@ -219,7 +219,7 @@ let processLiqpayRequest = (request) => {
             return reject(new Error('data or signature missing'));
         }
 
-        if(liqpay.signString(request.body.data) !== request.body.signature) {
+        if(LiqPay.signString(request.body.data) !== request.body.signature) {
             return reject(new Error('signature is wrong'));
         }
 
@@ -227,7 +227,8 @@ let processLiqpayRequest = (request) => {
     })
         .then(params => {
             return Promise.all([
-                Order.findOne({orderNumber: params.order_id, type: 'order', status: 'new'}),
+                Order.findOne({orderNumber: params.order_id, type: 'order', status: 'new'})
+                  .populate({path: 'tickets'}),
                 params
             ]);
         })
@@ -267,7 +268,7 @@ const createPaymentLink = (order) => {
         'result_url': config.liqpay.redirectUrl
     };
 
-    return liqpay.generatePaymentLink(paymentParams);
+    return LiqPay.generatePaymentLink(paymentParams);
 };
 
 function randomNumericString(length) {
