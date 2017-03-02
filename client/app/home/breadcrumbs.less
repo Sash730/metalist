@@ -51,7 +51,7 @@
   }
 }
 
-@media (min-width: 256px) and (max-width: 720px) {
+@media (min-width: 326px) and (max-width: 720px) {
 
   .cr {
     display: flex;
@@ -73,6 +73,149 @@
   .crumbs [crmdis] a {
     height: 30px;
     width: 18.5%;
+    font-size: 1.6vw;
+    padding: 22px 0 0 30px;
+  }
+}
+
+.crumbs [crm] a {
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+  float: left;
+  height: 60px;
+  background: #ffcc00;
+  position: relative;
+  margin: 0 5px 5px 0;
+  text-decoration: none;
+  color: #212121;
+}
+
+.crumbs [crmdis] a {
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+  float: left;
+  height: 60px;
+  background: #bcbcbc;
+  position: relative;
+  margin: 0 5px 5px 0;
+  text-decoration: none;
+  color: #212121;
+}
+
+.crumbs [crm] a:after {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid #ffcc00;
+  position: absolute;
+  right: -20px;
+  top: 0;
+  z-index: 1;
+}
+
+.crumbs [crmdis] a:after {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid #bcbcbc;
+  position: absolute;
+  right: -20px;
+  top: 0;
+  z-index: 1;
+}
+
+.crumbs [crm] a:before {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid #ffffff;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.crumbs [crmdis] a:before {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid #ffffff;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.crumbs [crm]:first-child a {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.crumbs [crm]:first-child a:before {
+  display: none;
+}
+
+.crumbs [crm]:last-child a {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.crumbs [crm]:last-child a:after {
+  display: none;
+}
+
+.crumbs [crmdis]:first-child a {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.crumbs [crmdis]:first-child a:before {
+  display: none;
+}
+
+.crumbs [crmdis]:last-child a {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.crumbs [crmdis]:last-child a:after {
+  display: none;
+}
+
+.crumbs [crm] a:hover {
+  background: #ffa900;
+}
+
+.crumbs [crm] a:hover:after {
+  border-left-color: #ffa900;
+}
+
+@media (min-width: 256px) and (max-width: 325px) {
+
+  .cr {
+    display: flex;
+    justify-content: center;
+  }
+
+  .crumbs {
+    padding-left: 10px;
+    width: 100%;
+  }
+
+  .crumbs [crm] a {
+    height: 30px;
+    width: 18%;
+    font-size: 2vw;
+    padding: 22px 0 0 30px;
+  }
+
+  .crumbs [crmdis] a {
+    height: 30px;
+    width: 18%;
     font-size: 1.6vw;
     padding: 22px 0 0 30px;
   }
