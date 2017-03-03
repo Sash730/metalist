@@ -1,11 +1,9 @@
 'use strict';
 
 import PriceSchema from "./priceSchema.model";
-import * as _ from 'lodash';
-import * as config from "../../config/environment"
 import * as log4js from 'log4js';
 
-var logger = log4js.getLogger('PriceSchema');
+let logger = log4js.getLogger('PriceSchema');
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -37,7 +35,6 @@ function handleError(res, statusCode) {
 }
 
 export function index(req, res) {
-  //console.log('price');
   return PriceSchema.find({}).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
@@ -46,7 +43,7 @@ export function index(req, res) {
 
 export function savePriceSchema(req, res) {
   let priceSchema = req.body.schema;
-  //console.log('priceName', req);
+
   PriceSchema.findOne({'priceSchema.name': priceSchema.name})
     .then((price)  => {
       if (!price) {
@@ -55,8 +52,8 @@ export function savePriceSchema(req, res) {
         });
         return newPrice.save();
       }
-      console.log('updatePrice', priceSchema);
       price.priceSchema = priceSchema;
+
       return price.save();
     })
     .then(respondWithResult(res))
@@ -82,19 +79,6 @@ export function view(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
-
-export function createPrice(req, res) {
-  console.log('createPrice', req.body);
-  var newPrice = new PriceSchema({
-    name: req.body.name,
-    tirbunes : req.body.tirbunes
-    //date: req.body.date
-  });
-  return newPrice.save()
-    .then(respondWithResult(res))
-    .catch(handleError(res))
-}
-
 
 export function deletePrice(req, res) {
   return PriceSchema.findByIdAndRemove(req.params.id).exec()
