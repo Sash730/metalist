@@ -1,4 +1,4 @@
-import {Order} from '../api/models/order.model';
+import {Order} from '../api/order/order.model';
 
 export var createCart = (request, response, next) => {
     Promise.resolve(request)

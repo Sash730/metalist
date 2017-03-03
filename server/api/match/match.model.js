@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import { Schema } from 'mongoose';
 
-var MatchSchema = new Schema({
+const MatchSchema = new Schema({
   rival: {
     type: String,
     required: true,

@@ -5,7 +5,7 @@
 'use strict';
 
 import {EventEmitter} from 'events';
-import User from './../models/user.model';
+import User from './user.model';
 var UserEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)

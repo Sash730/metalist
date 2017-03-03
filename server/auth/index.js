@@ -3,7 +3,7 @@
 import express from 'express';
 import passport from 'passport';
 import config from '../config/environment';
-import User from '../api/models/user.model';
+import User from '../api/user/user.model';
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
