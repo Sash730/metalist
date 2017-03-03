@@ -227,7 +227,7 @@ let processLiqpayRequest = (request) => {
     })
         .then(params => {
             return Promise.all([
-                Order.findOne({orderNumber: params.order_id, type: 'order', status: 'new'})
+                Order.findOne({orderNumber: params.order_id})
                   .populate({path: 'tickets'}),
                 params
             ]);

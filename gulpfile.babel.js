@@ -587,6 +587,7 @@ gulp.task('copy:server', () => {
         'package.json',
         'Dockerfile',
         'bower.json',
+        'ticket.png',
         '.bowerrc'
     ], {cwdbase: true})
         .pipe(gulp.dest(paths.dist));

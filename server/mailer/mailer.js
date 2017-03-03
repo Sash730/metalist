@@ -23,16 +23,16 @@ export function sendMail(to, ticket) {
         text: 'Match ' +ticket.match.headline+ ' Date ' + moment(ticket.match.date).format('MMM d, HH:mm') +' Sector '+ticket.seat.sector+' Row ' +ticket.seat.row,
         attachments: [{
           filename: 'paymentDetails.pdf',
-          path: './server/pdfGenerator/temp/'+ticket.accessCode+'.pdf'
+          path: './'+ticket.accessCode+'.pdf'
         }]
       };
       transport.sendMail(mailOptions, (error, response) => {
         if(error){
-          fs.unlink('./server/pdfGenerator/temp/'+ticket.accessCode+'.pdf');
+          fs.unlink('./'+ticket.accessCode+'.pdf');
           logger.error('sendMail '+error);
           success = false;
         } else {
-          fs.unlink('./server/pdfGenerator/temp/'+ticket.accessCode+'.pdf');
+          fs.unlink('./'+ticket.accessCode+'.pdf');
           logger.info("[INFO] Message Sent: "+ ticket.accessCode + response.message);
     }
     });
