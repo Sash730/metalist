@@ -1,6 +1,6 @@
 'use strict';
 
-import User from './../models/user.model';
+import User from './user.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
@@ -8,7 +8,7 @@ import * as log4js from 'log4js';
 import * as Mailer from '../../mailer/mailer.js';
 import * as passwordGenerator from "../../passwordGenerator"
 
-var logger = log4js.getLogger('User');
+let logger = log4js.getLogger('User');
 
 function validationError(res, statusCode) {
     statusCode = statusCode || 422;

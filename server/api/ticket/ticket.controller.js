@@ -1,6 +1,6 @@
 'use strict';
 
-import Ticket from './../models/ticket.model';
+import Ticket from './ticket.model';
 import moment from 'moment';
 import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';

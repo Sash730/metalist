@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import {Schema} from 'mongoose';
 import {formatMoney} from '../../util';
-import  {Ticket} from './ticket.model';
+import  {Ticket} from '../ticket/ticket.model';
 
 
 var OrderSchema = new Schema({
@@ -74,5 +74,5 @@ OrderSchema
         return this.status === 'failed';
     })
 ;
-export var Order = mongoose.model('Order', OrderSchema);
+export let Order = mongoose.model('Order', OrderSchema);
 

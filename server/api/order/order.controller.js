@@ -1,13 +1,13 @@
 'use strict';
 
 import Match from '../match/match.model';
-import Ticket from '../models/ticket.model';
-import User from '../models/user.model';
-import {Order} from '../models/order.model';
+import Ticket from '../ticket/ticket.model';
+import User from '../user/user.model';
+import {Order} from './order.model';
 import PriceSchema from "../priceSchema/priceSchema.model";
 import {Stadium} from '../../stadium';
 import * as _ from 'lodash';
-import * as config from "../../config/environment"
+import * as config from "../../config/environment";
 import * as crypto from "crypto";
 import * as LiqPay from '../../liqpay';
 import * as Mailer from '../../mailer/mailer.js';
