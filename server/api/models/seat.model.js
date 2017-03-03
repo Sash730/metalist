@@ -11,7 +11,7 @@ var SeatSchema = new Schema({
         required: true,
     },
     row: {
-        type: Number,
+        type: String,
         required: true,
     },
     number: {

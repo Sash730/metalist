@@ -18,7 +18,7 @@ const TicketSchema = new mongoose.Schema({
         id: {type: String, requried: true},
         tribune: {type: String, requried: true},
         sector: {type: Number, requried: true},
-        row: {type: Number, requried: true},
+        row: {type: String, requried: true},
         number: {type: Number, requried: true},
     },
     match: {
