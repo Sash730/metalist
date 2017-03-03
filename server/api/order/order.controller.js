@@ -196,6 +196,20 @@ let updateSoldTickets = (order) => {
   });
 };
 
+let getLiqPayParams = (req) => {
+  return new Promise((resolve, reject) => {
+    if(!req.body.data || !req.body.signature) {
+      return reject(new Error('data or signature missing'));
+    }
+
+    if(LiqPay.signString(req.body.data) !== req.body.signature) {
+      return reject(new Error('signature is wrong'));
+    }
+
+    return resolve(JSON.parse(new Buffer(req.body.data, 'base64').toString('utf-8')));
+  })
+};
+
 let deleteTicketFromCart = (cart, seatId) => {
   let [ ticket ] = _.filter(cart.tickets, function (ticket) {
 
@@ -214,17 +228,8 @@ let deleteTicketFromCart = (cart, seatId) => {
 };
 
 let processLiqpayRequest = (request) => {
-    return new Promise((resolve, reject) => {
-        if(!request.body.data || !request.body.signature) {
-            return reject(new Error('data or signature missing'));
-        }
 
-        if(LiqPay.signString(request.body.data) !== request.body.signature) {
-            return reject(new Error('signature is wrong'));
-        }
-
-        return resolve(JSON.parse(new Buffer(request.body.data, 'base64').toString('utf-8')));
-    })
+  return getLiqPayParams(request)
         .then(params => {
             return Promise.all([
                 Order.findOne({orderNumber: params.order_id, type: 'order', status: 'new'})
@@ -473,11 +478,17 @@ export function convertCartToOrder(req, res) {
 }
 
 export function liqpayRedirect(req, res, next) {
-    return processLiqpayRequest(req)
-        .then(([order]) => {
-        return res.redirect('/my/orders/'+order.orderNumber);
-         })
-        .catch(handleError(res))
+  return getLiqPayParams(req)
+    .then(params =>{
+      return Order.findOne({orderNumber: params.order_id, type: 'order'});
+    })
+    .then(order => {
+      if(!order) {
+        throw new Error('Order not found');
+      }
+      return res.redirect('/my/orders/'+order.orderNumber);
+    })
+    .catch(handleError(res))
     ;
 }
 
@@ -490,6 +501,7 @@ export function liqpayCallback(req, res, next) {
 
 export function getOrderByNumber(req, res) {
     Order.findOne({orderNumber: req.params.orderNumber, type: 'order'})
+      .populate({path: 'tickets'})
         .then((order) => {
             if(!order) {
                 throw new Error('Order not found');
@@ -501,6 +513,7 @@ export function getOrderByNumber(req, res) {
             order = order.toObject();
             if(order.statusNew) {
                 order.paymentLink = createPaymentLink(order);
+                order.tickets = [];
             }
 
             return order;
