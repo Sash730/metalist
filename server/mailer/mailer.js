@@ -9,7 +9,7 @@ import * as log4js from 'log4js';
 var logger = log4js.getLogger('sendMail');
 var transport = nodemailer.createTransport('smtps://'+config.mailer.auth.user+':'+config.mailer.auth.pass+'@smtp.gmail.com');
 
-export function sendMail(to, order, ticket) {
+export function sendMail(to, ticket) {
   pdfGenerator.ticketBySendMail(ticket, function (err) {
     if (err) {
       logger.error('sendMail '+err);

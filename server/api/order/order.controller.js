@@ -48,8 +48,8 @@ function handleError(res, statusCode) {
     };
 }
 
-let sendMessage = (order, ticket) => {
-  Mailer.sendMail( ticket.user.email, order, ticket);
+let sendMessage = (ticket) => {
+  Mailer.sendMail( ticket.user.email, ticket);
 };
 
 let createNewTicket = (cart, match, price, seat) => {
@@ -186,10 +186,10 @@ let updateSoldTickets = (order) => {
                        email: order.user.email,
                        name: order.user.name
                       };
-        ticket.save();
+        return ticket.save();
       })
-      .then((order, ticket) => {
-        sendMessage(order, ticket);
+      .then((ticket) => {
+        sendMessage(ticket);
 
         return ticket;
       });
@@ -490,7 +490,6 @@ export function liqpayCallback(req, res, next) {
 
 export function getOrderByNumber(req, res) {
     Order.findOne({orderNumber: req.params.orderNumber, type: 'order'})
-        .populate({path: 'tickets'})
         .then((order) => {
             if(!order) {
                 throw new Error('Order not found');
@@ -548,7 +547,6 @@ export function getOrderedTickets(req, res) {
 export function getMyOrders(req, res) {
 
   Order.find({'user.id': req.user.id, type: 'order'}).sort({created: -1})
-    .populate({path: 'tickets'})
     .then(respondWithResult(res))
   ;
 }
