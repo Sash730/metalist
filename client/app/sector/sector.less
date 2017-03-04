@@ -79,7 +79,8 @@
   .matchRival h3 {
     font-size: 100%;
   }
-  .cart-item .ng-binding{
+
+  .cart-item .ng-binding {
     padding-top: 10px;
     font-size: 80%;
   }
@@ -177,119 +178,22 @@
   .matchRival h3 {
     font-size: 100%;
   }
-  .cart-item .ng-binding{
+
+  .cart-item .ng-binding {
     padding-top: 10px;
     font-size: 80%;
   }
 
   .col-fixed {
-    min-width: 320px;
+    min-width: 300px;
   }
 
   .colPadding {
-    min-width: 320px;
+    min-width: 150px;
     width: 100%;
-    max-width: 450px;
-    padding-top: 10px;
+    max-width: 200px;
   }
 }
-/*@media (min-width: 355px) and (max-width: 610px) and (orientation: portrait) {
-  .imgSeatsStyle {
-    display: inline-block;
-    background-color: #60709E;
-    width: 4px;
-    height: 8px;
-    margin: 0 1px 0 0;
-    cursor: pointer;
-  }
-
-  .blockedSeat {
-    display: inline-block;
-    background-color: #ffcc00;
-    cursor: default;
-    width: 4px;
-    height: 8px;
-    margin: 0 1px 0 0;
-  }
-
-  .soldSeat {
-    display: inline-block;
-    width: 4px;
-    height: 8px;
-    background-color: grey;
-    margin: 0 1px 0 0;
-    cursor: default;
-  }
-
-  .address {
-    font-size: 40%;
-  }
-
-  .checkout {
-    width: 150px;
-    display: table;
-    margin: 0 auto;
-  }
-
-  .liststyle {
-    list-style: none;
-  }
-
-  .txt {
-    display: inline-block;
-    width: 25px;
-    height: 8px;
-    margin: 0;
-    padding: 0;
-    font-size: 35%;
-    color: #636363;
-    list-style: none;
-  }
-
-  .liststyle li {
-    height: 8px;
-    margin-bottom: 1px;
-  }
-
-  .seatsMargin {
-    margin: 0;
-    width: 320px;
-    padding: 0 !important;
-  }
-
-  .rowNames {
-    width: 25px;
-    padding: 0 0 0 5px;
-    margin-top: -2px;
-  }
-
-  .hideBlock {
-    display: none;
-  }
-
-  .matchDate h3 {
-    font-size: 100%;
-  }
-
-  .matchRival h3 {
-    font-size: 100%;
-  }
-  .cart-item .ng-binding{
-    padding-top: 10px;
-    font-size: 80%;
-  }
-
-  .col-fixed {
-    min-width: 320px;
-  }
-
-  .colPadding {
-    min-width: 320px;
-    width: 100%;
-    max-width: 450px;
-    padding-top: 10px;
-  }
-}*/
 
 @media (min-width: 611px) and (max-width: 1280px) {
   .imgSeatsStyle {
@@ -367,7 +271,7 @@
     display: none;
   }
 
-  .cart-item .ng-binding{
+  .cart-item .ng-binding {
     padding-top: 10px;
     font-size: 80%;
   }
@@ -378,7 +282,6 @@
 
   .colPadding {
     min-width: 280px;
-    padding-top: 10px;
   }
 
   .cardBlock {
@@ -447,8 +350,7 @@
     padding-right: 0 !important;
   }
 
-
-  .cart-item .ng-binding{
+  .cart-item .ng-binding {
     padding-top: 10px;
     font-size: 90%;
   }
@@ -459,7 +361,6 @@
 
   .colPadding {
     min-width: 280px;
-    padding-top: 10px;
   }
 
   .cardBlock {
@@ -526,4 +427,23 @@
 
 ul {
   padding: 0;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: 0 none;
+}
+
+.cartBtn {
+  border: none;
+  background: #60709E;
+  color: #ffffff;
+}
+
+.cartBtn:hover, .cartBtn:focus, .cartBtn:active, .cartBtn.active, .open > .dropdown-toggle.cartBtn {
+  background: #6477ab;
+}
+
+.cartBtn:active, .cartBtn.active {
+  background: #4c597f;
+  box-shadow: none;
 }
