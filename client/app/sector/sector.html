@@ -9,9 +9,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-4"><h3 style="text-align: left; font-weight: bold">{{ vm.match.date|date:'d MMMM y' }}<br>{{
+    <div class="col-xs-4 matchDate"><h3 style="text-align: left; font-weight: bold">{{ vm.match.date|date:'d MMMM y' }}<br>{{
       vm.match.date|date:'HH:mm' }}</h3></div>
-    <div class="col-xs-4" style="text-align: center"><h3>Металлист 1925<br>{{ vm.match.rival }}</h3></div>
+    <div class="col-xs-4 matchRival" style="text-align: center"><h3>Металлист 1925<br>{{ vm.match.rival }}</h3></div>
     <div class="col-xs-4 address" style="text-align: right"><span>Стадион Металлист<br>ул. Плехановская, 65</span>
       <br><span class="fa fa-subway" uib-popover="Станция метро" popover-trigger="'mouseenter'"
                 popover-placement="left"></span> Спортивная / Метростроителей
@@ -73,32 +73,3 @@
     </div>
   </div>
 </div>
-
-
-<!--    <div class="col-sm-12">
-      <div class="gradientSeats"></div>
-    </div>
-  </div>
-  <div class="cardBlock container text-center">
-    <div class="row row-centered">
-      <div class="hideBlock col-xs-4 col-centered col-fixed">
-      </div>
-      <div class="colMinSize col-xs-4 col-centered col-fixed">
-        <div class="item">
-          <div class="content">
-            <cart on-delete="vm.updateReservedTickets($event)"></cart>
-          </div>
-        </div>
-      </div>
-      <div class="colPadding col-xs-4 col-centered col-fixed">
-        <div class="item">
-          <div class="content">
-            <div ng-show="vm.cart.size">
-              <a ui-sref="checkout" class=" btn btn-link" style="font-size: 20px">Оформить заказ</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
