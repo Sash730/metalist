@@ -8,12 +8,12 @@ function localAuthenticate(User, email, password, done) {
         .then(user => {
             if (!user) {
                 return done(null, false, {
-                    message: 'This email is not registered.'
+                    message: 'Данный email не зарегистрирован.'
                 });
             }
             if (user && user.provider !== 'local') {
               return done(null, false, {
-                message: 'The specified email address is already in use. Perhaps you entered via social links'
+                message: 'Данный email уже используется. Возможно, вы заходили через социальные сети.'
               });
             }
             user.authenticate(password, function (authError, authenticated) {

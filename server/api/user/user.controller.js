@@ -171,6 +171,8 @@ export function recoveryPassword(req, res, next) {
     .then(user => {
       if (!user) {
         return res.status(200).json({message: 'Данный имейл не зарегистрирован.'});
+      } else if (user && user.provider !== 'local') {
+        return res.status(200).json({message: 'Не могу сбросить пароль. Возможно, вы заходили через социальные сети.'});
       } else {
         user.password = password;
       }
