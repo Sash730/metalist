@@ -33,7 +33,7 @@
       let matchId = this.match.id,
         sectorName = this.sector.name;
 
-      this.ticketsService.fetchReservedTickets(matchId, sectorName)
+      return this.ticketsService.fetchReservedTickets(matchId, sectorName)
         .then(tickets => this.reservedTickets = tickets);
     }
 
@@ -69,16 +69,17 @@
       if (checkTicket && this.selectedSeats.includes(seatId)) {
         this.CartService.removeTicket(seatId)
           .then(() => {
-            this.getReservedTickets();
-            this.selectedSeats.splice(this.selectedSeats.indexOf(seatId), 1);
+            this.getReservedTickets()
+              .then( () => this.selectedSeats.splice(this.selectedSeats.indexOf(seatId), 1) );
+
           })
       }
 
       if( !checkTicket ) {
         this.CartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
           .then(() => {
-            this.getReservedTickets();
-            this.selectedSeats.push(seatId);
+            this.getReservedTickets()
+              .then( () => this.selectedSeats.push(seatId) );
           });
       }
     }

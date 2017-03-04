@@ -22,28 +22,6 @@ angular.module('metalistTicketsApp')
             url: '/my/orders/:orderNumber',
             templateUrl: 'app/orders/details/order-details.html',
             controller: 'OrderDetailsController',
-            controllerAs: 'vm',
-            resolve: {
-                order: ($stateParams, $state, OrdersService) => {
-                    console.log('resolve order');
-                    return OrdersService.findOrderByNumber($stateParams.orderNumber)
-                        .catch((error) => {
-                            console.log(error);
-                            $state.go('404');
-                        });
-                },
-                tickets: ($state, OrdersService, order) => {
-                    console.log('resolve tickets', order);
-                    if(order.statusPaid) {
-                        return OrdersService.getOrderedTickets(order)
-                            .catch((error) => {
-                                console.log(error);
-                                $state.go('404');
-                            });
-                    } else {
-                        return [];
-                    }
-                }
-            }
+            controllerAs: 'vm'
         });
     });
