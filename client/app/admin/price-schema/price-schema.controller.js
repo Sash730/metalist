@@ -38,8 +38,10 @@
       }
     }
 
-    getSectorForSetPrice(tribuneName, sectorNumber) {
-      let priceSchema = this.currentPriceSchema;
+    getSectorForSetPrice($event) {
+      let priceSchema = this.currentPriceSchema,
+          tribuneName = $event.tribune,
+          sectorNumber = $event.sector;
       this.message = '';
 
       if (!priceSchema['tribune_' + tribuneName]) {

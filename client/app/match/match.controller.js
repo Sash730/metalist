@@ -13,7 +13,9 @@
     }
 
     goToSector($event) {
-      this.$state.go('sector', {id: this.match.id, tribune: $event.tribune, sector: $event.sector});
+      if ($event.price) {
+        this.$state.go('sector', {id: this.match.id, tribune: $event.tribune, sector: $event.sector});
+      }
     }
 
   }

@@ -19,18 +19,16 @@
     $onInit() {
     }
 
-    onSectorClick($event, tribuneName, sectorNumber) {
+    onSectorClick(tribuneName, sectorNumber) {
       let price = this.getPriceBySector(tribuneName, sectorNumber, this.priceSchema);
 
-      $event.preventDefault();
-      if (price) {
-        this.onSectorSelect({
-          $event: {
-            tribune: tribuneName,
-            sector: sectorNumber
-          }
-        });
-      }
+      this.onSectorSelect({
+        $event: {
+          price: price,
+          tribune: tribuneName,
+          sector: sectorNumber
+        }
+      });
     }
 
     getColor(tribuneName, sectorNumber) {

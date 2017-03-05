@@ -1,6 +1,6 @@
 'use strict';
 
-export const Stadium = {
+export const Stadium =  {
   tribune_west: {
     name: 'west',
     sector_1: {
@@ -3162,8 +3162,8 @@ export const Stadium = {
           seats: '16'
         }
       ]},
-    sector_22: {
-      name: '22',
+    sector_22a: {
+      name: '22a',
       rows: [
         {
           name: '0',
@@ -3197,7 +3197,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '21'
-        },
+        }
+      ]},
+    sector_22b: {
+      name: '22b',
+      rows: [
         {
           name: '8',
           seats: '20'
@@ -3302,9 +3306,10 @@ export const Stadium = {
           name: '33',
           seats: '23'
         }
-      ]},
-    sector_23: {
-      name: '23',
+      ]
+    },
+    sector_23a: {
+      name: '23a',
       rows: [
         {
           name: '0',
@@ -3338,7 +3343,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '33'
-        },
+        }
+      ]},
+    sector_23b: {
+      name: '23b',
+      rows: [
         {
           name: '8',
           seats: '24'
@@ -3444,8 +3453,8 @@ export const Stadium = {
           seats: '28'
         }
       ]},
-    sector_24: {
-      name: '24',
+    sector_24a: {
+      name: '24a',
       rows: [
         {
           name: '0',
@@ -3479,7 +3488,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '33'
-        },
+        }
+      ]},
+    sector_24b: {
+      name: '24b',
+      rows: [
         {
           name: '8',
           seats: '24'
@@ -3585,8 +3598,8 @@ export const Stadium = {
           seats: '42'
         }
       ]},
-    sector_25: {
-      name: '25',
+    sector_25a: {
+      name: '25a',
       rows: [
         {
           name: '0',
@@ -3620,7 +3633,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '26'
-        },
+        }
+      ]},
+    sector_25b: {
+      name: '25b',
+      rows: [
         {
           name: '8',
           seats: '18'
@@ -3726,8 +3743,8 @@ export const Stadium = {
           seats: '26'
         }
       ]},
-    sector_26: {
-      name: '26',
+    sector_26a: {
+      name: '26a',
       rows: [
         {
           name: '0',
@@ -3761,7 +3778,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '24'
-        },
+        }
+      ]},
+    sector_26b: {
+      name: '26b',
+      rows: [
         {
           name: '8',
           seats: '18'
@@ -3867,8 +3888,8 @@ export const Stadium = {
           seats: '18'
         }
       ]},
-    sector_27: {
-      name: '27',
+    sector_27a: {
+      name: '27a',
       rows: [
         {
           name: '0',
@@ -3902,7 +3923,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '33'
-        },
+        }
+      ]},
+    sector_27b: {
+      name: '27b',
+      rows: [
         {
           name: '8',
           seats: '24'
@@ -4008,8 +4033,8 @@ export const Stadium = {
           seats: '43'
         }
       ]},
-    sector_28: {
-      name: '28',
+    sector_28a: {
+      name: '28a',
       rows: [
         {
           name: '0',
@@ -4043,7 +4068,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '33'
-        },
+        }
+      ]},
+    sector_28b: {
+      name: '28b',
+      rows: [
         {
           name: '8',
           seats: '24'
@@ -4149,8 +4178,8 @@ export const Stadium = {
           seats: '27'
         }
       ]},
-    sector_29: {
-      name: '29',
+    sector_29a: {
+      name: '29a',
       rows: [
         {
           name: '0',
@@ -4184,7 +4213,11 @@ export const Stadium = {
         {
           name: '7',
           seats: '21'
-        },
+        }
+      ]},
+    sector_29b: {
+      name: '29b',
+      rows: [
         {
           name: '8',
           seats: '20'
@@ -4293,8 +4326,8 @@ export const Stadium = {
   },
   tribune_north: {
     name: 'north',
-    sector_10: {
-      name: '10',
+    sector_10a: {
+      name: '10a',
       rows: [
         {
           name: '1',
@@ -4352,7 +4385,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '26'
-        },
+        }
+      ]},
+    sector_10b: {
+      name: '10b',
+      rows: [
         {
           name: '15',
           seats: '27'
@@ -4462,8 +4499,8 @@ export const Stadium = {
           seats: '57'
         }
       ]},
-    sector_11: {
-      name: '11',
+    sector_11a: {
+      name: '11a',
       rows: [
         {
           name: '1',
@@ -4521,7 +4558,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '25'
-        },
+        }
+      ]},
+    sector_11b: {
+      name: '11b',
+      rows: [
         {
           name: '15',
           seats: '20'
@@ -4631,8 +4672,8 @@ export const Stadium = {
           seats: '50'
         }
       ]},
-    sector_12: {
-      name: '12',
+    sector_12a: {
+      name: '12a',
       rows: [
         {
           name: '1',
@@ -4690,7 +4731,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '36'
-        },
+        }
+      ]},
+    sector_12b: {
+      name: '12b',
+      rows: [
         {
           name: '15',
           seats: '26'
@@ -4800,8 +4845,8 @@ export const Stadium = {
           seats: '55'
         }
       ]},
-    sector_13: {
-      name: '13',
+    sector_13a: {
+      name: '13a',
       rows: [
         {
           name: '1',
@@ -4859,7 +4904,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '37'
-        },
+        }
+      ]},
+    sector_13b: {
+      name: '13b',
+      rows: [
         {
           name: '15',
           seats: '26'
@@ -4969,8 +5018,8 @@ export const Stadium = {
           seats: '53'
         }
       ]},
-    sector_14: {
-      name: '14',
+    sector_14a: {
+      name: '14a',
       rows: [
         {
           name: '1',
@@ -5028,7 +5077,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '43'
-        },
+        }
+      ]},
+    sector_14b: {
+      name: '14b',
+      rows: [
         {
           name: '15',
           seats: '23'
@@ -5250,8 +5303,8 @@ export const Stadium = {
           seats: '30'
         }
       ]},
-    sector_16: {
-      name: '16',
+    sector_16a: {
+      name: '16a',
       rows: [
         {
           name: '1',
@@ -5309,7 +5362,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '43'
-        },
+        }
+      ]},
+    sector_16b: {
+      name: '16b',
+      rows: [
         {
           name: '15',
           seats: '23'
@@ -5419,8 +5476,8 @@ export const Stadium = {
           seats: '50'
         }
       ]},
-    sector_17: {
-      name: '17',
+    sector_17a: {
+      name: '17a',
       rows: [
         {
           name: '1',
@@ -5478,7 +5535,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '37'
-        },
+        }
+      ]},
+    sector_17b: {
+      name: '17b',
+      rows: [
         {
           name: '15',
           seats: '26'
@@ -5588,8 +5649,8 @@ export const Stadium = {
           seats: '53'
         }
       ]},
-    sector_18: {
-      name: '18',
+    sector_18a: {
+      name: '18a',
       rows: [
         {
           name: '1',
@@ -5647,7 +5708,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '36'
-        },
+        }
+      ]},
+    sector_18b: {
+      name: '18b',
+      rows: [
         {
           name: '15',
           seats: '25'
@@ -5757,8 +5822,8 @@ export const Stadium = {
           seats: '56'
         }
       ]},
-    sector_19: {
-      name: '19',
+    sector_19a: {
+      name: '19a',
       rows: [
         {
           name: '1',
@@ -5816,7 +5881,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '24'
-        },
+        }
+      ]},
+    sector_19b: {
+      name: '19b',
+      rows: [
         {
           name: '15',
           seats: '20'
@@ -5926,8 +5995,8 @@ export const Stadium = {
           seats: '33'
         }
       ]},
-    sector_20: {
-      name: '20',
+    sector_20a: {
+      name: '20a',
       rows: [
         {
           name: '1',
@@ -5985,7 +6054,11 @@ export const Stadium = {
         {
           name: '14',
           seats: '26'
-        },
+        }
+      ]},
+    sector_20b: {
+      name: '20b',
+      rows: [
         {
           name: '15',
           seats: '28'
