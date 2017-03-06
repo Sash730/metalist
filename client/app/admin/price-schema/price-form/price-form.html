@@ -1,0 +1,80 @@
+<div ng-form="priceForm" ng-model-options="{ updateOn: 'blur' }">
+    <div class="form-group"  ng-class="{'has-error': priceForm.schemaName.$invalid && priceForm.schemaName.$dirty}">
+        <label for="schemaName">Schema Name :</label>
+        <input class="form-control" type="text" name="schemaName" id="schemaName" ng-model="$ctrl.price.name" required >
+        <div class="help-block" ng-show="priceForm.schemaName.$error.required && priceForm.schemaName.$dirty">Schema Name is required</div>
+    </div>
+<h4>Цена на трибуну:</h4>
+<table class="table">
+    <thead>
+    <tr >
+        <th>Name</th>
+        <th>Price</th>
+        <th>Available</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            {{$ctrl.tribune.name}}
+        </td>
+        <td>
+            <div class="form-group"  ng-class="{'has-error': priceForm.tribunePrice.$invalid && priceForm.tribunePrice.$dirty}">
+                <input class="form-control" type="number" name="tribunePrice" min="0" max="700" ng-model="$ctrl.tribune.price" />
+                <div class="help-block" ng-show="priceForm.tribunePrice.$error.number && priceForm.tribunePrice.$dirty">Price not number</div>
+            </div>
+        </td>
+        <td>
+            <input type="checkbox" ng-model="$ctrl.tribune.available"
+                   ng-checked="$ctrl.tribune.available">
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h4>Цена на сектор:</h4>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Available</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            {{$ctrl.sector.name}}
+        </td>
+        <td>
+            <div class="form-group"  ng-class="{'has-error': priceForm.sectorPrice.$invalid && priceForm.sectorPrice.$dirty}">
+                <input class="form-control" type="number" name="sectorPrice" min="0" max="700" ng-model="$ctrl.sector.price" />
+                <div class="help-block" ng-show="priceForm.sectorPrice.$error.number && priceForm.sectorPrice.$dirty">Price not number</div>
+            </div>
+        </td>
+        <td>
+            <input type="checkbox" ng-model="$ctrl.sector.available"
+                   ng-checked="$ctrl.sector.available">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td align="right"> <button class="btn btn-primary btn-sm" ng-click="$ctrl.toggleRows = !$ctrl.toggleRows" >
+            Edit rows</span>
+        </button></td>
+    </tr>
+    </tbody>
+</table>
+    <div style="display:inline-block; width: 10%;margin: 2px;border-bottom: solid 1px black;" ng-hide="$ctrl.toggleRows" ng-repeat="row in $ctrl.rows" class="">
+        <div>{{row.name}}</div>
+        <div><input type="checkbox" ng-model="row.available"
+               ng-checked="row.available">
+        </div>
+    </div>
+<p ng-show="$ctrl.message">{{$ctrl.message}}</p>
+<button class="form-control"
+        ng-click="$ctrl.onChange(priceForm, $ctrl.tribune.name, $ctrl.sector.name)"
+        ng-class="{'disabled': priceForm.$invalid && priceForm.$dirty}">
+    Save price
+</button>
+</div>

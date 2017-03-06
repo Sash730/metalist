@@ -12,6 +12,7 @@
       this.match = match;
       this.cart = cart;
       this.sector = sector;
+      this.availabilityRows = {};
 
       this.reservedTickets = [];
       this.selectedSeats = [];
@@ -26,7 +27,10 @@
     }
 
     getPrice() {
-      let priceSchema = this.match.priceSchema.priceSchema;
+      let priceSchema = this.match.priceSchema.price;
+
+      this.availabilityRows = this.match.priceSchema.availabilityRows ?
+                              this.match.priceSchema.availabilityRows['sector_'+this.sector.name] : {};
       this.sectorPrice = this.priceSchemaService.getPriceBySector(this.tribuneName, this.sector.name, priceSchema);
     }
 
@@ -49,14 +53,23 @@
       this.selectedSeats.splice(this.selectedSeats.indexOf($event.seatId), 1);
     }
 
-     addClassByCheckSoldSeat(seatId) {
-      let [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
+    getAvailabilityRow(rowName) {
+      if( !this.availabilityRows.name ) return true;
+
+      let [ availabilityRow ] =  this.availabilityRows.rows.filter(row => row.name === rowName);
+
+      return !availabilityRow;
+    }
+
+     addClassByCheckSoldSeat(seatId, rowName) {
+      let [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId),
+          availabilityRow = this.getAvailabilityRow(rowName);
 
       if (checkTicket && this.selectedSeats.includes(seatId)) {
         return 'blockedSeat';
       }
 
-       if ( checkTicket && !this.selectedSeats.includes(seatId) ) {
+       if ( !availabilityRow || (checkTicket && !this.selectedSeats.includes(seatId)) ) {
          return 'soldSeat';
        }
 
@@ -65,7 +78,8 @@
 
      addTicketToCart(match, tribuneName, sectorName, rowName, seat, sectorPrice) {
       let seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
-          [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
+          [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId),
+          availabilityRow = this.getAvailabilityRow(rowName);
        this.message = '';
 
       if ( checkTicket && this.selectedSeats.includes(seatId) ) {
@@ -77,7 +91,7 @@
           })
       }
 
-      if( !checkTicket ) {
+      if( !checkTicket && availabilityRow ) {
         this.CartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
           .then(message => {
             if (message) {

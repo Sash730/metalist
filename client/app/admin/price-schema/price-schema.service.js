@@ -23,13 +23,15 @@
     savePriceSchema(schema) {
       return this.$http({
         method: 'PUT',
-        url: '/api/priceSchema/' + schema.name,
+        url: '/api/priceSchema/' + schema.price.name,
         data: {
                 schema: schema
               },
         headers: {'Accept': 'application/json'}
-      });
+      })
+        .then(response => response.data);
     }
+
 
     getPriceBySector(tribuneName, sectorNumber, priceSchema) {
 
@@ -51,6 +53,9 @@
       return this.colors
         .filter(color => color.price == price)
         .map(color =>color.color)[0];
+    }
+    getStadium() {
+      return this.$http.get('/app/sector/sectors/stadium.json');
     }
 
   }

@@ -4,26 +4,31 @@
 
   class PriceSchemaController {
 
-    constructor(PriceSchemaService, Stadium) {
-      this.stadium = Stadium;
+    constructor(PriceSchemaService) {
       this.priceSchemaService = PriceSchemaService;
 
+      this.stadium = {};
       this.priceSchemas = [];
+      this.availabilityRows = {};
       this.currentPriceSchema = {};
       this.currentTribune = {};
       this.currentSector = {};
-      this.message = '';
+      this.currentRows = [];
     }
 
     $onInit() {
       this.loadPriceSchemas();
+      this.loadStadium();
     }
 
     loadPriceSchemas() {
       this.priceSchemaService.loadPrices()
-        .then(response => {
-          this.priceSchemas = response.data;
-        });
+        .then(response => this.priceSchemas = response.data );
+    }
+
+    loadStadium() {
+      this.priceSchemaService.getStadium()
+        .then( response => this.stadium = response.data );
     }
 
     setCurrentPriceSchema(schemaName) {
@@ -33,91 +38,78 @@
       if (schemaName === '---New Schema---') {
         this.currentPriceSchema = {};
       } else {
-        let currentPriceSchema = this.priceSchemas.filter(schema => schema.priceSchema.name === schemaName)[0];
-        this.currentPriceSchema = currentPriceSchema.priceSchema;
+        let currentPriceSchema = this.priceSchemas.filter(schema => schema.price.name === schemaName)[0];
+
+        this.currentPriceSchema = currentPriceSchema.price;
+        this.availabilityRows = currentPriceSchema.availabilityRows || {};
       }
     }
 
-    getSectorForSetPrice(tribuneName, sectorNumber) {
-      let priceSchema = this.currentPriceSchema;
-      this.message = '';
+    getSectorFromStadium(tribuneName, sectorNumber) {
+      this.currentSector = this.stadium['tribune_' + tribuneName]['sector_' + sectorNumber];
+      this.currentSector.available = true;
+    }
+
+    getSectorForSetPrice($event) {
+      let priceSchema = this.currentPriceSchema,
+          tribuneName = $event.tribune,
+          sectorNumber = $event.sector;
 
       if (!priceSchema['tribune_' + tribuneName]) {
         this.currentTribune = this.stadium['tribune_' + tribuneName];
-        this.currentSector = this.stadium['tribune_' + tribuneName]['sector_' + sectorNumber];
+        this.currentTribune.available = true;
+        this.getSectorFromStadium(tribuneName, sectorNumber);
       } else {
         this.currentTribune = priceSchema['tribune_' + tribuneName];
 
         if (!priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber]) {
-          this.currentSector = this.stadium['tribune_' + tribuneName]['sector_' + sectorNumber];
+          this.getSectorFromStadium(tribuneName, sectorNumber);
         } else {
           this.currentSector = priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber];
         }
       }
+
+      this.getRowsForSetAvailability(tribuneName, sectorNumber);
     }
 
-    getSectorsFill(tribuneName, sectorNumber) {
-      let defaultColor = '#808080',
-          priceSchema = this.currentPriceSchema,
-          price = this.priceSchemaService.getPriceBySector(tribuneName, sectorNumber, priceSchema);
+    getRowsForSetAvailability(tribuneName, sectorNumber) {
+      let currentAvailableRows = this.availabilityRows['sector_' + sectorNumber],
+          stadiumRows = this.stadium['tribune_' + tribuneName]['sector_' + sectorNumber].rows;
 
-      if (!price) {
-        return defaultColor;
+      if (!currentAvailableRows) {
+        this.addAvailableStatusPropsIntoRows(stadiumRows);
       } else {
-        return this.priceSchemaService.getColorByPrice(price);
+        this.addAvailableStatusPropsIntoRows(stadiumRows);
+        this.checkAvailableStatusIntoRows(currentAvailableRows.rows);
       }
     }
 
-    getPreparedPriceSchema(tribuneName, sectorNumber) {
-      let priceSchema = this.currentPriceSchema,
-          tribune = this.currentTribune,
-          sector = this.currentSector;
-
-      delete sector.rows;
-
-      if (priceSchema['tribune_'+tribuneName] && priceSchema['tribune_'+tribuneName]['sector_'+sectorNumber]) {
-
-        return priceSchema;
-      }
-
-      if (priceSchema['tribune_'+tribuneName] && !priceSchema['tribune_'+tribuneName]['sector_'+sectorNumber]) {
-
-        priceSchema['tribune_'+tribuneName]['sector_'+sectorNumber] = sector;
-        return priceSchema;
-      }
-
-      if (!priceSchema['tribune_'+tribuneName]) {
-        priceSchema['tribune_'+tribuneName] = {};
-        priceSchema['tribune_'+tribuneName].name = tribune.name;
-        priceSchema['tribune_'+tribuneName].price = tribune.price;
-        priceSchema['tribune_'+tribuneName]['sector_'+sectorNumber] = sector;
-
-        return priceSchema;
-      }
+    addAvailableStatusPropsIntoRows(rows) {
+      this.currentRows = rows.map(row => Object.assign({}, {name: row.name, available: true}));
     }
 
-    savePriceSchema(form, tribuneName, sectorNumber) {
-      form.$setDirty();
-      form.schemaName.$setDirty();
-      form.tribunePrice.$setDirty();
-      form.sectorPrice.$setDirty();
+    checkAvailableStatusIntoRows(checkRows) {
+      this.currentRows.forEach(row => {
+        checkRows.forEach(checkRow => {
+          if (checkRow.name === row.name) {
+             row.available =  checkRow.available;
+          }
+        });
+      });
+    }
 
-      if(!tribuneName) {
-        this.message = 'Выберите сектор.';
-        return;
-      }
+    savePriceSchema($event) {
+       this.priceSchemaService.savePriceSchema($event.priceSchema)
+        .then((priceSchema) => {
+          this.currentPriceSchema = priceSchema.price;
+          this.availabilityRows = priceSchema.availabilityRows;
 
-      if(form.$valid) {
-        let priceSchema = this.getPreparedPriceSchema(tribuneName, sectorNumber);
-
-        this.priceSchemaService.savePriceSchema(priceSchema)
-          .then(response => {
-            this.currentPriceSchema = response.data.priceSchema;
-            this.currentTribune = {};
-            this.currentSector = {};
-            this.loadPriceSchemas();
-          });
-      }
+          this.loadPriceSchemas();
+          this.loadStadium();
+          this.currentTribune = {};
+          this.currentSector = {};
+          this.currentRows = [];
+        });
     }
 
   }

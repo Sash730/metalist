@@ -141,7 +141,7 @@ let updateTicketsInCheckout = (order) => {
 };
 
 let getPriceInPriceSchema = (priceSchema, tribuneName, sectorName) => {
-  let schema = priceSchema.priceSchema;
+  let schema = priceSchema.price;
 
   if (!schema['tribune_'+tribuneName]) {
     return false;

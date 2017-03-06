@@ -20,6 +20,6 @@
       </div>
       <select class="form-control"
               ng-model="$ctrl.match.priceSchema"
-              ng-options="option.priceSchema.name for option in $ctrl.priceSchemas track by option._id"></select>
+              ng-options="option.price.name for option in $ctrl.priceSchemas track by option._id"></select>
       <button type="submit" class="btn btn-default" ng-click="$ctrl.update()" ng-bind="$ctrl.match.id ? 'Coхранить': 'Добавить'"></button>
     </form>

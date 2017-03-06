@@ -5,9 +5,13 @@ mongoose.Promise = require('bluebird');
 import {Schema} from 'mongoose';
 
 const PriceSchema = new Schema({
-  priceSchema: {
-      required: true,
-      type: Object
+  availabilityRows: {
+    required: true,
+    type: Object
+  },
+  price: {
+    required: true,
+    type: Object
   }
 }, {
     toObject: { virtuals: true },

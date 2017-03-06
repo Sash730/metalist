@@ -23,27 +23,25 @@
       let price = this.getPriceBySector(tribuneName, sectorNumber, this.priceSchema);
 
       $event.preventDefault();
-      if (price) {
+
         this.onSectorSelect({
           $event: {
+            price: price,
             tribune: tribuneName,
             sector: sectorNumber
           }
         });
-      }
+
     }
 
     getColor(tribuneName, sectorNumber) {
       let defaultColor = '#808080',
+        //availability = this.getAvailableStatus(tribuneName, sectorNumber),
         price = this.getPriceBySector(tribuneName, sectorNumber, this.priceSchema);
 
-      if (!price) {
+      if ( !price ) {
         return defaultColor;
       } else {
-        if ( !this.prices.includes(price) ) {
-          this.prices.push(price);
-        }
-
         return this.getColorByPrice(price);
       }
     }
@@ -68,8 +66,8 @@
       if (!priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber]) {
         return priceSchema['tribune_' + tribuneName].price;
       } else {
-        if (!priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber].price) {
-          return priceSchema['tribune_' + tribuneName].price;
+        if (!priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber].available) {
+          return undefined;
         }
         return priceSchema['tribune_' + tribuneName]['sector_' + sectorNumber].price;
       }
