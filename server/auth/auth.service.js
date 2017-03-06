@@ -77,5 +77,5 @@ export function setTokenCookie(req, res) {
     }
     let token = signToken(req.user._id, req.user.role);
     res.cookie('token', token);
-    res.redirect('/');
+    res.redirect('/my/orders');
 }

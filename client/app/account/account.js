@@ -34,11 +34,20 @@ angular.module('metalistTicketsApp')
                 authenticate: true
             });
     })
-    .run(function ($rootScope) {
+    .run(function ($rootScope, $window) {
+
         $rootScope.$on('$stateChangeStart', function (event, next, nextParams,  prev, prevParams) {
+
             if (next.name === 'login' && prev && prev.name && !prev.authenticate) {
               next.referrer = prev.name;
               next.params = prevParams;
+              $window.sessionStorage.href = $window.location.href;
             }
+
+          if ($window.location.hash && $window.location.hash == '#_=_') {
+            $window.location.hash = '';
+            event.preventDefault();
+            $window.location.href = $window.sessionStorage.href;
+          }
         });
     });
