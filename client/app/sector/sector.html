@@ -1,13 +1,5 @@
 <div class="container">
-  <div class="row cr">
-    <div class="crumbs">
-      <span crm><a href="/" title="Выбор матча"><span class="bcTextInside1">Все матчи</span></a></span>
-      <span crm><a href="#" title="Выбор сектора"><span class="bcTextInside2">Выбор сектора</span></a></span>
-      <span crm><a href="#" style="cursor: default" title="Выбор места"><span class="bcTextInside3">Выбор места</span></a></span>
-      <span crmdis><a href="#" style="cursor: default" title="Оформление заказа"><span class="bcTextInside4">Оформление заказа</span></a></span>
-      <span crmdis><a href="#" style="cursor: default" title="Оплата"><span class="bcTextInside5">Оплата</span></a></span>
-    </div>
-  </div>
+  <navpanel></navpanel>
   <div class="row">
     <div class="col-xs-4 matchDate"><h3 style="text-align: left; font-weight: bold">
       {{ vm.match.date|date:'d MMMM y' }}<br>{{ vm.match.date|date:'HH:mm' }}</h3></div>
