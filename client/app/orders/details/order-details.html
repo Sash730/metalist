@@ -26,21 +26,21 @@
                     <div>Sector: <strong>{{ ticket.seat.sector }}</strong></div>
                     <div>Row: <strong>{{ ticket.seat.row }}</strong></div>
                     <div>Seat number: <strong>{{ ticket.seat.number }}</strong></div>
-                    <div><a class="btn btn-success" ng-print print-element-id="printable-ticket-{{ ticket.id }}">Print Ticket</a></div>
-                    <div class="printable-ticket col-sm-12 col-sm-offset-0" id="printable-ticket-{{ ticket.id }}">
+                    <div><a class="btn btn-success" ng-click="vm.printTicket(ticket.id)">Print Ticket</a></div>
+                    <div class="printable-ticket col-sm-12 col-sm-offset-0" id="{{ ticket.id }}">
                         <table class="table table-condensed table-bordered">
                             <tr>
                                 <td colspan="2"><h4>{{ ticket.match.headline }} <em><small>{{ ticket.match.date | date:'MMM d, HH:mm' }}</small></em> </h4></td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div>Sector: <strong>{{ ticket.seat.sector }}</strong></div>
-                                    <div>Row: <strong>{{ ticket.seat.row }}</strong></div>
-                                    <div>Seat number: <strong>{{ ticket.seat.number }}</strong></div>
+                                    <div>Сектор: <strong>{{ ticket.seat.sector }}</strong></div>
+                                    <div>Ряд: <strong>{{ ticket.seat.row }}</strong></div>
+                                    <div>Место: <strong>{{ ticket.seat.number }}</strong></div>
                                 </td>
                                 <td>
-                                    <div>Visitor: <strong>{{ ticket.user.name }}</strong></div>
-                                    <div>Valid: <strong>{{ ticket.valid.from|date:"MMM d, HH:mm" }} - {{ ticket.valid.to|date:"HH:mm" }} </strong></div>
+                                    <div>Посетитель: <strong>{{ ticket.user.name }}</strong></div>
+                                    <div>Действителен: <strong>{{ ticket.valid.from|date:"MMM d, HH:mm" }} - {{ ticket.valid.to|date:"HH:mm" }} </strong></div>
                                 </td>
                             </tr>
                             <tr>
@@ -50,7 +50,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <em>* Print this ticket or remember the code</em>
+                                    <em>* Распечатайте этот билет.</em>
                                 </td>
                             </tr>
                         </table>

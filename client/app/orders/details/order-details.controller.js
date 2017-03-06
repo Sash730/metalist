@@ -51,6 +51,15 @@
             }
           }
         }
+
+      printTicket(printSectionId) {
+        let innerContents = document.getElementById(printSectionId).innerHTML,
+          popupInWindow = window.open('', '_blank','width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+
+        popupInWindow.document.open();
+        popupInWindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
+        popupInWindow.document.close();
+      }
     }
 
     angular.module('metalistTicketsApp')
