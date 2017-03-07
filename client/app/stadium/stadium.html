@@ -32,9 +32,9 @@
                     </g>
                    </g>
                   </g>
-                  <g id="_1731983042720" ng-click="$ctrl.onSectorClick($event, 'south', '38')">
-                   <path class="sector sectorTooltip" sectorid="30692922" d="M806 305l-14 0c-1,15 -2,30 -5,43l13 3c3,-14 6,-29 6,-46l0 0z" fill={{$ctrl.getColor("south","38")}}  ></path>
-                   <path class="sector sectorTooltip" sectorid="30692922" d="M809 355l33 10 4 -12 13 5 -6 24 29 10c2,-3 3,-7 4,-10l6 -36c1,-6 3,-11 3,-17l-81 -7c-1,11 -3,22 -5,33l0 0z" fill={{$ctrl.getColor("south","38")}}  ></path>
+                  <g class="area-group" id="_1731983042720" ng-click="$ctrl.onSectorClick($event, 'south', '38')">
+                    <path class="sector sectorTooltip" sectorid="30692922" d="M806 305l-14 0c-1,15 -2,30 -5,43l13 3c3,-14 6,-29 6,-46l0 0z" fill={{$ctrl.getColor("south","38")}}  ></path>
+                    <path class="sector sectorTooltip" sectorid="30692922" d="M809 355l33 10 4 -12 13 5 -6 24 29 10c2,-3 3,-7 4,-10l6 -36c1,-6 3,-11 3,-17l-81 -7c-1,11 -3,22 -5,33l0 0z" fill={{$ctrl.getColor("south","38")}}  ></path>
                    <g>
                     <g transform="matrix(-0.141197 0.989982 -0.989982 -0.141197 1233.81 -61.0077)">
                      <text x="450" y="300" class="sector sectorTooltip" sectorid="30692922"   fill={{$ctrl.getColor("south","38")}}>38</text>
@@ -706,10 +706,10 @@
                     <text x="450" y="300" class="sector sectorTooltip" sectorid="30668332"   fill={{$ctrl.getColor("west","7")}}>7</text>
                    </g>
                   </g>
-                  <polygon class="sector sectorTooltip" sectorid="30668815" points="290,535 341,535 341,508 334,508 334,479 297,479 297,508 290,508 290,535 "   fill={{$ctrl.getColor("west","8")}}></polygon>
+
                   <g id="_1731978779952" ng-click="$ctrl.onSectorClick($event, 'west', '8')">
                    <polygon class="sector sectorTooltip" sectorid="30668815" points="352,538 297,538 297,600 359,600 359,566 352,566 "   fill={{$ctrl.getColor("west","8")}}></polygon>
-                    <!--rect class="fil9 sector" sectorId="30668815" x="297" y="479" width="36.1089" height="21.7321"/-->
+                    <polygon class="sector sectorTooltip" sectorid="30668815" points="290,535 341,535 341,508 334,508 334,479 297,479 297,508 290,508 290,535 "   fill={{$ctrl.getColor("west","8")}}></polygon>
                    <g transform="matrix(1 0 0 1 -124.747 291.647)">
                     <text x="450" y="300" class="sector sectorTooltip" sectorid="30668815"   fill={{$ctrl.getColor("west","8")}}>8</text>
                    </g>
@@ -792,11 +792,12 @@
   </div>
 </div>
 <div class="row">
- <div class="col-sm-12"><h3 style="text-align: left">Ценовая Категория</h3></div>
- <div class="col-sm-12">
-  <div style="display: inline-block;margin: 2px;" ng-show="$ctrl.inPrices(color.price)" ng-repeat="color in $ctrl.colors">
-   <span class=" fa fa-2x fa-square" style="color: {{color.color}};"></span>
-   <span>- {{color.price}} грн.</span>
+  <div class="col-sm-12"><h3 style="text-align: left">Ценовая Категория</h3></div>
+  <div class="col-sm-12">
+    <div style="display: inline-block;margin: 2px;" ng-show="$ctrl.inPrices(color.price)"
+         ng-repeat="color in $ctrl.colors">
+      <span class=" fa fa-2x fa-square" style="color: {{color.color}};"></span>
+      <span>- {{color.price}} грн.</span>
+    </div>
   </div>
- </div>
 </div>
