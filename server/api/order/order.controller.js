@@ -188,12 +188,7 @@ let updateSoldTickets = (order) => {
                       };
         return ticket.save();
       })
-      .then((ticket) => {
-        sendMessage(ticket);
-
-        return ticket;
-      });
-  });
+    });
 };
 
 let getLiqPayParams = (req) => {
@@ -248,12 +243,16 @@ let processLiqpayRequest = (request) => {
                 order.status = 'paid';
 
                 ticketPromises = updateSoldTickets(order);
-
             } else {
                 order.status = 'failed';
             }
 
-            return Promise.all([order.save()].concat(ticketPromises));
+            return Promise.all([order.save()].concat(ticketPromises))
+              .then(([ order ]) => {
+                sendMessage(order.tickets);
+
+                return order;
+              });
         });
 };
 
