@@ -176,6 +176,18 @@ let addUserToGuestCard = (guestCart, user) => {
   return guestCart.save();
 };
 
+let removeCartIdFromTicketsInCart = (tickets) =>  {
+  tickets.forEach(ticket => {
+    return Ticket.findOne({cartId: ticket.cartId, 'seat.id': ticket.seat.id})
+      .then(ticket => {
+        ticket.cartId = '';
+        ticket.reserveDate = null;
+
+        ticket.save();
+      });
+  })
+};
+
 let updateSoldTickets = (order) => {
   return order.tickets.map((ticket) => {
     Ticket.findOne({_id: ticket.id})
@@ -410,9 +422,13 @@ export function getUserCart(req, res) {
           req.session.cart = userCart.id;
 
           return userCart;
-        }
+        } else {
+          if (userCart.tickets.length) {
+            removeCartIdFromTicketsInCart(userCart.tickets);
+          }
 
-        return addUserToGuestCard(guestCart, user);
+          return addUserToGuestCard(guestCart, user);
+        }
       }
     })
     .then(cart => {
