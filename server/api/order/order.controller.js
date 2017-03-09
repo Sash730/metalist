@@ -49,6 +49,7 @@ function handleError(res, statusCode) {
 }
 
 let sendMessage = (ticket) => {
+  console.log('sendMessage', ticket);
   Mailer.sendMail( ticket.user.email, ticket);
 };
 
@@ -72,6 +73,7 @@ let createNewTicket = (cart, match, price, seat) => {
     amount: parseInt(price) * 100,//money formatted(for liqpay)
     reserveDate: moment().add(30, 'minutes'),
     status: 'new',
+    ticketNumber : uuid.v1(),
     valid: {
       from: ((d) => { let d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(match.date),
       to: ((d) => { let d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(match.date)
@@ -202,7 +204,7 @@ let updateSoldTickets = (order) => {
       })
       .then((ticket) => {
         sendMessage(ticket);
-
+        console.log('updateSoldTickets', ticket);
         return ticket;
       });
   });
@@ -491,11 +493,12 @@ export function convertCartToOrder(req, res) {
 }
 
 export function liqpayRedirect(req, res, next) {
-  return getLiqPayParams(req)
-    .then(params =>{
-      return Order.findOne({orderNumber: params.order_id, type: 'order'});
-    })
-    .then(order => {
+  /*return getLiqPayParams(req)
+   .then(params =>{
+   return Order.findOne({orderNumber: params.order_id, type: 'order'});
+   })*/
+  return processLiqpayRequest(req)
+    .then(([order]) => {
       if(!order) {
         throw new Error('Order not found');
       }

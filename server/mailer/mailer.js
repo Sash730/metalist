@@ -10,7 +10,8 @@ var logger = log4js.getLogger('sendMail');
 var transport = nodemailer.createTransport('smtps://'+config.mailer.auth.user+':'+config.mailer.auth.pass+'@smtp.gmail.com');
 
 export function sendMail(to, ticket) {
-  pdfGenerator.ticketBySendMail(ticket, function (err) {
+  console.log('sendMail', ticket);
+  pdfGenerator.generateTicket(ticket, null, function (err) {
     if (err) {
       logger.error('sendMail '+err);
     } else {
@@ -22,7 +23,7 @@ export function sendMail(to, ticket) {
         subject: 'Match ' +ticket.match.headline ,
         text: 'Match ' +ticket.match.headline+ ' Date ' + moment(ticket.match.date).format('MMM d, HH:mm') +' Sector '+ticket.seat.sector+' Row ' +ticket.seat.row,
         attachments: [{
-          filename: 'paymentDetails.pdf',
+          filename: 'MetalistTickets.pdf',
           path: './'+ticket.accessCode+'.pdf'
         }]
       };

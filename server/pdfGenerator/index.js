@@ -4,48 +4,79 @@ import * as fs from 'fs';
 import moment from 'moment';
 import * as log4js from 'log4js';
 
-var logger = log4js.getLogger('createPdfFile');
-var PDFDocument = require('pdfkit');
+let logger = log4js.getLogger('createPdfFile'),
+    PDFDocument = require('pdfkit');
 
-function createPdfFile(ticket, png, cb) {
-  var doc = new PDFDocument();
-  doc.pipe(fs.createWriteStream('./'+ticket.accessCode+'.pdf'));
-
-  doc.image('./ticket.png', 0, 0, {width:600});
-  doc.fontSize(20)
-    .text('Match - ' +ticket.match.headline, 180, 240)
-    .text('Date - ' + moment(ticket.match.date).format('MMM d, HH:mm'), 180, 260)
-    .text('Sector - ' +ticket.seat.sector, 200, 560)
-    .text('Row - ' +ticket.seat.row, 200, 580)
-    .text(ticket.match, 200, 600);
-
-  doc.image(png, 200, 150, {width:200});
-  doc.end();
-
-  cb(null);
+function handleError(res, statusCode) {
+  statusCode = statusCode || 500;
+  return function (err) {
+    logger.error('getTicketPdfById '+err);
+    res.status(statusCode).send(err);
+  };
 }
-export function ticketBySendMail(ticket, callback) {
-  barcode.toBuffer({
-    bcid:        'code128',
-    text:        String(ticket.accessCode),
-    scale:       3,               // 3x scaling factor
-    height:      10,              // Bar height, in millimeters
-    includetext: true,            // Show human-readable text
-    textxalign:  'center',        // Always good to set this
-    textsize:    13               // Font size, in points
-  }, function (err, png) {
-    if (err) {
-      logger.error('ticketBySendMail '+err);
-    } else {
-      createPdfFile(ticket, png, function (err, res) {
-        if (err) {
-          logger.error('createPdfFile '+err);
-        }
-        else {
-          callback(null, res);
-        }
-      })
-    }
-  });
 
+let generateBarcodePng = (ticket) =>{
+  return new Promise((resolve, reject) => {
+    barcode.toBuffer({
+      bcid:        'code128',
+      text:        String(ticket.accessCode),
+      scale:       3,               // 3x scaling factor
+      height:      10,              // Bar height, in millimeters
+      includetext: true,            // Show human-readable text
+      textxalign:  'center',        // Always good to set this
+      textsize:    13               // Font size, in points
+    }, function (err, png) {
+      if (err) {
+        return reject(err);
+      } else {
+        return resolve(png);
+      }
+    });
+  });
+};
+
+let generatePdfPage = (writeStream, ticket, png) => {
+  let doc = new PDFDocument();
+  doc.pipe(writeStream);
+  doc.image(__dirname + '/ticket.png', 0, 0, {width: 600});
+  doc.font(__dirname + '/fonts/OpenSans-Bold.ttf');
+  doc.fontSize(20)
+    .text('Матч - ' + ticket.match.headline, 180, 240)
+    .text('Дата - ' + moment(ticket.match.date).format('MMM d, HH:mm'), 180, 260)
+    .text('Трибуна - ' + ticket.seat.tribune, 200, 540)
+    .text('Сектор - ' + ticket.seat.sector, 200, 560)
+    .text('Ряд - ' + ticket.seat.row, 200, 580)
+    .text('Место - ' + ticket.seat.number, 200, 600);
+
+  doc.image(png, 200, 150, {width: 200});
+  doc.end();
+};
+
+function createPdfFile(ticket, png) {
+  let writeStream = fs.createWriteStream('./'+ticket.accessCode+'.pdf');
+  return new Promise(reject => {
+    generatePdfPage(writeStream, ticket, png);
+    writeStream.on('finish', function () {
+      return reject(null);
+    });
+  });
+}
+
+function createPdfFilePipe(ticket, png, res) {
+  return new Promise((resolve) => {
+    generatePdfPage(res, ticket, png);
+    return resolve(res);
+  });
+}
+
+export function generateTicket(ticket, res) {
+  return generateBarcodePng(ticket)
+    .then(png => {
+      if (res === null) {
+        return createPdfFile(ticket, png);
+      } else {
+        return createPdfFilePipe(ticket, png, res);
+      }
+    })
+    .catch(handleError(res));
 }
