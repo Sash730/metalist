@@ -1,6 +1,6 @@
 /** breadcrumbs **/
 
-@media (min-width: 1281px) and (max-width: 4096px) {
+@media (min-width: 1281px) and (max-width: 4096px) and (orientation: landscape) {
 
   .cr {
     margin-left: 2px;
@@ -14,19 +14,51 @@
 
   .crumbs [crm] a {
     width: 19.4%;
-    font-size: 14px;
     padding: 20px 0 0 0;
   }
 
   .crumbs [crmdis] a {
     width: 19.4%;
-    font-size: 14px;
     padding: 20px 0 0 0;
   }
 
+  .bcTextInside1 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -25px;
+    font-size: 100%;
+  }
+
+  .bcTextInside2 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -30px;
+    font-size: 100%;
+  }
+
+  .bcTextInside3 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -30px;
+    font-size: 100%;
+  }
+
+  .bcTextInside4 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -55px;
+    font-size: 100%;
+  }
+
+  .bcTextInside5 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -15px;
+    font-size: 100%;
+  }
 }
 
-@media (min-width: 721px) and (max-width: 1280px) {
+@media (min-width: 721px) and (max-width: 1280px) and (orientation: landscape) {
 
   .cr {
     margin-left: 1px;
@@ -40,18 +72,51 @@
 
   .crumbs [crm] a {
     width: 19.2%;
-    font-size: 1.6vw;
     padding: 16px 0 0 30px;
   }
 
   .crumbs [crmdis] a {
     width: 19.2%;
-    font-size: 1.6vw;
     padding: 16px 0 0 30px;
+  }
+
+  .bcTextInside1 {
+    z-index: 9999;
+    position: absolute;
+    margin: 2px 0 0 -40px;
+    font-size: 100%;
+  }
+
+  .bcTextInside2 {
+    z-index: 9999;
+    position: absolute;
+    margin: 2px 0 0 -50px;
+    font-size: 100%;
+  }
+
+  .bcTextInside3 {
+    z-index: 9999;
+    position: absolute;
+    margin: 2px 0 0 -45px;
+    font-size: 100%;
+  }
+
+  .bcTextInside4 {
+    z-index: 9999;
+    position: absolute;
+    margin: -5px 0 0 -55px;
+    font-size: 100%;
+  }
+
+  .bcTextInside5 {
+    z-index: 9999;
+    position: absolute;
+    margin: 2px 0 0 -35px;
+    font-size: 100%;
   }
 }
 
-@media (min-width: 326px) and (max-width: 720px) {
+@media (min-width: 326px) and (max-width: 720px) and (orientation: landscape) {
 
   .cr {
     display: flex;
@@ -66,21 +131,52 @@
   .crumbs [crm] a {
     height: 30px;
     width: 18.5%;
-    font-size: 2vw;
     padding: 22px 0 0 30px;
   }
 
   .crumbs [crmdis] a {
     height: 30px;
     width: 18.5%;
-    font-size: 1.6vw;
     padding: 22px 0 0 30px;
+  }
+
+  .bcTextInside1 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -35px;
+    font-size: 70%;
+  }
+
+  .bcTextInside2 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -35px;
+    font-size: 70%;
+  }
+
+  .bcTextInside3 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -35px;
+    font-size: 70%;
+  }
+
+  .bcTextInside4 {
+    z-index: 9999;
+    position: absolute;
+    margin: -5px 0 0 -40px;
+    font-size: 70%;
+  }
+
+  .bcTextInside5 {
+    z-index: 9999;
+    position: absolute;
+    margin: 0 0 0 -25px;
+    font-size: 70%;
   }
 }
 
 .crumbs [crm] a {
-  white-space: nowrap;
-  text-align: center;
   display: inline-block;
   float: left;
   height: 60px;
@@ -92,8 +188,6 @@
 }
 
 .crumbs [crmdis] a {
-  white-space: nowrap;
-  text-align: center;
   display: inline-block;
   float: left;
   height: 60px;
@@ -194,35 +288,7 @@
   border-left-color: #ffa900;
 }
 
-@media (min-width: 256px) and (max-width: 325px) {
-
-  .cr {
-    display: flex;
-    justify-content: center;
-  }
-
-  .crumbs {
-    padding-left: 10px;
-    width: 100%;
-  }
-
-  .crumbs [crm] a {
-    height: 30px;
-    width: 18%;
-    font-size: 2vw;
-    padding: 22px 0 0 30px;
-  }
-
-  .crumbs [crmdis] a {
-    height: 30px;
-    width: 18%;
-    font-size: 1.6vw;
-    padding: 22px 0 0 30px;
-  }
-}
-
 .crumbs [crm] a {
-  white-space: nowrap;
   text-align: center;
   display: inline-block;
   float: left;
@@ -235,7 +301,6 @@
 }
 
 .crumbs [crmdis] a {
-  white-space: nowrap;
   text-align: center;
   display: inline-block;
   float: left;

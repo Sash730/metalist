@@ -1,22 +1,20 @@
 <div class="container">
   <div class="row cr">
     <div class="crumbs">
-      <span crm><a href="/" title="Выбор матча">Все матчи</a></span>
-      <span crm><a href="#" title="Выбор сектора">Выбор сектора</a></span>
-      <span crm><a href="#" title="Выбор места">Выбор места</a></span>
-      <span crmdis><a href="#" style="cursor: default" title="Оформление заказа">Оформление заказа</a></span>
-      <span crmdis><a href="#" style="cursor: default" title="Оплата">Оплата</a></span>
+      <span crm><a href="/" title="Выбор матча"><span class="bcTextInside1">Все матчи</span></a></span>
+      <span crm><a href="#" title="Выбор сектора"><span class="bcTextInside2">Выбор сектора</span></a></span>
+      <span crmdis><a href="#" style="cursor: default" title="Выбор места"><span class="bcTextInside3">Выбор места</span></a></span>
+      <span crmdis><a href="#" style="cursor: default" title="Оформление заказа"><span class="bcTextInside4">Оформление заказа</span></a></span>
+      <span crmdis><a href="#" style="cursor: default" title="Оплата"><span class="bcTextInside5">Оплата</span></a></span>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-4"><h3 style="text-align: left; font-weight: bold">{{ vm.match.date|date:'d MMMM y' }}<br>
-      {{ vm.match.date|date:'HH:mm' }}</h3></div>
-    <div>
-      <div class="col-xs-4" style="text-align: center"><h3>Металлист 1925<br>{{ vm.match.rival }}</h3></div>
-      <div class="col-xs-4 address" style="text-align: right"><span>Стадион Металлист<br>ул. Плехановская, 65</span>
-        <br><span class="fa fa-subway" uib-popover="Станция метро" popover-trigger="'mouseenter'"
-                  popover-placement="left"></span> Спортивная / Метростроителей
-      </div>
+    <div class="col-xs-4 matchDate"><h3 style="text-align: left; font-weight: bold">
+      {{ vm.match.date|date:'d MMMM y' }}<br>{{ vm.match.date|date:'HH:mm' }}</h3></div>
+    <div class="col-xs-4 matchRival" style="text-align: center"><h3>Металлист 1925<br>{{ vm.match.rival }}</h3></div>
+    <div class="col-xs-4 address" style="text-align: right"><span>Стадион Металлист<br>ул. Плехановская, 65</span>
+      <br><span class="fa fa-subway" uib-popover="Станция метро" popover-trigger="'mouseenter'"
+                popover-placement="left"></span> Спортивная / Метростроителей
     </div>
   </div>
   <div class="gradientSeats"></div>
