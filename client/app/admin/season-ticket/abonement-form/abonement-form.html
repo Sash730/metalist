@@ -1,0 +1,21 @@
+<form class="form-inline">
+    <label>Новый абонемент</label>
+    <button class="btn btn-default" ng-click="$ctrl.edit({})">new</button>
+</form>
+<form class="form">
+<table class="table">
+    <tbody>
+    <tr>
+        <td><input type="text" name="number" class="form-control" ng-model="$ctrl.ticketToEdit.number" placeholder="№ абонемента" required="" /></td>
+        <td><input type="text" name="sector" class="form-control" ng-model="$ctrl.ticketToEdit.sector" placeholder="сектор" required="" /></td>
+        <td><input type="text" name="row"  class="form-control" ng-model="$ctrl.ticketToEdit.row" placeholder="ряд" required="" /></td>
+        <td><input type="text" name="seat" class="form-control" ng-model="$ctrl.ticketToEdit.seat" placeholder="место" required="" /></td>
+        <td><input type="date" name="valid" class="form-control" ng-model="$ctrl.ticketToEdit.valid" placeholder="" required="" /></td>
+        <td>
+        <button type="submit" class="btn btn-default" ng-click="$ctrl.update()" ng-bind="$ctrl.ticketToEdit.id ? 'Coхранить': 'Добавить'"></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+    <span ng-show="$ctrl.output">{{$ctrl.output}}</span>
+</form>

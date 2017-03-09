@@ -1,0 +1,37 @@
+<div class="row">
+    <hr>
+    <div class="col-md-12">
+        <abonement-form season-ticket-to-edit="$ctrl.seasonTicketToEdit"
+                        message="$ctrl.message"
+                        on-edit="$ctrl.edit($event)"
+                        on-change="$ctrl.saveSeasonTicket($event)"></abonement-form>
+    </div>
+    <div class="col-md-12">
+        <hr>
+        <div class="col-md-9" style="text-align: center; border-right: 1px solid lightgrey">
+           <abonement-list season-tickets="$ctrl.seasonTickets"
+                           on-change="$ctrl.edit($event)">
+           </abonement-list>
+        </div>
+        <div class="col-md-3">
+            <div class="col-md-12">
+                <label>Удалить абонемент</label>
+                <form class="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="abonement number" ng-model="$ctrl.ticketNumber">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$ctrl.deleteSeasonTicket()">Удалить</button>
+                </form>
+            </div>
+            <div class="col-md-12">
+                <label>Найти абонемент</label>
+                <form class="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="abonement number" ng-model="$ctrl.ticketNumber">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$ctrl.searchSeasonTicket()">Найти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

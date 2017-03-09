@@ -1,6 +1,7 @@
 'use strict';
 
 import Ticket from './ticket.model';
+import SeasonTicket from '../seasonTicket/seasonTicket.model';
 import moment from 'moment';
 import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';
@@ -39,6 +40,28 @@ function handleEntityNotFound(res) {
     };
 }
 
+let getSecureReservedTickets = (matchId, sectorNumber) => {
+  let timeEndTicketReserve = moment().subtract(30, 'minutes');
+
+  return Ticket.find({'match.id': matchId, 'seat.sector': sectorNumber})
+    .where({$or: [
+      {status: 'paid'},
+      {$and: [
+        {reserveDate: {$gt: timeEndTicketReserve}},
+        {cartId: {$ne: null}}
+      ]}
+    ]}).exec()
+    .then(tickets => {
+      return tickets.map(ticket => {
+        return {
+          'cartId': ticket.cartId,
+          'matchId': ticket.match.id,
+          'seatId': ticket.seat.id
+        };
+      });
+    })
+};
+
 export function index(req, res) {
     return Ticket.find().exec()
         .then(tickets => {
@@ -72,28 +95,17 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
-export function getReservedtickets(req, res) {
+export function getReservedTickets(req, res) {
   let matchId = req.params.id,
-    sectorNumber = req.params.sector,
-    timeEndTicketReserve = moment().subtract(30, 'minutes');
+    sectorNumber = req.params.sector;
 
-  return Ticket.find({'match.id': matchId, 'seat.sector': sectorNumber})
-    .where({$or: [
-      {status: 'paid'},
-      {$and: [
-        {reserveDate: {$gt: timeEndTicketReserve}},
-        {cartId: {$ne: null}}
-      ]}
-    ]}).exec()
-    .then(tickets => {
-      return tickets.map(ticket => {
-        return {
-          'cartId': ticket.cartId,
-          'matchId': ticket.match.id,
-          'seatId': ticket.seat.id
-        };
-      });
-    })
+return Promise.all([
+        getSecureReservedTickets(matchId, sectorNumber),
+        SeasonTicket.find({valid: {$gte: new Date()}})
+    ])
+  .then(([reservedTickets, seasonTickets]) => {
+    return reservedTickets.concat(seasonTickets);
+  })
     .then(respondWithResult(res))
     .catch(handleError(res))
 }
