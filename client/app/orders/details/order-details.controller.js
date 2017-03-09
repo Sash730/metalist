@@ -12,6 +12,8 @@
           this.tickets = [];
           this.message = '';
           this.counter = 0;
+          this.ticketPdf = {};
+
 
           this.getOrderByNumber();
         }
@@ -51,7 +53,9 @@
             }
           }
         }
+
     }
+
 
     angular.module('metalistTicketsApp')
         .controller('OrderDetailsController', OrderDetailsController);

@@ -32,6 +32,12 @@
           ;
       }
 
+      getTicketPdfById(ticketNumber) {
+        return this.$http.get('/api/tickets/ticket/' + ticketNumber)
+          .then(response => response.data)
+          ;
+      }
+
     }
 
     angular.module('metalistTicketsApp')

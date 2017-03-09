@@ -48,8 +48,8 @@ function handleError(res, statusCode) {
     };
 }
 
-let sendMessage = (ticket) => {
-  Mailer.sendMail( ticket.user.email, ticket);
+let sendMessage = (order) => {
+  Mailer.sendMail( order.user.email, order);
 };
 
 let createNewTicket = (cart, match, price, seat) => {
@@ -72,6 +72,7 @@ let createNewTicket = (cart, match, price, seat) => {
     amount: parseInt(price) * 100,//money formatted(for liqpay)
     reserveDate: moment().add(30, 'minutes'),
     status: 'new',
+    ticketNumber : uuid.v1(),
     valid: {
       from: ((d) => { let d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(match.date),
       to: ((d) => { let d1 = new Date(d); d1.setHours(23,59,59,0); return d1; })(match.date)
@@ -201,8 +202,6 @@ let updateSoldTickets = (order) => {
         return ticket.save();
       })
       .then((ticket) => {
-        sendMessage(ticket);
-
         return ticket;
       });
   });
@@ -240,33 +239,34 @@ let deleteTicketFromCart = (cart, seatId) => {
 };
 
 let processLiqpayRequest = (request) => {
-
   return getLiqPayParams(request)
-        .then(params => {
-            return Promise.all([
-                Order.findOne({orderNumber: params.order_id})
-                  .populate({path: 'tickets'}),
-                params
-            ]);
-        })
-        .then(([order, params]) => {
-            if(!order) {
-                throw new Error('Order not found');
-            }
-            order.paymentDetails = params;
+    .then(params => {
+      return Promise.all([
+        Order.findOne({orderNumber: params.order_id})
+          .populate({path: 'tickets'}),
+        params
+      ]);
+    })
+    .then(([order, params]) => {
+      if(!order) {
+        throw new Error('Order not found');
+      }
+      order.paymentDetails = params;
+        let ticketPromises = [];
+      if (params.status === 'success' || params.status === 'sandbox') {
+        order.status = 'paid';
 
-            let ticketPromises = [];
-            if(params.status === 'success' || params.status === 'sandbox') {
-                order.status = 'paid';
+        ticketPromises = updateSoldTickets(order);
+      } else {
+        order.status = 'failed';
+      }
+        return Promise.all([order.save()].concat(ticketPromises))
+    })
+    .then(([order]) => {
+      sendMessage(order);
 
-                ticketPromises = updateSoldTickets(order);
-
-            } else {
-                order.status = 'failed';
-            }
-
-            return Promise.all([order.save()].concat(ticketPromises));
-        });
+      return order;
+    });
 };
 
 const createPaymentLink = (order) => {
@@ -492,17 +492,17 @@ export function convertCartToOrder(req, res) {
 
 export function liqpayRedirect(req, res, next) {
   return getLiqPayParams(req)
-    .then(params =>{
-      return Order.findOne({orderNumber: params.order_id, type: 'order'});
-    })
-    .then(order => {
-      if(!order) {
-        throw new Error('Order not found');
-      }
-      return res.redirect('/my/orders/'+order.orderNumber);
-    })
-    .catch(handleError(res))
-    ;
+   .then(params =>{
+     return Order.findOne({orderNumber: params.order_id, type: 'order'});
+   })
+   .then(order => {
+     if(!order) {
+       throw new Error('Order not found');
+     }
+     return res.redirect('/my/orders/'+order.orderNumber);
+   })
+   .catch(handleError(res))
+   ;
 }
 
 export function liqpayCallback(req, res, next) {
