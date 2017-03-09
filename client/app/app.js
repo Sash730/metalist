@@ -2,7 +2,7 @@
 
 angular.module('metalistTicketsApp', ['metalistTicketsApp.auth', 'metalistTicketsApp.admin',
     'metalistTicketsApp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router',
-    'ui.bootstrap', 'validation.match', 'ngPrint'
+    'ui.bootstrap', 'validation.match', 'ngPrint', 'datePicker'
 ])
     .config(function ($urlRouterProvider, $locationProvider, $cookiesProvider) {
         $urlRouterProvider.otherwise('/404');

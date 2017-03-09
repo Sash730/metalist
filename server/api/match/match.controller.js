@@ -56,6 +56,7 @@ export function createMatch(req, res) {
   let newMatch = new Match({
     rival: req.body.rival,
     info: req.body.info,
+    poster: req.body.poster,
     date: req.body.date,
     priceSchema: req.body.priceSchema.id
   });
