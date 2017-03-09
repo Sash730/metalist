@@ -70,7 +70,7 @@ let createNewTicket = (cart, match, price, seat) => {
       number: seat.number
     },
     amount: parseInt(price) * 100,//money formatted(for liqpay)
-    reserveDate: moment(),
+    reserveDate: moment().add(30, 'minutes'),
     status: 'new',
     valid: {
       from: ((d) => { let d1 = new Date(d); d1.setHours(0,0,0,0); return d1; })(match.date),
@@ -82,15 +82,27 @@ let createNewTicket = (cart, match, price, seat) => {
   return ticket.save();
 };
 
+let deleteTimeEndReserveTicketInCart = (cartId, ticketId) => {
+  Order.findOne({_id: cartId})
+    .then(cart => {
+        cart.tickets.splice(cart.tickets.indexOf(ticketId), 1);
+
+      return cart.save();
+    })
+
+};
+
 let createOrUpdateTicket = (cart, match, ticket,  price, seat) => {
   if (!ticket) {
     return createNewTicket(cart, match, price, seat);
   }
+  if (ticket.cartId) {
+    deleteTimeEndReserveTicketInCart(ticket.cartId, ticket._id);
+  }
+    ticket.cartId = cart._id;
+    ticket.reserveDate = moment().add(30, 'minutes');
 
-  ticket.cartId = cart._id;
-  ticket.reserveDate = Date.now();
-
-  return ticket.save();
+    return ticket.save();
 };
 
 let doTicketsSecure = (cart) => {
@@ -121,7 +133,7 @@ let updateTicketsInCheckout = (order) => {
   order.tickets.map((ticket) => {
     Ticket.findOne({_id: ticket.id})
       .then(ticket => {
-        ticket.reserveDate = moment();
+        ticket.reserveDate = moment().add(30, 'minutes');
 
         return ticket.save();
     });
@@ -291,12 +303,12 @@ export function updateCart(req, res) {
         rowName = req.body.rowName,
         seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
         priceSchemaId = req.body.match.priceSchema.id,
-        timeEndTicketReserve = moment().subtract(30, 'minutes'),
         price = req.body.price;
 
   let checkSeatInStadium = new Promise((resolve, reject) => {
     let row = Stadium['tribune_'+tribuneName]['sector_'+sectorName]
       .rows.filter(row => row.name === rowName);
+
 
     if(row.length && seat <= row[0].seats) {
       resolve({
@@ -326,10 +338,11 @@ export function updateCart(req, res) {
           if(!match) {
               throw new Error('Match not found');
           }
-          if (ticket && ( ticket.status === 'paid' || ticket.reserveDate > timeEndTicketReserve )) {
+          if (ticket && ( ticket.status === 'paid' || ticket.reserveDate > moment() )) {
+            console.log('taken');
             return {
                     tickets: cart.tickets,
-                    message: 'This ticket is already taken.'
+                    message: 'Этот билет уже выбрали.'
                    };
           }
          return createOrUpdateTicket(cart, match, ticket,  price, seat)
