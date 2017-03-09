@@ -5,6 +5,7 @@
       <h1>Checkout</h1>
     </div>
     <div class="col-sm-12">
+      <div><strong>{{vm.cart.size}} билета - сумма {{ vm.cart.amount | money }}</strong></div>
       <cart></cart>
     </div>
     <div class="buttons col-sm-12" ng-show="vm.cart.size">
