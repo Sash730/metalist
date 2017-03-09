@@ -5,10 +5,11 @@
 
   class SectorController {
 
-    constructor(match, cart, sector, TicketsService, $stateParams, CartService, PriceSchemaService) {
+    constructor(match, cart, sector, TicketsService, $stateParams, TimerReserveService,  CartService, PriceSchemaService) {
       this.CartService = CartService;
       this.priceSchemaService = PriceSchemaService;
       this.ticketsService = TicketsService;
+      this.timerService = TimerReserveService;
       this.match = match;
       this.cart = cart;
       this.sector = sector;
@@ -32,21 +33,31 @@
 
     getReservedTickets() {
       let matchId = this.match.id,
-        sectorName = this.sector.name;
+          sectorName = this.sector.name;
 
       return this.ticketsService.fetchReservedTickets(matchId, sectorName)
         .then(tickets => this.reservedTickets = tickets);
     }
 
-    getSelectedSeats(){
-        this.cart._tickets.forEach(ticket => {
-          this.selectedSeats.push(ticket.seat.id);
-        });
+    getSelectedSeats() {
+      this.selectedSeats = [];
+      this.cart._tickets.forEach(ticket => {
+        this.selectedSeats.push(ticket.seat.id);
+      });
     }
 
-    updateReservedTickets($event) {
+    startReserveTimer() {
+      this.timerService.startTimer();
+    }
+
+    stopReserveTimer() {
+      this.timerService.stopTimer();
+    }
+
+    updateReservedTickets() {
       this.getReservedTickets();
-      this.selectedSeats.splice(this.selectedSeats.indexOf($event.seatId), 1);
+      this.getSelectedSeats();
+      if (!this.selectedSeats.length) this.stopReserveTimer();
     }
 
      addClassByCheckSoldSeat(seatId) {
@@ -55,24 +66,26 @@
       if (checkTicket && this.selectedSeats.includes(seatId)) {
         return 'blockedSeat';
       }
+      if ( checkTicket && !this.selectedSeats.includes(seatId) ) {
+        return 'soldSeat';
+      }
 
-       if ( checkTicket && !this.selectedSeats.includes(seatId) ) {
-         return 'soldSeat';
-       }
-
-       return 'imgSeatsStyle';
+      return 'imgSeatsStyle';
     }
 
      addTicketToCart(match, tribuneName, sectorName, rowName, seat, sectorPrice) {
       let seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
           [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
-       this.message = '';
+      this.message = '';
 
       if ( checkTicket && this.selectedSeats.includes(seatId) ) {
         this.CartService.removeTicket(seatId)
           .then(() => {
             this.getReservedTickets()
-              .then( () => this.selectedSeats.splice(this.selectedSeats.indexOf(seatId), 1) );
+              .then( () => {
+                this.getSelectedSeats();
+                if (!this.selectedSeats.length) this.stopReserveTimer();
+              } );
 
           })
       }
@@ -84,10 +97,9 @@
               this.message = message;
               return this.getReservedTickets();
             }
+            this.startReserveTimer();
             this.getReservedTickets()
               .then( () => {
-                this.selectedSeats = [];
-                this.getSelectedSeats();
                 this.selectedSeats.push(seatId);
               });
           });

@@ -1,0 +1,7 @@
+<timer interval="1000" countdown="$ctrl.countdown"
+       autostart="false"
+       max-time-unit="'minute'"
+       finish-callback="$ctrl.timerFinished()" >
+    {{mminutes}} : {{sseconds}}
+</timer>
+<span ng-show="$ctrl.timerMessage">{{$ctrl.timerMessage}}</span>

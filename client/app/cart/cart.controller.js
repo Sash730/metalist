@@ -12,7 +12,7 @@
       removeItem(seatId) {
         this.cartService.removeTicket(seatId)
           .then(() => {
-            this.onDelete({$event: { seatId: seatId }});
+            this.onDelete();
           });
       }
     }

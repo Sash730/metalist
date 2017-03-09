@@ -11,6 +11,9 @@
   </div>
   <div class="gradientSeats"></div>
   <div class="row">
+    <div class="col-xs-12"  style="text-align: center;font-weight: bold;font-size: 16px">
+      <timer-reserve></timer-reserve>
+    </div>
     <div class="col-xs-12">
       <p style="text-align: center; font-size: large">Выбор места ({{vm.sector.name}} Сектор) - {{vm.sectorPrice}}
         грн.</p>
@@ -52,7 +55,7 @@
       <div class="colMinSize col-xs-4 col-centered col-fixed">
         <div class="item">
           <div class="content">
-            <cart on-delete="vm.updateReservedTickets($event)"></cart>
+            <cart on-delete="vm.updateReservedTickets()"></cart>
           </div>
         </div>
       </div>
