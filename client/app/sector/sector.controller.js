@@ -18,6 +18,7 @@
       this.tribuneName = $stateParams.tribune;
       this.sectorPrice = '';
       this.rowRow = 'Ряд';
+      this.message = '';
 
       this.getPrice();
       this.getReservedTickets();
@@ -65,6 +66,7 @@
      addTicketToCart(match, tribuneName, sectorName, rowName, seat, sectorPrice) {
       let seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
           [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
+       this.message = '';
 
       if ( checkTicket && this.selectedSeats.includes(seatId) ) {
         this.CartService.removeTicket(seatId)
@@ -77,9 +79,17 @@
 
       if( !checkTicket ) {
         this.CartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
-          .then(() => {
+          .then(message => {
+            if (message) {
+              this.message = message;
+              return this.getReservedTickets();
+            }
             this.getReservedTickets()
-              .then( () => this.selectedSeats.push(seatId) );
+              .then( () => {
+                this.selectedSeats = [];
+                this.getSelectedSeats();
+                this.selectedSeats.push(seatId);
+              });
           });
       }
     }

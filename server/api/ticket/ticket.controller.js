@@ -41,13 +41,11 @@ function handleEntityNotFound(res) {
 }
 
 let getSecureReservedTickets = (matchId, sectorNumber) => {
-  let timeEndTicketReserve = moment().subtract(30, 'minutes');
-
   return Ticket.find({'match.id': matchId, 'seat.sector': sectorNumber})
     .where({$or: [
       {status: 'paid'},
       {$and: [
-        {reserveDate: {$gt: timeEndTicketReserve}},
+        {reserveDate: {$gt: moment()}},
         {cartId: {$ne: null}}
       ]}
     ]}).exec()

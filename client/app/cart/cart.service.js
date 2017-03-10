@@ -8,9 +8,7 @@
             this.$http = $http;
             this.Auth = Auth;
             this.$cookies = $cookies;
-
             this.cart = new Cart();
-            this.message = '';
 
           this.loadCart();
         }
@@ -56,10 +54,10 @@
                 price: price
             })
                 .then(response => {
-                  if (response.data.message) {
-                    this.message = response.data.message;
-                  }
                   this.cart.tickets = response.data.tickets;
+                  if (response.data.message) {
+                    return response.data.message;
+                  }
                 })
             ;
         }
