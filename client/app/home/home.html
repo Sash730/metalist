@@ -10,7 +10,7 @@
             <div class="buyTicket"><p>Купить билет</p></div>
             <div>
               <span class="teamLogos"><img src="assets/teamLogo/4.png" alt="..."></span>
-              <span class="teamLogos"><img class="teamLogos" src="assets/teamLogo/6.png" alt="..."></span>
+              <span class="teamLogos"><img class="teamLogos" src="{{match.poster}}" alt="..."></span>
             </div>
             <span class="commandsNames"><h4>Металист 1925 - {{match.rival}}</h4></span>
             <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'd MMMM y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>
@@ -23,7 +23,7 @@
             <div class="buyTicket">Купить билет</div>
             <div>
               <span class="teamLogos"><img src="assets/teamLogo/4.png" alt="..."></span>
-              <span class="teamLogos"><img class="teamLogos" src="assets/teamLogo/6.png" alt="..."></span>
+              <span class="teamLogos"><img class="teamLogos"  src="{{match.poster}}" alt="..."></span>
             </div>
             <span class="commandsNames"><h4>Металист 1925 - {{match.rival}}</h4></span>
             <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'd MMMM y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>

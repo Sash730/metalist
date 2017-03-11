@@ -24,7 +24,7 @@
         }
         if (this.matchToEdit.id) {
           this.match = Object.assign({}, this.matchToEdit);
-          this.match.date = new Date(this.matchToEdit.date);
+          this.match.date = this.matchToEdit.date ? new Date(this.matchToEdit.date) : this.date;
         }
       }
       if ( changes.priceSchemas ) {
