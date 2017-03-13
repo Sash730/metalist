@@ -2,7 +2,7 @@
 
 (function () {
 
-  class AbonementListController {
+  class SeasonTicketListController {
 
     constructor() {
       this.tickets = [];
@@ -35,5 +35,5 @@
   }
 
   angular.module('metalistTicketsApp.admin')
-    .controller('AbonementListController', AbonementListController);
+    .controller('SeasonTicketListController', SeasonTicketListController);
 })();

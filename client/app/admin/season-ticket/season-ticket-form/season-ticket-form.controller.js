@@ -2,14 +2,13 @@
 
 (function () {
 
-  class AbonementFormController {
+  class SeasonTicketFormController {
 
     constructor() {
 
       this.ticketToEdit = {};
       this.date = new Date();
       this.date.setMonth(this.date.getMonth() + 4);
-      this.output = '';
     }
 
     $onInit() {
@@ -24,11 +23,7 @@
         if (this.seasonTicketToEdit.id) {
           this.ticketToEdit = Object.assign({}, this.seasonTicketToEdit);
           this.ticketToEdit.valid = new Date(this.seasonTicketToEdit.valid);
-          this.output = '';
         }
-      }
-      if (changes.message) {
-        this.output = this.message;
       }
     }
 
@@ -56,5 +51,5 @@
   }
 
   angular.module('metalistTicketsApp.admin')
-    .controller('AbonementFormController', AbonementFormController);
+    .controller('SeasonTicketFormController', SeasonTicketFormController);
 })();

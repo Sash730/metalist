@@ -1,0 +1,16 @@
+<form class="form" novalidate>
+    <label>Блокировка рядов</label>
+    <table class="table">
+        <tbody>
+        <tr>
+            <td><input type="text" name="sector" class="form-control" ng-model="$ctrl.blockRow.sector" placeholder="сектор" required="" /></td>
+            <td><input type="text" name="row"  class="form-control" ng-model="$ctrl.blockRow.row" placeholder="ряд" required="" /></td>
+            <td><input type="date" name="valid" class="form-control" ng-model="$ctrl.blockRow.valid" placeholder="" required="" /></td>
+            <td>
+                <button type="submit" class="btn btn-default" ng-click="$ctrl.add()">Добавить</button>
+                <button type="submit" class="btn btn-default" ng-click="$ctrl.delete()"> Удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>

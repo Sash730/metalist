@@ -3,7 +3,7 @@
   <table class="table">
     <thead>
     <tr>
-        <th>№ абонемента</th>
+        <th>Seat id</th>
         <th>Сектор</th>
         <th>Ряд</th>
         <th>Место</th>
@@ -13,7 +13,7 @@
     <tbody>
     <tr ng-repeat="ticket in $ctrl.tickets track by ticket._id">
         <td>
-            <input type="text" name="number" class="form-control" ng-model="ticket.number" />
+            <input type="text" name="number" class="form-control" ng-model="ticket.seatId" />
         </td>
         <td>
             <input type="text" name="sector" class="form-control" ng-model="ticket.sector" />

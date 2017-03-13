@@ -3,12 +3,11 @@
 (function () {
 
   angular.module('metalistTicketsApp.admin')
-    .component('abonementForm', {
-      templateUrl: 'app/admin/season-ticket/abonement-form/abonement-form.html',
-      controller: 'AbonementFormController',
+    .component('seasonTicketForm', {
+      templateUrl: 'app/admin/season-ticket/season-ticket-form/season-ticket-form.html',
+      controller: 'SeasonTicketFormController',
       bindings: {
         seasonTicketToEdit: '<',
-        message: '<',
         onEdit: '&',
         onChange: '&'
       }

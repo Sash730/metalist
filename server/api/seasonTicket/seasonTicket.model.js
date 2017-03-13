@@ -6,11 +6,11 @@ import {Schema} from 'mongoose';
 
 const SeasonTicketSchema = new Schema({
   seatId: {type: String, requried: true},
-  number: {type: String, requried: true},
   sector: {type: Number, requried: true},
   row: {type: Number, requried: true},
   seat: {type: Number, requried: true},
-  valid: {type: Date, required: true}
+  valid: {type: Date, required: true},
+  type: {type: String, enum: ['ticket', 'block'], requried: true}
 }, {
   toObject: { virtuals: true },
   toJSON: { virtuals: true }

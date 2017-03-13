@@ -9,8 +9,7 @@
 
       this.seasonTickets = [];
       this.seasonTicketToEdit = {};
-      this.ticketNumber = '';
-      this.message = '';
+      this.seatId = '';
     }
 
     $onInit() {
@@ -23,10 +22,7 @@
 
     saveSeasonTicket($event) {
       this.seasonTicketService.saveSeasonTicket($event.ticket)
-        .then(response => {
-          if(response.data.message) {
-            return this.message = response.data.message;
-          }
+        .then(() => {
           this.loadSeasonTickets();
           this.seasonTicketToEdit = {};
       })
@@ -37,19 +33,29 @@
     }
 
     searchSeasonTicket() {
-      this.seasonTicketService.searchSeasonTicket(this.ticketNumber)
+      this.seasonTicketService.searchSeasonTicket(this.seatId)
         .then( ticket => {
           this.seasonTicketToEdit = Object.assign({}, ticket);
-          this.ticketNumber = '';
+          this.seatId = '';
         })
     }
 
     deleteSeasonTicket() {
-      this.seasonTicketService.deleteSeasonTicket(this.ticketNumber)
+      this.seasonTicketService.deleteSeasonTicket(this.seatId)
         .then( () => {
           this.loadSeasonTickets();
-          this.ticketNumber = '';
+          this.seatId = '';
         })
+    }
+
+    deleteBlockRow($event) {
+      this.seasonTicketService.deleteBlockRow($event.blockRow)
+        .then( () =>  this.loadSeasonTickets() );
+    }
+
+    addBlockRow($event) {
+      this.seasonTicketService.addBlockRow($event.blockRow)
+        .then( () =>  this.loadSeasonTickets() );
     }
   }
 
