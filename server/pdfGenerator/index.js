@@ -16,12 +16,15 @@ function handleError(res, statusCode) {
 }
 
 function translite(direction) {
-  if (direction == 'north') { return 'Север'}
-  if (direction == 'south') { return 'Юг'}
-  if (direction == 'east') { return 'Восток'}
-  if (direction == 'west') { return 'Запад'}
+  if (direction == 'north') { return 'Пiвнiчна'}
+  if (direction == 'south') { return 'Пiвденна'}
+  if (direction == 'east') { return 'Схiдна'}
+  if (direction == 'west') { return 'Захiдна'}
 }
 
+function transliteHeadline(headline) {
+  return headline.replace("Metalist vs", "Металiст (Харкiв) -")
+}
 
 let generateBarcodePng = (ticket) =>{
   return new Promise((resolve, reject) => {
@@ -56,13 +59,15 @@ let generatePdfPage = (res, ticket, png) => {
     .text('Ряд: ', 350, 85)
     .text('Мiсце: ', 350, 105)
 
-  doc.fontSize(16)
-    .text( moment(ticket.match.date).format('DD.MM.YYYY HH:mm'), 20, 10, {align: 'center'})
-    .text( ticket.match.headline, 20, 140, {align: 'center'})
-    .text( translite(ticket.seat.tribune), 410, 39)
-    .text( ticket.seat.sector, 410, 60)
-    .text( ticket.seat.row, 410, 81)
-    .text( ticket.seat.number, 410, 102);
+  doc.fontSize(14)
+    .text( moment(ticket.match.date).format('DD.MM.YYYY HH:mm'), 8, 15, {align: 'center'});
+
+  doc.fontSize(13)
+    .text( transliteHeadline(ticket.match.headline), 20, 140, {align: 'center'})
+    .text( translite(ticket.seat.tribune), 400, 42)
+    .text( ticket.seat.sector, 400, 63)
+    .text( ticket.seat.row, 400, 81)
+    .text( ticket.seat.number, 400, 102);
 
   doc.fontSize(9)
     .text('ОСК "Металiст"\n м. Харкiв\n вул. Плеханiвська, 65\n \n Цiна:  ' + ticket.amount/100 + ' грн.', -245, 53, {align: 'center'});
@@ -71,8 +76,8 @@ let generatePdfPage = (res, ticket, png) => {
     .image(png, 25, -90, {width: 140});
 
   doc
-    .fontSize(11)
-    .text('ЧЕМПІОНАТ УКРАЇНИ\n З ФУТБОЛУ СЕРЕД\n АМАТОРСЬКИХ\n КОМАНД 2016-2017', -350, -530 ,{align: 'center'});
+    .fontSize(9)
+    .text('ЧЕМПІОНАТ УКРАЇНИ З ФУТБОЛУ\n СЕРЕД АМАТОРСЬКИХ\n КОМАНД 2016-2017', -350, -510 ,{align: 'center'});
 
   doc.end();
 }
