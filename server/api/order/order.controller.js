@@ -269,6 +269,18 @@ let processLiqpayRequest = (request) => {
     });
 };
 
+let getOrderAfterLiqpayByEnvironment = (req) => {
+  if (config.env === 'development') {
+    return processLiqpayRequest(req);
+  };
+  if (config.env === 'production')  {
+    return getLiqPayParams(req)
+      .then(params =>{
+        return Order.findOne({orderNumber: params.order_id, type: 'order'});
+      });
+  }
+};
+
 const createPaymentLink = (order) => {
     let orderDescription = _.reduce(order.tickets, (description, ticket) => {
         return `${description} ${ticket.match.headline} (sector #${ticket.seat.sector}, row #${ticket.seat.row}, number #${ticket.seat.number}) | `;
@@ -491,11 +503,7 @@ export function convertCartToOrder(req, res) {
 }
 
 export function liqpayRedirect(req, res, next) {
-  /*return getLiqPayParams(req)
-   .then(params =>{
-     return Order.findOne({orderNumber: params.order_id, type: 'order'});
-   })*/
-  return processLiqpayRequest(req)
+   return getOrderAfterLiqpayByEnvironment(req)
    .then(order => {
      if(!order) {
        throw new Error('Order not found');
