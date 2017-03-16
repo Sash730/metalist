@@ -491,10 +491,11 @@ export function convertCartToOrder(req, res) {
 }
 
 export function liqpayRedirect(req, res, next) {
-  return getLiqPayParams(req)
+  /*return getLiqPayParams(req)
    .then(params =>{
      return Order.findOne({orderNumber: params.order_id, type: 'order'});
-   })
+   })*/
+  return processLiqpayRequest(req)
    .then(order => {
      if(!order) {
        throw new Error('Order not found');

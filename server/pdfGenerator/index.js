@@ -5,7 +5,7 @@ import moment from 'moment';
 import * as log4js from 'log4js';
 
 let logger = log4js.getLogger('createPdfFile'),
-    PDFDocument = require('pdfkit');
+  PDFDocument = require('pdfkit');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -35,23 +35,45 @@ let generateBarcodePng = (ticket) =>{
   });
 };
 
-let generatePdfPage = (writeStream, ticket, png) => {
+let generatePdfPage = (res, ticket, png) => {
   let doc = new PDFDocument();
-  doc.pipe(writeStream);
+  doc.pipe(res);
   doc.image(__dirname + '/ticket.png', 0, 0, {width: 600});
   doc.font(__dirname + '/fonts/OpenSans-Bold.ttf');
-  doc.fontSize(20)
-    .text('Матч - ' + ticket.match.headline, 180, 240)
-    .text('Дата - ' + moment(ticket.match.date).format('MMM d, HH:mm'), 180, 260)
-    .text('Трибуна - ' + ticket.seat.tribune, 200, 540)
-    .text('Сектор - ' + ticket.seat.sector, 200, 560)
-    .text('Ряд - ' + ticket.seat.row, 200, 580)
-    .text('Место - ' + ticket.seat.number, 200, 600);
+  doc.fontSize(10)
 
-  doc.image(png, 200, 150, {width: 200});
+
+    .text('Трибуна: ', 400, 45)
+    .text('Сектор: ', 400, 65)
+    .text('Ряд: ', 400, 85)
+    .text('Мiсце: ', 400, 105)
+
+  doc.fontSize(16)
+    .text( moment(ticket.match.date).format('DD.MM.YYYY HH:mm'), 250, 10)
+    .text(ticket.match.headline, 230, 180)
+    .text( ticket.seat.tribune, 455, 39)
+    .text( ticket.seat.sector, 455, 60)
+    .text( ticket.seat.row, 455, 81)
+    .text( ticket.seat.number, 455, 102);
+
+
+  doc.fontSize(10)
+    .text('ОСК "Металiст"', 130, 53)
+    .text('м. Харкiв', 146, 68)
+    .text('вул. Плеханiвська, 65', 115, 80)
+    .text('Цiна:  ' + ticket.amount/100 + ' грн.', 140, 120);
+
+
+  doc.rotate(90)
+    .image(png, 25, -80, {width: 170});
+  doc.fontSize(9).text( ticket.ticketNumber, 25, -100);
+
+  doc
+    .fontSize(12)
+    .text('        ЧЕМПІОНАТ УКРАЇНИ\n          З ФУТБОЛУ СЕРЕД\n              АМАТОРСЬКИХ\n         КОМАНД 2016-2017', 10, -570);
+
   doc.end();
-};
-
+}
 let createPdfFilePipe = (ticket, png, res) => {
   return new Promise((resolve) => {
     generatePdfPage(res, ticket, png);
