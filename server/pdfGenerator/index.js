@@ -15,6 +15,14 @@ function handleError(res, statusCode) {
   };
 }
 
+function translite(direction) {
+  if (direction == 'north') { return 'Север'}
+  if (direction == 'south') { return 'Юг'}
+  if (direction == 'east') { return 'Восток'}
+  if (direction == 'west') { return 'Запад'}
+}
+
+
 let generateBarcodePng = (ticket) =>{
   return new Promise((resolve, reject) => {
     barcode.toBuffer({
@@ -38,39 +46,33 @@ let generateBarcodePng = (ticket) =>{
 let generatePdfPage = (res, ticket, png) => {
   let doc = new PDFDocument();
   doc.pipe(res);
-  doc.image(__dirname + '/ticket.png', 0, 0, {width: 600});
+  doc.image(__dirname + '/ticket.png', 10, 0, {width: 500});
   doc.font(__dirname + '/fonts/OpenSans-Bold.ttf');
   doc.fontSize(10)
 
 
-    .text('Трибуна: ', 400, 45)
-    .text('Сектор: ', 400, 65)
-    .text('Ряд: ', 400, 85)
-    .text('Мiсце: ', 400, 105)
+    .text('Трибуна: ', 350, 45)
+    .text('Сектор: ', 350, 65)
+    .text('Ряд: ', 350, 85)
+    .text('Мiсце: ', 350, 105)
 
   doc.fontSize(16)
-    .text( moment(ticket.match.date).format('DD.MM.YYYY HH:mm'), 250, 10)
-    .text(ticket.match.headline, 230, 180)
-    .text( ticket.seat.tribune, 455, 39)
-    .text( ticket.seat.sector, 455, 60)
-    .text( ticket.seat.row, 455, 81)
-    .text( ticket.seat.number, 455, 102);
+    .text( moment(ticket.match.date).format('DD.MM.YYYY HH:mm'), 20, 10, {align: 'center'})
+    .text( ticket.match.headline, 20, 140, {align: 'center'})
+    .text( translite(ticket.seat.tribune), 410, 39)
+    .text( ticket.seat.sector, 410, 60)
+    .text( ticket.seat.row, 410, 81)
+    .text( ticket.seat.number, 410, 102);
 
-
-  doc.fontSize(10)
-    .text('ОСК "Металiст"', 130, 53)
-    .text('м. Харкiв', 146, 68)
-    .text('вул. Плеханiвська, 65', 115, 80)
-    .text('Цiна:  ' + ticket.amount/100 + ' грн.', 140, 120);
-
+  doc.fontSize(9)
+    .text('ОСК "Металiст"\n м. Харкiв\n вул. Плеханiвська, 65\n \n Цiна:  ' + ticket.amount/100 + ' грн.', -245, 53, {align: 'center'});
 
   doc.rotate(90)
-    .image(png, 25, -80, {width: 170});
-  doc.fontSize(9).text( ticket.ticketNumber, 25, -100);
+    .image(png, 25, -90, {width: 140});
 
   doc
-    .fontSize(12)
-    .text('        ЧЕМПІОНАТ УКРАЇНИ\n          З ФУТБОЛУ СЕРЕД\n              АМАТОРСЬКИХ\n         КОМАНД 2016-2017', 10, -570);
+    .fontSize(11)
+    .text('ЧЕМПІОНАТ УКРАЇНИ\n З ФУТБОЛУ СЕРЕД\n АМАТОРСЬКИХ\n КОМАНД 2016-2017', -350, -530 ,{align: 'center'});
 
   doc.end();
 }
