@@ -6,7 +6,7 @@
     </div>
     <div class="col-sm-12">
       <div><strong>Билетов: {{vm.cart.size}} - Сумма: {{ vm.cart.amount | money }}</strong></div>
-      <cart></cart>
+      <cart on-delete="vm.updateCart($event)"></cart>
     </div>
     <div class="buttons col-sm-12" ng-show="vm.cart.size">
       <div class="col-sm-4 col-sm-offset-1" ng-hide="vm.isLoggedIn()">

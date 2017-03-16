@@ -6,13 +6,23 @@
 
         constructor($window, CartService, Auth) {
             this.$window = $window;
-            this.cart = CartService.cart;
             this.cartService = CartService;
+            this.cart = {};
             this.Auth = Auth;
             this.isLoggedIn = Auth.isLoggedIn;
 
             this.confirm = false;
             this.message = '';
+            this.reserveDate = '';
+
+            this.getCart();
+        }
+
+        getCart() {
+          this.cartService.loadCart().then(cart => {
+            this.cart = cart;
+            this.getReserveDateFromTickets();
+          });
         }
 
         confirmEmail(form, user) {
@@ -48,6 +58,22 @@
                   this.errors.other = err.message;
                 });
             }
+        }
+
+      getReserveDateFromTickets() {
+        if( !this.cart.tickets.length ) {
+          this.reserveDate = '';
+          return;
+        }
+        if( this.cart.tickets.length > 1 ) {
+          this.cart.tickets.sort((a,b) => b.reserveDate - a.reserveDate);
+        }
+        this.reserveDate = this.cart.tickets[0].reserveDate;
+
+      };
+
+        updateCart () {
+          this.getReserveDateFromTickets();
         }
 
         checkout() {
