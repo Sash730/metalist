@@ -3,10 +3,18 @@
   <div class="row">
     <div class="col-sm-12">
       <h1>Оформление заказа</h1>
+      <p ng-show="vm.reserveDate">Ваши билеты зарезервированы на
+        <timer interval="1000" end-time="vm.reserveDate">
+          <span style="color: red; font-size: 12pt;"><strong>{{mminutes}}</strong></span> мин <span  style="color: red;font-size: 12pt"><strong>{{sseconds}}</strong></span> сек
+        </timer>
+        , чтобы никто не мог их купить.<br />
+        Если вы не успеете за это время перейти к оплате, бронь будет снята и билеты вернутся в свободную продажу.<br/><br/>
+        <strong>Перед оплатой билетов, пожалуйста, убедитесь, что не ошиблись в выборе матча, даты и места.</strong><br /><br/>
+      </p>
     </div>
     <div class="col-sm-12">
       <div><strong>Билетов: {{vm.cart.size}} - Сумма: {{ vm.cart.amount | money }}</strong></div>
-      <cart></cart>
+      <cart on-delete="vm.updateCart($event)"></cart>
     </div>
     <div class="buttons col-sm-12" ng-show="vm.cart.size">
       <div class="col-sm-4 col-sm-offset-1" ng-hide="vm.isLoggedIn()">
