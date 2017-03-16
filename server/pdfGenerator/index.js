@@ -15,15 +15,11 @@ function handleError(res, statusCode) {
   };
 }
 
-function translite(direction) {
+function translate(direction) {
   if (direction == 'north') { return 'Пiвнiчна'}
   if (direction == 'south') { return 'Пiвденна'}
   if (direction == 'east') { return 'Схiдна'}
   if (direction == 'west') { return 'Захiдна'}
-}
-
-function transliteHeadline(headline) {
-  return headline.replace("Metalist vs", "Металiст (Харкiв) -")
 }
 
 let generateBarcodePng = (ticket) =>{
@@ -63,8 +59,8 @@ let generatePdfPage = (res, ticket, png) => {
     .text( moment(ticket.match.date).format('DD.MM.YYYY HH:mm'), 8, 15, {align: 'center'});
 
   doc.fontSize(13)
-    .text( transliteHeadline(ticket.match.headline), 20, 140, {align: 'center'})
-    .text( translite(ticket.seat.tribune), 400, 42)
+    .text( ticket.match.headline, 20, 140, {align: 'center'})
+    .text( translate(ticket.seat.tribune), 400, 42)
     .text( ticket.seat.sector, 400, 63)
     .text( ticket.seat.row, 400, 81)
     .text( ticket.seat.number, 400, 102);
