@@ -22,14 +22,16 @@
       <div class="col-lg-12 col12Padding">
         <div class="col-xs-1 rowNames">
           <ul class="liststyle">
-            <li ng-repeat="row in vm.sector.rows | orderBy:'-'">
+            <li ng-repeat="row in vm.sector.rows | orderBy:'-'"
+                ng-class="{'rowdivider': vm.firstUpperRow == row.name}">  <!-- @TODO remove ng-repeat duplication  -->
               <div class="txt">{{vm.rowRow}} {{row.name}}</div>
             </li>
           </ul>
         </div>
         <div class="col-xs-11 seatsMargin">
           <ul class="liststyle">
-            <li ng-repeat="row in vm.sector.rows | orderBy:'-'">
+            <li ng-repeat="row in vm.sector.rows | orderBy:'-'"
+                ng-class="{'rowdivider': vm.firstUpperRow == row.name}">  <!-- @TODO remove ng-repeat duplication  -->
               <div id="s{{vm.sector.name}}{{row.name}}{{1+$index}}"
                    ng-class="vm.addClassByCheckSoldSeat('s'+vm.sector.name+'r'+row.name+'st'+(1+$index))"
                    ng-repeat="seat in vm.makeArrayFromNumber(row.seats)"

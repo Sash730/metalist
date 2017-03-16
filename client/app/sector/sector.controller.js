@@ -19,6 +19,7 @@
       this.sectorPrice = '';
       this.rowRow = 'Ряд';
       this.message = '';
+      this.firstUpperRow = this.getFirstUpperRow($stateParams.sector);
 
       this.getPrice();
       this.getReservedTickets();
@@ -94,6 +95,35 @@
       }
     }
 
+    getFirstUpperRow(sectorNumber) {
+      let sectorDividers = {
+        "1": 19,
+        "2": 20,
+        "8": 20,
+        "9": 19,
+        "10": 15,
+        "11": 15,
+        "12": 15,
+        "13": 15,
+        "14": 15,
+        "15": 15,
+        "16": 15,
+        "17": 15,
+        "18": 15,
+        "19": 15,
+        "20": 15,
+        "22": 9,
+        "23": 9,
+        "24": 9,
+        "25": 9,
+        "26": 9,
+        "27": 9,
+        "28": 9,
+        "29": 9,
+      };
+      console.log(sectorDividers[sectorNumber] || 1);
+      return sectorDividers[sectorNumber] || 1;
+    }
 
     makeArrayFromNumber (number) {
       return [...Array(parseInt(number) + 1).keys()].filter(Boolean);
