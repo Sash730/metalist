@@ -15,7 +15,7 @@
     saveSeasonTicket(seasonTicket) {
       return this.$http({
         method: 'PUT',
-        url: '/api/seasonTicket/' + seasonTicket.number,
+        url: '/api/seasonTicket/save',
         data: {
           ticket: seasonTicket
         },
@@ -23,14 +23,32 @@
       });
     }
 
-    searchSeasonTicket(number) {
-      return this.$http.get('/api/seasonTicket/' + number).then( response => response.data );
+    searchSeasonTicket(seatId) {
+      return this.$http.get('/api/seasonTicket/' + seatId).then( response => response.data );
     }
 
-    deleteSeasonTicket(number) {
+    deleteSeasonTicket(seatId) {
       return this.$http({
         method: 'DELETE',
-        url: '/api/seasonTicket/' + number,
+        url: '/api/seasonTicket/' + seatId,
+        headers: {'Accept': 'application/json'}
+      });
+    }
+
+    addBlockRow(blockRow) {
+      return this.$http({
+        method: 'PUT',
+        url: '/api/seasonTicket/addBlock/' + blockRow.sector + '/' + blockRow.row,
+        data: { blockRow: blockRow },
+        headers: {'Accept': 'application/json'}
+      });
+    }
+
+    deleteBlockRow(blockRow) {
+      return this.$http({
+        method: 'PUT',
+        url: '/api/seasonTicket/deleteBlock/' + blockRow.sector + '/' + blockRow.row,
+        data: { blockRow: blockRow },
         headers: {'Accept': 'application/json'}
       });
     }
