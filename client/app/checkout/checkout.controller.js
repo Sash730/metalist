@@ -6,14 +6,22 @@
 
         constructor($window, CartService, Auth) {
             this.$window = $window;
-            this.cart = CartService.cart;
             this.cartService = CartService;
+            this.cart = {};
             this.Auth = Auth;
             this.isLoggedIn = Auth.isLoggedIn;
 
             this.confirm = false;
             this.message = '';
+
+            this.getCart();
         }
+
+      getCart() {
+        this.cartService.loadCart().then(cart => {
+          this.cart = cart;
+        });
+      }
 
         confirmEmail(form, user) {
           form.$setDirty();

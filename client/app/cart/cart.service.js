@@ -22,18 +22,20 @@
         }
 
         loadUserCart() {
-          this.$http.get('/api/orders/user-cart')
+          return this.$http.get('/api/orders/user-cart')
             .then(response => {
               this.cart.tickets = response.data.tickets;
 
               if (this.$cookies.get('cart') !==  response.data.id) {
                 this.$cookies.put('cart', response.data.id);
               }
+
+              return this.cart;
             });
         }
 
         loadGuestCart() {
-          this.$http.get('/api/orders/cart')
+          return this.$http.get('/api/orders/cart')
             .then(response => {
               this.cart.tickets = response.data.tickets;
 
@@ -41,6 +43,8 @@
                 this.$cookies.get('cart') !==  response.data.id) {
                 this.$cookies.put('cart', response.data.id);
               }
+
+              return this.cart;
             });
         }
 
