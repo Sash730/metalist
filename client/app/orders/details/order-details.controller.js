@@ -51,7 +51,9 @@
             }
           }
         }
+
     }
+
 
     angular.module('metalistTicketsApp')
         .controller('OrderDetailsController', OrderDetailsController);

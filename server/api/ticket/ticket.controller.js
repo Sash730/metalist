@@ -7,6 +7,7 @@ import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';
 import * as _ from 'lodash';
 import liqpay from '../../liqpay';
+import * as pdfGenerator from '../../pdfGenerator';
 import * as log4js from 'log4js';
 
 const logger = log4js.getLogger('Ticket');
@@ -39,6 +40,17 @@ function handleEntityNotFound(res) {
         return entity;
     };
 }
+
+let generatePdfTicket = (ticket, res) =>{
+  return new Promise((resolve, reject) => {
+    pdfGenerator.generateTicket(ticket, res, function (err, res) {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(res);
+    });
+  });
+};
 
 let getSecureReservedTickets = (matchId, sectorNumber) => {
   return Ticket.find({'match.id': matchId, 'seat.sector': sectorNumber})
@@ -232,4 +244,15 @@ export function getCountPaidOrders(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res))
   ;
+}
+
+export function getTicketPdfById(req, res, next) {
+  return Ticket.findOne({ticketNumber: req.params.ticketNumber}).exec()
+    .then((ticket) => {
+      if(ticket) {
+         return generatePdfTicket(ticket, res);
+      }
+    })
+    .catch(handleError(res));
+
 }

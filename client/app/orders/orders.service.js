@@ -31,7 +31,6 @@
           .then(response => response.data)
           ;
       }
-
     }
 
     angular.module('metalistTicketsApp')

@@ -12,5 +12,6 @@ router.get('/:code/print'/*, auth.isAuthenticated()*/, controller.print);
 router.get('/:code/check', auth.hasRole('admin'), controller.use);
 router.get('/sold-tickets', auth.hasRole('admin'), controller.getTicketsForCheckMobile);
 router.get('/:date', auth.hasRole('admin'), controller.getCountPaidOrders);
+router.get('/ticket/:ticketNumber', controller.getTicketPdfById);
 
 module.exports = router;

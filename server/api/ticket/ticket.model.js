@@ -51,7 +51,11 @@ const TicketSchema = new mongoose.Schema({
     timesUsed: {
         type: Number,
         default: 0
-    }
+    },
+    ticketNumber: {
+      type: String,
+      required: true
+    },
 }, {
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
