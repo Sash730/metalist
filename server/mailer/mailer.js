@@ -44,7 +44,6 @@ export function sendMailTemporaryPassword(to, password) {
           mailOptions = {
                           from: to,
                           to: to,
-                          // cc: 'polyakov_as@ukr.net',
                           subject: 'Temporary guest password' ,
                           text: 'Ваш временный пароль  ' + password
                          };

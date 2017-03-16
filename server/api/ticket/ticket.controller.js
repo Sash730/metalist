@@ -9,8 +9,6 @@ import * as _ from 'lodash';
 import liqpay from '../../liqpay';
 import * as pdfGenerator from '../../pdfGenerator';
 import * as log4js from 'log4js';
-import * as fs from 'fs';
-
 
 const logger = log4js.getLogger('Ticket');
 
