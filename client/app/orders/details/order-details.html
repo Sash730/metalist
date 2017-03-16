@@ -1,49 +1,39 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h1>Order</h1>
+            <h1>Билеты</h1>
         </div>
-        <div class="col-sm-10">
-            <div class="col-sm-6">
-                <h3>Summary</h3>
-                <div><strong>Order Number</strong> - {{ vm.order.orderNumber }}</div>
-                <div><strong>Amount</strong> - {{ vm.order.amount | money }}</div>
-                <div><strong>Created</strong> - {{ vm.order.created | date:'MMM d, y HH:mm' }}</div>
-                <div><strong>Status</strong> - <span class="label" ng-class="{ 'label-success': vm.order.statusPaid, 'label-danger': vm.order.statusFailed, 'label-warning': vm.order.statusNew }">{{ vm.order.status }}</span></div>
-                <div ng-show="vm.order.statusNew">
-                    <hr/>
-                    <a href="{{ vm.order.paymentLink }}" class="btn btn-success">Pay now</a>
-                </div>
-                <hr/>
-                <h3>Customer</h3>
-                <div><strong>Name</strong> - {{ vm.order.user.name }}</div>
-                <div><strong>Email</strong> - {{ vm.order.user.email }}</div>
-            </div>
-            <div class="col-sm-6" ng-show="vm.order.statusPaid">
-                <h3>Tickets</h3>
-                <div class="ticket" ng-repeat="ticket in vm.tickets" id="ticket-{{ ticket.id }}">
-                    <div>Match: <strong>{{ ticket.match.headline }}</strong></div>
-                    <div>Sector: <strong>{{ ticket.seat.sector }}</strong></div>
-                    <div>Row: <strong>{{ ticket.seat.row }}</strong></div>
-                    <div>Seat number: <strong>{{ ticket.seat.number }}</strong></div>
-                  <a href="/api/tickets/ticket/{{ticket.ticketNumber}}" target="_blank" >TICKETS</a>
+    </div>
 
-                    </div>
-                    <hr/>
-                </div>
-            </div>
-            <div class="col-sm-6" ng-hide="vm.order.statusPaid">
-                <h3>Order Tickets</h3>
-                <span ng-bind="vm.message"></span>
-                <div class="order-item" ng-repeat="item in vm.order.tickets">
-                    <div>Match: <strong>{{ item.match.headline }}</strong></div>
-                    <div>Sector: <strong>{{ item.seat.sector }}</strong></div>
-                    <div>Row: <strong>{{ item.seat.row }}</strong></div>
-                    <div>Seat number: <strong>{{ item.seat.number }}</strong></div>
-                    <hr/>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="cart-items table table-condensed">
+        <tr ng-repeat="ticket in vm.tickets">
+          <td>
+            <p class="lead">{{ ticket.seat.sector }} сектор, {{ ticket.seat.row }} ряд, {{ ticket.seat.number }} место</p>
+          </td>
+          <td>
+            <p class="lead"><a href="/api/tickets/ticket/{{ticket.ticketNumber}}" target="_blank" >Печать</a></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Детали Заказа</h4>
+      <div><strong>Order Number</strong> - {{ vm.order.orderNumber }}</div>
+      <div><strong>Amount</strong> - {{ vm.order.amount | money }}</div>
+      <div><strong>Created</strong> - {{ vm.order.created | date:'MMM d, y HH:mm' }}</div>
+      <div><strong>Status</strong> - <span class="label" ng-class="{ 'label-success': vm.order.statusPaid, 'label-danger': vm.order.statusFailed, 'label-warning': vm.order.statusNew }">{{ vm.order.status }}</span></div>
+      <div ng-show="vm.order.statusNew">
+        <hr/>
+        <a href="{{ vm.order.paymentLink }}" class="btn btn-success">Pay now</a>
+      </div>
+    </div>
+  </div>
+
 
     </div>
 </div>
