@@ -17,7 +17,7 @@ const TicketSchema = new mongoose.Schema({
     seat: {
         id: {type: String, requried: true},
         tribune: {type: String, requried: true},
-        sector: {type: Number, requried: true},
+        sector: {type: String, requried: true},
         row: {type: String, requried: true},
         number: {type: Number, requried: true},
     },
