@@ -185,7 +185,7 @@ export function use(req, res, next) {
 export function getTicketsForCheckMobile(req, res) {
   let dateNow = new Date();
 
-  return Ticket.find()//{status: 'new'}
+  return Ticket.find({status: 'paid'})
                /*.where({$and: [
                  {'valid.from': { $lte: dateNow }},
                  {'valid.to': { $gt: dateNow }}
@@ -195,7 +195,6 @@ export function getTicketsForCheckMobile(req, res) {
                  let result = _.map(tickets, (ticket) => {
 
                    return {
-                     '_id': ticket.id,
                      'cartId': ticket.cartId,
                      'status': ticket.status,
                      'seat': ticket.seat,
@@ -215,13 +214,13 @@ export function getCountPaidOrders(req, res) {
   let date = new Date(req.params.date);
 
   let countOrdersPromise =  Ticket.aggregate([
-    //{$match: {status: 'paid', 'match.date': date}},
+    {$match: {status: 'paid', 'match.date': date}},
     {$project: {tribune: '$seat.tribune'}},
     {$group: {_id: "$tribune", number: {$sum: 1}}}])
     .then(handleEntityNotFound(res));
 
   let totalPricePromise  =  Ticket.aggregate([
-    //{$match: {status: 'paid', 'match.date': date}},
+    {$match: {status: 'paid', 'match.date': date}},
     {$project: {amount: 1, _id: 0, 'match.headline': 1}},
     {$group: {_id: '$match.headline', number: {$sum: '$amount'}}}
     ])
@@ -232,14 +231,18 @@ export function getCountPaidOrders(req, res) {
     .then(([count, total]) => {
       let statistic = {};
 
-      count.map(chain => {
-        statistic[chain._id] =  chain.number;
+    if (count._id && total._id) {
+
+      count.map(row => {
+        statistic[row._id] =  row.number;
       });
       return {
-              stadium: statistic,
-              headline: total[0]._id,
-              totalSum: total[0].number
-             };
+        stadium: statistic,
+        headline: total[0]._id,
+        totalSum: total[0].number
+      };
+    }
+    return statistic;
     })
     .then(respondWithResult(res))
     .catch(handleError(res))

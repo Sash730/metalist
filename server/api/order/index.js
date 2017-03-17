@@ -14,7 +14,6 @@ router.post('/cart/convert', auth.isAuthenticated(), controller.convertCartToOrd
 router.post('/liqpay-redirect', controller.liqpayRedirect);
 router.post('/liqpay-callback', controller.liqpayCallback);
 router.get('/my', auth.isAuthenticated(), controller.getMyOrders);
-router.get('/all', auth.hasRole('admin'), controller.getAllOrders);
 router.get('/by-number/:orderNumber', auth.isAuthenticated(), controller.getOrderByNumber);
 router.get('/by-number/:orderNumber/tickets', auth.isAuthenticated(), controller.getOrderedTickets);
 
