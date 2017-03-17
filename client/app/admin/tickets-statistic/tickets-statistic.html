@@ -1,35 +1,45 @@
-<form name="myForm"><br>
-    <label> Выберите матч: </label>
-    <select class="form-control" name="repeat" id="repeatSelect" ng-change="$ctrl.getStatisticForTickets($ctrl.matchDate)" ng-model="$ctrl.matchDate">
-        <option ng-repeat="option in $ctrl.matches" value="{{option.date}}">{{option.headline}}</option>
-    </select>
-</form>
-<hr>
-<table class="table">
-    <thead>
-    <tr>
-        <th>Match</th>
-        <th>West tribune</th>
-        <th>North tribune</th>
-        <th>East tribune</th>
-        <th>South tribune</th>
-        <th>Total price</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td ng-bind="$ctrl.statistic.headline">
-        </td>
-        <td ng-bind="$ctrl.statistic.stadium.west">
-        </td>
-        <td ng-bind="$ctrl.statistic.stadium.north">
-        </td>
-        <td ng-bind="$ctrl.statistic.stadium.east">
-        </td>
-        <td ng-bind="$ctrl.statistic.stadium.south">
-        </td>
-        <td ng-bind="$ctrl.statistic.totalSum | money">
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="col-md-12">
+  <uib-tabset active="active" justified="true">
+    <hr>
+    <uib-tab index="0" heading="По событию">
+      <form name="myForm"><br>
+        <label> Выберите матч: </label>
+        <select class="form-control" name="repeat" id="repeatSelect" ng-change="$ctrl.getStatisticForTickets($ctrl.matchDate)" ng-model="$ctrl.matchDate">
+          <option ng-repeat="option in $ctrl.matches" value="{{option.date}}">{{option.headline}}</option>
+        </select>
+      </form>
+      <hr>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Match</th>
+          <th>West tribune</th>
+          <th>North tribune</th>
+          <th>East tribune</th>
+          <th>South tribune</th>
+          <th>Total price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td ng-bind="$ctrl.statistic.headline">
+          </td>
+          <td ng-bind="$ctrl.statistic.stadium.west">
+          </td>
+          <td ng-bind="$ctrl.statistic.stadium.north">
+          </td>
+          <td ng-bind="$ctrl.statistic.stadium.east">
+          </td>
+          <td ng-bind="$ctrl.statistic.stadium.south">
+          </td>
+          <td ng-bind="$ctrl.statistic.totalSum | money">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </uib-tab>
+    <uib-tab index="1" heading="За день">
+
+    </uib-tab>
+  </uib-tabset>
+</div>
