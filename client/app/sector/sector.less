@@ -1,30 +1,43 @@
+@imgSeatsStyleBg: #60709E;
+@blockedSeatBg: #ffcc00;
+@soldSeat: #c1c1c1;
+@txtColor: #636363;
+.seatMarginAll {  display: inline-block;  margin: 0 1px 0 0;}
+.blockedSeatBorders {  border: solid 1px #000000; }
+.cursorP {  cursor: pointer;}
+.cursoreD {  cursor: default;}
+.noneListStyle {  list-style: none;}
+.rowdivider300 {  .rowdivider {margin-bottom: 8px!important;}  }
+.rowdivider610 {  .rowdivider {margin-bottom: 0px!important;}  }
+.rowdivider1280 {  .rowdivider {margin-bottom: 14px!important;}  }
+
 @media (min-width: 300px) and (max-width: 610px) and (orientation: portrait) {
+
+  .rowdivider300;
+
   .imgSeatsStyle {
-    display: inline-block;
-    background-color: #60709E;
+    background-color: @imgSeatsStyleBg;
     width: 4px;
     height: 8px;
-    margin: 0 1px 0 0;
-    cursor: pointer;
+    .cursorP;
+    .seatMarginAll;
   }
 
   .blockedSeat {
-    display: inline-block;
-    background-color: #ffcc00;
-    cursor: default;
+    background-color: @blockedSeatBg;
+    .cursoreD;
     width: 4px;
     height: 8px;
-    margin: 0 1px 0 0;
-    border: solid 1px #000000;
+    .blockedSeatBorders;
+    .seatMarginAll;
   }
 
   .soldSeat {
-    display: inline-block;
     width: 4px;
     height: 8px;
-    background-color: #c1c1c1;
-    margin: 0 1px 0 0;
-    cursor: default;
+    background-color: @soldSeat;
+    .cursoreD;
+    .seatMarginAll;
   }
 
   .address {
@@ -38,7 +51,7 @@
   }
 
   .liststyle {
-    list-style: none;
+    .noneListStyle;
   }
 
   .txt {
@@ -48,8 +61,8 @@
     margin: 0;
     padding: 0;
     font-size: 35%;
-    color: #636363;
-    list-style: none;
+    color: @txtColor;
+    .noneListStyle;
   }
 
   .liststyle li {
@@ -99,32 +112,32 @@
 }
 
 @media (min-width: 300px) and (max-width: 610px) and (orientation: landscape) {
+
+  .rowdivider300;
+
   .imgSeatsStyle {
-    display: inline-block;
-    background-color: #60709E;
+    background-color: @imgSeatsStyleBg;
     width: 8px;
     height: 8px;
-    margin: 0 1px 0 0;
-    cursor: pointer;
+    .cursorP;
+    .seatMarginAll;
   }
 
   .blockedSeat {
-    display: inline-block;
-    background-color: #ffcc00;
-    cursor: default;
+    background-color: @blockedSeatBg;
+    .cursoreD;
     width: 8px;
     height: 8px;
-    margin: 0 1px 0 0;
-    border: solid 1px #000000;
+    .blockedSeatBorders;
+    .seatMarginAll;
   }
 
   .soldSeat {
-    display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: #c1c1c1;
-    margin: 0 1px 0 0;
-    cursor: default;
+    background-color: @soldSeat;
+    .cursoreD;
+    .seatMarginAll;
   }
 
   .address {
@@ -138,7 +151,7 @@
   }
 
   .liststyle {
-    list-style: none;
+    .noneListStyle;
   }
 
   .txt {
@@ -148,8 +161,8 @@
     margin: 0;
     padding: 0;
     font-size: 35%;
-    color: #636363;
-    list-style: none;
+    color: @txtColor;
+    .noneListStyle;
   }
 
   .liststyle li {
@@ -198,32 +211,32 @@
 }
 
 @media (min-width: 611px) and (max-width: 1280px) {
+
+  .rowdivider610;
+
   .imgSeatsStyle {
-    display: inline-block;
-    background-color: #60709E;
+    background-color: @imgSeatsStyleBg;
     width: 8px;
     height: 8px;
-    margin: 0 1px 0 0;
-    cursor: pointer;
+    .cursorP;
+    .seatMarginAll;
   }
 
   .blockedSeat {
-    display: inline-block;
-    background-color: #ffcc00;
+    background-color: @blockedSeatBg;
     width: 8px;
     height: 8px;
-    margin: 0 1px 0 0;
-    cursor: default;
-    border: solid 1px #000000;
+    .cursoreD;
+    .blockedSeatBorders;
+    .seatMarginAll;
   }
 
   .soldSeat {
-    display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: #c1c1c1;
-    margin: 0 1px 0 0;
-    cursor: default;
+    background-color: @soldSeat;
+    .cursoreD;
+    .seatMarginAll;
   }
 
   ul.rows li:before {
@@ -242,7 +255,7 @@
   }
 
   .liststyle {
-    list-style: none;
+    .noneListStyle;
   }
 
   .txt {
@@ -252,12 +265,12 @@
     margin: 0;
     padding: 0;
     font-size: 70%;
-    color: #636363;
-    list-style: none;
+    color: @txtColor;
+    .noneListStyle;
   }
 
   .liststyle li {
-    margin-bottom: -10px;
+    margin-bottom: -11px;
   }
 
   .seatsMargin {
@@ -293,32 +306,32 @@
 }
 
 @media (min-width: 1281px) and (max-width: 4096px) {
+
+  .rowdivider1280;
+
   .imgSeatsStyle {
-    display: inline-block;
-    background-color: #60709E;
+    background-color: @imgSeatsStyleBg;
     width: 14px;
     height: 14px;
-    margin: 0 1px 0 0;
-    cursor: pointer;
+    .cursorP;
+    .seatMarginAll;
   }
 
   .blockedSeat {
-    display: inline-block;
-    background-color: #ffcc00;
+    background-color: @blockedSeatBg;
     width: 14px;
     height: 14px;
-    margin: 0 1px 0 0;
-    cursor: default;
+    .cursoreD;
     border: solid 2px #000000;
+    .seatMarginAll;
   }
 
   .soldSeat {
-    display: inline-block;
     width: 14px;
     height: 14px;
-    background-color: #c1c1c1;
-    margin: 0 1px 0 0;
-    cursor: default;
+    background-color: @soldSeat;
+    .cursoreD;
+    .seatMarginAll;
   }
 
   .address {
@@ -326,7 +339,7 @@
   }
 
   .liststyle {
-    list-style: none;
+    .noneListStyle;
   }
 
   .txt {
@@ -336,8 +349,8 @@
     margin: 0;
     padding: 0;
     font-size: 90%;
-    color: #636363;
-    list-style: none;
+    color: @txtColor;
+    .noneListStyle;
   }
 
   .liststyle li {
@@ -424,7 +437,7 @@
 }
 
 .popover p {
-  color: #636363;
+  color: @txtColor;
   font-size: 1em;
   margin: 0 0 0 0 !important;
 }
@@ -439,7 +452,7 @@ ul {
 
 .cartBtn {
   border: none;
-  background: #60709E;
+  background: @imgSeatsStyleBg;
   color: #ffffff;
 }
 
@@ -452,13 +465,10 @@ ul {
   box-shadow: none;
 }
 
-.rowPadding{
-  margin: 0;
-}
-.col12Padding{
+.col12Padding {
   padding: 0;
 }
 
-.rowdivider {
-  padding-bottom: 10px;
+.rowPadding {
+  margin: 0;
 }

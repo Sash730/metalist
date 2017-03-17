@@ -1,0 +1,115 @@
+@mainColor:#ffcc00;
+@notActiveColor:#bcbcbc;
+@hoverColor:#ffa900;
+@arrowColor:#ffffff;
+@textColor:#212121;
+
+.crumbs .crm a {
+  text-align: center;
+  display: inline-block;
+  float: left;
+  height: 60px;
+  background: @mainColor;
+  position: relative;
+  margin: 0 5px 5px 0;
+  text-decoration: none;
+  color: @textColor;
+}
+
+.crumbs .crmdis a {
+  text-align: center;
+  display: inline-block;
+  float: left;
+  height: 60px;
+  background: @notActiveColor;
+  position: relative;
+  margin: 0 5px 5px 0;
+  text-decoration: none;
+  color: @textColor;
+}
+
+.crumbs .crm a:after {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid @mainColor;
+  position: absolute;
+  right: -20px;
+  top: 0;
+  z-index: 1;
+}
+
+.crumbs .crmdis a:after {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid @notActiveColor;
+  position: absolute;
+  right: -20px;
+  top: 0;
+  z-index: 1;
+}
+
+.crumbs .crm a:before {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid @arrowColor;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.crumbs .crmdis a:before {
+  display: inline-block;
+  content: "";
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid @arrowColor;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.crumbs .crm:first-child a {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.crumbs .crm:first-child a:before {
+  display: none;
+}
+
+.crumbs .crm:last-child a {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.crumbs .crm:last-child a:after {
+  display: none;
+}
+
+.crumbs .crmdis:first-child a {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.crumbs .crmdis:last-child a {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.crumbs .crmdis:last-child a:after {
+  display: none;
+}
+
+.crumbs .crm a:hover {
+  background: @hoverColor;
+}
+
+.crumbs .crm a:hover:after {
+  border-left-color: @hoverColor;
+}
