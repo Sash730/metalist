@@ -7,6 +7,8 @@ dist/client
 dist/server
 dist/package.json
 dist/bower.json
+dist/OpenSans-Bold.ttf
+dist/ticket.png
 server/config/local.env.js
 npm-debug.log
 production.yml

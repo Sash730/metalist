@@ -45,8 +45,8 @@ let generateBarcodePng = (ticket) =>{
 let generatePdfPage = (res, ticket, png) => {
   let doc = new PDFDocument();
   doc.pipe(res);
-  doc.image(__dirname + '/ticket.png', 10, 0, {width: 500});
-  doc.font(__dirname + '/fonts/OpenSans-Bold.ttf');
+  doc.image('./ticket.png', 10, 0, {width: 500});
+  doc.font('./OpenSans-Bold.ttf');
   doc.fontSize(10)
 
 
