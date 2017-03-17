@@ -8,10 +8,6 @@
               name: '1',
               rows: [
                 {
-                  name: '0',
-                  seats: '5'
-                },
-                {
                   name: '1',
                   seats: '17'
                 },
@@ -181,10 +177,6 @@
               name: '2',
               rows: [
                 {
-                  name: '0',
-                  seats: '9'
-                },
-                {
                   name: '1',
                   seats: '27'
                 },
@@ -348,18 +340,6 @@
           sector_3: {
               name: '3',
               rows: [
-                {
-                  name: '–2',
-                  seats: '3'
-                },
-                {
-                  name: '–1',
-                  seats: '3'
-                },
-                {
-                  name: '0',
-                  seats: '10'
-                },
                 {
                   name: '1',
                   seats: '26'
@@ -525,18 +505,6 @@
               name: '7',
               rows: [
                 {
-                  name: '–2',
-                  seats: '4'
-                },
-                {
-                  name: '–1',
-                  seats: '4'
-                },
-                {
-                  name: '0',
-                  seats: '11'
-                },
-                {
                   name: '1',
                   seats: '25'
                 },
@@ -612,10 +580,6 @@
           sector_8: {
               name: '8',
               rows: [
-                {
-                  name: '0',
-                  seats: '9'
-                },
                 {
                   name: '1',
                   seats: '28'
@@ -781,10 +745,6 @@
           sector_9: {
               name: '9',
               rows: [
-                {
-                  name: '0',
-                  seats: '5'
-                },
                 {
                   name: '1',
                   seats: '17'
@@ -1103,7 +1063,8 @@
                   seats: '22'
                 }
               ]},
-     sector_VIP_BL: {
+     sector_VIP_BL:
+       {
               name: 'VIP_BL',
               rows: [
                 {
@@ -3167,10 +3128,6 @@
           name: '22',
              rows: [
         {
-          name: '0',
-          seats: '9'
-        },
-        {
           name: '1',
           seats: '21'
         },
@@ -3307,10 +3264,6 @@
         sector_23: {
           name: '23',
              rows: [
-        {
-          name: '0',
-          seats: '11'
-        },
         {
           name: '1',
           seats: '33'
@@ -3449,10 +3402,6 @@
           name: '24',
              rows: [
                {
-                 name: '0',
-                 seats: '11'
-               },
-               {
                  name: '1',
                  seats: '33'
                },
@@ -3589,10 +3538,6 @@
         sector_25: {
           name: '25',
              rows: [
-        {
-          name: '0',
-          seats: '7'
-        },
         {
           name: '1',
           seats: '21'
@@ -3731,10 +3676,6 @@
           name: '26',
           rows: [
             {
-              name: '0',
-              seats: '7'
-            },
-            {
               name: '1',
               seats: '21'
             },
@@ -3871,10 +3812,6 @@
         sector_27: {
           name: '27',
           rows: [
-            {
-              name: '0',
-              seats: '11'
-            },
             {
               name: '1',
               seats: '33'
@@ -4013,10 +3950,6 @@
           name: '28',
              rows: [
                {
-                 name: '0',
-                 seats: '11'
-               },
-               {
                  name: '1',
                  seats: '33'
                },
@@ -4153,10 +4086,6 @@
         sector_29: {
           name: '29',
           rows: [
-            {
-              name: '0',
-              seats: '10'
-            },
             {
               name: '1',
               seats: '21'
