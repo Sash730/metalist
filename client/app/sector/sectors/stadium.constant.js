@@ -952,7 +952,7 @@
                 }
               ]},
       sector_VIP_B: {
-              name: 'VIP B',
+              name: 'VIP_B',
               rows: [
                 {
                   name: '1',
@@ -996,7 +996,7 @@
                 }
               ]},
      sector_VIP_AR: {
-              name: 'VIP A R',
+              name: 'VIP_AR',
               rows: [
                 {
                   name: '9',
@@ -1032,7 +1032,7 @@
                 }
               ]},
      sector_VIP_AL: {
-              name: 'VIP A L',
+              name: 'VIP_AL',
               rows: [
                 {
                   name: '9',
@@ -1068,7 +1068,7 @@
                 }
               ]},
      sector_VIP_BR: {
-              name: 'VIP B R',
+              name: 'VIP_BR',
               rows: [
                 {
                   name: '19',
@@ -1104,7 +1104,7 @@
                 }
               ]},
      sector_VIP_BL: {
-              name: 'VIP B L',
+              name: 'VIP_BL',
               rows: [
                 {
                   name: '19',
