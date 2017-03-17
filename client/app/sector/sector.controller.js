@@ -40,6 +40,9 @@
     }
 
     getSelectedSeats(){
+      this.selectedSeats = [];
+
+
         this.cart._tickets.forEach(ticket => {
           this.selectedSeats.push(ticket.seat.id);
         });
@@ -47,7 +50,7 @@
 
     updateReservedTickets($event) {
       this.getReservedTickets();
-      this.selectedSeats.splice(this.selectedSeats.indexOf($event.seatId), 1);
+      this.getSelectedSeats();
     }
 
      addClassByCheckSoldSeat(seatId) {
@@ -73,7 +76,7 @@
         this.CartService.removeTicket(seatId)
           .then(() => {
             this.getReservedTickets()
-              .then( () => this.selectedSeats.splice(this.selectedSeats.indexOf(seatId), 1) );
+              .then( () => this.getSelectedSeats() );
 
           })
       }
@@ -87,8 +90,6 @@
             }
             this.getReservedTickets()
               .then( () => {
-                this.selectedSeats = [];
-                this.getSelectedSeats();
                 this.selectedSeats.push(seatId);
               });
           });
