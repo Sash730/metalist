@@ -5,14 +5,14 @@
     <div class="matches">
       <ul class="matchList">
 
-        <li ng-repeat="match in vm.matches | orderBy:'date':reverse:true " class="panel" ng-if="match.date" ui-sref="match({id: match.id})" title="Металист 1925 - {{match.rival}}">
+        <li ng-repeat="match in vm.matches | orderBy:'date':reverse:true " class="panel" ng-if="match.date" ui-sref="match({id: match.id})" title="Металлист 1925 - {{match.rival}}">
           <a class="link"><div class="bgTicket">
             <div class="buyTicket"><p>Купить билет</p></div>
             <div>
               <span class="teamLogos"><img src="assets/teamLogo/4.png" alt="..."></span>
               <span class="teamLogos"><img class="teamLogos" src="{{match.poster}}" alt="..."></span>
             </div>
-            <span class="commandsNames"><h4>Металист 1925 - {{match.rival}}</h4></span>
+            <span class="commandsNames"><h4>Металлист 1925 - {{match.rival}}</h4></span>
             <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'd MMMM y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>
             <span class="commandsNames"><p ng-if="!match.date" class="panel-title">{{ match.dateApproximate }}</p></span>
           </div>  </a>
@@ -25,7 +25,7 @@
               <span class="teamLogos"><img src="assets/teamLogo/4.png" alt="..."></span>
               <span class="teamLogos"><img class="teamLogos"  src="{{match.poster}}" alt="..."></span>
             </div>
-            <span class="commandsNames"><h4>Металист 1925 - {{match.rival}}</h4></span>
+            <span class="commandsNames"><h4>Металлист 1925 - {{match.rival}}</h4></span>
             <span class="matchDate"><p ng-if="match.date" class="panel-title">{{ match.date|date : 'd MMMM y' }}</p><p>{{ match.date|date :'HH:mm' }}</p></span><br/>
             <span class="commandsNames"><p ng-if="!match.date" class="panel-title">{{ match.dateApproximate }}</p></span>
           </div>

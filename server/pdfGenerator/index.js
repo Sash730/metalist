@@ -16,10 +16,10 @@ function handleError(res, statusCode) {
 }
 
 function translate(direction) {
-  if (direction == 'north') { return 'Пiвнiчна'}
-  if (direction == 'south') { return 'Пiвденна'}
-  if (direction == 'east') { return 'Схiдна'}
-  if (direction == 'west') { return 'Захiдна'}
+  if (direction == 'north') { return 'Северная'}
+  if (direction == 'south') { return 'Южная'}
+  if (direction == 'east') { return 'Восточная'}
+  if (direction == 'west') { return 'Западная'}
 }
 
 let generateBarcodePng = (ticket) =>{
@@ -53,7 +53,7 @@ let generatePdfPage = (res, ticket, png) => {
     .text('Трибуна: ', 350, 45)
     .text('Сектор: ', 350, 65)
     .text('Ряд: ', 350, 85)
-    .text('Мiсце: ', 350, 105)
+    .text('Место: ', 350, 105)
 
   doc.fontSize(14)
     .text( moment(ticket.match.date).format('DD.MM.YYYY HH:mm'), 8, 15, {align: 'center'});
@@ -66,14 +66,14 @@ let generatePdfPage = (res, ticket, png) => {
     .text( ticket.seat.number, 400, 102);
 
   doc.fontSize(9)
-    .text('ОСК "Металiст"\n м. Харкiв\n вул. Плеханiвська, 65\n \n Цiна:  ' + ticket.amount/100 + ' грн.', -245, 53, {align: 'center'});
+    .text('ОСК "Металлист"\n г. Харьков\n ул. Плехановская, 65\n \n Цена:  ' + ticket.amount/100 + ' грн.', -245, 53, {align: 'center'});
 
   doc.rotate(90)
     .image(png, 25, -90, {width: 140});
 
   doc
     .fontSize(9)
-    .text('ЧЕМПІОНАТ УКРАЇНИ З ФУТБОЛУ\n СЕРЕД АМАТОРСЬКИХ\n КОМАНД 2016-2017', -350, -510 ,{align: 'center'});
+    .text('ЧЕМПИОНАТ УКРАИНЫ ПО ФУТБОЛУ\n СРЕДИ АМАТОРСКИХ\n КОМАНД 2016-2017', -350, -510 ,{align: 'center'});
 
   doc.end();
 }
