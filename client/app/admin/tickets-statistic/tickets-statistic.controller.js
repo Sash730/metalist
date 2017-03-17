@@ -10,12 +10,10 @@
 
       this.statistic = {};
       this.matches = [];
-      this.allOrders = [];
     }
 
     $onInit() {
       this.loadMatches();
-      this.getAllOrders();
     }
 
     loadMatches() {
@@ -25,12 +23,6 @@
     getStatisticForTickets(date) {
       this.ticketsService.getCountPaidTickets(date)
         .then(statistic => { this.statistic = statistic; });
-    }
-
-
-    getAllOrders() {
-      return this.ordersService.getAllOrders()
-        .then( orders => this.allOrders = orders );
     }
   }
 
