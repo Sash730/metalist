@@ -3,26 +3,28 @@
 (function () {
 
   class TicketsStatisticController {
-    constructor(TicketsService, MatchEditorService, OrdersService) {
+    constructor(TicketsService) {
       this.ticketsService = TicketsService;
-      this.matchEditorService = MatchEditorService;
-      this.ordersService = OrdersService;
 
-      this.statistic = {};
-      this.matches = [];
+      this.eventsStatistics = [];
+      this.daysStatistics = [];
     }
 
     $onInit() {
-      this.loadMatches();
+      this.getEventsStatistics();
+      this.getDaysStatistics()
     }
 
-    loadMatches() {
-      return this.matchEditorService.loadMatches().then(mathces => this.matches = mathces);
+    getEventsStatistics() {
+      this.ticketsService.getEventsStatistics()
+        .then(statistic => {
+          this.eventsStatistics = statistic;
+        });
     }
 
-    getStatisticForTickets(date) {
-      this.ticketsService.getCountPaidTickets(date)
-        .then(statistic => { this.statistic = statistic; });
+    getDaysStatistics() {
+      this.ticketsService.getDaysStatistics()
+        .then(statistic => this.daysStatistics = statistic );
     }
   }
 

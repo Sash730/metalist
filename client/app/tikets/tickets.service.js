@@ -12,13 +12,14 @@
         .then(response => response.data);
     }
 
-    getCountPaidTickets(date){
-      return this.$http({
-        method: 'get',
-        url:'/api/tickets/' + date,
-        headers: {'Accept': 'application/json'}
-      })
-        .then(response => response.data);
+    getEventsStatistics(){
+      return this.$http.get('/api/tickets/events-statistics')
+        .then( response => response.data );
+    }
+
+    getDaysStatistics(){
+      return this.$http.get('/api/tickets/days-statistics')
+        .then( response => response.data );
     }
 
     checkTicket(code) {
