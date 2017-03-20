@@ -1,22 +1,29 @@
 <div class="container">
   <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
 
-  <uib-tabset active="activeUsers" justified="true">
+  <uib-tabset active="active" justified="true">
     <uib-tab index="0" heading="Users">
-      <ul class="list-group">
-        <li ng-repeat="user in admin.users" class="list-group-item">
-          <strong>{{user.name}}</strong><br/>
-          <span class="text-muted">{{user.email}}</span>
-          <a ng-click="admin.delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a></li>
-      </ul>
+      <div ng-if="active === 0">
+        <ul class="list-group">
+          <li ng-repeat="user in admin.users" class="list-group-item">
+            <strong>{{user.name}}</strong><br/>
+            <span class="text-muted">{{user.email}}</span>
+            <a ng-click="admin.delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a></li>
+        </ul>
+      </div>
     </uib-tab>
     <uib-tab index="1" heading="Matches">
-      <match-editor></match-editor>
+      <div ng-if="active === 1">
+        <match-editor></match-editor>
+      </div>
     </uib-tab>
     <uib-tab index="2" heading="Orders">
-      <tickets-statistic></tickets-statistic>
+      <div ng-if="active === 2">
+        <tickets-statistic></tickets-statistic>
+      </div>
     </uib-tab>
     <uib-tab index="3" heading="Tickets">
+      <div ng-if="active === 3">
       <form name="myForm"><br>
         <label for="code"> Введите код: </label>
         <input type="text" id="code" ng-model="code" placeholder="Enter barcode">
@@ -56,12 +63,17 @@
         </tr>
         </tbody>
       </table>
+      </div>
     </uib-tab>
     <uib-tab index="4" heading="Season tickets">
-      <season-ticket></season-ticket>
+      <div ng-if="active === 4">
+        <season-ticket></season-ticket>
+      </div>
     </uib-tab>
     <uib-tab index="5" heading="Price Schema">
-      <price-schema></price-schema>
+      <div ng-if="active === 5">
+        <price-schema></price-schema>
+      </div>
     </uib-tab>
   </uib-tabset>
 

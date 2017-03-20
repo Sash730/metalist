@@ -5,41 +5,45 @@
             <uib-tab index="0" heading="Abonemets">
                 <season-ticket-form season-ticket-to-edit="$ctrl.seasonTicketToEdit"
                                 on-edit="$ctrl.edit($event)"
-                                on-change="$ctrl.saveSeasonTicket($event)"></season-ticket-form>
-            </uib-tab>
+                                on-change="$ctrl.saveSeasonTicket($event)">
+
+                </season-ticket-form>
+                <div class="col-md-12">
+                    <hr>
+                    <div class="col-md-9" style="text-align: center; border-right: 1px solid lightgrey">
+                        <season-ticket-list season-tickets="$ctrl.seasonTickets"
+                                            on-change="$ctrl.edit($event)">
+                        </season-ticket-list>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12">
+                            <label>Удалить абонемент</label>
+                            <form class="form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="seat id" ng-model="$ctrl.seatId">
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="$ctrl.deleteSeasonTicket()">Удалить</button>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Найти абонемент</label>
+                            <form class="form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="seat id" ng-model="$ctrl.seatId">
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="$ctrl.searchSeasonTicket()">Найти</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+    </uib-tab>
             <uib-tab index="1" heading="Block rows">
                 <block-row-form season-ticket-to-edit="$ctrl.seasonTicketToEdit"
                                 on-delete="$ctrl.deleteBlockRow($event)"
                                 on-add="$ctrl.addBlockRow($event)"></block-row-form>
             </uib-tab>
         </uib-tabset>
-    </div>
-    <div class="col-md-12">
-        <hr>
-        <div class="col-md-9" style="text-align: center; border-right: 1px solid lightgrey">
-           <season-ticket-list season-tickets="$ctrl.seasonTickets"
-                           on-change="$ctrl.edit($event)">
-           </season-ticket-list>
-        </div>
-        <div class="col-md-3">
-            <div class="col-md-12">
-                <label>Удалить абонемент</label>
-                <form class="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="seat id" ng-model="$ctrl.seatId">
-                    </div>
-                    <button type="submit" class="btn btn-default" ng-click="$ctrl.deleteSeasonTicket()">Удалить</button>
-                </form>
-            </div>
-            <div class="col-md-12">
-                <label>Найти абонемент</label>
-                <form class="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="seat id" ng-model="$ctrl.seatId">
-                    </div>
-                    <button type="submit" class="btn btn-default" ng-click="$ctrl.searchSeasonTicket()">Найти</button>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
