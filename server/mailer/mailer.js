@@ -18,7 +18,7 @@ export function sendMail(to, order) {
       order.tickets.forEach(ticket => {
         let attach = {
           filename: 'MetalistTickets.pdf',
-          path: 'http://localhost:9000/api/tickets/ticket/' + ticket.ticketNumber
+          path: config.domain + '/api/tickets/ticket/' + ticket.ticketNumber
         };
 
         if (!mailOptions.subject) {
