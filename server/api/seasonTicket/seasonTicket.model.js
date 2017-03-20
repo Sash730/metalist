@@ -6,8 +6,8 @@ import {Schema} from 'mongoose';
 
 const SeasonTicketSchema = new Schema({
   seatId: {type: String, requried: true},
-  sector: {type: Number, requried: true},
-  row: {type: Number, requried: true},
+  sector: {type: String, requried: true},
+  row: {type: String, requried: true},
   seat: {type: Number, requried: true},
   valid: {type: Date, required: true},
   type: {type: String, enum: ['ticket', 'block'], requried: true}
