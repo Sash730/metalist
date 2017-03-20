@@ -21,7 +21,6 @@
         getCart() {
           this.cartService.loadCart().then(cart => {
             this.cart = cart;
-            this.getReserveDateFromTickets();
           });
         }
 
@@ -58,22 +57,6 @@
                   this.errors.other = err.message;
                 });
             }
-        }
-
-      getReserveDateFromTickets() {
-        if( !this.cart.tickets.length ) {
-          this.reserveDate = '';
-          return;
-        }
-        if( this.cart.tickets.length > 1 ) {
-          this.cart.tickets.sort((a,b) => b.reserveDate - a.reserveDate);
-        }
-        this.reserveDate = this.cart.tickets[0].reserveDate;
-
-      };
-
-        updateCart () {
-          this.getReserveDateFromTickets();
         }
 
         checkout() {
