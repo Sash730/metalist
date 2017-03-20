@@ -123,6 +123,7 @@ let doTicketsSecure = (cart) => {
         row: ticket.seat.row,
         number: ticket.seat.number
       },
+      reserveDate: ticket.reserveDate,
       amount: ticket.amount,
       status: ticket.status
     };
@@ -423,7 +424,7 @@ export function getUserCart(req, res) {
     Order.findOne({_id: cartId, type: 'cart'})
          .populate({path: 'tickets'}),
     Order.findOne({'user.id': userId, type: 'cart'})
-         .populate({path: 'tickets'}),
+         .populate({path: 'tickets'}).sort({created: -1}),
     User.findById(userId)
   ])
     .then(([guestCart, userCart, user]) => {

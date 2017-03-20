@@ -5,12 +5,12 @@
 
   class SectorController {
 
-    constructor(match, cart, sector, TicketsService, $stateParams, CartService, PriceSchemaService) {
-      this.CartService = CartService;
+    constructor(match, sector, TicketsService, $stateParams, CartService, PriceSchemaService) {
+      this.cartService = CartService;
       this.priceSchemaService = PriceSchemaService;
       this.ticketsService = TicketsService;
       this.match = match;
-      this.cart = cart;
+      this.cart = {};
       this.sector = sector;
 
       this.reservedTickets = [];
@@ -22,13 +22,20 @@
       this.firstUpperRow = this.getFirstUpperRow($stateParams.sector);
 
       this.getPrice();
+      this.getCart();
       this.getReservedTickets();
-      this.getSelectedSeats();
     }
 
     getPrice() {
       let priceSchema = this.match.priceSchema.priceSchema;
       this.sectorPrice = this.priceSchemaService.getPriceBySector(this.tribuneName, this.sector.name, priceSchema);
+    }
+
+    getCart() {
+      this.cartService.loadCart().then(cart => {
+        this.cart = cart;
+        this.getSelectedSeats();
+      });
     }
 
     getReservedTickets() {
@@ -42,8 +49,7 @@
     getSelectedSeats(){
       this.selectedSeats = [];
 
-
-        this.cart._tickets.forEach(ticket => {
+        this.cart.tickets.forEach(ticket => {
           this.selectedSeats.push(ticket.seat.id);
         });
     }
@@ -73,16 +79,15 @@
        this.message = '';
 
       if ( checkTicket && this.selectedSeats.includes(seatId) ) {
-        this.CartService.removeTicket(seatId)
+        this.cartService.removeTicket(seatId)
           .then(() => {
             this.getReservedTickets()
-              .then( () => this.getSelectedSeats() );
-
+              .then( () =>  this.getSelectedSeats() );
           })
       }
 
       if( !checkTicket ) {
-        this.CartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
+        this.cartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
           .then(message => {
             if (message) {
               this.message = message;
