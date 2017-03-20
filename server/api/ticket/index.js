@@ -11,7 +11,8 @@ router.get('/reserved-on-match/:id/sector/:sector', controller.getReservedTicket
 router.get('/:code/print'/*, auth.isAuthenticated()*/, controller.print);
 router.get('/:code/check', auth.hasRole('admin'), controller.use);
 router.get('/sold-tickets', auth.hasRole('admin'), controller.getTicketsForCheckMobile);
-router.get('/:date', auth.hasRole('admin'), controller.getCountPaidOrders);
+router.get('/events-statistics', auth.hasRole('admin'), controller.getEventsStatistics);
+router.get('/days-statistics', auth.hasRole('admin'), controller.getDaysStatistics);
 router.get('/ticket/:ticketNumber', controller.getTicketPdfById);
 
 module.exports = router;

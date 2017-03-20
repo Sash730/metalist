@@ -210,39 +210,48 @@ export function getTicketsForCheckMobile(req, res) {
                .catch(handleError(res));
 }
 
-export function getCountPaidOrders(req, res) {
-  let date = new Date(req.params.date);
+export function getEventsStatistics(req, res) {
 
-  let countOrdersPromise =  Ticket.aggregate([
-    {$match: {status: 'paid', 'match.date': date}},
-    {$project: {tribune: '$seat.tribune'}},
-    {$group: {_id: "$tribune", number: {$sum: 1}}}])
-    .then(handleEntityNotFound(res));
-
-  let totalPricePromise  =  Ticket.aggregate([
-    {$match: {status: 'paid', 'match.date': date}},
-    {$project: {amount: 1, _id: 0, 'match.headline': 1}},
-    {$group: {_id: '$match.headline', number: {$sum: '$amount'}}}
+  Ticket.aggregate([
+    {$match: {status: 'paid', 'match.date': {$gte: new Date()}}},
+    {$project: {'_id': 0, 'match.headline': 1, 'match.date': 1, amount: 1}},
+    {$group: {_id: {headline: '$match.headline', date:'$match.date'}, count: {$sum: 1}, total: {$sum: '$amount'}}},
+    {$sort: {'_id.date': 1}}
     ])
-    .then(handleEntityNotFound(res));
-
-  Promise
-    .all([countOrdersPromise, totalPricePromise])
-    .then(([count, total]) => {
-      let statistic = {};
-
-    if (count._id && total._id) {
-
-      count.map(row => {
-        statistic[row._id] =  row.number;
+    .then(statistics => {
+      return statistics.map(stat => {
+        return {
+          headline: stat._id.headline,
+          date:     stat._id.date,
+          count:    stat.count,
+          total:    stat.total
+        }
       });
-      return {
-        stadium: statistic,
-        headline: total[0]._id,
-        totalSum: total[0].number
-      };
-    }
-    return statistic;
+
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
+}
+
+export function getDaysStatistics(req, res) {
+  let period = moment().subtract(30, 'day');
+
+  Ticket.aggregate([
+    {$match: {status: 'paid', reserveDate: {$gte: new Date(period)}}},
+    {$project: {'_id': 0, reserveDate: 1, amount: 1}},
+    {$sort: {reserveDate: -1}},
+    {$group: {_id:  {month: { $month: "$reserveDate" }, day: { $dayOfMonth: "$reserveDate" }, year: { $year: "$reserveDate" } },
+              count: {$sum: 1}, total: {$sum: '$amount'}}}
+  ])
+    .then(statistics => {
+      return statistics.map(stat => {
+        return {
+          date:  stat._id.day + '-' + stat._id.month + '-' + stat._id.year,
+          count: stat.count,
+          total: stat.total
+        }
+      });
     })
     .then(respondWithResult(res))
     .catch(handleError(res))
