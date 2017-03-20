@@ -16,10 +16,10 @@
     </div>
     <div class="buttons col-sm-12" ng-show="vm.cart.size">
       <div class="col-sm-4 col-sm-offset-1" ng-hide="vm.isLoggedIn()">
-        <a ui-sref="login" class="btn btn-primary btn-block">Log in</a>
+        <a ui-sref="login" class="btn btn-primary btn-block">Войти</a>
       </div>
       <div class="col-sm-1" ng-hide="vm.isLoggedIn()">
-        - OR -
+        - ИЛИ -
       </div>
       <div class="col-sm-5" ng-hide="vm.isLoggedIn()">
         <div ng-show="!vm.confirm" ng-form="confirmForm" ng-model-options="{ updateOn: 'blur' }">
@@ -34,7 +34,7 @@
           </div>
           <hr/>
           <a ng-click="vm.confirmEmail(confirmForm, user)" class="btn btn-warning btn-block"
-             ng-class="{'disabled': confirmForm.$invalid && confirmForm.$dirty}">Confirm email</a>
+             ng-class="{'disabled': confirmForm.$invalid && confirmForm.$dirty}">Подтвердить email</a>
         </div>
         <div ng-show="vm.confirm">
           <p ng-class="vm.message " ng-bind="vm.message "></p>
@@ -52,7 +52,7 @@
             </div>
             <hr/>
             <a ng-click="vm.guestLogin(form, user)" class="btn btn-primary btn-block"
-               ng-class="{'disabled': form.$invalid && form.$dirty}">Log in</a>
+               ng-class="{'disabled': form.$invalid && form.$dirty}">Войти</a>
           </form>
         </div>
       </div>

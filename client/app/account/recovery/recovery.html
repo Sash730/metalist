@@ -11,11 +11,11 @@
                 <div class="form-group" ng-class="{'has-error': form.email.$invalid && form.email.$dirty}">
                     <label>Email</label>
                     <input type="email" name="email" ng-model="email" placeholder="Enter your email" class="form-control" required="required"/>
-                    <div class="help-block" ng-show="form.email.$error.required && form.email.$dirty">Email is required</div>
-                    <div class="help-block" ng-show="form.email.$error.email && form.email.$dirty">Invalid email</div>
+                    <div class="help-block" ng-show="form.email.$error.required && form.email.$dirty">Email не зарегистрирован</div>
+                    <div class="help-block" ng-show="form.email.$error.email && form.email.$dirty">Неправильный email</div>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-inverse btn-lg btn-login">Reset password</button>
+                    <button type="submit" class="btn btn-inverse btn-lg btn-login">Сбросить пароль</button>
                 </div>
             </form>
         </div>

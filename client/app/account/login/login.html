@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h1>Login</h1>
+            <h1>Вход</h1>
         </div>
         <div class="col-sm-12">
             <form name="form" ng-submit="vm.login(form)" novalidate="" class="form">
@@ -10,7 +10,7 @@
                     <input type="email" name="email" ng-model="vm.user.email" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
+                    <label>Пароль</label>
                     <input type="password" name="password" ng-model="vm.user.password" class="form-control"/>
                 </div>
                 <div class="form-group has-error">
@@ -18,7 +18,7 @@
                     <p class="help-block">{{ vm.errors }}</p>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-inverse btn-lg btn-login">Login</button> <a ui-sref="signup" class="btn btn-default btn-lg btn-register">Register</a>
+                    <button type="submit" class="btn btn-inverse btn-lg btn-login">Войти</button> <a ui-sref="signup" class="btn btn-default btn-lg btn-register">Регистрация</a>
                     <a ui-sref="recovery">Забыли пароль?</a>
                 </div>
                 <hr/>

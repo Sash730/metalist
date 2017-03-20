@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h1>Sign up</h1>
+            <h1>Регистрация</h1>
         </div>
         <div class="col-sm-12">
             <form name="form" ng-submit="vm.register(form)" novalidate="" class="form">
                 <div ng-class="{ 'has-success': form.name.$valid && vm.submitted,        'has-error': form.name.$invalid && vm.submitted }" class="form-group">
-                    <label>Name</label>
+                    <label>Имя</label>
                     <input type="text" name="name" ng-model="vm.user.name" required="" class="form-control"/>
                     <p ng-show="form.name.$error.required && vm.submitted" class="help-block">A name is required</p>
                 </div>
@@ -18,18 +18,18 @@
                     <p ng-show="form.email.$error.mongoose" class="help-block">{{ vm.errors.email }}</p>
                 </div>
                 <div ng-class="{ 'has-success': form.password.$valid && vm.submitted,        'has-error': form.password.$invalid && vm.submitted }" class="form-group">
-                    <label>Password</label>
+                    <label>Пароль</label>
                     <input type="password" name="password" ng-model="vm.user.password" mongoose-error="" ng-minlength="3" required="" class="form-control"/>
                     <p ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted" class="help-block">Password must be at least 3 characters.</p>
                     <p ng-show="form.password.$error.mongoose" class="help-block">{{ vm.errors.password }}</p>
                 </div>
                 <div ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,        'has-error': form.confirmPassword.$invalid && vm.submitted }" class="form-group">
-                    <label>Confirm Password</label>
+                    <label>Подтвердите пароль</label>
                     <input type="password" name="confirmPassword" ng-model="vm.user.confirmPassword" match="vm.user.password" ng-minlength="3" required="" class="form-control"/>
                     <p ng-show="form.confirmPassword.$error.match && vm.submitted" class="help-block">Passwords must match.</p>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-inverse btn-lg btn-register">Sign up</button> <a ui-sref="login" class="btn btn-default btn-lg btn-login">Login</a>
+                    <button type="submit" class="btn btn-inverse btn-lg btn-register">Зарегистрироваться</button> <a ui-sref="login" class="btn btn-default btn-lg btn-login">Форма входа</a>
                 </div>
                 <hr/>
                 <div class="row">
