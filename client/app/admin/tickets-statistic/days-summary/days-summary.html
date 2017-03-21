@@ -9,7 +9,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="stat in $ctrl.statistics">
-        <td ng-bind="stat.date">
+        <td ng-bind="stat.date | date: 'dd-MM-yyyy'">
         </td>
         <td ng-bind="stat.count">
         </td>

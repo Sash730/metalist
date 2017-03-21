@@ -246,15 +246,35 @@ export function getEventsStatistics(req, res) {
 }
 
 export function getDaysStatistics(req, res) {
-  let period = moment().subtract(30, 'day');
+  let day = new Date();
+      day.setHours(2);
+      day.setMinutes(0);
+      day.setSeconds(0);
+  let tzOffset = 2,
+    period = moment(day).subtract(30, 'day');
 
+console.log(new Date(period));
   Ticket.aggregate([
     {$match: {status: 'paid', reserveDate: {$gte: new Date(period)}}},
     {$project: {'_id': 0, reserveDate: 1, amount: 1}},
     {$sort: {reserveDate: -1}},
-    {
-      $group: {
-        _id: {month: {$month: "$reserveDate"}, day: {$dayOfMonth: "$reserveDate"}, year: {$year: "$reserveDate"}},
+    {$group: {
+        _id: {
+          $subtract: [
+            { $add: [
+              { $subtract: [ '$reserveDate', new Date("1970-01-01") ] },
+              tzOffset * 1000 * 60 * 60
+            ]},
+            { $mod: [
+              { $add: [
+                { $subtract: [ '$reserveDate', new Date("1970-01-01") ] },
+                tzOffset * 1000 * 60 * 60
+              ]},
+              1000 * 60 * 60 * 24
+            ]}
+          ]
+
+        } ,
         count: {$sum: 1}, total: {$sum: '$amount'}
       }
     }
@@ -262,7 +282,7 @@ export function getDaysStatistics(req, res) {
     .then(statistics => {
       return statistics.map(stat => {
         return {
-          date: stat._id.day + '-' + stat._id.month + '-' + stat._id.year,
+          date: stat._id,
           count: stat.count,
           total: stat.total
         }
