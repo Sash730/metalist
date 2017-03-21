@@ -1,7 +1,7 @@
 <div class="empty" ng-hide="$ctrl.cart.size">Билеты не выбраны</div>
 <div class="empty" ng-show="$ctrl.message">{{$ctrl.message}}</div>
 <table class="cart-items table table-condensed">
-    <tr class="cart-item" ng-repeat="ticket in $ctrl.cart.tickets">
+    <tr class="cart-item" ng-repeat="ticket in $ctrl.cart.tickets" style="font-size: 12pt">
         <td>
           {{ ticket.seat.sector }} сектор, {{ ticket.seat.row }} ряд, {{ ticket.seat.number }} место {{ ticket.amount | money }}
         </td>
