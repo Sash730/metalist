@@ -16,7 +16,16 @@
     "angular-ui-router": "~0.2.15",
     "angular-validation-match": "~1.5.2",
     "ngPrint": "*",
-    "angular-datepicker": "^2.0.3"
+    "angular-datepicker": "^2.0.3",
+    "moment": "^2.10.0",
+    "moment-timezone": "^0.5.11"
+  },
+  "overrides": {
+    "moment": {
+      "main": [
+        "min/moment-with-locales.min.js"
+      ]
+    }
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0"
