@@ -15,7 +15,7 @@
     $onChanges(changes) {
       if (changes.daysStatistics) {
         if (!this.daysStatistics.length) {
-          this.statistics = [];
+         this.statistics = [];
         }
         if (this.daysStatistics.length) {
           this.statistics = this.daysStatistics;
