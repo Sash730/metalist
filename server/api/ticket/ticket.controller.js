@@ -2,7 +2,7 @@
 
 import Ticket from './ticket.model';
 import SeasonTicket from '../seasonTicket/seasonTicket.model';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';
 import * as _ from 'lodash';
@@ -248,23 +248,12 @@ export function getEventsStatistics(req, res) {
 export function getDaysStatistics(req, res) {
   let period = moment().subtract(30, 'day');
 
-  Ticket.aggregate([
-    {$match: {status: 'paid', reserveDate: {$gte: new Date(period)}}},
-    {$project: {'_id': 0, reserveDate: 1, amount: 1}},
-    {$sort: {reserveDate: -1}},
-    {
-      $group: {
-        _id: {month: {$month: "$reserveDate"}, day: {$dayOfMonth: "$reserveDate"}, year: {$year: "$reserveDate"}},
-        count: {$sum: 1}, total: {$sum: '$amount'}
-      }
-    }
-  ])
+  Ticket.find({status: 'paid', reserveDate: {$gte: new Date(period)}})
     .then(statistics => {
       return statistics.map(stat => {
         return {
-          date: stat._id.day + '-' + stat._id.month + '-' + stat._id.year,
-          count: stat.count,
-          total: stat.total
+          date: moment(stat.reserveDate).tz('Europe/Kiev').format('DD-MM-YYYY'),
+          amount: stat.amount
         }
       });
     })

@@ -24,7 +24,25 @@
 
     getDaysStatistics() {
       this.ticketsService.getDaysStatistics()
-        .then(statistic => this.daysStatistics = statistic );
+        .then(statistic => this.daysStatistics = this.makeStatisticsForDays(statistic) );
+    }
+
+    makeStatisticsForDays(statistic) {
+      let responses = [];
+      statistic.forEach(day => {
+        let key = day.date,
+            response = responses[key];
+
+        if (!response) {
+          response = responses[key] = [];
+        }
+        response.push( day.amount );
+      });
+      responses.map(day  => {
+
+      });
+
+      console.log(responses);
     }
   }
 
