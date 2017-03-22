@@ -19,9 +19,6 @@
         }
         if (this.daysStatistics.length) {
           this.statistics = this.daysStatistics;
-          this.statistics.forEach(stat => {
-            stat.date = new Date(stat.date);
-          })
         }
       }
     }
