@@ -1,13 +1,7 @@
 <div class="container">
   <navpanel></navpanel>
   <div class="row">
-    <div class="col-xs-4 matchDate"><h3 style="text-align: left; font-weight: bold">
-      {{ vm.match.date|date:'d MMMM y' }}<br>{{ vm.match.date|date:'HH:mm' }}</h3></div>
-    <div class="col-xs-4 matchRival" style="text-align: center"><h3>Металлист 1925<br>{{ vm.match.rival }}</h3></div>
-    <div class="col-xs-4 address" style="text-align: right"><span>Стадион Металлист<br>ул. Плехановская, 65</span>
-      <br><span class="fa fa-subway" uib-popover="Станция метро" popover-trigger="'mouseenter'"
-                popover-placement="left"></span> Спортивная / Метростроителей
-    </div>
+    <match-details match="vm.match"></match-details>
   </div>
   <div class="gradientSeats"></div>
   <div class="row">
