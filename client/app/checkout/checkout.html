@@ -16,7 +16,7 @@
     </div>
     <div class="buttons col-sm-12" ng-show="vm.cart.size">
       <div class="col-sm-4 col-sm-offset-1" ng-hide="vm.isLoggedIn()">
-        <a ui-sref="login" class="btn btn-primary btn-block cartBtn">Войти</a>
+        <a ui-sref="login" class="btn btn-primary btn-block">Войти</a>
       </div>
       <div class="col-sm-1" ng-hide="vm.isLoggedIn()">
         - ИЛИ -
@@ -33,7 +33,7 @@
             </div>
           </div>
           <hr/>
-          <a ng-click="vm.confirmEmail(confirmForm, user)" class="btn btn-warning btn-block checkmail"
+          <a ng-click="vm.confirmEmail(confirmForm, user)" class="btn btn-warning btn-block"
              ng-class="{'disabled': confirmForm.$invalid && confirmForm.$dirty}">Подтвердить email</a>
         </div>
         <div ng-show="vm.confirm">
@@ -51,13 +51,13 @@
               <div class="help-block" ng-show="form.name.$error.required && form.name.$dirty">Password is required</div>
             </div>
             <hr/>
-            <a ng-click="vm.guestLogin(form, user)" class="btn btn-primary btn-block cartBtn"
+            <a ng-click="vm.guestLogin(form, user)" class="btn btn-primary btn-block"
                ng-class="{'disabled': form.$invalid && form.$dirty}">Войти</a>
           </form>
         </div>
       </div>
       <div class="col-sm-4 col-sm-offset-4" ng-show="vm.isLoggedIn()">
-        <a class="btn btn-primary btn-block cartBtn" ng-click="vm.checkout()">Оплатить</a>
+        <a class="btn btn-primary btn-block" ng-click="vm.checkout()">Оплатить</a>
       </div>
 
     </div>
