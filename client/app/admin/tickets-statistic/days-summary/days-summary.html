@@ -1,10 +1,11 @@
 <hr>
-<table class="table">
+<table class="table table-condensed">
     <thead>
     <tr>
-        <th>Data</th>
-        <th>Count tickets</th>
-        <th>Amount</th>
+        <th>Дата</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+        <th>Детали</th>
     </tr>
     </thead>
     <tbody>
@@ -13,8 +14,12 @@
         </td>
         <td ng-bind="stat.count">
         </td>
-        <td ng-bind="stat.total | money">
-        </td>
+        <td ng-bind="stat.sum | simpleMoney"></td>
+       <td>
+         <ul>
+           <li ng-repeat="detail in stat.details">{{detail.price | simpleMoney}} - {{detail.count}} шт.</li>
+         </ul>
+      </td>
     </tr>
     </tbody>
 </table>
