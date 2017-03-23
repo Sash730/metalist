@@ -99,7 +99,7 @@ let getTribuneName = (sectorName) => {
 };
 
 export function index(req, res) {
-  return SeasonTicket.find({type: 'ticket', valid: {$gte: new Date()}}).limit(20).sort({valid: 1}).exec()
+  return SeasonTicket.find({type: 'ticket', valid: {$gte: new Date()}}).sort({valid: 1}).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

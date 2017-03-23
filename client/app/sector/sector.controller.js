@@ -127,7 +127,6 @@
         "28": 9,
         "29": 9,
       };
-      console.log(sectorDividers[sectorNumber] || 1);
       return sectorDividers[sectorNumber] || 1;
     }
 

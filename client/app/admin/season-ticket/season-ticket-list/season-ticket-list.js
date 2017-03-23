@@ -7,8 +7,7 @@
       templateUrl: 'app/admin/season-ticket/season-ticket-list/season-ticket-list.html',
       controller: 'SeasonTicketListController',
       bindings: {
-        seasonTickets: '<',
-        onChange: '&'
+        seasonTickets: '<'
       }
     });
 })();
