@@ -1063,8 +1063,7 @@
                   seats: '22'
                 }
               ]},
-     sector_VIP_BL:
-       {
+     sector_VIP_BL: {
               name: 'VIP_BL',
               rows: [
                 {
@@ -1099,7 +1098,33 @@
                   name: '26',
                   seats: '24'
                 }
-              ]}
+              ]},
+        sector_SB_1: {
+               name: 'SB_1',
+               rows: [
+                 {
+                   name: '1',
+                   seats: '7'
+                 },
+                 {
+                   name: '2',
+                   seats: '7'
+                 }
+               ]
+        },
+        sector_SB_7: {
+          name: 'SB_7',
+          rows: [
+            {
+              name: '1',
+              seats: '6'
+            },
+            {
+              name: '2',
+              seats: '5'
+            }
+          ]
+        }
       },
       tribune_south: {
              name: 'south',
