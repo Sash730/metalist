@@ -134,8 +134,14 @@
       return [...Array(parseInt(number) + 1).keys()].filter(Boolean);
     }
 
-    showAlert (event){
-      alert(event.target.id);
+    isSkybox() {
+      let skyBoxes = ['SB_1', 'SB_2', 'SB_3_5', 'SB_6', 'SB_7', 'SB_8', 'SB_9', 'SB_10', 'SB_11' ]
+      return skyBoxes.includes(this.sector.name);
+    }
+
+    isFreeSeats() {
+      let tribuneNames = ['east', 'north'];
+      return tribuneNames.includes(this.tribuneName);
     }
   }
 

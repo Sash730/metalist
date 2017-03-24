@@ -31,7 +31,7 @@
                 </td>
                 <td>
                     <div class="form-group"  ng-class="{'has-error': priceForm.tribunePrice.$invalid && priceForm.tribunePrice.$dirty}">
-                    <input class="form-control" type="number" name="tribunePrice" min="0" max="700" ng-model="$ctrl.currentTribune.price" />
+                    <input class="form-control" type="number" name="tribunePrice" min="0" max="1500" ng-model="$ctrl.currentTribune.price" />
                     <div class="help-block" ng-show="priceForm.tribunePrice.$error.number && priceForm.tribunePrice.$dirty">Price not number</div>
                     </div>
                 </td>
@@ -54,7 +54,7 @@
                 </td>
                 <td>
                     <div class="form-group"  ng-class="{'has-error': priceForm.sectorPrice.$invalid && priceForm.sectorPrice.$dirty}">
-                    <input class="form-control" type="number" name="sectorPrice" min="0" max="700" ng-model="$ctrl.currentSector.price" />
+                    <input class="form-control" type="number" name="sectorPrice" min="0" max="1500" ng-model="$ctrl.currentSector.price" />
                     <div class="help-block" ng-show="priceForm.sectorPrice.$error.number && priceForm.sectorPrice.$dirty">Price not number</div>
                     </div>
                 </td>

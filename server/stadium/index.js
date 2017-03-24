@@ -1062,43 +1062,68 @@ export const Stadium =  {
           seats: '22'
         }
       ]},
-    sector_VIP_BL:
-      {
-        name: 'VIP_BL',
-        rows: [
-          {
-            name: '19',
-            seats: '10'
-          },
-          {
-            name: '20',
-            seats: '10'
-          },
-          {
-            name: '21',
-            seats: '10'
-          },
-          {
-            name: '22',
-            seats: '10'
-          },
-          {
-            name: '23',
-            seats: '24'
-          },
-          {
-            name: '24',
-            seats: '24'
-          },
-          {
-            name: '25',
-            seats: '24'
-          },
-          {
-            name: '26',
-            seats: '24'
-          }
-        ]}
+    sector_VIP_BL: {
+      name: 'VIP_BL',
+      rows: [
+        {
+          name: '19',
+          seats: '10'
+        },
+        {
+          name: '20',
+          seats: '10'
+        },
+        {
+          name: '21',
+          seats: '10'
+        },
+        {
+          name: '22',
+          seats: '10'
+        },
+        {
+          name: '23',
+          seats: '24'
+        },
+        {
+          name: '24',
+          seats: '24'
+        },
+        {
+          name: '25',
+          seats: '24'
+        },
+        {
+          name: '26',
+          seats: '24'
+        }
+      ]},
+    sector_SB_1: {
+      name: 'SB_1',
+      rows: [
+        {
+          name: '1',
+          seats: '7'
+        },
+        {
+          name: '2',
+          seats: '7'
+        }
+      ]
+    },
+    sector_SB_7: {
+      name: 'SB_7',
+      rows: [
+        {
+          name: '1',
+          seats: '6'
+        },
+        {
+          name: '2',
+          seats: '5'
+        }
+      ]
+    }
   },
   tribune_south: {
     name: 'south',
