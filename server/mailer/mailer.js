@@ -22,10 +22,8 @@ export function sendMail(to, order) {
         };
 
         if (!mailOptions.subject) {
-          mailOptions.subject = 'Match ' +ticket.match.headline;
+          mailOptions.subject = ticket.match.headline + '. Дата: ' +  moment(ticket.match.date).tz('Europe/Kiev').locale('ru').format('DD MMMM YYYY HH:mm');
         }
-        mailOptions.text += 'Match ' +ticket.match.headline+ ' Date ' + moment(ticket.match.date).format('MMM d, HH:mm')
-                             +' Sector '+ticket.seat.sector+' Row ' +ticket.seat.row + ' Seat ' + ticket.seat.number + '\n';
         mailOptions.attachments.push(attach);
       });
 
