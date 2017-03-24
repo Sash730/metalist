@@ -5,6 +5,8 @@ angular.module('metalistTicketsApp')
         return (amount) => {
           if(amount) {
             return (amount / 100).toFixed(2) + 'UAH';
+          } else {
+            return amount;
           }
         };
     });
