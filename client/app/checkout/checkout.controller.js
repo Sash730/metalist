@@ -4,16 +4,18 @@
 
     class CheckoutController {
 
-        constructor($window, CartService, Auth) {
+        constructor($window, CartService, Auth, $interval) {
             this.$window = $window;
             this.cartService = CartService;
-            this.cart = {};
             this.Auth = Auth;
             this.isLoggedIn = Auth.isLoggedIn;
+            this.$interval =$interval;
 
+            this.cart = {};
             this.confirm = false;
             this.message = '';
             this.reserveDate = '';
+            this.duration = 0;
 
             this.getCart();
         }
@@ -70,11 +72,27 @@
         }
         this.reserveDate = this.cart.tickets[0].reserveDate;
 
+        this.createTimer();
       };
 
         updateCart () {
           this.getReserveDateFromTickets();
         }
+
+      createTimer() {
+        let now = moment(),
+            diffTime = moment(this.reserveDate).tz('Europe/Kiev') - moment().tz('Europe/Kiev'),
+            interval = 1000;
+            this.duration = moment.duration(diffTime*1000, 'milliseconds');
+        console.log('durationTime', this.duration, diffTime);
+
+        let intervalId = this.$interval(() => {
+          if(this.duration == 0) {
+            return this.$interval.cancel(intervalId);
+          }
+          this.duration = moment.duration(this.duration - interval, 'milliseconds');
+        }, interval);
+      }
 
         checkout() {
             this.handleCheckoutResponse(this.cartService.convertCartToOrderAsUser());
