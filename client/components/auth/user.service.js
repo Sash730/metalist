@@ -3,8 +3,9 @@
 (function () {
 
     function UserResource($resource) {
-        return $resource('/api/users/:id/:controller', {
-            id: '@_id'
+        return $resource('/api/users/:id/:controller/:role', {
+            id: '@id',
+          role: '@role'
         }, {
             changePassword: {
                 method: 'PUT',
@@ -29,6 +30,12 @@
                 params: {
                     id: 'me'
                 }
+            },
+            setRole: {
+              method: 'PUT',
+              params: {
+               controller: 'change-role'
+              }
             }
         });
     }

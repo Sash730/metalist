@@ -210,14 +210,14 @@
             },
 
           /**
-           * Check if a user is an steward
+           * Check if a user is an moderator
            *   (synchronous|asynchronous)
            *
            * @param  {Function|*} callback - optional, function(is)
            * @return {Bool|Promise}
            */
-          isSteward() {
-            return Auth.hasRole.apply(Auth, [].concat.apply(['steward'], arguments));
+          isModerator() {
+            return Auth.hasRole.apply(Auth, [].concat.apply(['moderator'], arguments));
           },
 
             /**
