@@ -31,7 +31,7 @@ function handleError(res, statusCode) {
  */
 export function index(req, res) {
   logger.debug("order index");
-    return User.find({}, '-salt -password').exec()
+    return User.find({}, '-salt -password').sort({role: 1}).exec()
         .then(users => {
             return res.status(200).json(users);
         })
@@ -47,7 +47,7 @@ export function create(req, res, next) {
     newUser.role = 'user';
     newUser.save()
         .then(function (user) {
-            var token = jwt.sign({_id: user._id}, config.secrets.session, {
+            let token = jwt.sign({_id: user._id}, config.secrets.session, {
                 expiresIn: 60 * 60 * 5
             });
             res.json({token});
@@ -81,6 +81,26 @@ export function destroy(req, res) {
             res.status(204).end();
         })
         .catch(handleError(res));
+}
+
+/**
+ * Change a user role
+ */
+export function setRole(req, res) {
+  let newRole = req.params.role;
+
+  return User.findById(req.params.id).exec()
+    .then(user => {
+      if (!user) {
+        return res.status(404).end();
+      }
+      user.role = newRole;
+      user.save()
+        .then(() => {
+          res.status(204).end();
+        });
+    })
+    .catch(handleError(res));
 }
 
 /**

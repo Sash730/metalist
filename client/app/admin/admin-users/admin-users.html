@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <li ng-repeat="user in $ctrl.users" class="list-group-item">
+    <strong>{{user.name}}</strong> | {{user.role}}<br/>
+    <span class="text-muted">{{user.email}}</span>
+    <span class="btn-group-sm pull-right" ng-hide="user.role=='admin'">
+        <a class="role" ng-click="$ctrl.setRole(user, 'steward')"><span class="text-warning">Steward</span></a> |
+        <a class="role" ng-click="$ctrl.setRole(user, 'moderator')"><span class="text-success">Moderator</span></a> |
+        <a class="role" ng-click="$ctrl.setRole(user, 'user')"><span class="text-info">User</span></a>
+    </span>
+  </li>
+</ul>

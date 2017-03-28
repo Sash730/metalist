@@ -3,8 +3,7 @@
 (function () {
 
   class AdminController {
-    constructor(User, TicketsService) {
-      this.users = User.query();
+    constructor(TicketsService) {
       this.ticketsService = TicketsService;
 
       this.tickets = [];
@@ -32,11 +31,6 @@
           this.tickets = response.data;
         })
       ;
-    }
-
-    delete(user) {
-      user.$remove();
-      this.users.splice(this.users.indexOf(user), 1);
     }
   }
 
