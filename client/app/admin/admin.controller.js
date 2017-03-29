@@ -21,7 +21,7 @@
           if (response.data.message) {
             this.message = response.data.message;
           }
-          this.ticket = response.data;
+          this.ticket = response.data.ticket;
         });
     }
 

@@ -23,8 +23,8 @@
         <button ng-click="admin.checkTicket(code)">Check ticket</button>
         <br>
         <span ng-show="admin.message"  ng-bind="admin.message"></span>
-        <span ng-show="admin.ticket.seat">Ticket valid. Seat - {{admin.ticket.seat.number}}, row - {{admin.ticket.seat.row}},
-         sector - {{admin.ticket.seat.sector}}</span>
+        <span ng-show="admin.ticket.seat">Ticket valid. Seat - {{admin.ticket.seat}}, tribune - {{admin.ticket.tribune}},
+         sector - {{admin.ticket.sector}}</span>
       </form>
       <button ng-click="admin.getTickets()">Load tickets</button>
       <hr>
@@ -45,11 +45,11 @@
           </td>
           <td ng-bind="ticket.status">
           </td>
-          <td ng-bind="ticket.seat.sector">
+          <td ng-bind="ticket.sector">
           </td>
-          <td ng-bind="ticket.seat.row">
+          <td ng-bind="ticket.row">
           </td>
-          <td ng-bind="ticket.seat.number">
+          <td ng-bind="ticket.seat">
           </td>
           <td ng-bind="ticket.amount | money">
           </td>
