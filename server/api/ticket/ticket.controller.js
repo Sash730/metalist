@@ -222,23 +222,23 @@ export function getTicketsForCheckMobile(req, res) {
 }
 
 export function getEventsStatistics(req, res) {
+  let period = moment().subtract(1, 'day');
 
-  Ticket.aggregate([
-    {$match: {status: 'paid', 'match.date': {$gte: new Date()}}},
-    {$project: {'_id': 0, 'match.headline': 1, 'match.date': 1, amount: 1}},
-    {$group: {_id: {headline: '$match.headline', date: '$match.date'}, count: {$sum: 1}, total: {$sum: '$amount'}}},
-    {$sort: {'_id.date': 1}}
-  ])
-    .then(statistics => {
-      return statistics.map(stat => {
+  Ticket.find({'match.date': {$gte: period}})
+    .where({$or: [
+      {status: 'paid'},
+      {status: 'used'}
+    ]})
+    .sort({'match.date': 1})
+    .then(tickets => {
+      return tickets.map(ticket => {
         return {
-          headline: stat._id.headline,
-          date: stat._id.date,
-          count: stat.count,
-          total: stat.total
+          headline: ticket.match.headline,
+          sector: ticket.seat.sector,
+          date: ticket.match.date,
+          amount: ticket.amount
         }
-      });
-
+      })
     })
     .then(respondWithResult(res))
     .catch(handleError(res))

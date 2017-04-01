@@ -3,9 +3,10 @@
     <thead>
     <tr>
         <th>Match</th>
-        <th>Data</th>
-        <th>Count tickets</th>
-        <th>Total price</th>
+        <th>Дата</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+        <th>Детали (по секторам)</th>
     </tr>
     </thead>
     <tbody>
@@ -16,7 +17,12 @@
         </td>
         <td ng-bind="stat.count">
         </td>
-        <td ng-bind="stat.total | money">
+        <td ng-bind="stat.sum | simpleMoney">
+        </td>
+        <td>
+            <ul>
+                <li ng-repeat="detail in stat.details | orderBy:'sector'">{{detail.sector}} - {{detail.count}} шт.</li>
+            </ul>
         </td>
     </tr>
     </tbody>

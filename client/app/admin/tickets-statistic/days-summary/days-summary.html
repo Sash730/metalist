@@ -5,7 +5,7 @@
         <th>Дата</th>
         <th>Количество</th>
         <th>Сумма</th>
-        <th>Детали</th>
+        <th>Детали (по ценам)</th>
     </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
         <td ng-bind="stat.sum | simpleMoney"></td>
        <td>
          <ul>
-           <li ng-repeat="detail in stat.details">{{detail.price | simpleMoney}} - {{detail.count}} шт.</li>
+           <li ng-repeat="detail in stat.details | orderBy:'price'">{{detail.price | simpleMoney}} - {{detail.count}} шт.</li>
          </ul>
       </td>
     </tr>
