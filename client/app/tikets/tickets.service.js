@@ -5,6 +5,7 @@
 
     constructor($http) {
       this.$http = $http;
+      this.tribune = 'east';
     }
 
     fetchReservedTickets(matchId, sectorName) {
@@ -23,7 +24,7 @@
     }
 
     checkTicket(code) {
-      return this.$http.get('/api/tickets/' + code +'/check');
+      return this.$http.get('/api/tickets/tribune/' + this.tribune + '/code/' + code);
     }
 
     getTickets() {
