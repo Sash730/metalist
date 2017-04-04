@@ -273,7 +273,7 @@ let processLiqpayRequest = (request) => {
 let getOrderAfterLiqpayByEnvironment = (req) => {
   if (config.env === 'development') {
     return processLiqpayRequest(req);
-  };
+  }
   if (config.env === 'production')  {
     return getLiqPayParams(req)
       .then(params =>{
@@ -352,7 +352,6 @@ export function updateCart(req, res) {
               throw new Error('Match not found');
           }
           if (ticket && ( ticket.status === 'paid' || ticket.reserveDate > moment() )) {
-            console.log('taken');
             return {
                     tickets: cart.tickets,
                     message: 'This ticket is already taken.'
@@ -523,7 +522,9 @@ export function liqpayCallback(req, res, next) {
 }
 
 export function getOrderByNumber(req, res) {
-    Order.findOne({orderNumber: req.params.orderNumber, type: 'order'})
+  let userId = req.user.id;
+
+    Order.findOne({orderNumber: req.params.orderNumber, type: 'order', 'user.id': userId})
       .populate({path: 'tickets'})
         .then((order) => {
             if(!order) {
