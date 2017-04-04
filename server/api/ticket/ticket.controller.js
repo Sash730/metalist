@@ -104,7 +104,7 @@ let getCountTicketsByTribune = (tribune) => {
     if ( tribune === 'vip' ) {
       return tickets.filter(ticket => sectorsInVip.includes(ticket.seat.sector)).length;
     }
-    return tickets.filter(ticket => ticket.seat.tribune === tribune).length;
+    return  tickets.filter(ticket => ( ticket.seat.tribune === tribune && !sectorsInVip.includes(ticket.seat.sector) )).length;
   });
 };
 
