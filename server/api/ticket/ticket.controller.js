@@ -11,7 +11,7 @@ import * as pdfGenerator from '../../pdfGenerator';
 import * as log4js from 'log4js';
 
 const logger = log4js.getLogger('Ticket');
-const sectorsInVip = ['VIP', 'VIP_BR', 'VIP_BL', 'VIP_AR', 'VIP_AL', 'SB_1', 'SB_7'];
+const sectorsInVip = ['VIP_B', 'VIP_BR', 'VIP_BL', 'VIP_AR', 'VIP_AL', 'SB_1', 'SB_7'];
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
