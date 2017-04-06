@@ -224,7 +224,7 @@ export const Stadium =  {
           seats: '35'
         },
         {
-          name: '35',
+          name: '13',
           seats: '35'
         },
         {
