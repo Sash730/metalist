@@ -7,7 +7,11 @@ import {formatMoney} from '../../util';
 import  {Ticket} from '../ticket/ticket.model';
 
 
-var OrderSchema = new Schema({
+let OrderSchema = new Schema({
+    publicId: {
+      type: String,
+      required: true
+    },
     orderNumber: {
         type: String,
         required: function(value) {
