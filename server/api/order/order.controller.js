@@ -90,7 +90,7 @@ let createNewTicket = (cart, match, price, seat) => {
 let deleteTimeEndReserveTicketInCart = (cartId, ticketId) => {
   Order.findOne({_id: cartId})
     .then(cart => {
-      cart.tickets.splice(cart.tickets.indexOf(ticketId), 1); //@TODO don't use splice but filter
+      cart.tickets = cart.tickets.filter(ticket => ticket._id !== ticketId); //@TODO don't use splice but filter
       return cart.save();
     })
 
@@ -143,6 +143,12 @@ let updateTicketsInCheckout = (order) => {
         return ticket.save();
       });
   });
+};
+
+let getAmountTicketsInCart = (cart)=> {
+  return cart.tickets.reduce((amount, ticket) => {
+    return amount + ticket.amount;
+  }, 0);
 };
 
 let getPriceInPriceSchema = (priceSchema, tribuneName, sectorName) => {
@@ -224,20 +230,15 @@ let getLiqPayParams = (req) => {
     return resolve(JSON.parse(new Buffer(req.body.data, 'base64').toString('utf-8')));
   })
 };
-
+//@todo updated
 let deleteTicketFromCart = (cart, seatId) => {
-  let [ticket] = _.filter(cart.tickets, function (ticket) {
-
-    if (ticket.seat.id === seatId) {
-      return ticket;
-    }
-  });
+  let [ ticket ] = cart.tickets.filter(ticket => ticket.seat.id === seatId );
 
   if (!ticket) {
     throw new Error('Ticket not found in cart')
   }
   cart.amount -= ticket.amount;
-  cart.tickets.splice(cart.tickets.indexOf(ticket), 1);
+  cart.tickets = cart.tickets.filter(ticket => ticket.seat.id !== seatId );
 
   return cart.save();
 };
@@ -484,15 +485,12 @@ export function convertCartToOrder(req, res) {
       cart.type = 'order';
       cart.orderNumber = uuid.v1();
       cart.created = new Date();
+      cart.amount = getAmountTicketsInCart(cart);
 
       return cart.save();
     })
     .then(order => {
       delete req.session.cart;
-      if (!req.session.orderIds) {
-        req.session.orderIds = [];
-      }
-      req.session.orderIds.push(order.id);
 
       updateTicketsInCheckout(order);
       return order;

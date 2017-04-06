@@ -13,7 +13,8 @@ describe('User API:', function () {
             user = new User({
                 name: 'Fake User',
                 email: 'test@example.com',
-                password: 'password'
+                password: 'password',
+                provider: 'local'
             });
 
             return user.save();
@@ -43,7 +44,8 @@ describe('User API:', function () {
                 });
         });
 
-        it('should respond with a user profile when authenticated', function (done) {
+
+      it('should respond with a user profile when authenticated', function (done) {
             request(app)
                 .get('/api/users/me')
                 .set('authorization', 'Bearer ' + token)

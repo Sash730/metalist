@@ -15,7 +15,7 @@ class Cart {
     }
 
     get amount() {
-        return _.reduce(this._tickets, (amount, ticket) => {
+        return this._tickets.reduce((amount, ticket) => {
             return amount + ticket.amount;
         }, 0);
     }
