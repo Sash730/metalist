@@ -289,7 +289,12 @@ export function getEventsStatistics(req, res) {
 export function getDaysStatistics(req, res) {
   let period = moment().subtract(30, 'day');
 
-  Ticket.find({status: 'paid', reserveDate: {$gte: new Date(period)}}).sort({reserveDate: -1})
+  Ticket.find({reserveDate: {$gte: new Date(period)}})
+    .where({$or: [
+      {status: 'paid'},
+      {status: 'used'}
+    ]})
+    .sort({reserveDate: -1})
     .then(statistics => {
       return statistics.map(stat => {
         return {
