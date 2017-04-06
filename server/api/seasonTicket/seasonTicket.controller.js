@@ -1,6 +1,8 @@
 'use strict';
 
 import SeasonTicket from "./seasonTicket.model";
+import { SEASON_TICKET } from '../seat/seat.constants';
+import Seat from '../seat/seat.model';
 import {Stadium} from '../../stadium';
 import * as log4js from 'log4js';
 
@@ -35,7 +37,7 @@ function handleError(res, statusCode) {
   };
 }
 
-let createSeasonTicket = (seasonTicket, seatId, type) => {
+let createTicket = (seasonTicket, seatId, type) => {
   let newSeasonTicket = new SeasonTicket({
     seatId: seatId,
     sector: seasonTicket.sector,
@@ -56,7 +58,7 @@ let addBlockTickets = (seats, blockRow) => {
                   seat: seat,
                   valid: blockRow.valid,
         };
-     return createSeasonTicket(ticket, seatId, 'block');
+     return createTicket(ticket, seatId, 'block');
   })
 };
 
@@ -112,6 +114,24 @@ export function view(req, res) {
     .catch(handleError(res));
 }
 
+export function createSeasonTicket(req, res) {
+  let seasonTicket = req.body.ticket,
+      slug = 's' + seasonTicket.sector + 'r' + seasonTicket.row + 'st' + seasonTicket.seat;
+
+  let newTicket = new Seat({
+    slug: slug,
+    sector: seasonTicket.sector,
+    row: seasonTicket.row,
+    seat: seasonTicket.seat,
+    reservedUntil: seasonTicket.valid,
+    reservationType: SEASON_TICKET
+  });
+
+  newTicket.save()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 export function saveSeasonTicket(req, res) {
   let seasonTicket = req.body.ticket,
       seatId = 's' + seasonTicket.sector + 'r' + seasonTicket.row + 'st' + seasonTicket.seat;
@@ -119,7 +139,7 @@ export function saveSeasonTicket(req, res) {
     SeasonTicket.findOne({seatId: seatId})
     .then(ticket  => {
       if (!ticket) {
-        return createSeasonTicket(seasonTicket, seatId, 'ticket');
+        return createTicket(seasonTicket, seatId, 'ticket');
       }
       ticket.seatId = seatId;
       ticket.sector = seasonTicket.sector;

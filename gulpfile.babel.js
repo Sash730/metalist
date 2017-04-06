@@ -396,7 +396,8 @@ gulp.task('serve:debug', cb => {
 });
 
 gulp.task('test', cb => {
-    return runSequence('test:server', 'test:client', cb);
+    // return runSequence('test:server', 'test:client', cb); //@TODO uncomment when start to test client
+    return runSequence('test:server', cb);
 });
 
 gulp.task('test:server', cb => {
