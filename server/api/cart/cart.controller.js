@@ -1,6 +1,6 @@
 'use strict';
 
-import { Order } from '../order/order.model';
+import {Order} from '../order/order.model';
 import * as log4js from 'log4js';
 import * as crypto  from 'crypto';
 
@@ -34,9 +34,19 @@ function handleError(res, statusCode) {
 }
 
 export function createCart(req, res) {
-    return _getNewCart(req)
-             .then(respondWithResult(res))
-             .catch(handleError(res));
+  let publicId = crypto.randomBytes(20).toString('hex');
+  let cart = new Order({
+    type: 'cart',
+    publicId: publicId
+  });
+
+  return cart.save()
+    .then(cart => {
+      req.session.cart = cart.publicId;
+      return cart;
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
 }
 
 export function getCart(req, res) {
@@ -48,20 +58,4 @@ export function getCart(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res))
   ;
-}
-
-function _getNewCart(request) {
-  return Promise.resolve(request)
-    .then(() => {
-      let cart = new Order({
-        type: 'cart',
-        publicId: crypto.randomBytes(20).toString('hex')
-      });
-
-      return cart.save()
-    })
-    .then(cart => {
-      request.session.cart = cart.publicId;
-      return cart;
-    });
 }

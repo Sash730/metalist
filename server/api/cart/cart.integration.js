@@ -49,7 +49,7 @@ describe('Cart API:', function () {
         });
     });
 
-    it('should respond with a new ticket', function (done) {
+    it('should respond with a cart with new publich id and default fields', function (done) {
       request(app)
         .post('/api/carts/')
         .expect(200)
@@ -59,5 +59,7 @@ describe('Cart API:', function () {
           done();
         });
     });
+
+
   });
 });

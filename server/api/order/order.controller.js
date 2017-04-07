@@ -292,7 +292,7 @@ const createPaymentLink = (order) => {
 
   let paymentParams = {
     'action': 'pay',
-    'amount': order.formattedAmount,
+    'amount': order.amount,
     'currency': 'UAH',
     'description': orderDescription,
     'order_id': order.orderNumber,
