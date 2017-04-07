@@ -3,24 +3,24 @@
 class Cart {
 
     constructor() {
-        this._tickets = [];
+        this._seats = [];
     }
 
-    get tickets() {
-        return this._tickets;
+    get seats() {
+        return this._seats;
     }
 
-    set tickets(tickets) {
-        this._tickets = tickets;
+    set seats(seats) {
+        this._seats = seats;
     }
 
     get amount() {
-        return _.reduce(this._tickets, (amount, ticket) => {
-            return amount + ticket.amount;
+        return this._seats.reduce((amount, seat) => {
+            return amount + seat.amount;
         }, 0);
     }
 
     get size() {
-        return this._tickets.length;
+        return this._seats.length;
     }
 }

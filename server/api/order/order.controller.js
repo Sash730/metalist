@@ -2,10 +2,13 @@
 
 import Match from '../match/match.model';
 import Ticket from '../ticket/ticket.model';
+import * as seatService from '../seat/seat.service';
 import User from '../user/user.model';
+import Seat from '../seat/seat.model';
 import {Order} from './order.model';
 import PriceSchema from "../priceSchema/priceSchema.model";
 import {Stadium} from '../../stadium';
+import { PAID, RESERVE } from '../seat/seat.constants';
 import * as _ from 'lodash';
 import * as config from "../../config/environment";
 import * as LiqPay from '../../liqpay';
@@ -48,66 +51,44 @@ let sendMessage = (order) => {
   Mailer.sendMail(order.user.email, order);
 };
 
-let createNewTicket = (cart, match, price, seat) => {
-  let ticket = new Ticket({
-    cartId: cart.id,
-    accessCode: randomNumericString(16),
-    match: { //@TODO investigate if it's required to have all match info here
-      id: match.id,
-      headline: match.headline,
-      round: match.round,
-      date: match.date
-    },
-    seat: { //@TODO investigate if it's required to have all these fields here
-      id: seat.id,
-      tribune: seat.tribune,
-      sector: seat.sector,
-      row: seat.row,
-      number: seat.number
-    },
-    amount: parseInt(price) * 100,//money formatted(for liqpay)
-    reserveDate: moment().add(30, 'minutes'),
-    status: 'new', // @TODO make all statuses as constants
-    ticketNumber: uuid.v1(), //@TODO mostly this number should be created only after ticket is paid
-    valid: { //@TODO investigate if it's necessary
-      from: ((d) => {
-        let d1 = new Date(d);
-        d1.setHours(0, 0, 0, 0);
-        return d1;
-      })(match.date),
-      to: ((d) => {
-        let d1 = new Date(d);
-        d1.setHours(23, 59, 59, 0);
-        return d1;
-      })(match.date)
-    },
-    timesUsed: 0 //@TODO investigate if it's necessary
-  });
-
-  return ticket.save();
-};
-
-let deleteTimeEndReserveTicketInCart = (cartId, ticketId) => {
-  Order.findOne({_id: cartId})
-    .then(cart => {
-      cart.tickets.splice(cart.tickets.indexOf(ticketId), 1); //@TODO don't use splice but filter
-      return cart.save();
-    })
-
-};
-
-let createOrUpdateTicket = (cart, match, ticket, price, seat) => {
-  if (!ticket) {
-    return createNewTicket(cart, match, price, seat);
-  }
-  if (ticket.cartId) {
-    deleteTimeEndReserveTicketInCart(ticket.cartId, ticket._id);
-  }
-  ticket.cartId = cart._id;
-  ticket.reserveDate = moment().add(30, 'minutes');
-
-  return ticket.save();
-};
+// let createNewTicket = (cart, match, price, seat) => {
+//   let ticket = new Ticket({
+//     cartId: cart.id,
+//     accessCode: randomNumericString(16),
+//     match: { //@TODO investigate if it's required to have all match info here
+//       id: match.id,
+//       headline: match.headline,
+//       round: match.round,
+//       date: match.date
+//     },
+//     seat: { //@TODO investigate if it's required to have all these fields here
+//       id: seat.id,
+//       tribune: seat.tribune,
+//       sector: seat.sector,
+//       row: seat.row,
+//       number: seat.number
+//     },
+//     amount: parseInt(price) * 100,//money formatted(for liqpay)
+//     reserveDate: moment().add(30, 'minutes'),
+//     status: 'new', // @TODO make all statuses as constants
+//     ticketNumber: uuid.v1(), //@TODO mostly this number should be created only after ticket is paid
+//     valid: { //@TODO investigate if it's necessary
+//       from: ((d) => {
+//         let d1 = new Date(d);
+//         d1.setHours(0, 0, 0, 0);
+//         return d1;
+//       })(match.date),
+//       to: ((d) => {
+//         let d1 = new Date(d);
+//         d1.setHours(23, 59, 59, 0);
+//         return d1;
+//       })(match.date)
+//     },
+//     timesUsed: 0 //@TODO investigate if it's necessary
+//   });
+//
+//   return ticket.save();
+// };
 
 let doTicketsSecure = (cart) => {
   cart.tickets = cart.tickets.map(ticket => {
@@ -143,44 +124,6 @@ let updateTicketsInCheckout = (order) => {
         return ticket.save();
       });
   });
-};
-
-let getPriceInPriceSchema = (priceSchema, tribuneName, sectorName) => {
-  let schema = priceSchema.priceSchema;
-
-  if (!schema['tribune_' + tribuneName]) {
-    return false;
-  }
-  if (schema['tribune_' + tribuneName]['sector_' + sectorName]) {
-    let price = schema['tribune_' + tribuneName]['sector_' + sectorName].price;
-
-    if (!price) {
-      return schema['tribune_' + tribuneName].price;
-    }
-    return price;
-  } else {
-    return schema['tribune_' + tribuneName].price;
-  }
-};
-
-let checkPriceInPriceSchema = (priceSchemaId, tribuneName, sectorName, price) => {
-  return PriceSchema.findById(priceSchemaId)
-    .then(priceSchema => {
-      if (!priceSchema) {
-        throw new Error('Price schema not found');
-      }
-      let priceInPriceSchema = getPriceInPriceSchema(priceSchema, tribuneName, sectorName);
-
-      if (!priceInPriceSchema) {
-        throw new Error('Price in price schema not found');
-      }
-
-      if (priceInPriceSchema !== price) {
-        throw new Error('Стоимость билета и прайс схемы не совпадает');
-      } else {
-        return price;
-      }
-    });
 };
 
 let addUserToGuestCard = (guestCart, user) => {
@@ -223,23 +166,6 @@ let getLiqPayParams = (req) => {
 
     return resolve(JSON.parse(new Buffer(req.body.data, 'base64').toString('utf-8')));
   })
-};
-
-let deleteTicketFromCart = (cart, seatId) => {
-  let [ticket] = _.filter(cart.tickets, function (ticket) {
-
-    if (ticket.seat.id === seatId) {
-      return ticket;
-    }
-  });
-
-  if (!ticket) {
-    throw new Error('Ticket not found in cart')
-  }
-  cart.amount -= ticket.amount;
-  cart.tickets.splice(cart.tickets.indexOf(ticket), 1);
-
-  return cart.save();
 };
 
 let processLiqpayRequest = (request) => {
@@ -312,66 +238,44 @@ function randomNumericString(length) {
 }
 
 export function updateCart(req, res) {
-  let cartId = req.session.cart,
+  let publicId = req.session.cart,
     seat = req.body.seat,
     tribuneName = req.body.tribuneName,
     sectorName = req.body.sectorName,
     rowName = req.body.rowName,
-    seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
-    priceSchemaId = req.body.match.priceSchema.id,
-    price = req.body.price;
-
-  let checkSeatInStadium = new Promise((resolve, reject) => {
-    let row = Stadium['tribune_' + tribuneName]['sector_' + sectorName]
-      .rows.filter(row => row.name === rowName);
-
-
-    if (row.length && seat <= row[0].seats) {
-      resolve({
-        id: seatId,
-        tribune: tribuneName,
-        sector: sectorName,
-        row: rowName,
-        number: seat
-      });
-    } else {
-      reject(new Error('cannot find seat in the stadium'));
-    }
-  });
+    slug = 's' + sectorName + 'r' + rowName + 'st' + seat,
+    reserveDate = moment().add(30, 'minutes'),
+    priceSchemaId = req.body.priceSchemaId;
 
   Promise.all([
-    Order.findOne({_id: cartId, type: 'cart'})
-      .populate({path: 'tickets'}),
-    Match.findById(req.body.match.id),
-    Ticket.findOne({'match.id': req.body.match.id, 'seat.id': seatId}),
-    checkPriceInPriceSchema(priceSchemaId, tribuneName, sectorName, price),
-    checkSeatInStadium
+    Order.findOne({publicId: publicId, type: 'cart'})
+         .populate({path: 'seats'}),
+    //Match.findById(req.body.matchId),
+    seatService.getSeatBySlug(slug),
+    getPriceInPriceSchema(priceSchemaId, tribuneName, sectorName),
+    checkSeatInStadium(tribuneName, sectorName, rowName, seat)
   ])
-    .then(([cart, match, ticket, price, seat]) => {
+    .then(([cart, reserveSeat, price, seat]) => {
       if (!cart) {
         throw new Error('Cart not found');
       }
-      if (!match) {
-        throw new Error('Match not found');
-      }
-      if (ticket && ( ticket.status === 'paid' || ticket.reserveDate > moment() )) {
+      // if (!match) {
+      //   throw new Error('Match not found');
+      // }
+      if ( reserveSeat.reservationType === PAID || reserveSeat.reservedUntil > moment() ) {
         return {
-          tickets: cart.tickets,
-          message: 'This ticket is already taken.'
+          seats: cart.seats,
+          message: 'Это место уже занято.'
         };
       }
-      return createOrUpdateTicket(cart, match, ticket, price, seat)
-        .then(ticket => {
-          cart.tickets.push(ticket._id);
-          cart.amount += ticket.amount;
+      return seatService.reserveSeatAsReserve(reserveSeat, reserveDate, cart.publicId)
+        .then(reserveSeat => {
+          cart.seats.push(reserveSeat.id);
           return cart.save();
         })
         .then((cart) => {
-          return Order.findOne({_id: cart.id})
-            .populate({path: 'tickets'});
-        })
-        .then(cart => {
-          return doTicketsSecure(cart);
+          return Order.findOne({publicId: cart.publicId})
+            .populate({path: 'seats'});
         })
     })
     .then(respondWithResult(res))
@@ -379,74 +283,21 @@ export function updateCart(req, res) {
 }
 
 export function deleteItemFromCart(req, res) {
-  let cartId = req.session.cart,
-    seatId = req.params.seatId;
+  let publicId = req.session.cart,
+      slug = req.params.seatId;
 
-  Order.findOne({_id: cartId, type: 'cart'})
-    .populate({path: 'tickets'})
+  Order.findOne({publicId: publicId, type: 'cart'})
+    .populate({path: 'seats'})
     .then(handleEntityNotFound(res))
     .then(cart => {
-      return deleteTicketFromCart(cart, seatId);
+      return deleteReserveSeatFromCart(cart, slug);
     })
     .then(cart => {
-      Ticket.findOne({cartId: cart._id, 'seat.id': seatId})
-        .then(ticket => {
-          ticket.cartId = '';
-          ticket.reserveDate = null;
+      seatService.getSeatByCart(cart.publicId, slug)
+        .then(seatService.clearReservation);
 
-          ticket.save();
-        });
-
-      return doTicketsSecure(cart);
+      return cart;
     })
-    .then(respondWithResult(res))
-    .catch(handleError(res))
-  ;
-}
-
-export function getCart(req, res) {
-  let cartId = req.session.cart;
-
-  Order.findOne({_id: cartId, type: 'cart'})
-    .populate({path: 'tickets'})
-    .then(cart => {
-      return doTicketsSecure(cart);
-    })
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res))
-  ;
-}
-
-export function getUserCart(req, res) {
-  let userId = req.user.id,
-    cartId = req.session.cart;
-
-  Promise.all([
-    Order.findOne({_id: cartId, type: 'cart'})
-      .populate({path: 'tickets'}),
-    Order.findOne({'user.id': userId, type: 'cart'})
-      .populate({path: 'tickets'}).sort({created: -1}),
-    User.findById(userId)
-  ])
-    .then(([guestCart, userCart, user]) => {
-      if (!userCart) {
-        return addUserToGuestCard(guestCart, user);
-      } else {
-
-        if (!guestCart.tickets.length) {
-          req.session.cart = userCart.id;
-
-          return userCart;
-        }
-
-        return addUserToGuestCard(guestCart, user);
-      }
-    })
-    .then(cart => {
-      return doTicketsSecure(cart);
-    })
-    .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res))
   ;
@@ -472,7 +323,7 @@ export function convertCartToOrder(req, res) {
       reject(new Error('cannot determine user on converting cart to order'));
     }
   });
-  var cartPromise = Order.findOne({_id: cartId, type: 'cart'})
+  let cartPromise = Order.findOne({_id: cartId, type: 'cart'})
       .populate({path: 'tickets'})
       .then(handleEntityNotFound(res))
     ;
@@ -583,10 +434,58 @@ export function getOrderedTickets(req, res) {
   ;
 }
 
-
 export function getMyOrders(req, res) {
 
   Order.find({'user.id': req.user.id, type: 'order'}).sort({created: -1})
     .then(respondWithResult(res))
   ;
+}
+
+function checkSeatInStadium(tribuneName, sectorName, rowName, seat) {
+  return new Promise((resolve, reject) => {
+    let row = Stadium['tribune_' + tribuneName]['sector_' + sectorName].rows.filter(row => row.name === rowName),
+        slug = 's' + sectorName + 'r' + rowName + 'st' + seat;
+
+    if (row.length && seat <= row[0].seats) {
+      resolve({
+        slug: slug,
+        tribune: tribuneName,
+        sector: sectorName,
+        row: rowName,
+        seat: seat
+      });
+    } else {
+      reject(new Error('cannot find seat in the stadium'));
+    }
+  });
+}
+
+function getPriceInPriceSchema(priceSchemaId, tribuneName, sectorName, price) {
+  return PriceSchema.findById(priceSchemaId)
+    .then(priceSchema => {
+      if (!priceSchema) {
+        throw new Error('Price schema not found');
+      }
+      let schema = priceSchema.priceSchema;
+
+      if (!schema['tribune_' + tribuneName]) {
+        throw new Error('Tribune not found in price.');
+      }
+      if (schema['tribune_' + tribuneName]['sector_' + sectorName]) {
+        let price = schema['tribune_' + tribuneName]['sector_' + sectorName].price;
+
+        if (!price) {
+          return schema['tribune_' + tribuneName].price;
+        }
+        return price;
+      } else {
+        return schema['tribune_' + tribuneName].price;
+      }
+    });
+}
+
+function deleteReserveSeatFromCart(cart, slug) {
+  cart.seats = cart.seats.filter( seat => seat.slug !== slug );
+
+  return cart.save();
 }

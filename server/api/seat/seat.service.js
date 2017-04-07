@@ -1,7 +1,8 @@
 'use strict';
 
-import {SEASON_TICKET, BLOCK} from '../seat/seat.constants';
+import {SEASON_TICKET, BLOCK, RESERVE} from '../seat/seat.constants';
 import Seat from '../seat/seat.model';
+import moment from 'moment';
 
 export function getActiveSeasonTickets() {
   return Seat.find({reservedUntil: {$gte: new Date()}, reservationType: SEASON_TICKET});
@@ -45,7 +46,22 @@ export function reserveSeatAsSeasonTicket(seat, reserveDate) {
 }
 
 export function clearReservation(seat) {
-  seat.reservedUntil = new Date();
+  if ( seat.reservedByCart ) {
+    seat.reservedByCart = '';
+  }
+  seat.reservedUntil = moment().subtract(10, 'minutes');
+
+  return seat.save();
+}
+
+export function getSeatByCart(publicId, slug) {
+  return Seat.findOne({reservedByCart: publicId, slug: slug});
+}
+
+export function reserveSeatAsReserve(seat, reserveDate, publicId) {
+  seat.reservedByCart = publicId;
+  seat.reservedUntil = reserveDate;
+  seat.reservationType = RESERVE;
 
   return seat.save();
 }
@@ -57,3 +73,4 @@ function reserveSeatAsBlock(seat, reserveDate) {
   seat.reservationType = BLOCK;
   return seat.save();
 }
+

@@ -12,7 +12,7 @@
       this.cart = {};
       this.sector = sector;
 
-      this.reservedTickets = [];
+      this.reservedSeats = [];
       this.selectedSeats = [];
       this.tribuneName = $stateParams.tribune;
       this.sectorPrice = '';
@@ -22,7 +22,7 @@
 
       this.getPrice();
       this.getCart();
-      this.getReservedTickets();
+      this.getReservedSeats();
     }
 
     getPrice() {
@@ -37,64 +37,64 @@
       });
     }
 
-    getReservedTickets() {
+    getReservedSeats() {
       let matchId = this.match.id,
         sectorName = this.sector.name;
 
-      return this.ticketsService.fetchReservedTickets(matchId, sectorName)
-        .then(tickets => this.reservedTickets = tickets);
+      return this.ticketsService.fetchReservedSeats(matchId, sectorName)
+        .then(seats => this.reservedSeats = seats);
     }
 
     getSelectedSeats(){
       this.selectedSeats = [];
 
-        this.cart.tickets.forEach(ticket => {
-          this.selectedSeats.push(ticket.seat.id);
+        this.cart.seats.forEach(seat => {
+          this.selectedSeats.push(seat.slug);
         });
     }
 
     updateReservedTickets() {
-      this.getReservedTickets();
+      this.getReservedSeats();
       this.getSelectedSeats();
     }
 
      addClassByCheckSoldSeat(slug) {
-      let [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.slug === slug);
+      let [ checkSeat ] = this.reservedSeats.filter(seat => seat.slug === slug);
 
-      if (checkTicket && this.selectedSeats.includes(slug)) {
+      if (checkSeat && this.selectedSeats.includes(slug)) {
         return 'blockedSeat';
       }
 
-       if ( checkTicket && !this.selectedSeats.includes(slug) ) {
+       if ( checkSeat && !this.selectedSeats.includes(slug) ) {
          return 'soldSeat';
        }
 
        return 'imgSeatsStyle';
     }
 
-     addTicketToCart(match, tribuneName, sectorName, rowName, seat, sectorPrice) {
-      let seatId = 's' + sectorName + 'r' + rowName + 'st' + seat,
-          [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
+     addTicketToCart(match, tribuneName, sectorName, rowName, seat) {
+      let slug = 's' + sectorName + 'r' + rowName + 'st' + seat,
+          [ checkSeat ] = this.reservedSeats.filter(seat => seat.slug === slug);
        this.message = '';
 
-      if ( checkTicket && this.selectedSeats.includes(seatId) ) {
-        this.cartService.removeTicket(seatId)
+      if ( checkSeat && this.selectedSeats.includes(slug) ) {
+        this.cartService.removeTicket(slug)
           .then(() => {
-            this.getReservedTickets()
+            this.getReservedSeats()
               .then( () =>  this.getSelectedSeats() );
           });
       }
 
-      if( !checkTicket ) {
-        this.cartService.addTicket(match, tribuneName, sectorName, rowName, seat, sectorPrice)
+      if( !checkSeat ) {
+        this.cartService.addTicket(match, tribuneName, sectorName, rowName, seat)
           .then(message => {
             if (message) {
               this.message = message;
-              return this.getReservedTickets();
+              return this.getReservedSeats();
             }
-            this.getReservedTickets()
+            this.getReservedSeats()
               .then( () => {
-                this.selectedSeats.push(seatId);
+                this.selectedSeats.push(slug);
               });
           });
       }

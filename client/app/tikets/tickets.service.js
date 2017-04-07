@@ -7,8 +7,8 @@
       this.$http = $http;
     }
 
-    fetchReservedTickets(matchId, sectorName) {
-      return this.$http.get('api/tickets/reserved-on-match/' + matchId +'/sector/' + sectorName)
+    fetchReservedSeats(matchId, sectorName) {
+      return this.$http.get('api/seats/reserved-on-match/' + matchId +'/sector/' + sectorName)
         .then(response => response.data);
     }
 

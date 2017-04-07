@@ -36,7 +36,7 @@
         getCart() {
           return this.$http.get('/api/carts/cart/' + this.$cookies.get('cart') )
             .then(response => {
-              this.cart.tickets = response.data.tickets;
+              this.cart.seats = response.data.seats;
 
               return this.cart;
             },
@@ -45,7 +45,8 @@
 
         addTicket(match, tribuneName, sectorName, rowName, seat, price) {
             return this.$http.post('/api/orders/cart', {
-                match: match,
+                matchId: match.id,
+                priceSchemaId: match.priceSchema.id,
                 tribuneName: tribuneName,
                 sectorName: sectorName,
                 rowName: rowName,
@@ -53,7 +54,7 @@
                 price: price
             })
                 .then(response => {
-                  this.cart.tickets = response.data.tickets;
+                  this.cart.seats = response.data.seats;
                   if (response.data.message) {
                     return response.data.message;
                   }
@@ -64,7 +65,7 @@
         removeTicket(seatId) {
             return this.$http.delete('/api/orders/cart/tickets/' + seatId)
                 .then(response => {
-                    this.cart.tickets = response.data.tickets;
+                    this.cart.seats = response.data.seats;
                 })
             ;
         }
