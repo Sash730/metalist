@@ -245,15 +245,11 @@ export function getTicketsForCheckMobile(req, res) {
     .then(tickets => {
       let result = tickets.map(ticket => {
         return {
-          'cartId': ticket.cartId,
-          'status': ticket.status,
           'tribune': ticket.seat.tribune,
           'sector': ticket.seat.sector,
           'row': ticket.seat.row,
           'seat': ticket.seat.number,
-          'headline': ticket.match.headline,
-          'code': ticket.accessCode,
-          'amount': ticket.amount
+          'headline': ticket.match.headline
         };
       });
 
