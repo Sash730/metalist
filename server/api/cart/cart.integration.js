@@ -49,17 +49,22 @@ describe('Cart API:', function () {
         });
     });
 
-    it('should respond with a cart with new publich id and default fields', function (done) {
+    it('should respond with a cart with new public id and default fields', function (done) {
       request(app)
         .post('/api/carts/')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           res.body.publicId.toString().should.not.equal(publicId.toString());
+          res.body.amount.should.equal(0);
+          res.body.status.toString().should.equal('new');
+          res.body.type.toString().should.equal('cart');
+          res.body.should.have.property('tickets').with.lengthOf(0);
+          res.body.should.have.property('seats').with.lengthOf(0);
+          res.body.should.have.property('created');
+
           done();
         });
     });
-
-
   });
 });
