@@ -19,7 +19,7 @@
 
     getClass(navName) {
       if (this.isCheckoutPage()) {
-        return 'crm'
+        return 'crm';
       }
       if (navName == 'match' && this.stateParams.id) {
         return 'crm';

@@ -18,9 +18,10 @@
     }
 
     setRole(user, role) {
-      if (user.role == role) return;
-      this.userService.setRole({id: user.id, role: role})
-        .$promise.then(() => this.getUsers() );
+      if (user.role != role) {
+        this.userService.setRole({id: user.id, role: role})
+          .$promise.then(() => this.getUsers());
+      }
     }
 
   }

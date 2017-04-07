@@ -25,7 +25,7 @@
         .then(() => {
           this.loadSeasonTickets();
           this.seasonTicketToEdit = {};
-      })
+      });
     }
 
     edit($event) {
@@ -37,7 +37,7 @@
         .then( ticket => {
           this.seasonTicketToEdit = Object.assign({}, ticket);
           this.seatId = '';
-        })
+        });
     }
 
     deleteSeasonTicket() {
@@ -45,7 +45,7 @@
         .then( () => {
           this.loadSeasonTickets();
           this.seatId = '';
-        })
+        });
     }
 
     deleteBlockRow($event) {

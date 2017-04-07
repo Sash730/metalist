@@ -21,7 +21,7 @@
               match.formattedDate = moment(match.date).locale('ru').tz('Europe/Kiev').format('DD MMMM YYYY');
               match.time = moment(match.date).tz('Europe/Kiev').format('HH:mm');
             }
-          })
+          });
         });
     }
 

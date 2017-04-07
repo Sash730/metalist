@@ -85,11 +85,11 @@ let deleteBlockTickets = (tickets) => {
   });
 };
 
-let deleteBlockTicket = (seatId) => {
+function deleteBlockTicket (seatId) {
   return SeasonTicket.remove({seatId: seatId}).exec();
-};
+}
 
-let getTribuneName = (sectorName) => {
+function getTribuneName (sectorName) {
   let tribuneName, tribune;
 
   for (tribune in Stadium) {
@@ -98,7 +98,7 @@ let getTribuneName = (sectorName) => {
     }
   }
   return tribuneName;
-};
+}
 
 export function index(req, res) {
   return SeasonTicket.find({type: 'ticket', valid: {$gte: new Date()}}).sort({valid: 1}).exec()

@@ -12,7 +12,7 @@
 
     $onInit() {
       this.getEventsStatistics();
-      this.getDaysStatistics()
+      this.getDaysStatistics();
     }
 
     getEventsStatistics() {
@@ -40,7 +40,7 @@
           count: this.getItemPricesByDate(date, statistic).length,
           sum: this.getSumOfArray(itemsPrices),
           details: this.getDetailsSectorsByEvent(itemSectors)
-        }
+        };
       });
     }
 
@@ -55,7 +55,7 @@
           sum: this.getSumOfArray(itemPrices),
           count: this.getItemPricesByDate(date, statistic).length,
           details: this.getDetailsPricesByDate(itemPrices)
-        }
+        };
       });
     }
 
@@ -76,12 +76,12 @@
 
     getItemPricesByDate(date, statistic) {
       return statistic.filter(item => item.date == date)
-        .map(item => item.amount)
+        .map(item => item.amount);
     }
 
     getItemSectorsByDate(date, statistic) {
       return statistic.filter(item => item.date == date)
-        .map(item => item.sector)
+        .map(item => item.sector);
     }
 
     getSumOfArray(array) {
@@ -99,8 +99,8 @@
         return {
           price: price,
           count: this.getItemsByKey(price, itemPrices).length
-        }
-      })
+        };
+      });
     }
 
     getDetailsSectorsByEvent(itemSectors) {
@@ -110,8 +110,8 @@
         return {
           sector: sector,
           count: this.getItemsByKey(sector, itemSectors).length
-        }
-      })
+        };
+      });
     }
   }
 
