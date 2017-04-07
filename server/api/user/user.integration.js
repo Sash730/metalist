@@ -5,7 +5,7 @@ import User from './user.model';
 import request from 'supertest';
 
 describe('User API:', function () {
-  var user;
+    var user;
 
   // Clear users before testing
   before(function () {

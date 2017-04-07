@@ -13,6 +13,7 @@ export default function (app) {
   app.use('/api/matches', require('./api/match'));
   app.use('/api/tickets', require('./api/ticket'));
   app.use('/api/orders', require('./api/order'));
+  app.use('/api/carts', require('./api/cart'));
   app.use('/api/priceSchema', require('./api/priceSchema'));
   app.use('/api/seasonTicket', require('./api/seasonTicket'));
   app.use('/payment/liqpay', require('./api/payment/liqpay'));

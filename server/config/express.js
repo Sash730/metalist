@@ -19,7 +19,6 @@ import passport from 'passport';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
-import * as cart from '../cart';
 var MongoStore = connectMongo(session);
 
 export default function (app) {
@@ -59,8 +58,6 @@ export default function (app) {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
-
-    app.use(cart.createCart);
 
     /**
      * Lusca - express server security
