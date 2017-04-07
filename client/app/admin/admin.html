@@ -15,56 +15,13 @@
         <tickets-statistic></tickets-statistic>
       </div>
     </uib-tab>
-    <uib-tab index="3" heading="Tickets">
+    <uib-tab index="3" heading="Season tickets">
       <div ng-if="active === 3">
-      <form name="myForm"><br>
-        <label for="code"> Введите код: </label>
-        <input type="text" id="code" ng-model="code" placeholder="Enter barcode">
-        <button ng-click="admin.checkTicket(code)">Check ticket</button>
-        <br>
-        <span ng-show="admin.message"  ng-bind="admin.message"></span>
-        <span ng-show="admin.ticket.seat">Ticket valid. Seat - {{admin.ticket.seat}}, tribune - {{admin.ticket.tribune}},
-         sector - {{admin.ticket.sector}}</span>
-      </form>
-      <button ng-click="admin.getTickets()">Load tickets</button>
-      <hr>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>cart id</th>
-          <th>status</th>
-          <th>sector</th>
-          <th>row</th>
-          <th>number</th>
-          <th>amount</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="ticket in admin.tickets">
-          <td ng-bind="ticket.cartId">
-          </td>
-          <td ng-bind="ticket.status">
-          </td>
-          <td ng-bind="ticket.sector">
-          </td>
-          <td ng-bind="ticket.row">
-          </td>
-          <td ng-bind="ticket.seat">
-          </td>
-          <td ng-bind="ticket.amount | money">
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      </div>
-    </uib-tab>
-    <uib-tab index="4" heading="Season tickets">
-      <div ng-if="active === 4">
         <season-ticket></season-ticket>
       </div>
     </uib-tab>
-    <uib-tab index="5" heading="Price Schema">
-      <div ng-if="active === 5">
+    <uib-tab index="4" heading="Price Schema">
+      <div ng-if="active === 4">
         <price-schema></price-schema>
       </div>
     </uib-tab>

@@ -5,7 +5,6 @@
 
     constructor($http) {
       this.$http = $http;
-      this.tribune = 'east';
     }
 
     fetchReservedTickets(matchId, sectorName) {
@@ -21,14 +20,6 @@
     getDaysStatistics(){
       return this.$http.get('/api/tickets/days-statistics')
         .then( response => response.data );
-    }
-
-    checkTicket(code) {
-      return this.$http.get('/api/tickets/tribune/' + this.tribune + '/code/' + code);
-    }
-
-    getTickets() {
-      return this.$http.get('/api/tickets/sold-tickets');
     }
   }
   angular.module('metalistTicketsApp')
