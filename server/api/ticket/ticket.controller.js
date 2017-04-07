@@ -2,6 +2,7 @@
 
 import Ticket from './ticket.model';
 import SeasonTicket from '../seasonTicket/seasonTicket.model';
+import Seat from '../seat/seat.model';
 import moment from 'moment-timezone';
 import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';
@@ -142,25 +143,29 @@ export function index(req, res) {
 }
 
 export function getReservedTickets(req, res) {
-  let matchId = req.params.id,
-    sectorNumber = req.params.sector;
+  let sectorNumber = req.params.sector;
 
-  return Promise.all([
-    getSecureReservedTickets(matchId, sectorNumber),
-    SeasonTicket.find({valid: {$gte: new Date()}, sector: sectorNumber})
-      .then(tickets => {
-        return tickets.map(ticket => {
-          return {
-            'seatId': ticket.seatId
-          };
-        });
-      })
-  ])
-    .then(([reservedTickets, seasonTickets]) => {
-      return reservedTickets.concat(seasonTickets);
-    })
+  return Seat.find({reservedUntil: {$gte: new Date()}, sector: sectorNumber})
+    .select('slug -_id')
     .then(respondWithResult(res))
-    .catch(handleError(res))
+    .catch(handleError(res));
+
+  // return Promise.all([
+  //   getSecureReservedTickets(matchId, sectorNumber),
+  //   SeasonTicket.find({valid: {$gte: new Date()}, sector: sectorNumber})
+  //     .then(tickets => {
+  //       return tickets.map(ticket => {
+  //         return {
+  //           'seatId': ticket.seatId
+  //         };
+  //       });
+  //     })
+  // ])
+  //   .then(([reservedTickets, seasonTickets]) => {
+  //     return reservedTickets.concat(seasonTickets);
+  //   })
+  //   .then(respondWithResult(res))
+  //   .catch(handleError(res))
 }
 
 export function print(req, res, next) {

@@ -14,8 +14,8 @@
 
     saveSeasonTicket(seasonTicket) {
       return this.$http({
-        method: 'PUT',
-        url: '/api/seasonTicket/save',
+        method: 'POST',
+        url: '/api/seasonTicket',
         data: {
           ticket: seasonTicket
         },

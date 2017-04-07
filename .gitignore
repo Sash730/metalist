@@ -10,6 +10,7 @@ dist/bower.json
 dist/OpenSans-Bold.ttf
 dist/ticket.png
 server/config/local.env.js
+coverage
 npm-debug.log
 production.yml
 all.log

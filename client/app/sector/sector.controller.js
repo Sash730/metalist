@@ -59,14 +59,14 @@
       this.getSelectedSeats();
     }
 
-     addClassByCheckSoldSeat(seatId) {
-      let [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.seatId === seatId);
+     addClassByCheckSoldSeat(slug) {
+      let [ checkTicket ] = this.reservedTickets.filter(ticket => ticket.slug === slug);
 
-      if (checkTicket && this.selectedSeats.includes(seatId)) {
+      if (checkTicket && this.selectedSeats.includes(slug)) {
         return 'blockedSeat';
       }
 
-       if ( checkTicket && !this.selectedSeats.includes(seatId) ) {
+       if ( checkTicket && !this.selectedSeats.includes(slug) ) {
          return 'soldSeat';
        }
 
