@@ -1,4 +1,3 @@
-
 'use strict';
 
 (function () {
@@ -54,7 +53,7 @@
         });
     }
 
-    updateReservedTickets($event) {
+    updateReservedTickets() {
       this.getReservedTickets();
       this.getSelectedSeats();
     }
@@ -83,7 +82,7 @@
           .then(() => {
             this.getReservedTickets()
               .then( () =>  this.getSelectedSeats() );
-          })
+          });
       }
 
       if( !checkTicket ) {
@@ -135,7 +134,7 @@
     }
 
     isSkybox() {
-      let skyBoxes = ['SB_1', 'SB_2', 'SB_3_5', 'SB_6', 'SB_7', 'SB_8', 'SB_9', 'SB_10', 'SB_11' ]
+      let skyBoxes = ['SB_1', 'SB_2', 'SB_3_5', 'SB_6', 'SB_7', 'SB_8', 'SB_9', 'SB_10', 'SB_11' ];
       return skyBoxes.includes(this.sector.name);
     }
 

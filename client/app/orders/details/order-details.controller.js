@@ -25,12 +25,12 @@
                 this.getTicketsInOrder(order);
               }
               this.getMessageForOrderStatus();
-            })
+            });
         }
 
         getTicketsInOrder(order) {
           return this.ordersService.getOrderedTickets(order)
-            .then( tickets => this.tickets = tickets )
+            .then( tickets => this.tickets = tickets );
         }
 
         getMessageForOrderStatus() {

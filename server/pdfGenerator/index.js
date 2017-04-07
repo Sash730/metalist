@@ -16,10 +16,10 @@ function handleError(res, statusCode) {
 }
 
 function translate(direction) {
-  if (direction == 'north') { return 'Северная'}
-  if (direction == 'south') { return 'Южная'}
-  if (direction == 'east') { return 'Восточная'}
-  if (direction == 'west') { return 'Западная'}
+  if (direction === 'north') { return 'Северная'}
+  if (direction === 'south') { return 'Южная'}
+  if (direction === 'east') { return 'Восточная'}
+  if (direction === 'west') { return 'Западная'}
 }
 
 let generateBarcodePng = (ticket) =>{
