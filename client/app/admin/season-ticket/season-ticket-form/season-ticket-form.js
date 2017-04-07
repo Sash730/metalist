@@ -7,8 +7,7 @@
       templateUrl: 'app/admin/season-ticket/season-ticket-form/season-ticket-form.html',
       controller: 'SeasonTicketFormController',
       bindings: {
-        seasonTicketToEdit: '<',
-        onEdit: '&',
+        errorMessage: '<',
         onChange: '&'
       }
     });

@@ -1,35 +1,27 @@
-<label>Список абонементов</label>
+<label>Список рядов</label>
 <form class="form">
   <table class="table">
     <thead>
     <tr>
-      <th>Seat id</th>
       <th>Сектор</th>
       <th>Ряд</th>
-      <th>Место</th>
       <th>Действителен</th>
       <th>Удалить</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="ticket in $ctrl.tickets | orderBy: '-reservedUntil'">
+    <tr ng-repeat="row in $ctrl.blockRows | orderBy: 'reservedUntil'">
       <td>
-        {{ticket.slug}}
+        {{row.sector}}
       </td>
       <td>
-        {{ticket.sector}}
+        {{row.row}}
       </td>
       <td>
-        {{ticket.row}}
+        {{row.reservedUntil | date}}
       </td>
       <td>
-        {{ticket.seat}}
-      </td>
-      <td>
-        {{ticket.reservedUntil | date}}
-      </td>
-      <td>
-        <a ng-click="$ctrl.deleteTicket(ticket)">
+        <a ng-click="$ctrl.deleteBlockRow(row)">
           <span class="glyphicon glyphicon-trash pull-left text-danger"></span>
         </a>
       </td>

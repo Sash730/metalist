@@ -23,7 +23,7 @@
     }
 
     addStadiumSeats() {
-      return this.$http.post('/api/tickets/add-stadium-seats')
+      return this.$http.post('/migrations')
         .then( response => response.data );
     }
   }

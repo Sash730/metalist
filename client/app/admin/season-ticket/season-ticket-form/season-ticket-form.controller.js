@@ -6,46 +6,35 @@
 
     constructor() {
 
-      this.ticketToEdit = {};
+      this.newTicket = {};
       this.date = new Date();
       this.date.setMonth(this.date.getMonth() + 4);
+      this.errorMessageBlockRow = '';
     }
 
     $onInit() {
-      this.initComponent();
+      this.onInit();
     }
 
     $onChanges(changes) {
-      if (changes.seasonTicketToEdit) {
-        if (!this.seasonTicketToEdit.id) {
-          this.initComponent();
-        }
-        if (this.seasonTicketToEdit.id) {
-          this.ticketToEdit = Object.assign({}, this.seasonTicketToEdit);
-          this.ticketToEdit.valid = new Date(this.seasonTicketToEdit.valid);
-        }
+      if ( changes.errorMessage ) {
+        this.errorMessageBlockRow = this.errorMessage;
       }
     }
 
-    initComponent() {
-      this.ticketToEdit = {};
-      this.ticketToEdit.valid = this.date;
-    }
-
-    edit(ticket) {
-      this.onEdit({
-        $event: {
-          ticket: ticket
-        }
-      });
+    onInit() {
+      this.newTicket = {};
+      this.newTicket.reservedUntil = this.date;
+      this.errorMessageBlockRow = '';
     }
 
     update() {
       this.onChange({
         $event: {
-          ticket: this.ticketToEdit
+          ticket: this.newTicket
         }
       });
+      this.onInit();
     }
 
   }

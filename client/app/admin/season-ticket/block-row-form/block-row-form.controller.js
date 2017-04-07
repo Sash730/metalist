@@ -8,6 +8,7 @@
       this.blockRow = {};
       this.date = new Date();
       this.date.setMonth(this.date.getMonth() + 6);
+      this.errorMessageSeat = '';
     }
 
     $onInit() {
@@ -16,16 +17,14 @@
 
     initComponent() {
       this.blockRow = {};
-      this.blockRow.valid = this.date;
+      this.blockRow.reservedUntil = this.date;
+      this.errorMessageSeat = '';
     }
 
-    delete() {
-      this.onDelete({
-        $event: {
-          blockRow: this.blockRow
-        }
-      });
-      this.initComponent();
+    $onChanges(changes) {
+      if ( changes.errorMessage ) {
+        this.errorMessageSeat = this.errorMessage;
+      }
     }
 
     add() {

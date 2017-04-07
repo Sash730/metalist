@@ -8,7 +8,7 @@ describe('Cart API:', function () {
 
   // Clear users after testing
   after(function () {
-    return Order.remove();
+    return Order.remove({});
   });
 
   describe('GET /api/carts/', function () {
