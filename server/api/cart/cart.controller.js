@@ -53,7 +53,7 @@ export function getCart(req, res) {
   let publicId = req.params.cart;
 
   Order.findOne({publicId: publicId})
-    .populate({path: 'tickets'})
+    .populate({path: 'seats'})
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res))

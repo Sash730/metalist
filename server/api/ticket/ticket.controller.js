@@ -1,9 +1,6 @@
 'use strict';
 
 import Ticket from './ticket.model';
-import {Stadium} from '../../stadium';
-import * as seatService from '../seat/seat.service';
-import Seat from '../seat/seat.model';
 import moment from 'moment-timezone';
 import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';
@@ -14,34 +11,6 @@ import * as log4js from 'log4js';
 
 const logger = log4js.getLogger('Ticket');
 const sectorsInVip = ['VIP_B', 'VIP_BR', 'VIP_BL', 'VIP_AR', 'VIP_AL', 'SB_1', 'SB_7'];
-
-function respondWithResult(res, statusCode) {
-  statusCode = statusCode || 200;
-  return function (entity) {
-    if (entity) {
-      return res.status(statusCode).json(entity);
-    }
-  };
-}
-
-function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
-  return function (err) {
-    logger.error('handleError ' + err);
-    res.status(statusCode).send(err);
-  };
-}
-
-function handleEntityNotFound(res) {
-  return function (entity) {
-    logger.info("handleEntityNotFound " + entity);
-    if (!entity) {
-      res.status(404).end();
-      return null;
-    }
-    return entity;
-  };
-}
 
 let generatePdfTicket = (ticket, res) => {
   return new Promise((resolve, reject) => {
@@ -142,13 +111,13 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
-export function getReservedTickets(req, res) {
-  let sectorNumber = req.params.sector;
-
-  return Seat.find({reservedUntil: {$gte: new Date()}, sector: sectorNumber})
-    .select('slug -_id')
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+// export function getReservedSeats(req, res) {
+//   let sectorNumber = req.params.sector;
+//
+//   return Seat.find({reservedUntil: {$gte: new Date()}, sector: sectorNumber})
+//     .select('slug -_id')
+//     .then(respondWithResult(res))
+//     .catch(handleError(res));
 
   // return Promise.all([
   //   getSecureReservedTickets(matchId, sectorNumber),
@@ -166,7 +135,7 @@ export function getReservedTickets(req, res) {
   //   })
   //   .then(respondWithResult(res))
   //   .catch(handleError(res))
-}
+//}
 
 export function print(req, res, next) {
   return Ticket.findOne({code: req.params.code, available: false}).exec()
@@ -332,4 +301,33 @@ export function getCountValidTicketsByTribune(req, res, next) {
       return res.status(200).json(count);
     })
     .catch(handleError(res));
+}
+
+//private functions
+function respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function (entity) {
+    if (entity) {
+      return res.status(statusCode).json(entity);
+    }
+  };
+}
+
+function handleError(res, statusCode) {
+  statusCode = statusCode || 500;
+  return function (err) {
+    logger.error('handleError ' + err);
+    res.status(statusCode).send(err);
+  };
+}
+
+function handleEntityNotFound(res) {
+  return function (entity) {
+    logger.info("handleEntityNotFound " + entity);
+    if (!entity) {
+      res.status(404).end();
+      return null;
+    }
+    return entity;
+  };
 }

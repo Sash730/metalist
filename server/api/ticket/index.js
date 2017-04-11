@@ -7,7 +7,7 @@ import * as auth from '../../auth/auth.service.js';
 let router = express.Router();
 
 router.get('/', auth.isAuthenticated(), controller.index);
-router.get('/reserved-on-match/:id/sector/:sector', controller.getReservedTickets);
+//router.get('/reserved-on-match/:id/sector/:sector', controller.getReservedTickets);
 router.get('/:code/print'/*, auth.isAuthenticated()*/, controller.print);
 router.get('/tribune/:tribune/code/:code', auth.hasRole('steward'), controller.use);
 router.get('/sold-tickets', auth.hasRole('steward'), controller.getTicketsForCheckMobile);
