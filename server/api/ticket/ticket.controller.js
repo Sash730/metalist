@@ -1,7 +1,8 @@
 'use strict';
 
 import Ticket from './ticket.model';
-import SeasonTicket from '../seasonTicket/seasonTicket.model';
+import {Stadium} from '../../stadium';
+import * as seatService from '../seat/seat.service';
 import Seat from '../seat/seat.model';
 import moment from 'moment-timezone';
 import * as config from "../../config/environment"
@@ -59,7 +60,7 @@ let getSecureReservedTickets = (matchId, sectorNumber) => {
     .where({
       $or: [
         {status: 'paid'},
-        { $and: [ {reserveDate: {$gt: moment()}}, {cartId: {$ne: null}} ] }
+        {$and: [{reserveDate: {$gt: moment()}}, {cartId: {$ne: null}}]}
       ]
     }).exec()
     .then(tickets => {
@@ -101,12 +102,12 @@ let getCountTicketsByTribune = (tribune) => {
    {'valid.from': { $lte: dateNow }},
    {'valid.to': { $gt: dateNow }}
    ]})*/
-  .then(tickets => {
-    if ( tribune === 'vip' ) {
-      return tickets.filter(ticket => sectorsInVip.includes(ticket.seat.sector)).length;
-    }
-    return  tickets.filter(ticket => ( ticket.seat.tribune === tribune && !sectorsInVip.includes(ticket.seat.sector) )).length;
-  });
+    .then(tickets => {
+      if (tribune === 'vip') {
+        return tickets.filter(ticket => sectorsInVip.includes(ticket.seat.sector)).length;
+      }
+      return tickets.filter(ticket => ( ticket.seat.tribune === tribune && !sectorsInVip.includes(ticket.seat.sector) )).length;
+    });
 };
 
 export function index(req, res) {
@@ -203,12 +204,12 @@ export function print(req, res, next) {
 
 export function use(req, res, next) {
   let code = req.params.code,
-      tribune = req.params.tribune;
+    tribune = req.params.tribune;
 
   return Promise.all([
-      getTicketByCode(code),
-      getCountTicketsByTribune(tribune)
-    ])
+    getTicketByCode(code),
+    getCountTicketsByTribune(tribune)
+  ])
     .then(([ticket, count]) => {
       if (!ticket) {
         return res.status(200).json({count: count, message: 'Билет не действительный.'});
@@ -217,22 +218,22 @@ export function use(req, res, next) {
         ticket: getFormattedTicket(ticket),
         count: count
       };
-      if ( tribune === 'vip' ) {
-        if ( !sectorsInVip.includes(ticket.seat.sector) ) {
-          result.message = "Другая трибуна";
-          return res.status(200).json( result );
-        }
-        ticket.status = 'used';
-        return ticket.save()
-          .then(() => res.status(200).json( result ) );
-      } else {
-        if ( ticket.seat.tribune !== tribune || (ticket.seat.tribune === tribune && sectorsInVip.includes(ticket.seat.sector)) ) {
+      if (tribune === 'vip') {
+        if (!sectorsInVip.includes(ticket.seat.sector)) {
           result.message = "Другая трибуна";
           return res.status(200).json(result);
         }
         ticket.status = 'used';
         return ticket.save()
-          .then(() => res.status(200).json( result ) );
+          .then(() => res.status(200).json(result));
+      } else {
+        if (ticket.seat.tribune !== tribune || (ticket.seat.tribune === tribune && sectorsInVip.includes(ticket.seat.sector))) {
+          result.message = "Другая трибуна";
+          return res.status(200).json(result);
+        }
+        ticket.status = 'used';
+        return ticket.save()
+          .then(() => res.status(200).json(result));
       }
     })
     .catch(handleError(res));
@@ -267,10 +268,12 @@ export function getEventsStatistics(req, res) {
   let period = moment().subtract(1, 'day');
 
   Ticket.find({'match.date': {$gte: period}})
-    .where({$or: [
-      {status: 'paid'},
-      {status: 'used'}
-    ]})
+    .where({
+      $or: [
+        {status: 'paid'},
+        {status: 'used'}
+      ]
+    })
     .sort({'match.date': 1})
     .then(tickets => {
       return tickets.map(ticket => {
@@ -291,10 +294,12 @@ export function getDaysStatistics(req, res) {
   let period = moment().subtract(30, 'day');
 
   Ticket.find({reserveDate: {$gte: new Date(period)}})
-    .where({$or: [
-      {status: 'paid'},
-      {status: 'used'}
-    ]})
+    .where({
+      $or: [
+        {status: 'paid'},
+        {status: 'used'}
+      ]
+    })
     .sort({reserveDate: -1})
     .then(statistics => {
       return statistics.map(stat => {
@@ -325,7 +330,29 @@ export function getCountValidTicketsByTribune(req, res, next) {
 
   return getCountTicketsByTribune(tribune)
     .then(count => {
-      return  res.status(200).json(count);
+      return res.status(200).json(count);
     })
     .catch(handleError(res));
+}
+
+export function addStadiumSeats(req, res) {
+  console.log('here');
+  return crateStadiumSeats()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+function crateStadiumSeats() {
+  return Promise.resolve(Stadium)
+    .then(Stadium => {
+      for (let tribune in Stadium) {
+        for (let sector in Stadium[tribune]) {
+          if (Stadium[tribune][sector].rows) {
+            Stadium[tribune][sector].rows.forEach(row => {
+              return seatService.createRowSeats(Stadium[tribune].name, Stadium[tribune][sector].name, row);
+            })
+          }
+        }
+      }
+    })
 }
