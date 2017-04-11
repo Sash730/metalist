@@ -20,7 +20,7 @@ export function getBlocks(req, res) {
 }
 
 export function deleteSeasonTicket(req, res) {
-  return seatService.getSeatBySlug(req.params.slug)
+  return seatService.findSeatBySlug(req.params.slug)
     .then(seatService.clearReservation)
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -29,7 +29,7 @@ export function deleteSeasonTicket(req, res) {
 export function createSeasonTicket(req, res) {
   let reservationDate = req.body.ticket.reservedUntil;
 
-  return seatService.getSeatBySlug(req.params.slug)
+  return seatService.findSeatBySlug(req.params.slug)
     .then(seat => {
       if (seat.isActive) {
         return res.status(409).end();

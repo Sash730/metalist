@@ -1,13 +1,14 @@
 'use strict';
 
-import {Stadium} from './../stadium';
+import { Stadium } from '../stadium';
 import Seat from '../api/seat/seat.model';
+import * as seatService from '../api/seat/seat.service'
 import * as log4js from 'log4js';
 
 const logger = log4js.getLogger('Ticket');
 
 export function addStadiumSeats(req, res) {
-  return crateStadiumSeats()
+  return createStadiumSeats()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -30,7 +31,7 @@ function handleError(res, statusCode) {
   };
 }
 
-function crateStadiumSeats() {
+function createStadiumSeats() {
   let promises = [];
   for (let tribune in Stadium) {
     for (let sector in Stadium[tribune]) {
@@ -56,9 +57,13 @@ function createRowSeats(tribuneName, sectorName, row) {
       return Promise.all(seats.map(seat => {
         let slug = 's' + sectorName + 'r' + row.name + 'st' + seat;
 
-        if ( isNotExistSeat(slug) ) {
-          return createSeat(tribuneName, sectorName, row.name, seat, slug);
-        }
+        return seatService.findSeatBySlug(slug)
+          .then(seat => {
+            if (!seat) {
+              return createSeat(tribuneName, sectorName, row.name, seat, slug);
+            }
+            return Promise.resolve(seat);
+          });
       }));
     });
 }
@@ -70,11 +75,8 @@ function createSeat(tribuneName, sectorName, rowName, seat, slug) {
     sector: sectorName,
     row: rowName,
     seat: seat,
-    reservedUntil: new Date()
+    reservedUntil: new Date(),
+    reservedByCart: ''
   });
   return newSeat.save();
-}
-
-function isNotExistSeat(slug) {
-  return !Seat.findOne({slug: slug});
 }
