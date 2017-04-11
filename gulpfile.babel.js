@@ -406,8 +406,7 @@ gulp.task('test:server', cb => {
         'env:test',
         'mocha:unit',
         'mocha:integration',
-        'mocha:coverage',
-        cb);
+        cb);  //'mocha:coverage', removed
 });
 
 gulp.task('mocha:unit', () => {

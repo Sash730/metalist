@@ -16,6 +16,4 @@ router.get('/days-statistics', auth.hasRole('admin'), controller.getDaysStatisti
 router.get('/ticket/:ticketNumber', controller.getTicketPdfById);
 router.get('/count/:tribune', auth.hasRole('steward'), controller.getCountValidTicketsByTribune);
 
-router.post('/add-stadium-seats', controller.addStadiumSeats);
-
 module.exports = router;

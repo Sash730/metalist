@@ -1,19 +1,17 @@
-<form class="form-inline" novalidate>
-    <label>Новый абонемент</label>
-    <button class="btn btn-default" ng-click="$ctrl.edit({})">new</button>
-</form>
 <form class="form" novalidate>
+<label>Блокировка мест</label>
 <table class="table">
     <tbody>
     <tr>
-        <td><input type="text" name="sector" class="form-control" ng-model="$ctrl.ticketToEdit.sector" placeholder="сектор" required="" /></td>
-        <td><input type="text" name="row"  class="form-control" ng-model="$ctrl.ticketToEdit.row" placeholder="ряд" required="" /></td>
-        <td><input type="text" name="seat" class="form-control" ng-model="$ctrl.ticketToEdit.seat" placeholder="место" required="" /></td>
-        <td><input type="date" name="valid" class="form-control" ng-model="$ctrl.ticketToEdit.valid" placeholder="" required="" /></td>
+        <td><input type="text" name="sector" class="form-control" ng-model="$ctrl.newTicket.sector" placeholder="сектор" required="" /></td>
+        <td><input type="text" name="row"  class="form-control" ng-model="$ctrl.newTicket.row" placeholder="ряд" required="" /></td>
+        <td><input type="text" name="seat" class="form-control" ng-model="$ctrl.newTicket.seat" placeholder="место" required="" /></td>
+        <td><input type="date" name="reservedUntil" class="form-control" ng-model="$ctrl.newTicket.reservedUntil" placeholder="" required="" /></td>
         <td>
-        <button type="submit" class="btn btn-default" ng-click="$ctrl.update()" ng-bind="$ctrl.ticketToEdit.id ? 'Coхранить': 'Добавить'"></button>
+        <button type="submit" class="btn btn-default" ng-click="$ctrl.update()">Добавить</button>
         </td>
     </tr>
     </tbody>
 </table>
+  <p ng-show="$ctrl.errorMessageBlockRow">{{ $ctrl.errorMessageBlockRow }}</p>
 </form>

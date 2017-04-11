@@ -15,6 +15,10 @@
       }
     }
 
+    deleteTicket(ticket) {
+      this.onDelete({$event: { slug: ticket.slug }});
+    }
+
   }
 
   angular.module('metalistTicketsApp.admin')

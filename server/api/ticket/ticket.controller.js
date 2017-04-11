@@ -19,7 +19,6 @@ function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function (entity) {
     if (entity) {
-      logger.info('respondWithResult ' + entity._id);
       return res.status(statusCode).json(entity);
     }
   };
@@ -333,26 +332,4 @@ export function getCountValidTicketsByTribune(req, res, next) {
       return res.status(200).json(count);
     })
     .catch(handleError(res));
-}
-
-export function addStadiumSeats(req, res) {
-  console.log('here');
-  return crateStadiumSeats()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-function crateStadiumSeats() {
-  return Promise.resolve(Stadium)
-    .then(Stadium => {
-      for (let tribune in Stadium) {
-        for (let sector in Stadium[tribune]) {
-          if (Stadium[tribune][sector].rows) {
-            Stadium[tribune][sector].rows.forEach(row => {
-              return seatService.createRowSeats(Stadium[tribune].name, Stadium[tribune][sector].name, row);
-            })
-          }
-        }
-      }
-    })
 }

@@ -6,13 +6,13 @@ import * as auth from '../../auth/auth.service.js';
 
 let router = express.Router();
 
-router.get('/', auth.hasRole('admin'), controller.index);
-router.get('/:seatId', auth.hasRole('admin'), controller.view);
-router.post('/', auth.hasRole('admin'), controller.createSeasonTicket);
-router.put('/save', auth.hasRole('admin'), controller.saveSeasonTicket);
-router.put('/addBlock/:sector/:row', auth.hasRole('admin'), controller.addBlockTicketInRow);
-router.put('/deleteBlock/:sector/:row', auth.hasRole('admin'), controller.deleteBlockTicketInRow);
-router.delete('/:seatId', auth.hasRole('admin'), controller.deleteSeasonTicket);
+router.get('/season-tickets', auth.hasRole('admin'), controller.getSeasonTickets);
+router.get('/block-row', auth.hasRole('admin'), controller.getBlocks);
 
+router.post('/:slug', auth.hasRole('admin'), controller.createSeasonTicket);
+router.delete('/:slug', auth.hasRole('admin'), controller.deleteSeasonTicket);
+
+router.post('/addBlock/sector/:sector/row/:row', auth.hasRole('admin'), controller.blockRow);
+router.delete('/deleteBlock/sector/:sector/row/:row', auth.hasRole('admin'), controller.unblockRow);
 
 module.exports = router;
