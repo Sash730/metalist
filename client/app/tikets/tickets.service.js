@@ -21,6 +21,11 @@
       return this.$http.get('/api/tickets/days-statistics')
         .then( response => response.data );
     }
+
+    addStadiumSeats() {
+      return this.$http.post('/api/tickets/add-stadium-seats')
+        .then( response => response.data );
+    }
   }
   angular.module('metalistTicketsApp')
     .service('TicketsService', TicketsService);

@@ -25,6 +25,12 @@
         <price-schema></price-schema>
       </div>
     </uib-tab>
+    <uib-tab index="5" heading="Migration">
+      <div ng-if="active === 5">
+        <button class="btn btn-default" style="margin-top: 10px;" ng-click="admin.addStadiumSeats()">Add stadium seats</button>
+        <p ng-show="admin.message">{{ admin.message }}</p>
+      </div>
+    </uib-tab>
   </uib-tabset>
 
 </div>
