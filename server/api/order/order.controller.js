@@ -250,8 +250,7 @@ export function updateCart(req, res) {
   Promise.all([
     Order.findOne({publicId: publicId, type: 'cart'})
          .populate({path: 'seats'}),
-    //Match.findById(req.body.matchId),
-    seatService.getSeatBySlug(slug),
+    seatService.findSeatBySlug(slug),
     getPriceInPriceSchema(priceSchemaId, tribuneName, sectorName),
     checkSeatInStadium(tribuneName, sectorName, rowName, seat)
   ])
