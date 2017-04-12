@@ -16,15 +16,6 @@ const SeatSchema = new Schema({
   reservedUntil: { type: Date },
   reservationType: { type: String, enum: [BLOCK, PAID, RESERVE, SEASON_TICKET] },
   reservedByCart: { type: String }
-}, {
-  toObject: { virtuals: true },
-  toJSON: { virtuals: true },
 });
-
-SeatSchema
-  .virtual('isActive')
-  .get(function() {
-    return this.reservedUntil > new Date();
-  });
 
 export default mongoose.model('Seat', SeatSchema);

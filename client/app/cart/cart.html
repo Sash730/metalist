@@ -6,7 +6,7 @@
           {{ seat.sector }} сектор, {{ seat.row }} ряд, {{ seat.seat }} место {{ seat.amount | money }}
         </td>
         <td>
-            <button class="btn  btn-danger btn-xs" ng-click="$ctrl.removeItem(seat.slug)">
+            <button class="btn  btn-danger btn-xs" ng-click="$ctrl.removeSeat(seat.slug)">
                 <i class="fa fa-times"></i>
             </button>
         </td>

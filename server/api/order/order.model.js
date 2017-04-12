@@ -41,7 +41,16 @@ let OrderSchema = new Schema({
         type: Date,
         default: Date.now
     },
+}, {
+  toObject: { virtuals: true },
+  toJSON: { virtuals: true },
 });
+
+OrderSchema
+  .virtual('size')
+  .get(function() {
+    return this.seats.length;
+  });
 
 export let Order = mongoose.model('Order', OrderSchema);
 
