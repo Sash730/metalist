@@ -20,7 +20,7 @@ export function getBlockRowSeats(sector, row) {
   return Seat.find({sector: sector, row: row, reservationType: BLOCK});
 }
 
-export function getSeatBySlug(slug) {
+export function findSeatBySlug(slug) {
   return Seat.findOne({slug: slug});
 }
 
@@ -46,15 +46,13 @@ export function reserveSeatAsSeasonTicket(seat, reserveDate) {
 }
 
 export function clearReservation(seat) {
-  if ( seat.reservedByCart ) {
-    seat.reservedByCart = '';
-  }
+  seat.reservedByCart = '';
   seat.reservedUntil = moment().subtract(10, 'minutes');
 
   return seat.save();
 }
 
-export function getSeatByCart(publicId, slug) {
+export function findSeatByCart(publicId, slug) {
   return Seat.findOne({reservedByCart: publicId, slug: slug});
 }
 

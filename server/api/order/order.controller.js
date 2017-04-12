@@ -293,9 +293,12 @@ export function deleteItemFromCart(req, res) {
       return deleteReserveSeatFromCart(cart, slug);
     })
     .then(cart => {
-      seatService.getSeatByCart(cart.publicId, slug)
-        .then(seatService.clearReservation);
-
+      seatService.findSeatByCart(cart.publicId, slug)
+        .then(seat => {
+          if (seat) {
+            seatService.clearReservation(seat);
+          }
+        });
       return cart;
     })
     .then(respondWithResult(res))
