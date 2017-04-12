@@ -64,6 +64,10 @@ export function reserveSeatAsReserve(seat, reserveDate, publicId) {
   return seat.save();
 }
 
+export function deletePrevMatchStadiumSeats() {
+  return Seat.remove({});
+}
+
 // private function
 
 function reserveSeatAsBlock(seat, reserveDate) {

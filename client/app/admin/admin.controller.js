@@ -5,11 +5,13 @@
   class AdminController {
     constructor(TicketsService) {
       this.ticketsService = TicketsService;
+
       this.message = '';
+      this.matchId = '';
     }
 
     addStadiumSeats() {
-    this.ticketsService.addStadiumSeats()
+    this.ticketsService.addStadiumSeats(this.matchId)
       .then(() => {
         this.message = 'Места успешно созданы.';
       })
