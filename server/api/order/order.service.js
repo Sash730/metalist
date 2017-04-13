@@ -1,7 +1,12 @@
 'use strict';
 
-import { Order } from '../order/order.model';
+import { Order } from './order.model';
 
-export function findCartByPublicId(publicId) {
-  return Order.findOne({publicId: publicId, type: 'cart'}).populate({path: 'seats'});
+
+export function findOrderByPublicId(publicId) {
+  return Order.findOne({publicId: publicId});
+}
+
+export function removeOrderById(orderId) {
+  return Order.findByIdAndRemove(orderId);
 }

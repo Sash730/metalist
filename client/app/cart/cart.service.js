@@ -59,17 +59,9 @@
         });
     }
 
-    convertCartToOrderAsUser() {
-      return this.convertCartToOrder(this.Auth.getCurrentUser());
-    }
-
-    convertCartToOrderAsGuest(guest) {
-      return this.convertCartToOrder(guest);
-    }
-
-    convertCartToOrder(user) {
-      return this.$http.post('/api/orders/cart/convert', {user: user});
-    }
+        createOrderForPay() {
+            return this.$http.post('/api/orders/create-order');
+        }
 
   }
 
