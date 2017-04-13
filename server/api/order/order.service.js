@@ -3,8 +3,9 @@
 import { Order } from './order.model';
 
 
-export function findOrderByPublicId(publicId) {
-  return Order.findOne({publicId: publicId});
+export function findCartByPublicId(publicId) {
+  return Order.findOne({publicId: publicId})
+    .populate('seats');
 }
 
 export function removeOrderById(orderId) {

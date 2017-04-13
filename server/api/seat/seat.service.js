@@ -2,6 +2,7 @@
 
 import {SEASON_TICKET, BLOCK, RESERVE} from '../seat/seat.constants';
 import Seat from '../seat/seat.model';
+import * as priceSchemaService from '../priceSchema/priceSchema.service'
 import moment from 'moment';
 
 export function getActiveSeasonTickets() {
@@ -52,20 +53,28 @@ export function clearReservation(seat) {
   return seat.save();
 }
 
+export function clearReservationBySlug(slug) {
+  return findSeatBySlug(slug)
+    .then(clearReservation)
+}
+
 export function findSeatByCart(publicId, slug) {
   return Seat.findOne({reservedByCart: publicId, slug: slug});
 }
 
 export function reserveSeatAsReserve(seat, reserveDate, publicId) {
-  seat.reservedByCart = publicId;
-  seat.reservedUntil = reserveDate;
-  seat.reservationType = RESERVE;
+  return priceSchemaService.getSeatPrice(seat)
+    .then(price => {
+      if ( !price ) {
+        throw new Error("price not found");
+      }
+      seat.reservedByCart = publicId;
+      seat.reservedUntil = reserveDate;
+      seat.reservationType = RESERVE;
+      seat.price = price;
 
-  return seat.save();
-}
-
-export function deletePrevMatchStadiumSeats() {
-  return Seat.remove({});
+      return seat.save();
+    })
 }
 
 // private function

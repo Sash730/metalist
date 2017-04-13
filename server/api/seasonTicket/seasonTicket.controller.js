@@ -31,7 +31,7 @@ export function createSeasonTicket(req, res) {
 
   return seatService.findSeatBySlug(req.params.slug)
     .then(seat => {
-      if (seat.isActive) {
+      if (seat.isReserved) {
         return res.status(409).end();
       }
       return seatService.reserveSeatAsSeasonTicket(seat, reservationDate)

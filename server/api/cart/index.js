@@ -6,7 +6,7 @@ let controller = require('./cart.controller');
 let router = express.Router();
 
 router.post('/', controller.createCart);
-router.get('/', controller.getCart);
+router.get('/mycart', controller.getCart);
 
 router.post('/addSeat', controller.addSeatToCart);
 router.delete('/seat/:slug', controller.deleteSeatFromCart);

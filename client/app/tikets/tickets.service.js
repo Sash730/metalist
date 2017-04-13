@@ -22,8 +22,8 @@
         .then( response => response.data );
     }
 
-    addStadiumSeats(matchId, priceId) {
-      return this.$http.post('/migrations', { matchId: matchId, priceId: priceId })
+    addStadiumSeats(matchId) {
+      return this.$http.post('/migrations', { matchId: matchId})
         .then( response => response.data );
     }
   }

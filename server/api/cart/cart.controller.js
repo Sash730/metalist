@@ -1,7 +1,6 @@
 'use strict';
 
 import { Order } from '../order/order.model';
-import { PAID } from '../seat/seat.constants';
 import moment from 'moment';
 import * as seatService from '../seat/seat.service';
 import * as orderService from '../order/order.service';
@@ -45,30 +44,27 @@ export function addSeatToCart(req, res) {
     orderService.findCartByPublicId(publicId),
     seatService.findSeatBySlug(slug)
   ])
-    .then(([cart, reserveSeat]) => {
+    .then(([cart, seat]) => {
       if (!cart) {
         throw new Error('Cart not found');
       }
-      if (!reserveSeat) {
+      if (!seat) {
         throw new Error('Seat not found');
       }
-      if ( isReserved(reserveSeat) ) {
-        return {
-          seats: cart.seats,
-          message: 'Это место уже занято.'
-        };
+      if (seat.isReserved) {
+        return res.status(409).end();
       }
-      return seatService.reserveSeatAsReserve(reserveSeat, reserveDate, cart.publicId)
-        .then(reserveSeat => {
-          cart.seats.push(reserveSeat.id);
+      return seatService.reserveSeatAsReserve(seat, reserveDate, cart.publicId)
+        .then(seat => {
+          cart.seats.push(seat.id);
           return cart.save();
         })
         .then((cart) => {
           return Order.findOne({publicId: cart.publicId})
-            .populate({path: 'seats'});
+            .populate({path: 'seats'})
         })
+        .then(respondWithResult(res))
     })
-    .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
@@ -127,8 +123,4 @@ function deleteReserveSeatFromCart(cart, slug) {
   cart.seats = cart.seats.filter( seat => seat.slug !== slug );
 
   return cart.save();
-}
-
-function isReserved(reserveSeat) {
-   return reserveSeat.reservationType === PAID || reserveSeat.reservedUntil > moment();
 }

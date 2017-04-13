@@ -8,7 +8,8 @@
       this.$http = $http;
       this.Auth = Auth;
       this.$cookies = $cookies;
-      this.cart = new Cart();
+      this.data = {};
+      this.data.cart = {};
 
       this.loadCart();
     }
@@ -20,48 +21,44 @@
       return this.createCart();
     }
 
+    getMyCart() {
+      return this.data.cart;
+    }
 
     createCart() {
       return this.$http.post('/api/carts')
         .then(response => {
-          this.cart.tickets = response.data.tickets;
+          this.data.cart = response.data;
           this.$cookies.put('cart', response.data.publicId);
 
-          return this.cart;
+          return this.data.cart;
         });
     }
 
     getCart() {
-      return this.$http.get('/api/carts')
+      return this.$http.get('/api/carts/mycart')
         .then(response => {
-            this.cart.seats = response.data.seats;
-
-            return this.cart;
+            this.data.cart = response.data;
+            return this.data.cart;
           },
-          error => this.createCart() );
+          error => this.createCart());
     }
 
     addSeatToCart(slug) {
       return this.$http.post('/api/carts/addSeat', {slug: slug})
-        .then(response => {
-          this.cart.seats = response.data.seats;
-
-          if (response.data.message) {
-            return response.data.message;
-          }
-        });
+        .then(response => this.data.cart = response.data)
     }
 
     removeSeatFromCart(slug) {
       return this.$http.delete('/api/carts/seat/' + slug)
         .then(response => {
-          this.cart.seats = response.data.seats;
+          this.data.cart = response.data;
         });
     }
 
-        createOrderForPay() {
-            return this.$http.post('/api/orders/create-order');
-        }
+    createOrderForPay() {
+      return this.$http.post('/api/orders/create-order');
+    }
 
   }
 

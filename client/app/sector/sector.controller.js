@@ -45,12 +45,8 @@
         .then(seats => this.reservedSeats = seats);
     }
 
-    getSelectedSeats(){
-      this.selectedSeats = [];
-
-      this.cart.seats.forEach(seat => {
-        this.selectedSeats.push(seat.slug);
-      });
+    getSelectedSeats() {
+      this.selectedSeats = this.cartService.getMyCart().seats.map(seat => seat.slug);
     }
 
     updateReservedTickets() {
@@ -80,22 +76,22 @@
       if ( checkSeat && this.selectedSeats.includes(slug) ) {
         this.cartService.removeSeatFromCart(slug)
           .then(() => {
-            this.getReservedSeats()
-              .then( () =>  this.getSelectedSeats() );
+            this.getReservedSeats();
+            this.getSelectedSeats();
           });
       }
 
       if( !checkSeat ) {
         this.cartService.addSeatToCart(slug)
-          .then(message => {
-            if (message) {
-              this.message = message;
-              return this.getReservedSeats();
+          .then(() => {
+            this.getReservedSeats();
+            this.getSelectedSeats();
+          })
+          .catch((err) => {
+            if (err.status === 409) {
+              this.message = 'Это место уже занято.';
+              this.getReservedSeats();
             }
-            this.getReservedSeats()
-              .then( () => {
-                this.selectedSeats.push(slug);
-              });
           });
       }
     }

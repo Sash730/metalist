@@ -8,7 +8,7 @@ mongoose.Promise = require('bluebird');
 const SeatSchema = new Schema({
   slug: { type: String, required: true },
   matchId: { type: String, required: true },
-  amount: { type: Number, required: true, default: 0 },
+  price: { type: Number, required: true, default: 0 },
   tribune: { type: String },
   sector: { type: String, requried: true },
   row: { type: String, requried: true },
@@ -16,6 +16,15 @@ const SeatSchema = new Schema({
   reservedUntil: { type: Date },
   reservationType: { type: String, enum: [BLOCK, PAID, RESERVE, SEASON_TICKET] },
   reservedByCart: { type: String }
+},{
+  toObject: { virtuals: true },
+  toJSON: { virtuals: true },
 });
+
+SeatSchema
+  .virtual('isReserved')
+  .get(function() {
+    return this.reservedUntil > new Date();
+  });
 
 export default mongoose.model('Seat', SeatSchema);

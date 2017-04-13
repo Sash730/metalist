@@ -6,7 +6,27 @@
   class CartSummaryController {
 
     constructor(CartService) {
-      this.cart = CartService.cart;
+      this.cart = {};
+      this.cartService = CartService;
+    }
+
+    getPrice() {
+      if (this.isCartLoaded()) {
+        return this.cart.seats.reduce((price, seat) => {
+          return price + seat.price;
+        }, 0)
+      }
+    }
+
+    getSize() {
+      if (this.isCartLoaded()) {
+        return this.cart.size;
+      }
+    }
+
+    isCartLoaded() {
+      this.cart = this.cartService.getMyCart();
+      return this.cart.seats;
     }
   }
 

@@ -5,14 +5,12 @@
   class AdminController {
     constructor(TicketsService) {
       this.ticketsService = TicketsService;
-
       this.message = '';
       this.matchId = '';
-      this.priceId = '';
     }
 
     addStadiumSeats() {
-    this.ticketsService.addStadiumSeats(this.matchId, this.priceId)
+    this.ticketsService.addStadiumSeats(this.matchId)
       .then(() => {
         this.message = 'Места успешно созданы.';
       })
@@ -20,7 +18,7 @@
         console.log(err);
         this.message = 'Что-то пошло не так...';
       })
-    }
+    };
   }
 
   angular.module('metalistTicketsApp.admin')

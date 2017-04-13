@@ -108,8 +108,8 @@ function getOrderAfterLiqpayByEnvironment(req) {
 }
 
 function createPaymentLink(order) {
-  let orderDescription = _.reduce(order.tickets, (description, ticket) => {
-    return `${description} ${ticket.match.headline} (sector #${ticket.seat.sector}, row #${ticket.seat.row}, number #${ticket.seat.number}) | `;
+  let orderDescription = order.tickets.reduce((description, ticket) => {
+    return `${description} (sector #${ticket.seat.sector}, row #${ticket.seat.row}, number #${ticket.seat.number}) | `;
   }, '');
 
   let paymentParams = {
@@ -132,7 +132,6 @@ function randomNumericString(length) {
   for (let i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
   return result;
 }
-};
 
 export function updateCart(req, res) {
   let publicId = req.session.cart,
@@ -365,7 +364,7 @@ function getCartAmount(cart) {
 function getSeatsAmountPromises(cart) {
   let promises = [];
   cart.seats.map(seat => {
-    return promises.push(priceSchemaService.getSeatAmount(seat));
+    return promises.push(priceSchemaService.getSeatPrice(seat));
   });
 
   return promises;

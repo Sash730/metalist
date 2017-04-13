@@ -6,7 +6,7 @@ import * as matchService from '../match/match.service';
 
 export function createTicket(seat) {
   return Promise.all([
-    priceSchemaService.getSeatAmount(seat),
+    priceSchemaService.getSeatPrice(seat),
     matchService.findMatchById(seat.matchId)
   ])
     .then(() => {

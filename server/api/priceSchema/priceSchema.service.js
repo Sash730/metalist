@@ -7,13 +7,13 @@ export function findPriceSchemaById(priceSchemaId) {
   return PriceSchema.findOne({_id: priceSchemaId});
 }
 
-export function getSeatAmount(seat) {
+export function getSeatPrice(seat) {
   return matchService.findMatchById(seat.matchId)
     .then(match => findPriceSchemaById(match.priceSchema) )
-    .then(priceSchema => getSeatPrice(priceSchema, seat) );
+    .then(priceSchema => getPrice(priceSchema, seat) );
 }
 
-function getSeatPrice(priceSchema, seat) {
+function getPrice(priceSchema, seat) {
   let schema = priceSchema.priceSchema,
     tribuneName = seat.tribune,
     sectorName = seat.sector;

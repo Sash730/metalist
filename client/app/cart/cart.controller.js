@@ -5,7 +5,6 @@
   class CartController {
 
     constructor(CartService) {
-      this.cart = CartService.cart;
       this.cartService = CartService;
     }
 

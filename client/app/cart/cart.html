@@ -1,9 +1,9 @@
 <div class="empty" ng-hide="$ctrl.cart.size">Билеты не выбраны</div>
 <div class="empty" ng-show="$ctrl.message">{{$ctrl.message}}</div>
 <table class="cart-items table table-condensed">
-    <tr class="cart-item" ng-repeat="seat in $ctrl.cart.seats">
+    <tr class="cart-item" ng-repeat="seat in $ctrl.cartService.getMyCart().seats">
         <td>
-          {{ seat.sector }} сектор, {{ seat.row }} ряд, {{ seat.seat }} место {{ seat.amount | money }}
+          {{ seat.sector }} сектор, {{ seat.row }} ряд, {{ seat.seat }} место {{ seat.price | money }}
         </td>
         <td>
             <button class="btn  btn-danger btn-xs" ng-click="$ctrl.removeSeat(seat.slug)">
