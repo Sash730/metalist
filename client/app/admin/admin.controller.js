@@ -8,10 +8,11 @@
 
       this.message = '';
       this.matchId = '';
+      this.priceId = '';
     }
 
     addStadiumSeats() {
-    this.ticketsService.addStadiumSeats(this.matchId)
+    this.ticketsService.addStadiumSeats(this.matchId, this.priceId)
       .then(() => {
         this.message = 'Места успешно созданы.';
       })

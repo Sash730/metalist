@@ -8,6 +8,7 @@ mongoose.Promise = require('bluebird');
 const SeatSchema = new Schema({
   slug: { type: String, required: true },
   matchId: { type: String, required: true },
+  amount: { type: Number, required: true, default: 0 },
   tribune: { type: String },
   sector: { type: String, requried: true },
   row: { type: String, requried: true },

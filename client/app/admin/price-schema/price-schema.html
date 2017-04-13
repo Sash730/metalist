@@ -1,4 +1,5 @@
 <form name="myForm"><br>
+
     <label for="priceSchema"> Выберите прайс схему: </label>
     <select class="form-control" name="priceSchema" id="priceSchema" ng-change="$ctrl.setCurrentPriceSchema($ctrl.schemaName)" ng-model="$ctrl.schemaName">
         <option value="---New Schema---">---New Schema---</option>
@@ -12,7 +13,7 @@
     <div>
         <div ng-form="priceForm" ng-model-options="{ updateOn: 'blur' }">
            <div class="form-group"  ng-class="{'has-error': priceForm.schemaName.$invalid && priceForm.schemaName.$dirty}">
-            <label for="schemaName">Schema Name :</label>
+            <label for="schemaName">Schema Name :</label><span class="label label-default">{{$ctrl.priceSchemaId}}</span>
             <input class="form-control" type="text" name="schemaName" id="schemaName" ng-model="$ctrl.currentPriceSchema.name" required >
             <div class="help-block" ng-show="priceForm.schemaName.$error.required && priceForm.schemaName.$dirty">Schema Name is required</div>
            </div>

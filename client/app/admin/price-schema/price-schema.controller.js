@@ -13,6 +13,7 @@
       this.currentTribune = {};
       this.currentSector = {};
       this.message = '';
+      this.priceSchemaId = '';
     }
 
     $onInit() {
@@ -34,6 +35,7 @@
         this.currentPriceSchema = {};
       } else {
         let currentPriceSchema = this.priceSchemas.filter(schema => schema.priceSchema.name === schemaName)[0];
+        this.priceSchemaId = currentPriceSchema.id;
         this.currentPriceSchema = currentPriceSchema.priceSchema;
       }
     }
