@@ -60,7 +60,7 @@
         }
 
         checkout() {
-            this.handleCheckoutResponse(this.cartService.convertCartToOrderAsUser());
+            this.handleCheckoutResponse(this.cartService.createOrderForPay());
         }
 
         handleCheckoutResponse(responsePromise) {
