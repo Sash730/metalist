@@ -48,9 +48,9 @@
     getSelectedSeats(){
       this.selectedSeats = [];
 
-        this.cart.seats.forEach(seat => {
-          this.selectedSeats.push(seat.slug);
-        });
+      this.cart.seats.forEach(seat => {
+        this.selectedSeats.push(seat.slug);
+      });
     }
 
     updateReservedTickets() {
@@ -58,27 +58,27 @@
       this.getSelectedSeats();
     }
 
-     addClassByCheckSoldSeat(slug) {
+    addClassByCheckSoldSeat(slug) {
       let [ checkSeat ] = this.reservedSeats.filter(seat => seat.slug === slug);
 
       if (checkSeat && this.selectedSeats.includes(slug)) {
         return 'blockedSeat';
       }
 
-       if ( checkSeat && !this.selectedSeats.includes(slug) ) {
-         return 'soldSeat';
-       }
+      if ( checkSeat && !this.selectedSeats.includes(slug) ) {
+        return 'soldSeat';
+      }
 
-       return 'imgSeatsStyle';
+      return 'imgSeatsStyle';
     }
 
-     addTicketToCart(match, tribuneName, sectorName, rowName, seat) {
+    addSeatToCart(sectorName, rowName, seat) {
       let slug = 's' + sectorName + 'r' + rowName + 'st' + seat,
-          [ checkSeat ] = this.reservedSeats.filter(seat => seat.slug === slug);
-       this.message = '';
+        [ checkSeat ] = this.reservedSeats.filter(seat => seat.slug === slug);
+      this.message = '';
 
       if ( checkSeat && this.selectedSeats.includes(slug) ) {
-        this.cartService.removeTicket(slug)
+        this.cartService.removeSeatFromCart(slug)
           .then(() => {
             this.getReservedSeats()
               .then( () =>  this.getSelectedSeats() );
@@ -86,7 +86,7 @@
       }
 
       if( !checkSeat ) {
-        this.cartService.addTicket(match, tribuneName, sectorName, rowName, seat)
+        this.cartService.addSeatToCart(slug)
           .then(message => {
             if (message) {
               this.message = message;

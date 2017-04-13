@@ -1,18 +1,19 @@
+
 'use strict';
 
 (function () {
 
-    class CartSummaryController {
+  class CartSummaryController {
 
-        constructor(CartService) {
-            this.cart = CartService.cart;
-        }
+    constructor(CartService) {
+      this.cart = CartService.cart;
     }
+  }
 
-    angular.module('metalistTicketsApp')
-        .component('cartSummary', {
-            templateUrl: 'app/cart/summary/cart-summary.html',
-            controller: CartSummaryController,
-            controllerAs: 'vm',
-        });
+  angular.module('metalistTicketsApp')
+    .component('cartSummary', {
+      templateUrl: 'app/cart/summary/cart-summary.html',
+      controller: CartSummaryController,
+      controllerAs: 'vm',
+    });
 })();
