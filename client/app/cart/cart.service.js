@@ -25,6 +25,10 @@
       return this.data.cart;
     }
 
+    getMyCartSize() {
+      return this.data.cart.size;
+    }
+
     createCart() {
       return this.$http.post('/api/carts')
         .then(response => {
@@ -40,13 +44,12 @@
         .then(response => {
             this.data.cart = response.data;
             return this.data.cart;
-          },
-          error => this.createCart());
+          }, error => this.createCart());
     }
 
     addSeatToCart(slug) {
       return this.$http.post('/api/carts/addSeat', {slug: slug})
-        .then(response => this.data.cart = response.data)
+        .then(response => this.data.cart = response.data);
     }
 
     removeSeatFromCart(slug) {
@@ -56,8 +59,8 @@
         });
     }
 
-    createOrderForPay() {
-      return this.$http.post('/api/orders/create-order');
+    checkout() {
+      return this.$http.post('/api/orders/checkout');
     }
 
   }

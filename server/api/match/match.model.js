@@ -13,9 +13,6 @@ const MatchSchema = new Schema({
     type: Date,
     default: null
   },
-  round: {
-    type: Number
-  },
   priceSchema: {type: Schema.ObjectId, ref: 'PriceSchema'},
   info: String,
   poster: String,

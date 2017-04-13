@@ -3,45 +3,31 @@
 import Ticket from './ticket.model';
 import * as priceSchemaService from '../priceSchema/priceSchema.service';
 import * as matchService from '../match/match.service';
+import * as crypto from 'crypto';
 
 export function createTicket(seat) {
   return Promise.all([
     priceSchemaService.getSeatPrice(seat),
     matchService.findMatchById(seat.matchId)
   ])
-    .then(() => {
+    .then(([price, match]) => {
       let ticket = new Ticket({
-        cartId: cart.id,
         accessCode: randomNumericString(16),
-        match: { //@TODO investigate if it's required to have all match info here
+        match: {
           id: match.id,
           headline: match.headline,
-          round: match.round,
           date: match.date
         },
-        seat: { //@TODO investigate if it's required to have all these fields here
+        seat: {
           id: seat.id,
           tribune: seat.tribune,
           sector: seat.sector,
           row: seat.row,
-          number: seat.number
+          number: seat.seat
         },
-        amount: parseInt(price) * 100,//money formatted(for liqpay)
-        //status: 'new', // @TODO make all statuses as constants
-        ticketNumber: uuid.v1(), //@TODO mostly this number should be created only after ticket is paid
-        // valid: { //@TODO investigate if it's necessary
-        //   from: ((d) => {
-        //     let d1 = new Date(d);
-        //     d1.setHours(0, 0, 0, 0);
-        //     return d1;
-        //   })(match.date),
-        //   to: ((d) => {
-        //     let d1 = new Date(d);
-        //     d1.setHours(23, 59, 59, 0);
-        //     return d1;
-        //   })(match.date)
-        // },
-        // timesUsed: 0 //@TODO investigate if it's necessary
+        amount: price,
+        status: 'paid',
+        ticketNumber: crypto.randomBytes(20).toString('hex'),
       });
 
       return ticket.save();

@@ -40,6 +40,16 @@ export function clearReservations(seats) {
   );
 }
 
+export function extendReservationTime(seats) {
+  return Promise.all(seats.map(seat => {
+    return findSeatBySlug(seat.slug)
+      .then(seat => {
+        seat.reservedUntil = moment().add(30, 'minutes');
+        return seat.save();
+      });
+  }));
+}
+
 export function reserveSeatAsSeasonTicket(seat, reserveDate) {
   seat.reservedUntil = reserveDate;
   seat.reservationType = SEASON_TICKET;

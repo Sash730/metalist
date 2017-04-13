@@ -9,7 +9,6 @@
       this.priceSchemaService = PriceSchemaService;
       this.ticketsService = TicketsService;
       this.match = match;
-      this.cart = {};
       this.sector = sector;
 
       this.reservedSeats = [];
@@ -21,20 +20,12 @@
       this.firstUpperRow = this.getFirstUpperRow($stateParams.sector);
 
       this.getPrice();
-      this.getCart();
       this.getReservedSeats();
     }
 
     getPrice() {
       let priceSchema = this.match.priceSchema.priceSchema;
       this.sectorPrice = this.priceSchemaService.getPriceBySector(this.tribuneName, this.sector.name, priceSchema);
-    }
-
-    getCart() {
-      this.cartService.loadCart().then(cart => {
-        this.cart = cart;
-        this.getSelectedSeats();
-      });
     }
 
     getReservedSeats() {

@@ -14,14 +14,12 @@
       if (this.isCartLoaded()) {
         return this.cart.seats.reduce((price, seat) => {
           return price + seat.price;
-        }, 0)
+        }, 0);
       }
     }
 
     getSize() {
-      if (this.isCartLoaded()) {
-        return this.cart.size;
-      }
+      return this.cartService.getMyCartSize();
     }
 
     isCartLoaded() {

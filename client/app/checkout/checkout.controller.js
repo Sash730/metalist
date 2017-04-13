@@ -60,7 +60,7 @@
         }
 
         checkout() {
-            this.handleCheckoutResponse(this.cartService.createOrderForPay());
+            this.handleCheckoutResponse(this.cartService.checkout());
         }
 
         handleCheckoutResponse(responsePromise) {

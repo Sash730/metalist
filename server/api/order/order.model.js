@@ -12,7 +12,7 @@ let OrderSchema = new Schema({
       type: String,
       required: true
     },
-    amount: {
+    price: {
         type: Number,
         required: true,
         default: 0
@@ -52,5 +52,5 @@ OrderSchema
     return this.seats.length;
   });
 
-export let Order = mongoose.model('Order', OrderSchema);
+export default mongoose.model('Order', OrderSchema);
 

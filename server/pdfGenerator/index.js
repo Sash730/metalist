@@ -66,7 +66,7 @@ let generatePdfPage = (res, ticket, png) => {
     .text( ticket.seat.number, 400, 102);
 
   doc.fontSize(9)
-    .text('ОСК "Металлист"\n г. Харьков\n ул. Плехановская, 65\n \n Цена:  ' + ticket.amount/100 + ' грн.', -245, 53, {align: 'center'});
+    .text('ОСК "Металлист"\n г. Харьков\n ул. Плехановская, 65\n \n Цена:  ' + ticket.amount + ' грн.', -245, 53, {align: 'center'});
 
   doc.rotate(90)
     .image(png, 25, -90, {width: 140});

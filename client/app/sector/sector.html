@@ -55,7 +55,7 @@
       <div class="colPadding col-xs-4 col-centered col-fixed">
         <div class="item">
           <div class="content">
-            <div ng-show="vm.cart.size">
+            <div ng-show="vm.cartService.getMyCartSize()">
               <a ui-sref="checkout" class="btn btn-info">Оформить заказ</a>
             </div>
           </div>
