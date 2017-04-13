@@ -12,6 +12,137 @@ import * as log4js from 'log4js';
 const logger = log4js.getLogger('Ticket');
 const sectorsInVip = ['VIP_B', 'VIP_BR', 'VIP_BL', 'VIP_AR', 'VIP_AL', 'SB_1', 'SB_7'];
 
+export function getTicketPdfById(req, res) {
+  return Ticket.findOne({ticketNumber: req.params.ticketNumber}).exec()
+    .then((ticket) => {
+      if (ticket) {
+        return generatePdfTicket(ticket, res);
+      }
+    })
+    .catch(handleError(res));
+}
+
+export function getEventsStatistics(req, res) {
+  let period = moment().subtract(1, 'day');
+
+  Ticket.find({'match.date': {$gte: period}})
+    .where({
+      $or: [
+        {status: 'paid'},
+        {status: 'used'}
+      ]
+    })
+    .sort({'match.date': 1})
+    .then(tickets => {
+      return tickets.map(ticket => {
+        return {
+          headline: ticket.match.headline,
+          sector: ticket.seat.sector,
+          date: ticket.match.date,
+          amount: ticket.amount
+        }
+      })
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
+}
+
+export function getDaysStatistics(req, res) {
+  let period = moment().subtract(30, 'day');
+
+  Ticket.find({reserveDate: {$gte: new Date(period)}})
+    .where({
+      $or: [
+        {status: 'paid'},
+        {status: 'used'}
+      ]
+    })
+    .sort({reserveDate: -1})
+    .then(statistics => {
+      return statistics.map(stat => {
+        return {
+          date: moment(stat.reserveDate).tz('Europe/Kiev').format('DD-MM-YYYY'),
+          amount: stat.amount
+        }
+      });
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
+}
+
+export function use(req, res, next) {
+  let code = req.params.code,
+    tribune = req.params.tribune;
+
+  return Promise.all([
+    getTicketByCode(code),
+    getCountTicketsByTribune(tribune)
+  ])
+    .then(([ticket, count]) => {
+      if (!ticket) {
+        return res.status(200).json({count: count, message: 'Билет не действительный.'});
+      }
+      let result = {
+        ticket: getFormattedTicket(ticket),
+        count: count
+      };
+      if (tribune === 'vip') {
+        if (!sectorsInVip.includes(ticket.seat.sector)) {
+          result.message = "Другая трибуна";
+          return res.status(200).json(result);
+        }
+        ticket.status = 'used';
+        return ticket.save()
+          .then(() => res.status(200).json(result));
+      } else {
+        if (ticket.seat.tribune !== tribune || (ticket.seat.tribune === tribune && sectorsInVip.includes(ticket.seat.sector))) {
+          result.message = "Другая трибуна";
+          return res.status(200).json(result);
+        }
+        ticket.status = 'used';
+        return ticket.save()
+          .then(() => res.status(200).json(result));
+      }
+    })
+    .catch(handleError(res));
+}
+
+export function getTicketsForCheckMobile(req, res) {
+  let dateNow = new Date();
+
+  return Ticket.find({status: 'paid'})
+    .exec()
+    .then(tickets => {
+      let result = tickets.map(ticket => {
+        return {
+          'tribune': ticket.seat.tribune,
+          'sector': ticket.seat.sector,
+          'row': ticket.seat.row,
+          'seat': ticket.seat.number,
+          'headline': ticket.match.headline
+        };
+      });
+
+      return res.status(200).json(result);
+    })
+    .catch(handleError(res));
+}
+
+export function getCountValidTicketsByTribune(req, res, next) {
+  let tribune = req.params.tribune;
+
+  return getCountTicketsByTribune(tribune)
+    .then(count => {
+      return res.status(200).json(count);
+    })
+    .catch(handleError(res));
+}
+
+
+
+
 let generatePdfTicket = (ticket, res) => {
   return new Promise((resolve, reject) => {
     pdfGenerator.generateTicket(ticket, res, function (err, res) {
@@ -78,65 +209,6 @@ let getCountTicketsByTribune = (tribune) => {
     });
 };
 
-export function index(req, res) {
-  return Ticket.find().exec()
-    .then(tickets => {
-      var result = _.map(tickets, (ticket) => {
-
-        var paymentParams = {
-          'action': 'pay',
-          'amount': '0.01',
-
-          'currency': 'UAH',
-          'description': ticket.text,
-          'order_id': ticket.id,
-          'sandbox': config.liqpay.sandboxMode,
-          'server_url': config.liqpay.callbackUrl,
-          'result_url': config.liqpay.redirectUrl,
-        };
-
-
-        return {
-          '_id': ticket.id,
-          'text': ticket.text,
-          'available': ticket.available,
-          'used': ticket.used,
-          'code': ticket.code,
-          'buyNowLink': ticket.available ? liqpay.generatePaymentLink(paymentParams) : null
-        };
-      });
-
-      return res.status(200).json(result);
-    })
-    .catch(handleError(res));
-}
-
-// export function getReservedSeats(req, res) {
-//   let sectorNumber = req.params.sector;
-//
-//   return Seat.find({reservedUntil: {$gte: new Date()}, sector: sectorNumber})
-//     .select('slug -_id')
-//     .then(respondWithResult(res))
-//     .catch(handleError(res));
-
-  // return Promise.all([
-  //   getSecureReservedTickets(matchId, sectorNumber),
-  //   SeasonTicket.find({valid: {$gte: new Date()}, sector: sectorNumber})
-  //     .then(tickets => {
-  //       return tickets.map(ticket => {
-  //         return {
-  //           'seatId': ticket.seatId
-  //         };
-  //       });
-  //     })
-  // ])
-  //   .then(([reservedTickets, seasonTickets]) => {
-  //     return reservedTickets.concat(seasonTickets);
-  //   })
-  //   .then(respondWithResult(res))
-  //   .catch(handleError(res))
-//}
-
 export function print(req, res, next) {
   return Ticket.findOne({code: req.params.code, available: false}).exec()
     .then(handleEntityNotFound(res))
@@ -170,138 +242,6 @@ export function print(req, res, next) {
     .catch(handleError(res));
 }
 
-export function use(req, res, next) {
-  let code = req.params.code,
-    tribune = req.params.tribune;
-
-  return Promise.all([
-    getTicketByCode(code),
-    getCountTicketsByTribune(tribune)
-  ])
-    .then(([ticket, count]) => {
-      if (!ticket) {
-        return res.status(200).json({count: count, message: 'Билет не действительный.'});
-      }
-      let result = {
-        ticket: getFormattedTicket(ticket),
-        count: count
-      };
-      if (tribune === 'vip') {
-        if (!sectorsInVip.includes(ticket.seat.sector)) {
-          result.message = "Другая трибуна";
-          return res.status(200).json(result);
-        }
-        ticket.status = 'used';
-        return ticket.save()
-          .then(() => res.status(200).json(result));
-      } else {
-        if (ticket.seat.tribune !== tribune || (ticket.seat.tribune === tribune && sectorsInVip.includes(ticket.seat.sector))) {
-          result.message = "Другая трибуна";
-          return res.status(200).json(result);
-        }
-        ticket.status = 'used';
-        return ticket.save()
-          .then(() => res.status(200).json(result));
-      }
-    })
-    .catch(handleError(res));
-}
-
-export function getTicketsForCheckMobile(req, res) {
-  let dateNow = new Date();
-
-  return Ticket.find({status: 'paid'})
-  /*.where({$and: [
-   {'valid.from': { $lte: dateNow }},
-   {'valid.to': { $gt: dateNow }}
-   ]})*/
-    .exec()
-    .then(tickets => {
-      let result = tickets.map(ticket => {
-        return {
-          'tribune': ticket.seat.tribune,
-          'sector': ticket.seat.sector,
-          'row': ticket.seat.row,
-          'seat': ticket.seat.number,
-          'headline': ticket.match.headline
-        };
-      });
-
-      return res.status(200).json(result);
-    })
-    .catch(handleError(res));
-}
-
-export function getEventsStatistics(req, res) {
-  let period = moment().subtract(1, 'day');
-
-  Ticket.find({'match.date': {$gte: period}})
-    .where({
-      $or: [
-        {status: 'paid'},
-        {status: 'used'}
-      ]
-    })
-    .sort({'match.date': 1})
-    .then(tickets => {
-      return tickets.map(ticket => {
-        return {
-          headline: ticket.match.headline,
-          sector: ticket.seat.sector,
-          date: ticket.match.date,
-          amount: ticket.amount
-        }
-      })
-    })
-    .then(respondWithResult(res))
-    .catch(handleError(res))
-  ;
-}
-
-export function getDaysStatistics(req, res) {
-  let period = moment().subtract(30, 'day');
-
-  Ticket.find({reserveDate: {$gte: new Date(period)}})
-    .where({
-      $or: [
-        {status: 'paid'},
-        {status: 'used'}
-      ]
-    })
-    .sort({reserveDate: -1})
-    .then(statistics => {
-      return statistics.map(stat => {
-        return {
-          date: moment(stat.reserveDate).tz('Europe/Kiev').format('DD-MM-YYYY'),
-          amount: stat.amount
-        }
-      });
-    })
-    .then(respondWithResult(res))
-    .catch(handleError(res))
-  ;
-}
-
-export function getTicketPdfById(req, res, next) {
-  return Ticket.findOne({ticketNumber: req.params.ticketNumber}).exec()
-    .then((ticket) => {
-      if (ticket) {
-        return generatePdfTicket(ticket, res);
-      }
-    })
-    .catch(handleError(res));
-
-}
-
-export function getCountValidTicketsByTribune(req, res, next) {
-  let tribune = req.params.tribune;
-
-  return getCountTicketsByTribune(tribune)
-    .then(count => {
-      return res.status(200).json(count);
-    })
-    .catch(handleError(res));
-}
 
 //private functions
 function respondWithResult(res, statusCode) {

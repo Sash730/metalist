@@ -2,7 +2,6 @@
 
 let express = require('express');
 let controller = require('./seat.controller.js');
-import * as auth from '../../auth/auth.service';
 
 let router = express.Router();
 
