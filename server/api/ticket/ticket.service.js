@@ -23,7 +23,7 @@ export function createTicket(seat) {
           tribune: seat.tribune,
           sector: seat.sector,
           row: seat.row,
-          number: seat.seat
+          seat: seat.seat
         },
         amount: price,
         status: 'paid',

@@ -3,7 +3,8 @@
 import Order from './order.model';
 import User from '../user/user.model';
 import * as crypto from 'crypto';
-import * as priceSchemeService from '../priceSchema/priceSchema.service'
+import * as priceSchemeService from '../priceSchema/priceSchema.service';
+import * as seatService from '../seat/seat.service';
 import * as ticketService from '../ticket/ticket.service';
 import * as LiqPay from '../../liqpay';
 import * as config from "../../config/environment";
@@ -103,7 +104,8 @@ export function getLiqPayParams(req) {
 function handleSuccessPayment(order) {
   return Promise.all([
     User.findOne({_id: order.user.id}),
-    createTicketsByOrder(order)
+    createTicketsByOrder(order),
+    seatService.reserveSeatsAsPaid(order.seats)
   ])
     .then(([user, tickets]) => {
       user.tickets = tickets;
@@ -115,7 +117,7 @@ function handleSuccessPayment(order) {
     })
     .then(() => {
       return Mailer.sendMailByOrder(order);
-    }) //@TODO добавить reserveSeatAsPaid()
+    })
     .catch(error => {
       logger.error('handleSuccessPayment error: ' + error);
     });
