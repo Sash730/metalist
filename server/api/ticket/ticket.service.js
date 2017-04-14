@@ -34,6 +34,16 @@ export function createTicket(seat) {
     });
 }
 
+export function getUserTickets(tickets) {
+  return Promise.all(tickets.map(ticketId => {
+    return getTicketById(ticketId);
+  }));
+}
+
+function getTicketById(ticketId) {
+  return Ticket.findById(ticketId);
+}
+
 function randomNumericString(length) {
   let chars = '0123456789';
   let result = '';
