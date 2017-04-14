@@ -7,7 +7,6 @@
         constructor($window, CartService, Auth) {
             this.$window = $window;
             this.cartService = CartService;
-            this.cart = {};
             this.Auth = Auth;
             this.isLoggedIn = Auth.isLoggedIn;
 
@@ -15,13 +14,6 @@
             this.message = '';
             this.reserveDate = '';
 
-            this.getCart();
-        }
-
-        getCart() {
-          this.cartService.loadCart().then(cart => {
-            this.cart = cart;
-          });
         }
 
         confirmEmail(form, user) {

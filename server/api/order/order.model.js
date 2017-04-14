@@ -19,7 +19,7 @@ let OrderSchema = new Schema({
     },
     status: {
         type: String,
-        enum: [ 'new', 'paid', 'failed' ],
+        enum: [ 'new', 'pending', 'paid', 'failed' ],
         required: true,
         default: 'new',
     },

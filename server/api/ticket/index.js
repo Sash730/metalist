@@ -7,7 +7,7 @@ import * as auth from '../../auth/auth.service.js';
 let router = express.Router();
 
 router.get('/ticket/:ticketNumber', controller.getTicketPdfById);
-router.get('/my', auth.isAuthenticated(), controller.findMyTickets);
+router.get('/my', auth.isAuthenticated(), controller.getMyTickets);
 
 router.get('/events-statistics', auth.hasRole('admin'), controller.getEventsStatistics);
 router.get('/days-statistics', auth.hasRole('admin'), controller.getDaysStatistics);

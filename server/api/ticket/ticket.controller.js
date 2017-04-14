@@ -21,7 +21,7 @@ export function getTicketPdfById(req, res) {
     .catch(handleError(res));
 }
 
-export function findMyTickets(req, res) {
+export function getMyTickets(req, res) {
   return User.findById(req.user.id)
     .then(user => {
       return ticketService.getUserTickets(user.tickets);
@@ -128,7 +128,7 @@ export function getTicketsForCheckMobile(req, res) {
           'tribune': ticket.seat.tribune,
           'sector': ticket.seat.sector,
           'row': ticket.seat.row,
-          'seat': ticket.seat.number,
+          'seat': ticket.seat.seat,
           'headline': ticket.match.headline
         };
       });
@@ -184,7 +184,7 @@ let getFormattedTicket = (ticket) => {
     'tribune': ticket.seat.tribune,
     'sector': ticket.seat.sector,
     'row': ticket.seat.row,
-    'seat': ticket.seat.number,
+    'seat': ticket.seat.seat,
     'headLine': ticket.match.headline
   };
 };

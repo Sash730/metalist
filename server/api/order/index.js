@@ -7,6 +7,7 @@ import * as auth from '../../auth/auth.service';
 var router = express.Router();
 
 router.post('/checkout', auth.isAuthenticated(), controller.checkout);
+router.get('/payment-status', auth.isAuthenticated(), controller.getPaymentStatus);
 router.post('/liqpay-redirect', controller.liqpayRedirect);
 router.post('/liqpay-callback', controller.liqpayCallback);
 

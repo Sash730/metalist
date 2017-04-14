@@ -50,14 +50,6 @@ const TicketSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-}, {
-  toObject: {virtuals: true},
-  toJSON: {virtuals: true},
 });
-TicketSchema
-  .virtual('formattedAmount')
-  .get(function () {
-    return formatMoney(this.amount);
-  });
 
 export default mongoose.model('Ticket', TicketSchema);

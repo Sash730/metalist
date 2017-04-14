@@ -8,28 +8,33 @@
     }
 
     fetchReservedSeats(matchId, sectorName) {
-      return this.$http.get('api/seats/reserved-on-match/' + matchId +'/sector/' + sectorName)
+      return this.$http.get('api/seats/reserved-on-match/' + matchId + '/sector/' + sectorName)
         .then(response => response.data);
     }
 
-    findMyTickets() {
+    getMyTickets() {
       return this.$http.get('api/tickets/my')
         .then(response => response.data);
     }
 
-    getEventsStatistics(){
-      return this.$http.get('/api/tickets/events-statistics')
-        .then( response => response.data );
+    getPendingStatus() {
+      return this.$http.get('api/orders/payment-status')
+        .then(response => response.data.status);
     }
 
-    getDaysStatistics(){
+    getEventsStatistics() {
+      return this.$http.get('/api/tickets/events-statistics')
+        .then(response => response.data);
+    }
+
+    getDaysStatistics() {
       return this.$http.get('/api/tickets/days-statistics')
-        .then( response => response.data );
+        .then(response => response.data);
     }
 
     addStadiumSeats(matchId) {
-      return this.$http.post('/migrations', { matchId: matchId})
-        .then( response => response.data );
+      return this.$http.post('/migrations', {matchId: matchId})
+        .then(response => response.data);
     }
   }
   angular.module('metalistTicketsApp')

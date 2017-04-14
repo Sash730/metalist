@@ -29,6 +29,12 @@
       return this.data.cart.size;
     }
 
+    getMyCartPrice() {
+      return this.cart.seats.reduce((price, seat) => {
+        return price + seat.price;
+      }, 0);
+    }
+
     createCart() {
       return this.$http.post('/api/carts')
         .then(response => {
@@ -42,9 +48,9 @@
     getCart() {
       return this.$http.get('/api/carts/mycart')
         .then(response => {
-            this.data.cart = response.data;
-            return this.data.cart;
-          }, error => this.createCart());
+          this.data.cart = response.data;
+          return this.data.cart;
+        }, error => this.createCart());
     }
 
     addSeatToCart(slug) {

@@ -19,6 +19,10 @@ export function findCartByPublicId(publicId) {
     .populate('seats');
 }
 
+export function getPendingPaymentByUser(user) {
+  return Order.findOne({"user.id": user.id, status: "pending"})
+}
+
 export function createOrderFromCart(cart, user) {
   return countPriceBySeats(cart.seats)
     .then(price => {
@@ -30,7 +34,7 @@ export function createOrderFromCart(cart, user) {
         },
         seats: cart.seats,
         type: 'order',
-        status: 'new',
+        status: 'pending',
         publicId: crypto.randomBytes(20).toString('hex'),
         created: new Date(),
         price: price

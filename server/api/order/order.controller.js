@@ -9,6 +9,20 @@ const logger = log4js.getLogger('Order'),
   moment = require('moment');
 
 
+export function getPaymentStatus(req, res) {
+  return orderService.getPendingPaymentByUser(req.user)
+    .then(order => {
+      console.log(order);
+      if (order) {
+        return {status: true};
+      } else {
+        return {status: false};
+      }
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 export function checkout(req, res) {
   let publicId= req.session.cart;
 
