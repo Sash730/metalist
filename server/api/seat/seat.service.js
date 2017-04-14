@@ -2,7 +2,8 @@
 
 import {SEASON_TICKET, BLOCK, RESERVE} from '../seat/seat.constants';
 import Seat from '../seat/seat.model';
-import * as priceSchemaService from '../priceSchema/priceSchema.service'
+import * as matchService from '../match/match.service';
+import * as priceSchemaService from '../priceSchema/priceSchema.service';
 import moment from 'moment';
 
 export function getActiveSeasonTickets() {
@@ -45,6 +46,19 @@ export function extendReservationTime(seats) {
     return findSeatBySlug(seat.slug)
       .then(seat => {
         seat.reservedUntil = moment().add(30, 'minutes');
+        return seat.save();
+      });
+  }));
+}
+
+export function reserveSeatsAsPaid(seats) {
+  return Promise.all(seats.map(seat => {
+    return Promise.all([
+      findSeatBySlug(seat.slug),
+      matchService.findMatchById(seat.matchId)
+    ])
+      .then(([seat, match]) => {
+        seat.reservedUntil = moment(match.date).add(10, 'hours');
         return seat.save();
       });
   }));

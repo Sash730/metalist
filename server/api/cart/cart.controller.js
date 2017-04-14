@@ -1,6 +1,6 @@
 'use strict';
 
-import { Order } from '../order/order.model';
+import Order from '../order/order.model';
 import moment from 'moment';
 import * as seatService from '../seat/seat.service';
 import * as orderService from '../order/order.service';
