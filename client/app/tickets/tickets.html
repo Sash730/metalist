@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Билеты</h1>
+      <div ng-hide="vm.tickets.length">
+        <h3>У вас нет билетов.</h3>
+      </div>
+      <div ng-show="vm.tickets.length">
+        <table class="cart-items table table-condensed">
+          <tr ng-repeat="ticket in vm.tickets">
+            <td>
+              <p class="lead">{{ ticket.seat.sector }} сектор, {{ ticket.seat.row }} ряд, {{ ticket.seat.number }} место</p>
+            </td>
+            <td>
+              <p class="lead"><a href="/api/tickets/ticket/{{ticket.ticketNumber}}" target="_blank" >Печать</a></p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

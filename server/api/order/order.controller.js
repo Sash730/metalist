@@ -41,7 +41,7 @@ export function liqpayRedirect(req, res) {
   return orderService.getLiqPayParams(req)
     .then(params => {
       if (params.status === 'success' || params.status === 'sandbox') {
-        return res.redirect('/my/orders');
+        return res.redirect('/my/tickets');
       } else {
         return res.redirect('/checkout');
       }

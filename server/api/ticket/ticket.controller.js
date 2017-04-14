@@ -1,11 +1,10 @@
 'use strict';
 
 import Ticket from './ticket.model';
+import User from '../user/user.model';
 import moment from 'moment-timezone';
-import * as config from "../../config/environment"
 import * as barcode from 'bwip-js';
-import * as _ from 'lodash';
-import liqpay from '../../liqpay';
+import * as ticketService from '../ticket/ticket.service';
 import * as pdfGenerator from '../../pdfGenerator';
 import * as log4js from 'log4js';
 
@@ -19,6 +18,15 @@ export function getTicketPdfById(req, res) {
         return generatePdfTicket(ticket, res);
       }
     })
+    .catch(handleError(res));
+}
+
+export function findMyTickets(req, res) {
+  return User.findById(req.user.id)
+    .then(user => {
+      return ticketService.getUserTickets(user.tickets);
+    })
+    .then(respondWithResult(res))
     .catch(handleError(res));
 }
 

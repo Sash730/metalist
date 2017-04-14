@@ -12,6 +12,11 @@
         .then(response => response.data);
     }
 
+    findMyTickets() {
+      return this.$http.get('api/tickets/my')
+        .then(response => response.data);
+    }
+
     getEventsStatistics(){
       return this.$http.get('/api/tickets/events-statistics')
         .then( response => response.data );

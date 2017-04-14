@@ -26,9 +26,8 @@ const TicketSchema = new mongoose.Schema({
     headline: {type: String, requried: true},
     date: {type: Date, requried: true},
   },
-  user: {
-    email: {type: String, requried: true},
-    name: {type: String, requried: true},
+  userId: {
+    type: String
   },
   amount: {
     type: Number,
