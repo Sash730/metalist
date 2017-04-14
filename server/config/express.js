@@ -24,6 +24,7 @@ var MongoStore = connectMongo(session);
 export default function (app) {
     var env = app.get('env');
 
+
     if (env === 'development' || env === 'test') {
         app.use(express.static(path.join(config.root, '.tmp')));
     }
@@ -43,6 +44,7 @@ export default function (app) {
     app.use(bodyParser.json());
     app.use(methodOverride());
     app.use(cookieParser());
+    // app.disable('etag');
 
     // Persist sessions with MongoStore / sequelizeStore
     // We need to enable sessions for passport-twitter because it's an

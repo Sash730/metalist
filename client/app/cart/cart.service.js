@@ -15,10 +15,7 @@
     }
 
     loadCart() {
-      if (this.$cookies.get('cart')) {
-        return this.getCart();
-      }
-      return this.createCart();
+      return this.getCart();
     }
 
     getMyCart() {

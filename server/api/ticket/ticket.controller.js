@@ -275,7 +275,6 @@ function handleError(res, statusCode) {
 
 function handleEntityNotFound(res) {
   return function (entity) {
-    logger.info("handleEntityNotFound " + entity);
     if (!entity) {
       res.status(404).end();
       return null;

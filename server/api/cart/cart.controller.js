@@ -19,7 +19,8 @@ export function createCart(req, res) {
 
   return cart.save()
     .then(cart => {
-      req.session.cart = cart.publicId;
+      // req.session.cart = cart.publicId;
+      // logger.info('set cart to session: ' + req.session.cart);
       return cart;
     })
     .then(respondWithResult(res))
@@ -27,7 +28,9 @@ export function createCart(req, res) {
 }
 
 export function getCart(req, res) {
-  let publicId = req.session.cart;
+  res.setHeader('Last-Modified', (new Date()).toUTCString());
+  let publicId = req.cookies.cart;
+  logger.info('get cart form cookies: ' + req.cookies.cart);
 
   orderService.findCartByPublicId(publicId)
     .then(handleEntityNotFound(res))
@@ -37,9 +40,10 @@ export function getCart(req, res) {
 }
 
 export function addSeatToCart(req, res) {
-  let publicId = req.session.cart,
+  let publicId = req.cookies.cart,
     slug = req.body.slug,
     reserveDate = moment().add(30, 'minutes');
+  logger.info('add seat to cart: ' + req.cookies.cart);
 
   Promise.all([
     orderService.findCartByPublicId(publicId),
@@ -60,9 +64,8 @@ export function addSeatToCart(req, res) {
           cart.seats.push(seat.id);
           return cart.save();
         })
-        .then((cart) => {
-          return Order.findOne({publicId: cart.publicId})
-            .populate({path: 'seats'})
+        .then(cart => {
+          return orderService.findCartByPublicId(cart.publicId);
         })
         .then(respondWithResult(res))
     })
@@ -70,7 +73,7 @@ export function addSeatToCart(req, res) {
 }
 
 export function deleteSeatFromCart(req, res) {
-  let publicId = req.session.cart,
+  let publicId = req.cookies.cart,
       slug = req.params.slug;
 
   return orderService.findCartByPublicId(publicId)

@@ -22,7 +22,7 @@ export function getPaymentStatus(req, res) {
 }
 
 export function checkout(req, res) {
-  let publicId= req.session.cart;
+  let publicId = req.cookies.cart;
 
   return orderService.findCartByPublicId(publicId)
     .then(handleEntityNotFound(res))
@@ -42,7 +42,7 @@ export function checkout(req, res) {
     })
     .then(respondWithResult(res))
     .catch(handleError(res))
-  ;
+    ;
 }
 
 export function liqpayRedirect(req, res) {
@@ -53,7 +53,7 @@ export function liqpayRedirect(req, res) {
   return orderService.getLiqPayParams(req)
     .then(params => {
       if (params.status === 'success' || params.status === 'sandbox') {
-        req.session.cart = '';
+        req.cookies.cart = '';
         return res.redirect('/my/tickets');
       } else {
         return res.redirect('/checkout');

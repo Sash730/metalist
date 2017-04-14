@@ -7,7 +7,7 @@
       </div>
       <div ng-show="vm.tickets.length">
         <table class="cart-items table table-condensed">
-          <tr ng-repeat="ticket in vm.tickets">
+          <tr ng-repeat="ticket in vm.tickets | orderBy:'-reserveDate'">
             <td>
               <p class="lead">{{ ticket.match.headline }} : {{ ticket.seat.sector }} сектор, {{ ticket.seat.row }} ряд, {{ ticket.seat.seat }} место</p>
             </td>

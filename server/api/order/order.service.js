@@ -125,7 +125,8 @@ function handleSuccessPayment(order) {
       ]);
     })
     .then(() => {
-      return Mailer.sendMailByOrder(order);
+      Mailer.sendMailByOrder(order);
+      return true;
     })
     .catch(error => {
       logger.error('handleSuccessPayment error: ' + error);
