@@ -26,12 +26,15 @@ export function getMyTickets(req, res) {
     .then(user => {
       return ticketService.getUserTickets(user.tickets);
     })
+    .then(tickets => {
+      return tickets.filter(ticket => ticket);
+    })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 export function getEventsStatistics(req, res) {
-  let period = moment().subtract(1, 'day');
+  let period = moment().subtract(1, 'days');
 
   Ticket.find({'match.date': {$gte: period}})
     .where({
@@ -57,7 +60,8 @@ export function getEventsStatistics(req, res) {
 }
 
 export function getDaysStatistics(req, res) {
-  let period = moment().subtract(30, 'day');
+  let period = moment().subtract(30, 'days');
+  console.log('-----------------',period);
 
   Ticket.find({reserveDate: {$gte: new Date(period)}})
     .where({
@@ -66,8 +70,8 @@ export function getDaysStatistics(req, res) {
         {status: 'used'}
       ]
     })
-    .sort({reserveDate: -1})
     .then(statistics => {
+      console.log('--------ddd-', statistics);
       return statistics.map(stat => {
         return {
           date: moment(stat.reserveDate).tz('Europe/Kiev').format('DD-MM-YYYY'),

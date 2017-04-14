@@ -28,6 +28,7 @@ export function createTicket(seat) {
         amount: price,
         status: 'paid',
         ticketNumber: crypto.randomBytes(20).toString('hex'),
+        reserveDate: new Date()
       });
 
       return ticket.save();

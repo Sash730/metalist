@@ -1,5 +1,6 @@
 'use strict';
 
+import Promise from 'bluebird';
 import {Stadium} from '../stadium';
 import Seat from '../api/seat/seat.model';
 import * as seatService from '../api/seat/seat.service';
@@ -11,7 +12,7 @@ const logger = log4js.getLogger('Migration');
 export function addStadiumSeats(req, res) {
   let matchId = req.body.matchId;
 
-  return deletePrevMatchStadiumSeats()
+  return Seat.remove({})
     .then(() => {
       return matchService.findMatchById(matchId)
     })
@@ -45,16 +46,23 @@ function handleError(res, statusCode) {
 
 function createStadiumSeatsForMatch(matchId) {
   let promises = [];
+  let parameters = [];
   for (let tribune in Stadium) {
     for (let sector in Stadium[tribune]) {
       if (Stadium[tribune][sector].rows) {
         Stadium[tribune][sector].rows.forEach(row => {
-          promises.push(createRowSeats(Stadium[tribune].name, Stadium[tribune][sector].name, row, matchId));
+          // promises.push(createRowSeats(Stadium[tribune].name, Stadium[tribune][sector].name, row, matchId));
+          parameters.push({tribune: Stadium[tribune].name, sector: Stadium[tribune][sector].name, row: row, matchId: matchId});
         })
       }
     }
   }
-  return Promise.all(promises);
+  return Promise.map(parameters, function({tribune, sector, row, matchId}) {
+    return createRowSeats(tribune, sector, row, matchId);
+  }, {concurrency: 1}).then(function() {
+    console.log("done");
+    return true;
+  });
 }
 
 function getRowSeats(seats) {
@@ -66,16 +74,17 @@ function getRowSeats(seats) {
 function createRowSeats(tribuneName, sectorName, row, matchId) {
   return getRowSeats(row.seats)
     .then(seats => {
+      // }
+      console.log('seat row saving', sectorName, row);
       return Promise.all(seats.map(stadiumSeat => {
-        let slug = 's' + sectorName + 'r' + row.name + 'st' + stadiumSeat;
 
-        return seatService.findSeatBySlug(slug)
-          .then(seat => {
-            if (!seat) {
+        let slug = 's' + sectorName + 'r' + row.name + 'st' + stadiumSeat;
+        // return seatService.findSeatBySlug(slug)
+        //   .then(seat => {
+        //     if (!seat) {
               return createSeat(tribuneName, sectorName, row.name, stadiumSeat, slug, matchId);
-            }
-            return Promise.resolve(seat);
-          });
+            // return Promise.resolve(seat);
+          // });
       }));
     });
 }

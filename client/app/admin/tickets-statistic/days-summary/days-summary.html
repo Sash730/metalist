@@ -14,10 +14,10 @@
         </td>
         <td ng-bind="stat.count">
         </td>
-        <td ng-bind="stat.sum | simpleMoney"></td>
+        <td ng-bind="stat.sum"></td>
        <td>
          <ul>
-           <li ng-repeat="detail in stat.details | orderBy:'price'">{{detail.price | simpleMoney}} - {{detail.count}} шт.</li>
+           <li ng-repeat="detail in stat.details | orderBy:'price'">{{detail.price}} - {{detail.count}} шт.</li>
          </ul>
       </td>
     </tr>
