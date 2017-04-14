@@ -2,6 +2,7 @@
 
 import Order from '../order/order.model';
 import moment from 'moment';
+import { RESERVE } from '../seat/seat.constants';
 import * as seatService from '../seat/seat.service';
 import * as orderService from '../order/order.service';
 import * as log4js from 'log4js';
@@ -80,7 +81,7 @@ export function deleteSeatFromCart(req, res) {
     .then(cart => {
       seatService.findSeatByCart(cart.publicId, slug)
         .then(seat => {
-          if (seat) {
+          if (seat && seat.reservationType === RESERVE) {
             seatService.clearReservation(seat);
           }
         });

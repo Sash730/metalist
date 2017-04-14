@@ -1,7 +1,9 @@
 'use strict';
 
+import {SEASON_TICKET, BLOCK, RESERVE, PAID} from '../seat/seat.constants';
 import Order from './order.model';
 import User from '../user/user.model';
+import moment from 'moment';
 import * as crypto from 'crypto';
 import * as priceSchemeService from '../priceSchema/priceSchema.service';
 import * as seatService from '../seat/seat.service';
@@ -16,11 +18,14 @@ const logger = log4js.getLogger('Order');
 
 export function findCartByPublicId(publicId) {
   return Order.findOne({publicId: publicId})
-    .populate('seats');
+    .populate({
+      path: 'seats',
+      match: { reservationType: { $nin: [ SEASON_TICKET, BLOCK, PAID ]}},
+    });
 }
 
 export function getPendingPaymentByUser(user) {
-  return Order.findOne({"user.id": user.id, status: "pending"})
+  return Order.findOne({"user.id": user.id, status: "pending", created: {$gte: moment().subtract(10, 'minutes')}})
 }
 
 export function createOrderFromCart(cart, user) {
@@ -112,12 +117,12 @@ function handleSuccessPayment(order) {
     seatService.reserveSeatsAsPaid(order.seats)
   ])
     .then(([user, tickets]) => {
-      user.tickets = tickets;
-      return user.save()
-    })
-    .then(user => {
-      order.tickets = user.tickets;
-      return order.save();
+      user.tickets.push(...tickets);
+      order.tickets = tickets;
+      return Promise.all([
+        user.save(),
+        order.save()
+      ]);
     })
     .then(() => {
       return Mailer.sendMailByOrder(order);

@@ -5,14 +5,12 @@ import * as seatService from '../seat/seat.service';
 import * as config from "../../config/environment";
 import * as log4js from 'log4js';
 
-const logger = log4js.getLogger('Order'),
-  moment = require('moment');
+const logger = log4js.getLogger('Order');
 
 
 export function getPaymentStatus(req, res) {
   return orderService.getPendingPaymentByUser(req.user)
     .then(order => {
-      console.log(order);
       if (order) {
         return {status: true};
       } else {
@@ -55,6 +53,7 @@ export function liqpayRedirect(req, res) {
   return orderService.getLiqPayParams(req)
     .then(params => {
       if (params.status === 'success' || params.status === 'sandbox') {
+        req.session.cart = '';
         return res.redirect('/my/tickets');
       } else {
         return res.redirect('/checkout');

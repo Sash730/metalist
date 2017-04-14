@@ -30,9 +30,11 @@
     }
 
     getMyCartPrice() {
-      return this.cart.seats.reduce((price, seat) => {
-        return price + seat.price;
-      }, 0);
+      if (this.data.cart.seats) {
+        return this.data.cart.seats.reduce((price, seat) => {
+          return price + seat.price;
+        }, 0);
+      }
     }
 
     createCart() {

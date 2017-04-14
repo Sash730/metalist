@@ -1,6 +1,6 @@
 'use strict';
 
-import {SEASON_TICKET, BLOCK, RESERVE} from '../seat/seat.constants';
+import {SEASON_TICKET, BLOCK, RESERVE, PAID} from '../seat/seat.constants';
 import Seat from '../seat/seat.model';
 import * as matchService from '../match/match.service';
 import * as priceSchemaService from '../priceSchema/priceSchema.service';
@@ -58,7 +58,8 @@ export function reserveSeatsAsPaid(seats) {
       matchService.findMatchById(seat.matchId)
     ])
       .then(([seat, match]) => {
-        seat.reservedUntil = moment(match.date).add(10, 'hours');
+        seat.reservedUntil = moment(match.date).add(1, 'days');
+        seat.reservationType = PAID;
         return seat.save();
       });
   }));
@@ -75,11 +76,6 @@ export function clearReservation(seat) {
   seat.reservedUntil = moment().subtract(10, 'minutes');
 
   return seat.save();
-}
-
-export function clearReservationBySlug(slug) {
-  return findSeatBySlug(slug)
-    .then(clearReservation)
 }
 
 export function findSeatByCart(publicId, slug) {
