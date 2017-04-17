@@ -6,7 +6,7 @@
     <div class="matches">
       <ul class="matchList">
 
-        <li ng-repeat="match in vm.matches | orderBy:'date':reverse:true " class="panel" ng-if="match.date" ui-sref="match({id: match.id})" title="Металлист 1925 - {{match.rival}}">
+        <li ng-repeat="match in vm.matches | orderBy:'date':reverse:true " class="panel" ng-if="match.date" ui-sref="main.match({id: match.id})" title="Металлист 1925 - {{match.rival}}">
           <a class="link"><div class="bgTicket">
             <div class="buyTicket"><p>Купить билет</p></div>
             <div>

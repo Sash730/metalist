@@ -155,7 +155,7 @@ export function getCountValidTicketsByTribune(req, res, next) {
 
 
 
-let generatePdfTicket = (ticket, res) => {
+function generatePdfTicket(ticket, res) {
   return new Promise((resolve, reject) => {
     pdfGenerator.generateTicket(ticket, res, function (err, res) {
       if (err) {
@@ -164,26 +164,9 @@ let generatePdfTicket = (ticket, res) => {
       return resolve(res);
     });
   });
-};
+}
 
-let getSecureReservedTickets = (matchId, sectorNumber) => {
-  return Ticket.find({'match.id': matchId, 'seat.sector': sectorNumber})
-    .where({
-      $or: [
-        {status: 'paid'},
-        {$and: [{reserveDate: {$gt: moment()}}, {cartId: {$ne: null}}]}
-      ]
-    }).exec()
-    .then(tickets => {
-      return tickets.map(ticket => {
-        return {
-          'seatId': ticket.seat.id
-        };
-      });
-    })
-};
-
-let getFormattedTicket = (ticket) => {
+function getFormattedTicket(ticket) {
   return {
     'tribune': ticket.seat.tribune,
     'sector': ticket.seat.sector,
@@ -191,9 +174,9 @@ let getFormattedTicket = (ticket) => {
     'seat': ticket.seat.seat,
     'headLine': ticket.match.headline
   };
-};
+}
 
-let getTicketByCode = (code) => {
+function getTicketByCode(code) {
   let dateNow = new Date();
 
   return Ticket.findOne({accessCode: code, status: 'paid'});
@@ -203,9 +186,9 @@ let getTicketByCode = (code) => {
   //     {'valid.to': {$gt: dateNow}}
   //   ]
   // });
-};
+}
 
-let getCountTicketsByTribune = (tribune) => {
+function getCountTicketsByTribune(tribune) {
   let dateNow = new Date();
 
   return Ticket.find({status: 'paid'})
@@ -219,7 +202,7 @@ let getCountTicketsByTribune = (tribune) => {
       }
       return tickets.filter(ticket => ( ticket.seat.tribune === tribune && !sectorsInVip.includes(ticket.seat.sector) )).length;
     });
-};
+}
 
 export function print(req, res, next) {
   return Ticket.findOne({code: req.params.code, available: false}).exec()

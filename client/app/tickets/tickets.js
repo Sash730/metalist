@@ -2,7 +2,7 @@
 
 angular.module('metalistTicketsApp')
   .config(function ($stateProvider) {
-    $stateProvider.state('tickets', {
+    $stateProvider.state('main.tickets', {
       url: '/my/tickets',
       templateUrl: 'app/tickets/tickets.html',
       controller: 'TicketsController',

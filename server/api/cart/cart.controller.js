@@ -82,13 +82,13 @@ export function deleteSeatFromCart(req, res) {
       return deleteReserveSeatFromCart(cart, slug);
     })
     .then(cart => {
-      seatService.findSeatByCart(cart.publicId, slug)
+      return seatService.findSeatByCart(cart.publicId, slug)
         .then(seat => {
           if (seat && seat.reservationType === RESERVE) {
             seatService.clearReservation(seat);
           }
+          return cart;
         });
-      return cart;
     })
     .then(respondWithResult(res))
     .catch(handleError(res))

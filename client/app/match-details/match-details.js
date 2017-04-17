@@ -3,7 +3,7 @@
 (function () {
 
   angular.module('metalistTicketsApp')
-    .component('matchDetails', {
+    .component('main.matchDetails', {
       templateUrl: 'app/match-details/match-details.html',
       controller: 'MatchDetailsController',
       bindings: {
