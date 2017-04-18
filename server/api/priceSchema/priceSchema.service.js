@@ -8,7 +8,7 @@ export function findPriceSchemaById(priceSchemaId) {
 }
 
 export function getSeatPrice(seat) {
-  return matchService.findMatchById(seat.matchId)
+  return matchService.findById(seat.matchId)
     .then(match => findPriceSchemaById(match.priceSchema) )
     .then(priceSchema => getPrice(priceSchema, seat) );
 }

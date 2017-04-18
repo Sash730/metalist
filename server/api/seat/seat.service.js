@@ -55,7 +55,7 @@ export function reserveSeatsAsPaid(seats) {
   return Promise.all(seats.map(seat => {
     return Promise.all([
       findSeatBySlug(seat.slug),
-      matchService.findMatchById(seat.matchId)
+      matchService.findById(seat.matchId)
     ])
       .then(([seat, match]) => {
         seat.reservedUntil = moment(match.date).add(1, 'days');
