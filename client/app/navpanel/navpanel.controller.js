@@ -12,8 +12,8 @@
     }
 
     goTo(route) {
-      if (this.stateParams.id && route == 'match') {
-        this.$state.go('match', {id: this.stateParams.id});
+      if (this.stateParams.id && route == 'main.match') {
+        this.$state.go('main.match', {id: this.stateParams.id});
       }
     }
 
@@ -31,7 +31,7 @@
     }
 
     isCheckoutPage() {
-      return this.currentState == 'checkout';
+      return this.currentState == 'main.checkout';
     }
 
 

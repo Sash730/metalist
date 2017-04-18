@@ -14,7 +14,7 @@
 
     goToSector($event) {
       if ($event.price) {
-        this.$state.go('sector', {id: this.match.id, tribune: $event.tribune, sector: $event.sector});
+        this.$state.go('main.sector', {id: this.match.id, tribune: $event.tribune, sector: $event.sector});
       }
     }
 

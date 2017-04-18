@@ -21,6 +21,7 @@
 
       this.getPrice();
       this.getReservedSeats();
+      this.getSelectedSeats();
     }
 
     getPrice() {
@@ -33,7 +34,7 @@
         sectorName = this.sector.name;
 
       return this.ticketsService.fetchReservedSeats(matchId, sectorName)
-        .then(seats => this.reservedSeats = seats);
+        .then( seats => this.reservedSeats = seats );
     }
 
     getSelectedSeats() {

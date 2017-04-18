@@ -22,9 +22,9 @@
           this.isLoading = status;
           if (!status) {
             this.stopHandling();
-            this.getTickets()
+            this.getTickets();
           }
-        })
+        });
     }
 
     stopHandling() {
@@ -35,7 +35,7 @@
       this.ticketsService.getMyTickets()
         .then(tickets => {
           this.tickets = tickets;
-        })
+        });
     }
 
   }
