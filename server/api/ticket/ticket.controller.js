@@ -12,9 +12,10 @@ const logger = log4js.getLogger('Ticket');
 const sectorsInVip = ['VIP_B', 'VIP_BR', 'VIP_BL', 'VIP_AR', 'VIP_AL', 'SB_1', 'SB_7'];
 
 export function getTicketPdfById(req, res) {
-  return Ticket.findOne({ticketNumber: req.params.ticketNumber}).exec()
-    .then((ticket) => {
-      if (ticket) {
+  return ticketService.getByTicketNumber(req.params.ticketNumber)
+    .then(handleEntityNotFound(res))
+    .then(ticket => {
+      if(ticket) {
         return generatePdfTicket(ticket, res);
       }
     })
