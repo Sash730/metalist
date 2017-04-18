@@ -41,6 +41,10 @@ export function getUserTickets(tickets) {
   }));
 }
 
+export function getByTicketNumber(ticketNumber) {
+  return Ticket.findOne({ticketNumber: ticketNumber});
+}
+
 function getTicketById(ticketId) {
   return Ticket.findById(ticketId);
 }
