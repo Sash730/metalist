@@ -45,7 +45,7 @@
     }
 
     getCart() {
-      return this.$http.get('/api/carts/mycart')
+      return this.$http.get('/api/carts/my-cart')
         .then(response => {
           this.data.cart = response.data;
           return this.data.cart;

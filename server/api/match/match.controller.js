@@ -1,9 +1,56 @@
 'use strict';
 
-import Match from './match.model';
+import * as matchService from './match.service';
 import * as log4js from 'log4js';
 
 let logger = log4js.getLogger('Match');
+
+export function getMatches(req, res) {
+  return matchService.getMatches()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+export function getMatchById(req, res) {
+  return matchService.findById(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+export function createMatch(req, res) {
+  let newMatch = req.body;
+
+  return matchService.createMatch(newMatch)
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+}
+
+
+export function deleteMatch(req, res) {
+  return matchService.removeById(req.params.id)
+    .then(function () {
+      res.status(204).end();
+    })
+    .catch(handleError(res));
+}
+
+export function updateMatch(req, res) {
+  let modifiedMatch = req.body;
+
+  return matchService.findById(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(match => {
+      if (match) {
+        return matchService.updateMatch(match, modifiedMatch);
+      }
+    })
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+  ;
+}
+
+//private functions
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -31,70 +78,4 @@ function handleError(res, statusCode) {
     logger.error('handleError ' + err);
     res.status(statusCode).send(err);
   };
-}
-
-export function index(req, res) {
-  return Match.find({
-    $or: [
-      {date: {$gt: Date.now()}},
-      {date: null}
-    ]
-  }).populate("priceSchema").sort({round: 1}).exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-export function view(req, res) {
-  return Match.findById(req.params.id).populate("priceSchema").exec()
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-export function createMatch(req, res) {
-  let newMatch = new Match({
-    rival: req.body.rival,
-    info: req.body.info,
-    poster: req.body.poster,
-    date: req.body.date,
-    priceSchema: req.body.priceSchema.id
-  });
-  return newMatch.save()
-    .then(respondWithResult(res))
-    .catch(handleError(res))
-}
-
-
-export function deleteMatch(req, res) {
-  return Match.findByIdAndRemove(req.params.id).exec()
-    .then(function () {
-      res.status(204).end();
-    })
-    .catch(handleError(res));
-}
-
-export function updateMatch(req, res) {
-  let matchId = req.body._id;
-
-  Match.findOne({_id: matchId})
-    .then(currentMatch => {
-      if (!currentMatch) {
-        throw new Error('not found');
-      }
-
-      return currentMatch;
-    })
-    .then((match) => {
-      match.round = req.body.round;
-      match.rival = req.body.rival;
-      match.date = req.body.date;
-      match.poster = req.body.poster;
-      match.info = req.body.info;
-      match.priceSchema = req.body.priceSchema.id;
-
-      return match.save()
-    })
-    .then(respondWithResult(res))
-    .catch(handleError(res))
-  ;
 }

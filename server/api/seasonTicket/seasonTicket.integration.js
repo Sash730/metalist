@@ -12,12 +12,14 @@ describe('Season ticket API:', function () {
   // Clear users before testing
   before(function () {
     return createUser()
-      .then(createSeat)
+      .then(createSeat);
   });
 
-  // Clear seats after testing
+  //Clear seats after testing
   after(function () {
-    return User.remove({});
+    User.remove({});
+    Seat.remove({});
+    return true;
   });
 
   describe('GET /api/seasonTicket/', function () {
@@ -41,10 +43,6 @@ describe('Season ticket API:', function () {
           token = res.body.token;
           done();
         });
-    });
-
-    after(function () {
-      return Seat.remove({});
     });
 
     it('POST should respond with a create seat', function (done) {
@@ -205,7 +203,7 @@ describe('Season ticket API:', function () {
  });
 
 function createUser() {
-  return User.remove().then(function () {
+  return User.remove({}).then(function () {
     let user = new User({
       name: 'Fake Admin',
       email: 'admin@example.com',
@@ -219,15 +217,16 @@ function createUser() {
 }
 
 function createSeat() {
-  return Seat.remove().then(function () {
+  return Seat.remove({}).then(function () {
     let seat = new Seat({
       slug: 's9r19st8',
       sector: '9',
       row: '19',
       seat: 8,
-      reservedUntil: new Date()
+      reservedUntil: new Date(),
+      reservedByCart: '',
+      matchId: '1213kjsbv'
     });
-
     return seat.save();
   });
 }
