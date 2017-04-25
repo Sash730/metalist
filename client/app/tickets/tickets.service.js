@@ -31,11 +31,6 @@
       return this.$http.get('/api/tickets/days-statistics')
         .then(response => response.data);
     }
-
-    addStadiumSeats(matchId) {
-      return this.$http.post('/migrations', {matchId: matchId})
-        .then(response => response.data);
-    }
   }
   angular.module('metalistTicketsApp')
     .service('TicketsService', TicketsService);

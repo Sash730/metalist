@@ -25,17 +25,6 @@
         <price-schema></price-schema>
       </div>
     </uib-tab>
-    <uib-tab index="5" heading="Migration">
-      <div ng-if="active === 5">
-        <form class="form-inline">
-          <div class="form-group">
-            <input type="text" class="form-control"   style="margin-top: 10px;" ng-model="admin.matchId" placeholder="Введите ID матча">
-          </div>
-          <button class="btn btn-default" style="margin-top: 10px;" ng-click="admin.addStadiumSeats()">Add stadium seats</button>
-        </form>
-        <p ng-show="admin.message">{{ admin.message }}</p>
-      </div>
-    </uib-tab>
   </uib-tabset>
 
 </div>

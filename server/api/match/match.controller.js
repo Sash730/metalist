@@ -1,6 +1,7 @@
 'use strict';
 
 import * as matchService from './match.service';
+import * as seatService from '../seat/seat.service';
 import * as log4js from 'log4js';
 
 let logger = log4js.getLogger('Match');
@@ -19,9 +20,19 @@ export function getMatchById(req, res) {
 }
 
 export function createMatch(req, res) {
-  let newMatch = req.body;
+  let newMatch = req.body,
+      matchDate = newMatch.date;
 
   return matchService.createMatch(newMatch)
+    .then(match => {
+      seatService.createSeatsForMatch(match.id)
+        .then(() => {
+          match.date = matchDate;
+
+          return match.save();
+        });
+      return match;
+    })
     .then(respondWithResult(res))
     .catch(handleError(res))
 }
