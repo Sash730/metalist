@@ -4,6 +4,11 @@ import Ticket from './ticket.model';
 import * as priceSchemaService from '../priceSchema/priceSchema.service';
 import * as matchService from '../match/match.service';
 import * as crypto from 'crypto';
+import Request from "request";
+
+let couchbase = require('couchbase');
+let cluster = new couchbase.Cluster('couchbase://127.0.0.1');
+let bucket = cluster.openBucket('metal');
 
 export function createTicket(seat) {
   return Promise.all([
@@ -32,7 +37,8 @@ export function createTicket(seat) {
       });
 
       return ticket.save();
-    });
+    })
+    .then(createTicketInCoachDb);
 }
 
 export function getUserTickets(tickets) {
@@ -54,4 +60,39 @@ function randomNumericString(length) {
   let result = '';
   for (let i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
   return result;
+}
+
+function createTicketInCoachDb(ticket){
+  let shortTicket = {
+    'code': ticket.accessCode,
+    'status': ticket.status,
+    'tribune': ticket.seat.tribune,
+    'sector': ticket.seat.sector,
+    'row': ticket.seat.row,
+    'seat': ticket.seat.seat,
+    'headline': ticket.match.headline
+  };
+
+  return makePostRequest("http://localhost:4984/" + bucket._name + "/", {type: 'ticket', ticket: shortTicket})
+      .then(result => {
+        console.log(result);
+        return ticket;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+}
+
+function makePostRequest(url, body) {
+  return new Promise((resolve, reject) => {
+    Request.post(url, {json: body},
+      function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          resolve(body);
+        } else {
+          reject(error);
+        }
+      }
+    );
+  });
 }

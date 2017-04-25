@@ -8,6 +8,10 @@ import * as ticketService from '../ticket/ticket.service';
 import * as pdfGenerator from '../../pdfGenerator';
 import * as log4js from 'log4js';
 
+let couchbase = require('couchbase');
+let cluster = new couchbase.Cluster('couchbase://127.0.0.1');
+let bucket = cluster.openBucket('tickets1925');
+
 const logger = log4js.getLogger('Ticket');
 const sectorsInVip = ['VIP_B', 'VIP_BR', 'VIP_BL', 'VIP_AR', 'VIP_AL', 'SB_1', 'SB_7'];
 
@@ -130,6 +134,7 @@ export function getTicketsForCheckMobile(req, res) {
     .then(tickets => {
       let result = tickets.map(ticket => {
         return {
+          'code': ticket.accessCode,
           'status': ticket.status,
           'tribune': ticket.seat.tribune,
           'sector': ticket.seat.sector,
@@ -139,7 +144,32 @@ export function getTicketsForCheckMobile(req, res) {
         };
       });
 
-      return res.status(200).json(result);
+      return result;
+    })
+    .then(tickets => {
+      // tickets.map(ticket => {
+      //   //console.log('bucket', ticket);
+      //   //let id = '' + ticket.code;
+      //   makePostRequest("http://localhost:4984/" + bucket._name + "/", {type: "ticket", ticket})
+      //     .then(result => {
+      //       console.log(result);
+      //   })
+      //     .catch(error => {
+      //       console.log(error);
+      //     });
+      //   // bucket.upsert(id, ticket, function(err, result) {
+      //   //   if (err) throw err;
+      //   //   //
+      //   //   // bucket.get('ticket', function(err, result) {
+      //   //   //   if (err) throw err;
+      //   //   //
+      //   //   //   console.log('bucket2', result.value);
+      //   //   //   // {name: Frank}
+      //   //   // });
+      //   // });
+      // });
+
+      return res.status(200).json(tickets);
     })
     .catch(handleError(res));
 }
