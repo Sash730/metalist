@@ -18,11 +18,11 @@ export function getMatches() {
 }
 
 export function createMatch(newMatch) {
+
   let match = new Match({
     rival: newMatch.rival,
     info: newMatch.info,
     poster: newMatch.poster,
-    date: newMatch.date,
     priceSchema: newMatch.priceSchema.id
   });
   return match.save();
@@ -39,6 +39,12 @@ export function updateMatch(match, modifiedMatch) {
   match.poster = modifiedMatch.poster;
   match.info = modifiedMatch.info;
   match.priceSchema = modifiedMatch.priceSchema.id;
+
+  return match.save();
+}
+
+export function addDateToMatch(match, matchDate) {
+  match.date = matchDate;
 
   return match.save();
 }
