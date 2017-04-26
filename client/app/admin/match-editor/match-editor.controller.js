@@ -12,6 +12,7 @@
       this.priceSchemas = [];
       this.matchToEdit = {};
       this.matchId = '';
+      this.message = '';
     }
 
     $onInit() {
@@ -32,7 +33,11 @@
       if (event.match.id) {
         this.saveMatch(event.match);
       } else {
-        this.addMatch(event.match);
+        if ( this.isMatchesEmpty() ) {
+          this.addMatch(event.match);
+          this.message = 'Процесс создания сидений для матча запущен. Это может занять 5-10 минут. ' +
+            'При успешном создании появится дата матча на домашней странице.';
+        }
       }
       this.edit({});
     }
@@ -43,6 +48,7 @@
     }
 
     loadMatches() {
+      this.matchId = '';
       return this.matchEditorService.loadMatches()
         .then( mathces => this.matches = mathces );
     }
@@ -60,6 +66,10 @@
     saveMatch(match) {
       this.matchEditorService.editMatch(match)
         .then(() => this.loadMatches());
+    }
+
+    isMatchesEmpty() {
+      return !this.matches.length
     }
 
   }
