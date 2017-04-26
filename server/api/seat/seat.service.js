@@ -157,7 +157,7 @@ function createRowSeats(tribuneName, sectorName, row, matchId) {
       return Promise.map(parameters, function({tribune, sector, row, seat, matchId}) {
         return createSeat(tribune, sector, row, seat, matchId);
       }, {concurrency: 1}).then(function() {
-        console.log("-----------------------/// add row seats have done: ", row.name);
+        console.log("-----------------------/// add row seats have done: sector - " + sectorName + ' ,row - ' + row.name);
         return "done";
       });
      });
@@ -166,8 +166,8 @@ function createRowSeats(tribuneName, sectorName, row, matchId) {
 function createSeat(tribuneName, sectorName, row, seat, matchId) {
   let slug = 's' + sectorName + 'r' + row.name + 'st' + seat;
   return findSeatBySlug(slug)
-    .then(seat => {
-      if(!seat) {
+    .then(stadiumSeat => {
+      if(!stadiumSeat) {
         let newSeat = new Seat({
           slug: slug,
           matchId: matchId,
@@ -180,7 +180,7 @@ function createSeat(tribuneName, sectorName, row, seat, matchId) {
         });
         return newSeat.save();
       }
-      return Promise.resolve(seat);
+      return Promise.resolve(stadiumSeat);
     });
 }
 
