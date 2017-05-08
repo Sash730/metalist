@@ -131,6 +131,7 @@ export function getTicketsForCheckMobile(req, res) {
       let result = tickets.map(ticket => {
         return {
           'status': ticket.status,
+          'code': ticket.accessCode,
           'tribune': ticket.seat.tribune,
           'sector': ticket.seat.sector,
           'row': ticket.seat.row,
