@@ -5,6 +5,7 @@ import User from '../user/user.model';
 import moment from 'moment-timezone';
 import * as barcode from 'bwip-js';
 import * as ticketService from '../ticket/ticket.service';
+import * as matchService from '../match/match.service';
 import * as pdfGenerator from '../../pdfGenerator';
 import * as log4js from 'log4js';
 
@@ -123,10 +124,14 @@ export function use(req, res, next) {
 }
 
 export function getTicketsForCheckMobile(req, res) {
-  let dateNow = new Date();
 
-  return Ticket.find({status: 'paid'})
-    .exec()
+  return Promise.all([
+    matchService.getNextMatch(),
+    Ticket.find({status: 'paid'})
+    ])
+    .then(([match, tickets]) => {
+      return tickets.filter(ticket => ticket.match.id === match.id);
+    })
     .then(tickets => {
       let result = tickets.map(ticket => {
         return {
