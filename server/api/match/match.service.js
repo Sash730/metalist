@@ -14,7 +14,13 @@ export function getMatches() {
           ]
     })
     .populate("priceSchema")
-    .sort({round: 1});
+    .sort({date: 1});
+}
+
+export function getNextMatch() {
+  return Match.find({ date: { $gt: Date.now() }})
+    .sort({date: 1})
+    .then( matches => matches[0] );
 }
 
 export function createMatch(newMatch) {
