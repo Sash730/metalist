@@ -51,7 +51,7 @@ export function getEventsStatistics(req, res) {
         return {
           headline: ticket.match.headline,
           sector: ticket.seat.sector,
-          date: ticket.match.date,
+          date: moment(ticket.match.date).tz('Europe/Kiev').format('YYYY-MM-DD HH:mm'),
           amount: ticket.amount
         }
       })
@@ -76,7 +76,7 @@ export function getDaysStatistics(req, res) {
       console.log('--------ddd-', statistics);
       return statistics.map(stat => {
         return {
-          date: moment(stat.reserveDate).tz('Europe/Kiev').format('DD-MM-YYYY'),
+          date: moment(stat.reserveDate).tz('Europe/Kiev').format('YYYY-MM-DD'),
           amount: stat.amount
         }
       });

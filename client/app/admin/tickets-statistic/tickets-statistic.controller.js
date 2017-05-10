@@ -35,9 +35,9 @@
             itemSectors  = this.getItemSectorsByDate(date, statistic);
 
         return  {
-          date: date,
+          date: new Date(date),
           headline: this.getHeadLineByDate(date, statistic),
-          count: this.getItemPricesByDate(date, statistic).length,
+          count: itemsPrices.length,
           sum: this.getSumOfArray(itemsPrices),
           details: this.getDetailsSectorsByEvent(itemSectors)
         };
@@ -51,9 +51,9 @@
         let itemPrices = this.getItemPricesByDate(date, statistic);
 
         return  {
-          date: date,
+          date: new Date(date),
           sum: this.getSumOfArray(itemPrices),
-          count: this.getItemPricesByDate(date, statistic).length,
+          count: itemPrices.length,
           details: this.getDetailsPricesByDate(itemPrices)
         };
       });
@@ -65,10 +65,11 @@
 
     getUniqueDates(statistic) {
       let dates = statistic.map(item => item.date),
-        uniqueDates = [ ...new Set(dates) ];
+          uniqueDates = [ ...new Set(dates) ];
 
       return uniqueDates;
     }
+
 
     getUniqueItems(items) {
       return [ ...new Set(items) ];
