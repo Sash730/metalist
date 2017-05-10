@@ -4,14 +4,16 @@
 
   class CheckoutController {
 
-    constructor($window, CartService, $scope, $interval, Auth) {
+    constructor($window, CartService, $scope, $interval, Auth, MatchService) {
       this.$window = $window;
       this.$interval = $interval;
       this.$scope = $scope;
       this.cartService = CartService;
       this.Auth = Auth;
+      this.MatchService = MatchService;
       this.isLoggedIn = Auth.isLoggedIn;
 
+      this.match = {};
       this.stopTime = '';
       this.confirm = false;
       this.message = '';
@@ -27,6 +29,7 @@
       this.cart = this.cartService.getMyCart();
 
       if (this.cart.seats.length) {
+        this.getMatch(this.cart.seats[0].matchId);
         this.getReserveDate();
         this.timerOn();
       }
@@ -57,8 +60,14 @@
       this.$interval.cancel(this.stopTime);
     }
 
+    getMatch(matchId){
+      this.MatchService.fetchMatch(matchId)
+        .then( match => this.match = match );
+    }
+
     updateCart() {
       this.reserveDate = '';
+      this.match = {};
       this.stopHandling();
       this.checkReservedSeatForTimerOn();
     }

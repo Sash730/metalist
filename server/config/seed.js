@@ -8,7 +8,7 @@ import User from '../api/user/user.model';
 import Ticket from '../api/ticket/ticket.model';
 import Match from '../api/match/match.model';
 import PriceSchema from '../api/priceSchema/priceSchema.model';
-import {Order} from '../api/order/order.model';
+import Order from '../api/order/order.model';
 
 PriceSchema.find({}).remove()
   // .then(() => {

@@ -1,6 +1,6 @@
 'use strict';
 
-import {SEASON_TICKET, BLOCK, RESERVE, PAID} from '../seat/seat.constants';
+import {SEASON_TICKET, BLOCK, PAID} from '../seat/seat.constants';
 import Order from './order.model';
 import User from '../user/user.model';
 import moment from 'moment';
