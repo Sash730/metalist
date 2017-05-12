@@ -125,13 +125,7 @@ export function use(req, res, next) {
 
 export function getTicketsForCheckMobile(req, res) {
 
-  return Promise.all([
-    matchService.getNextMatch(),
-    Ticket.find({status: 'paid'})
-    ])
-    .then(([match, tickets]) => {
-      return tickets.filter(ticket => ticket.match.id === match.id);
-    })
+  return getNextMatchTickets()
     .then(tickets => {
       let result = tickets.map(ticket => {
         return {
@@ -199,7 +193,7 @@ function getTicketByCode(code) {
 function getCountTicketsByTribune(tribune) {
   let dateNow = new Date();
 
-  return Ticket.find({status: 'paid'})
+  return getNextMatchTickets()
   /*.where({$and: [
    {'valid.from': { $lte: dateNow }},
    {'valid.to': { $gt: dateNow }}
@@ -272,4 +266,14 @@ function handleEntityNotFound(res) {
     }
     return entity;
   };
+}
+
+function getNextMatchTickets() {
+  return Promise.all([
+    matchService.getNextMatch(),
+    Ticket.find({status: 'paid'})
+  ])
+    .then(([match, tickets]) => {
+      return tickets.filter(ticket => ticket.match.id === match.id);
+    });
 }
