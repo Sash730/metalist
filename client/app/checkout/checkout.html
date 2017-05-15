@@ -20,7 +20,7 @@
       <div>
         <strong>Билетов: {{ vm.cartService.getMyCartSize() }} - Сумма: {{ vm.cartService.getMyCartPrice() }} </strong>
       </div>
-      <cart-details match="vm.match" on-delete="vm.updateCart($event)"></cart-details>
+      <cart-details on-delete="vm.updateCart($event)"></cart-details>
     </div>
     <div class="buttons col-sm-12" ng-show="vm.cartService.getMyCartSize()">
       <div class="col-sm-4 col-sm-offset-1" ng-hide="vm.isLoggedIn()">

@@ -25,7 +25,7 @@ export function createMatch(req, res) {
 
   return matchService.createMatch(newMatch)
     .then(match => {
-      seatService.createSeatsForMatch(match.id)
+      seatService.createSeatsForMatch(match)
         .then(() => {
           match.date = matchDate;
 

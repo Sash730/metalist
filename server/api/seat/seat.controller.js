@@ -1,15 +1,23 @@
 'use strict';
 
 import * as log4js from 'log4js';
-import Seat from '../seat/seat.model';
+import * as seatService from './seat.service';
+import * as seasonTicketService from '../seasonTicket/seasonTicket.service';
 
 const logger = log4js.getLogger('Seat');
 
 export function getReservedSeats(req, res) {
-  let sectorNumber = req.params.sector;
+  let sector = req.params.sector,
+      matchId = req.params.id;
 
-  return Seat.find({reservedUntil: {$gte: new Date()}, sector: sectorNumber})
-    .select('slug -_id')
+  return Promise.all([
+      seatService.getReservedSeats(matchId, sector),
+      seasonTicketService.getActiveBlocksBySector(sector)
+    ])
+    .then(([seats, tickets]) => {
+      let reservedTickets = seats.concat(tickets);
+      return reservedTickets.map(ticket => ticket.slug);
+    })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

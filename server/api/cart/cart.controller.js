@@ -42,12 +42,13 @@ export function getCart(req, res) {
 export function addSeatToCart(req, res) {
   let publicId = req.cookies.cart,
     slug = req.body.slug,
+    matchId = req.body.matchId,
     reserveDate = moment().add(30, 'minutes');
   logger.info('add seat to cart: ' + req.cookies.cart);
 
   Promise.all([
     orderService.findCartByPublicId(publicId),
-    seatService.findSeatBySlug(slug)
+    seatService.findForMatchBySlug(slug, matchId)
   ])
     .then(([cart, seat]) => {
       if (!cart) {
@@ -74,15 +75,16 @@ export function addSeatToCart(req, res) {
 
 export function deleteSeatFromCart(req, res) {
   let publicId = req.cookies.cart,
-      slug = req.params.slug;
+      slug = req.params.slug,
+      matchId = req.params.matchId;
 
   return orderService.findCartByPublicId(publicId)
     .then(handleEntityNotFound(res))
     .then(cart => {
-      return deleteReserveSeatFromCart(cart, slug);
+      return deleteReserveSeatFromCart(cart, slug, matchId);
     })
     .then(cart => {
-      return seatService.findSeatByCart(cart.publicId, slug)
+      return seatService.findByCartAndMatchId(cart.publicId, slug, matchId)
         .then(seat => {
           if (seat && seat.reservationType === RESERVE) {
             seatService.clearReservation(seat);
@@ -123,8 +125,8 @@ function handleError(res, statusCode) {
   };
 }
 
-function deleteReserveSeatFromCart(cart, slug) {
-  cart.seats = cart.seats.filter( seat => seat.slug !== slug );
+function deleteReserveSeatFromCart(cart, slug, matchId) {
+  cart.seats = cart.seats.filter( seat => !(seat.slug === slug && seat.match.id === matchId) );
 
   return cart.save();
 }
