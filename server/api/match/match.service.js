@@ -6,7 +6,7 @@ export function findById(matchId) {
   return Match.findOne({_id: matchId}).populate("priceSchema");
 }
 
-export function getMatches() {
+export function getNextMatches() {
   return Match.find({
     $or: [
           {date: {$gt: Date.now()}},
@@ -15,6 +15,11 @@ export function getMatches() {
     })
     .populate("priceSchema")
     .sort({date: 1});
+}
+
+export function getPrevMatches() {
+  return Match.find({date: {$lt: Date.now()}})
+    .sort({date: -1});
 }
 
 export function getNextMatch() {
@@ -35,7 +40,7 @@ export function createMatch(newMatch) {
 }
 
 export function removeById(matchId) {
-  return Match.findByIdAndRemove(matchId).exec();
+  return Match.findByIdAndRemove(matchId);
 }
 
 export function updateMatch(match, modifiedMatch) {
@@ -45,12 +50,6 @@ export function updateMatch(match, modifiedMatch) {
   match.poster = modifiedMatch.poster;
   match.info = modifiedMatch.info;
   match.priceSchema = modifiedMatch.priceSchema.id;
-
-  return match.save();
-}
-
-export function addDateToMatch(match, matchDate) {
-  match.date = matchDate;
 
   return match.save();
 }

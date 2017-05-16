@@ -5,7 +5,8 @@ const express = require('express'),
 
 const router = express.Router();
 
-router.get('/', controller.getMatches);
+router.get('/next', controller.getNextMatches);
+router.get('/prev', controller.getPrevMatches);
 router.get('/:id', controller.getMatchById);
 router.post('/', controller.createMatch);
 router.put('/:id', controller.updateMatch);
