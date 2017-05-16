@@ -8,7 +8,8 @@
       this.matchEditorService = MatchEditorService;
       this.priceSchemaService = PriceSchemaService;
 
-      this.matches = [];
+      this.nextMatches = [];
+      this.prevMatches = [];
       this.priceSchemas = [];
       this.matchToEdit = {};
       this.matchId = '';
@@ -18,6 +19,11 @@
     $onInit() {
       this.loadPriceSchemas();
       this.loadMatches();
+    }
+
+    loadMatches() {
+      this.loadNextMatches();
+      this.loadPrevMatches();
     }
 
     edit(match) {
@@ -46,10 +52,16 @@
         .then( response => this.priceSchemas = response.data );
     }
 
-    loadMatches() {
+    loadNextMatches() {
       this.matchId = '';
-      return this.matchEditorService.loadMatches()
-        .then( mathces => this.matches = mathces );
+      return this.matchEditorService.loadNextMatches()
+        .then( matches => this.nextMatches = matches );
+    }
+
+    loadPrevMatches() {
+      this.matchId = '';
+      return this.matchEditorService.loadPrevMatches()
+        .then( matches => this.prevMatches = matches );
     }
 
     deleteMatch(matchId) {

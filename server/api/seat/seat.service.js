@@ -12,6 +12,10 @@ export function getReservedSeats(matchId, sector) {
   return Seat.find({reservedUntil: {$gte: new Date()}, match: matchId, sector: sector});
 }
 
+export function getByMatchId(matchId) {
+  return Seat.find({match: matchId});
+}
+
 export function findForMatchBySlug(slug, matchId) {
   return Seat.findOne({slug: slug, match: matchId})
     .populate('match');
@@ -48,10 +52,6 @@ export function clearReservation(seat) {
   return seat.save();
 }
 
-export function findSeatByCart(publicId, slug) {
-  return Seat.findOne({reservedByCart: publicId, slug: slug});
-}
-
 export function findByCartAndMatchId(publicId, slug, matchId) {
   return Seat.findOne({reservedByCart: publicId, slug: slug, match: matchId});
 }
@@ -80,6 +80,21 @@ export function createSeatsForMatch(match) {
         throw new Error(err);
       }
     });
+}
+
+export function deletePrevMatchSeats(seats, matchId) {
+  console.log("-----------------------/// delete seats for previous match: ", matchId);
+  // return Promise.all(seats.forEach(seat => removeSeatByMatchId(seat.match)));
+  let parameters = [];
+  seats.forEach(seat => {
+    parameters.push({matchId: seat.match})
+  });
+  return Promise.map(parameters, function({matchId}) {
+    return removeSeatByMatchId(matchId);
+  }, {concurrency: 1}).then(function() {
+    return "done";
+  });
+
 }
 // private function
 function createStadiumSeatsForMatch(match) {
@@ -137,4 +152,8 @@ function createSeat(tribuneName, sectorName, row, seat, match) {
   });
 
   return newSeat.save();
+}
+
+function removeSeatByMatchId(matchId) {
+  return Seat.remove({match: matchId});
 }
