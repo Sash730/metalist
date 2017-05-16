@@ -8,10 +8,10 @@
       this.cartService = CartService;
     }
 
-    removeSeat(slug) {
-      this.cartService.removeSeatFromCart(slug)
+    removeSeat(slug, matchId) {
+      this.cartService.removeSeatFromCart(slug, matchId)
         .then(() => {
-          this.onDelete({$event: { slug: slug }});
+          this.onDelete({$event: { slug: slug, matchId: matchId }});
         });
     }
   }
@@ -21,7 +21,6 @@
       templateUrl: 'app/cart/details/cart-details.html',
       controller: CartDetailsController,
       bindings: {
-        match:'<',
         onDelete: '&'
       }
     });

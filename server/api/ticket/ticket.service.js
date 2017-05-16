@@ -8,7 +8,7 @@ import * as crypto from 'crypto';
 export function createTicket(seat) {
   return Promise.all([
     priceSchemaService.getSeatPrice(seat),
-    matchService.findById(seat.matchId)
+    matchService.findById(seat.match)
   ])
     .then(([price, match]) => {
       let ticket = new Ticket({

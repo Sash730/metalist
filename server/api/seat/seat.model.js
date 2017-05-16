@@ -2,19 +2,19 @@
 
 import mongoose from 'mongoose';
 import { Schema } from 'mongoose';
-import { BLOCK, PAID, RESERVE, SEASON_TICKET } from './seat.constants';
+import { PAID, RESERVE} from './seat.constants';
 mongoose.Promise = require('bluebird');
 
 const SeatSchema = new Schema({
   slug: { type: String, required: true },
-  matchId: { type: String, required: true },
+  match: { type: Schema.Types.ObjectId, ref: 'Match' },
   price: { type: Number, required: true, default: 0 },
   tribune: { type: String },
   sector: { type: String, requried: true },
   row: { type: String, requried: true },
   seat: { type: Number, requried: true },
   reservedUntil: { type: Date },
-  reservationType: { type: String, enum: [BLOCK, PAID, RESERVE, SEASON_TICKET] },
+  reservationType: { type: String, enum: [PAID, RESERVE] },
   reservedByCart: { type: String }
 },{
   toObject: { virtuals: true },

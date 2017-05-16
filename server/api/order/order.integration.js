@@ -80,7 +80,8 @@ describe('Order API:', function () {
       request(app)
         .post('/api/carts/addSeat')
         .send({
-          slug: 's9r19st8'
+          slug: 's9r19st8',
+          matchId: matchId
         })
         .set('Cookie', 'cart=' + publicId)
         .expect(200)
@@ -132,7 +133,7 @@ describe('Order API:', function () {
         sector: '9',
         row: '19',
         seat: 8,
-        matchId: matchId,
+        match: matchId,
         reservedUntil: new Date()
       });
       return seat.save();

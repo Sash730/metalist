@@ -38,7 +38,12 @@
     }
 
     getSelectedSeats() {
-      this.selectedSeats = this.cartService.getMyCart().seats.map(seat => seat.slug);
+      this.selectedSeats = this.cartService.getMyCart().seats.map(seat => {
+        return {
+          slug: seat.slug,
+          matchId: seat.match.id
+        };
+      });
     }
 
     updateReservedTickets() {
@@ -47,13 +52,14 @@
     }
 
     addClassByCheckSoldSeat(slug) {
-      let [ checkSeat ] = this.reservedSeats.filter(seat => seat.slug === slug);
-
-      if (checkSeat && this.selectedSeats.includes(slug)) {
+      let [ checkSeat ] = this.selectedSeats.filter(seat => seat.slug === slug && seat.matchId === this.match.id);
+      //console.log('this.selectedSeats', this.selectedSeats);
+      // console.log('this.reservedSeats', this.reservedSeats);
+      if (this.reservedSeats.includes(slug) && checkSeat) {
         return 'blockedSeat';
       }
 
-      if ( checkSeat && !this.selectedSeats.includes(slug) ) {
+      if ( this.reservedSeats.includes(slug) && !checkSeat ) {
         return 'soldSeat';
       }
 
@@ -62,19 +68,19 @@
 
     addSeatToCart(sectorName, rowName, seat) {
       let slug = 's' + sectorName + 'r' + rowName + 'st' + seat,
-        [ checkSeat ] = this.reservedSeats.filter(seat => seat.slug === slug);
+        [ checkSeat ] = this.selectedSeats.filter(seat => seat.slug === slug && seat.matchId === this.match.id);
       this.message = '';
 
-      if ( checkSeat && this.selectedSeats.includes(slug) ) {
-        this.cartService.removeSeatFromCart(slug)
+      if ( checkSeat && this.reservedSeats.includes(slug) ) {
+        this.cartService.removeSeatFromCart(slug, this.match.id)
           .then(() => {
             this.getReservedSeats();
             this.getSelectedSeats();
           });
       }
 
-      if( !checkSeat ) {
-        this.cartService.addSeatToCart(slug)
+      if( !this.reservedSeats.includes(slug) ) {
+        this.cartService.addSeatToCart(slug, this.match.id)
           .then(() => {
             this.getReservedSeats();
             this.getSelectedSeats();

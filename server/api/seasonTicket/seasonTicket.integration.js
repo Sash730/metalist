@@ -49,7 +49,6 @@ describe('Season ticket API:', function () {
       request(app)
         .post('/api/seasonTicket/' + 's9r19st8')
         .set('authorization', 'Bearer ' + token)
-        //.type('json')
         .send({ ticket: ticket })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -93,7 +92,7 @@ describe('Season ticket API:', function () {
       request(app)
         .delete('/api/seasonTicket/' + 's9r19st8')
         .set('authorization', 'Bearer ' + token)
-        .expect(200)
+        .expect(204)
         .end((err) => {
           if(err) {
             done(err);

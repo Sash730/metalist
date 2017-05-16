@@ -1,73 +1,83 @@
 'use strict';
 
-import * as seatService from '../seat/seat.service';
+import * as seasonTicketService from '../seasonTicket/seasonTicket.service';
 import * as log4js from 'log4js';
 
 let logger = log4js.getLogger('SeasonTicket');
 
 export function getSeasonTickets(req, res) {
-  return seatService.getActiveSeasonTickets()
+  return seasonTicketService.getActiveSeasonTickets()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 export function getBlocks(req, res) {
-  return seatService.getActiveBlockSeats()
+  return seasonTicketService.getActiveBlockTickets()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
+export function createSeasonTicket(req, res) {
+  let ticket = req.body.ticket,
+      slug = req.params.slug;
+
+  return seasonTicketService.findBySlug(slug)
+    .then(seasonTicket => {
+      if (seasonTicket && seasonTicket.reservedUntil > new Date()) {
+        return res.status(409).end();
+      }
+      return seasonTicketService.createSeasonTicket(ticket, slug)
+        .then(respondWithResult(res));
+    })
+    .catch(handleError(res));
+}
+
 export function deleteSeasonTicket(req, res) {
-  return seatService.findSeatBySlug(req.params.slug)
-    .then(seatService.clearReservation)
+  return seasonTicketService.removeBySlug(req.params.slug)
+    .then(() => {
+      res.status(204).end();
+    })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-export function createSeasonTicket(req, res) {
-  let reservationDate = req.body.ticket.reservedUntil;
-
-  return seatService.findSeatBySlug(req.params.slug)
-    .then(seat => {
-      if (seat.isReserved) {
-        return res.status(409).end();
-      }
-      return seatService.reserveSeatAsSeasonTicket(seat, reservationDate)
-        .then(respondWithResult(res));
-    })
-    .catch(handleError(res));
-}
-
 export function blockRow(req, res) {
-  let sector = req.body.blockRow.sector,
-      row = req.body.blockRow.row,
-      reservationDate = req.body.blockRow.reservedUntil;
+  let blockRow = req.body.blockRow,
+      sector = req.body.blockRow.sector,
+      row = req.body.blockRow.row;
 
-  return seatService.getNotActiveSeats(sector, row)
-    .then(seats => {
-      if ( isEmpty(seats) ) {
-        return res.status(409).end();
+  return Promise.all([
+    seasonTicketService.getBlockedRowSeats(sector, row),
+    seasonTicketService.getRowSeats(sector, row)
+  ])
+    .then(([tickets, seats]) => {
+      if (tickets.length) {
+        tickets.forEach(ticket => {
+          if (seats.includes(ticket.seat)) {
+            seats.splice(seats.indexOf(ticket.seat), 1);
+          }
+        });
       }
-      return seatService.reserveSeatsAsBlock(seats, reservationDate)
-        .then(respondWithResult(res));
+      return seasonTicketService.createBlockRow(seats, blockRow);
     })
+    .then( () => res.status(200).end() )
     .catch(handleError(res));
+
 }
 
-export function unblockRow(req, res) {
+export function deleteBlockRow(req, res) {
   let sector = req.params.sector,
       row = req.params.row;
 
-  return seatService.getBlockRowSeats(sector, row)
-    .then(seatService.clearReservations)
+  return seasonTicketService.getBlockRow(sector, row)
+    .then(seasonTicketService.removeBlockRow)
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 // private functions ---------------------------------------
-
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function (entity) {
@@ -93,8 +103,4 @@ function handleError(res, statusCode) {
     logger.error('handleError ' + err);
     res.status(statusCode).send(err);
   };
-}
-
-function isEmpty(seats) {
-  return !seats.length;
 }

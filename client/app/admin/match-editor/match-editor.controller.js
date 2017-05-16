@@ -33,11 +33,10 @@
       if (event.match.id) {
         this.saveMatch(event.match);
       } else {
-        if ( this.isMatchesEmpty() ) {
-          this.addMatch(event.match);
-          this.message = 'Процесс создания сидений для матча запущен. Это может занять 5-10 минут. ' +
-            'При успешном создании появится дата матча на домашней странице.';
-        }
+
+        this.addMatch(event.match);
+        this.message = 'Процесс создания сидений для матча запущен. Это может занять 5-10 минут. ' +
+          'При успешном создании появится дата матча на домашней странице.';
       }
       this.edit({});
     }
@@ -67,11 +66,6 @@
       this.matchEditorService.editMatch(match)
         .then(() => this.loadMatches());
     }
-
-    isMatchesEmpty() {
-      return !this.matches.length
-    }
-
   }
 
   angular.module('metalistTicketsApp.admin')

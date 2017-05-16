@@ -20,7 +20,8 @@ export function findCartByPublicId(publicId) {
   return Order.findOne({publicId: publicId})
     .populate({
       path: 'seats',
-      match: { reservationType: { $nin: [ SEASON_TICKET, BLOCK, PAID ]}},
+      match: { reservationType: { $nin: [ PAID ]}},
+      populate: { path: 'match' }
     });
 }
 

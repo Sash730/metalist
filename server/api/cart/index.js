@@ -9,6 +9,6 @@ router.post('/', controller.createCart);
 router.get('/my-cart', controller.getCart);
 
 router.post('/addSeat', controller.addSeatToCart);
-router.delete('/seat/:slug', controller.deleteSeatFromCart);
+router.delete('/match/:matchId/seat/:slug', controller.deleteSeatFromCart);
 
 module.exports = router;

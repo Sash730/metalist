@@ -25,7 +25,7 @@ describe('Seats API:', function () {
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
-          res.body.should.be.instanceof(Array).and.have.lengthOf(2);
+          res.body.should.have.length(2);
           done();
         });
     });

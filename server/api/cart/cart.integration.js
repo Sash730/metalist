@@ -87,7 +87,8 @@ describe('Cart API:', function () {
       request(app)
         .post('/api/carts/addSeat')
         .send({
-          slug: 's9r19st8'
+          slug: 's9r19st8',
+          matchId: matchId
         })
         .set('Cookie', 'cart=' + publicId)
         .expect(200)
@@ -116,7 +117,8 @@ describe('Cart API:', function () {
       request(app)
         .post('/api/carts/addSeat')
         .send({
-          slug: 's9r19st8'
+          slug: 's9r19st8',
+          matchId: matchId
         })
         .set('Cookie', 'cart=' + publicId)
         .expect(409)
@@ -129,9 +131,9 @@ describe('Cart API:', function () {
         });
     });
 
-    it('DELETE /api/carts/seat/:slug : should respond with a cart with seats length null', function (done) {
+    it('DELETE /api/carts/match/:matchId/seat/:slug : should respond with a cart with seats length null', function (done) {
       request(app)
-        .delete('/api/carts/seat/s9r19st8')
+        .delete('/api/carts/match/' + matchId + '/seat/s9r19st8')
         .set('Cookie', 'cart=' + publicId)
         .expect(200)
         .expect('Content-Type', /json/)
@@ -155,7 +157,7 @@ describe('Cart API:', function () {
         sector: '9',
         row: '19',
         seat: 8,
-        matchId: matchId,
+        match: matchId,
         reservedUntil: new Date()
       });
       return seat.save();
