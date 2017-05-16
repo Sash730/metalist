@@ -12,10 +12,6 @@ export function getReservedSeats(matchId, sector) {
   return Seat.find({reservedUntil: {$gte: new Date()}, match: matchId, sector: sector});
 }
 
-export function findSeatBySlug(slug) {
-  return Seat.findOne({slug: slug});
-}
-
 export function findForMatchBySlug(slug, matchId) {
   return Seat.findOne({slug: slug, match: matchId})
     .populate('match');

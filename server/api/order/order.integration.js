@@ -19,11 +19,10 @@ describe('Order API:', function () {
   });
   // Clear all after testing
   after(function () {
-    Order.remove({});
-    PriceSchema.remove({});
-    Match.remove({});
-    Seat.remove({});
-    return true;
+    return Order.remove({})
+      .then(() => PriceSchema.remove({}))
+      .then(() => Match.remove({}))
+      .then(() => Seat.remove({}));
   });
 
   describe('POST /checkout', function () {
