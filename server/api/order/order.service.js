@@ -52,14 +52,14 @@ export function createOrderFromCart(cart, user) {
 
 export function createPaymentLink(order) {
   let orderDescription = order.seats.reduce((description, seat) => {
-    return `${description} ${seat.sector} сектор, ${seat.row} ряд, ${seat.seat} место ${seat.price} грн | `;
+    return `${description} ${seat.match.rival} - ${seat.sector} сектор, ${seat.row} ряд, ${seat.seat} место ${seat.price} грн | `;
   }, '');
 
   let paymentParams = {
     'action': 'pay',
     'amount': order.price,
     'currency': 'UAH',
-    'description': orderDescription,
+    'description': orderDescription.slice(0,250),
     'order_id': order.publicId,
     'sandbox': config.liqpay.sandboxMode,
     'server_url': config.liqpay.callbackUrl,
