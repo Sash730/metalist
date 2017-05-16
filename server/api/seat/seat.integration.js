@@ -1,37 +1,55 @@
 'use strict';
 
 import app from '../..';
+import Match from '../match/match.model';
 import Seat from '../seat/seat.model';
+import PriceSchema from '../priceSchema/priceSchema.model';
 import request from 'supertest';
 
 describe('Seats API:', function () {
 
   // add seats before testing
   before(function () {
-    return createSeats();
+    return  Match.remove({})
+      .then(createPrice)
+      .then(createMatch)
+      .then((match) => createSeats(match.id))
+      .then(createOtherMatch)
+      .then((match) => createSeats(match.id));
   });
 
   //Clear seats after testing
   after(function () {
-    Seat.remove({});
-    return true;
+    return Seat.remove({})
+    .then(() => Match.remove({}))
+    .then(() => PriceSchema.remove({}));
   });
 
   describe('GET /api/seats/reserved-on-match/:id/sector/:sector', function () {
-
-    it('GET should respond with a non reserved seats by sector ', function (done) {
+    it('GET should respond with a reserved seats by sector ', function (done) {
       request(app)
-        .get('/api/seats/reserved-on-match/' + '1213kjsbv' + '/sector/' + '9')
+        .get('/api/seats/reserved-on-match/' + matchId + '/sector/' + '9')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
-          res.body.should.have.length(2);
+          res.body.should.have.length(3);
+          done();
+        });
+    });
+    it('GET should respond with a reserved seats by sector for other match', function (done) {
+      request(app)
+        .get('/api/seats/reserved-on-match/' + otherMatchId + '/sector/' + '9')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          res.body.should.have.length(3);
           done();
         });
     });
   });
 });
 
+let matchId, otherMatchId, priceSchema;
 let seats = [
   {
     slug: 's9r19st8',
@@ -39,41 +57,36 @@ let seats = [
     row: '19',
     seat: 8,
     reservedUntil: new Date('2019-04-27 14:56'),
-    matchId: '1213kjsbv'
+    //match: matchId
   },
   {
     slug: 's9r19st9',
     sector: '9',
     row: '19',
     seat: 9,
-    reservedUntil: new Date('2017-03-25 14:56'),
-    matchId: '1213kjsbv'
+    reservedUntil: new Date('2019-03-25 14:56')
   },
   {
     slug: 's9r19st10',
     sector: '9',
     row: '19',
     seat: 10,
-    reservedUntil: new Date('2019-04-25 14:56'),
-    matchId: '1213kjsbv'
+    reservedUntil: new Date('2019-04-25 14:56')
   },
   {
     slug: 's10r19st10',
     sector: '10',
     row: '19',
     seat: 10,
-    reservedUntil: new Date('2019-04-25 14:56'),
-    matchId: '1213kjsbv'
+    reservedUntil: new Date('2019-04-25 14:56')
   }
 ];
 
-function createSeats() {
-  return Seat.remove({}).then(() => {
-    return Promise.all(createSeat(seats));
-  });
+function createSeats(id) {
+  return Promise.all(createSeat(seats, id));
 }
 
-function createSeat(seats) {
+function createSeat(seats, id) {
   return seats.map(seat => {
     let newSeat = new Seat({
       slug: seat.slug,
@@ -81,8 +94,56 @@ function createSeat(seats) {
       row: seat.row,
       seat: seat.seat,
       reservedUntil: seat.reservedUntil,
-      matchId: seat.matchId
+      match: id
     });
+
     return newSeat.save();
+  });
+}
+
+function createMatch() {
+
+  let newMatch = new Match({
+    rival: 'Dynamo',
+    priceSchema: priceSchema,
+    date: new Date('2019-04-25 14:56')
+  });
+  return newMatch.save()
+    .then(match => {
+      matchId = match.id;
+      return match;
+    });
+}
+
+function createOtherMatch() {
+
+  let newMatch = new Match({
+    rival: 'Dynamo',
+    priceSchema: priceSchema,
+    date: new Date('2019-05-25 14:56')
+  });
+  return newMatch.save()
+    .then(match => {
+      otherMatchId = match.id;
+      return match;
+    });
+}
+
+function createPrice() {
+  return PriceSchema.remove({}).then(function () {
+    let price = new PriceSchema({
+      priceSchema: {
+        name: 'amators',
+        tribune_west: {
+          name: 'west',
+          price: 20
+        }
+      }
+    });
+    return price.save()
+      .then(price => {
+        priceSchema = price;
+        return price;
+      });
   });
 }

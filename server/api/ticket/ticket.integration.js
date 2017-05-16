@@ -26,11 +26,10 @@ describe('Ticket API:', function () {
 
   //Clear seats after testing
   after(function () {
-    User.remove({});
-    Seat.remove({});
-    Match.remove({});
-    Ticket.remove({});
-    return true;
+    return User.remove({})
+      .then(() => Seat.remove({}))
+      .then(() => Match.remove({}))
+      .then(() => Ticket.remove({}));
   });
 
   describe('GET /api/tickets', function () {
@@ -222,7 +221,7 @@ describe('Ticket API:', function () {
         });
     });
   });
-
+let matchId;
   let newSeats = [
     {
       slug: 's9r19st8',
@@ -231,7 +230,7 @@ describe('Ticket API:', function () {
       row: '19',
       seat: 8,
       reservedUntil: new Date('2019-04-27 14:56'),
-      matchId: 'ofhahfgrui342'
+      match: matchId
     },
     {
       slug: 's9r19st10',
@@ -240,7 +239,7 @@ describe('Ticket API:', function () {
       row: '19',
       seat: 10,
       reservedUntil: new Date('2019-04-25 14:56'),
-      matchId: 'ofhahfgrui342'
+      match: matchId
     },
     {
       slug: 's10r19st10',
@@ -249,7 +248,7 @@ describe('Ticket API:', function () {
       row: '19',
       seat: 10,
       reservedUntil: new Date('2019-04-25 14:56'),
-      matchId: 'ofhahfgrui342'
+      match: matchId
     }
   ];
 
@@ -291,9 +290,13 @@ describe('Ticket API:', function () {
         rival: 'Dynamo',
         info: '123',
         poster: 'assets/teamLogo/3.png',
-        date: new Date('2019-04-25 14:56')
+        date: new Date('2019-05-20 14:56')
       });
-      return newMatch.save();
+      return newMatch.save()
+        .then(match => {
+          matchId = match.id;
+          return match;
+        });
   }
 
   function createSeat(seats) {

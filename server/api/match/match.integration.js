@@ -13,9 +13,8 @@ describe('Match API:', function () {
   });
   // Clear all after testing
   after(function () {
-    PriceSchema.remove({});
-    Match.remove({});
-    return true;
+    return PriceSchema.remove({})
+      .then(() => Match.remove({}));
   });
 
   describe('Match life cycle', function () {
