@@ -9,13 +9,12 @@ const logger = log4js.getLogger('Seat');
 export function getReservedSeats(req, res) {
   let sector = req.params.sector,
       matchId = req.params.id;
-  console.log('matchId', matchId, sector);
+
   return Promise.all([
       seatService.getReservedSeats(matchId, sector),
       seasonTicketService.getActiveBlocksBySector(sector)
     ])
     .then(([seats, tickets]) => {
-      console.log('seats', seats, 'tickets', tickets);
       let reservedTickets = seats.concat(tickets);
       return reservedTickets.map(ticket => ticket.slug);
     })
