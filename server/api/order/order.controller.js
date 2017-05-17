@@ -21,6 +21,13 @@ export function getPaymentStatus(req, res) {
     .catch(handleError(res));
 }
 
+export function getOrderByPrivateId(req, res) {
+  return orderService.getByPrivateId(req.params.privateId)
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 export function checkout(req, res) {
   let publicId = req.cookies.cart;
 

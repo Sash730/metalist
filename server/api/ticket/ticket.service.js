@@ -45,13 +45,13 @@ export function getByTicketNumber(ticketNumber) {
   return Ticket.findOne({ticketNumber: ticketNumber});
 }
 
-function getTicketById(ticketId) {
-  return Ticket.findById(ticketId);
-}
-
-function randomNumericString(length) {
+export function randomNumericString(length) {
   let chars = '0123456789';
   let result = '';
   for (let i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
   return result;
+}
+
+function getTicketById(ticketId) {
+  return Ticket.findById(ticketId);
 }

@@ -64,6 +64,10 @@
         });
     }
 
+    getOrderByPrivateId(privateId) {
+      return this.$http.get('/api/orders/order/' + privateId);
+    }
+
     checkout() {
       return this.$http.post('/api/orders/checkout');
     }

@@ -1,11 +1,11 @@
 <div class="container">
   <uib-tabset active="active" justified="true">
-    <uib-tab index="0" heading="Users">
+    <uib-tab index="0" heading="Пользователи">
       <div ng-if="active === 0">
         <admin-users></admin-users>
       </div>
     </uib-tab>
-    <uib-tab index="1" heading="Matches">
+    <uib-tab index="1" heading="Матчи">
       <div ng-if="active === 1">
         <match-editor></match-editor>
       </div>
@@ -15,14 +15,19 @@
         <tickets-statistic></tickets-statistic>
       </div>
     </uib-tab>
-    <uib-tab index="3" heading="Season tickets">
+    <uib-tab index="3" heading="Сезонные билеты">
       <div ng-if="active === 3">
         <season-ticket></season-ticket>
       </div>
     </uib-tab>
-    <uib-tab index="4" heading="Price Schema">
+    <uib-tab index="4" heading="Ценовая схема">
       <div ng-if="active === 4">
         <price-schema></price-schema>
+      </div>
+    </uib-tab>
+    <uib-tab index="5" heading="Детали ордера">
+      <div ng-if="active === 5">
+        <order-details></order-details>
       </div>
     </uib-tab>
   </uib-tabset>

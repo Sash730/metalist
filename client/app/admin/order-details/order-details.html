@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-inline pull-right search">
+      <div class="input-group">
+        <input type="text" id="adminId" class="form-control" placeholder="Введите код ордера" ng-model="$ctrl.privateId">
+        <div class="input-group-addon" ng-click="$ctrl.getOrder()">
+          <i class="glyphicon glyphicon-search"></i>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<p ng-show="$ctrl.message">{{$ctrl.message}}</p>
+<p>Детали ордера:</p>
+<pre>{{$ctrl.order | json}}</pre>
