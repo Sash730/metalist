@@ -84,7 +84,7 @@ export function createSeatsForMatch(match) {
 
 export function deletePrevMatchSeats(seats, matchId) {
   console.log("-----------------------/// delete seats for previous match: ", matchId);
-  // return Promise.all(seats.forEach(seat => removeSeatByMatchId(seat.match)));
+
   let parameters = [];
   seats.forEach(seat => {
     parameters.push({matchId: seat.match})
