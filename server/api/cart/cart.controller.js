@@ -29,6 +29,7 @@ export function createCart(req, res) {
 
 export function getCart(req, res) {
   res.setHeader('Last-Modified', (new Date()).toUTCString());
+  res.setHeader('Cache-Control', 'no-cache, no-store');
   let publicId = req.cookies.cart;
   logger.info('get cart form cookies: ' + req.cookies.cart);
 
