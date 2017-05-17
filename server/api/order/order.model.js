@@ -12,6 +12,9 @@ let OrderSchema = new Schema({
       type: String,
       required: true
     },
+    privateId: {
+      type: String
+    },
     price: {
         type: Number,
         required: true,

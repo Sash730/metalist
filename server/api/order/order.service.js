@@ -1,6 +1,6 @@
 'use strict';
 
-import {SEASON_TICKET, BLOCK, PAID} from '../seat/seat.constants';
+import {PAID} from '../seat/seat.constants';
 import Order from './order.model';
 import User from '../user/user.model';
 import moment from 'moment';
@@ -25,6 +25,15 @@ export function findCartByPublicId(publicId) {
     });
 }
 
+export function getByPrivateId(privateId) {
+  return Order.findOne({privateId: privateId})
+    .populate({
+      path: 'seats',
+      populate: { path: 'match' }
+    });
+}
+
+
 export function getPendingPaymentByUser(user) {
   return Order.findOne({"user.id": user.id, status: "pending", created: {$gte: moment().subtract(10, 'minutes')}})
 }
@@ -42,6 +51,7 @@ export function createOrderFromCart(cart, user) {
         type: 'order',
         status: 'pending',
         publicId: crypto.randomBytes(20).toString('hex'),
+        privateId: ticketService.randomNumericString(8),
         created: new Date(),
         price: price
       });
@@ -51,15 +61,13 @@ export function createOrderFromCart(cart, user) {
 }
 
 export function createPaymentLink(order) {
-  let orderDescription = order.seats.reduce((description, seat) => {
-    return `${description} ${seat.match.rival} - ${seat.sector} сектор, ${seat.row} ряд, ${seat.seat} место ${seat.price} грн | `;
-  }, '');
+  let orderDescription = createDescription(order);
 
   let paymentParams = {
     'action': 'pay',
     'amount': order.price,
     'currency': 'UAH',
-    'description': orderDescription.slice(0,250),
+    'description': orderDescription.slice(0,150),
     'order_id': order.publicId,
     'sandbox': config.liqpay.sandboxMode,
     'server_url': config.liqpay.callbackUrl,
@@ -110,7 +118,7 @@ export function getLiqPayParams(req) {
   })
 }
 
-
+////////private function
 function handleSuccessPayment(order) {
   return Promise.all([
     User.findOne({_id: order.user.id}),
@@ -134,6 +142,13 @@ function handleSuccessPayment(order) {
     });
 }
 
+function createDescription(order) {
+  let uniqueRival = getUniqueMatchRival(order.seats),
+  matchesDescription =  createMatchesDescription(uniqueRival, order.seats);
+
+  return `${order.privateId} | ${matchesDescription}`;
+}
+
 function createTicketsByOrder(order) {
   return Promise.all(order.seats.map(seat => {
     return ticketService.createTicket(seat);
@@ -148,3 +163,15 @@ function countPriceBySeats(seats) {
   }, 0))
 }
 
+function getUniqueMatchRival(seats) {
+  let rivals = seats.map(seat => seat.match.rival);
+  return [...new Set(rivals)];
+}
+
+function createMatchesDescription(uniqueRival, seats) {
+  return uniqueRival.reduce((description, rival) => {
+    let count = seats.filter(seat => seat.match.rival === rival).length;
+
+    return `${description} ${rival}: ${count} шт. | `;
+  }, '');
+}
