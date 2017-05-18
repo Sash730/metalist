@@ -1,6 +1,5 @@
 'use strict';
 
-import passport from 'passport';
 import config from '../config/environment';
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
@@ -69,13 +68,25 @@ export function signToken(id, role) {
 }
 
 /**
- * Set token cookie directly for oAuth strategies
+ * Set token cookie directly for facebook oAuth strategies
  */
-export function setTokenCookie(req, res) {
+export function setFacebookTokenCookie(req, res) {
     if (!req.user) {
-        return res.status(404).send('It looks like you aren\'t logged in, please try again.');
+        return res.status(404).send('Похоже, вы не авторизованы. Попробуйте еще.');
     }
     let token = signToken(req.user._id, req.user.role);
     res.cookie('token', token);
-    res.redirect('/checkout');
+    res.redirect('/?');
+}
+
+/**
+ * Set token cookie directly for google oAuth strategies
+ */
+export function setGoogleTokenCookie(req, res) {
+  if (!req.user) {
+    return res.status(404).send('Похоже, вы не авторизованы. Попробуйте еще.');
+  }
+  let token = signToken(req.user._id, req.user.role);
+  res.cookie('token', token);
+  res.redirect('/?#-=-');
 }

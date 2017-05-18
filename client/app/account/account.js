@@ -46,7 +46,7 @@ angular.module('metalistTicketsApp')
           if (next.name === 'signup') {
             $window.sessionStorage.href = $window.location.href;
           }
-          if ($window.location.hash && $window.location.hash == '#_=_') {
+          if ($window.location.hash && ( $window.location.hash == '#_=_' || $window.location.hash == '#-=-' )) {
             event.preventDefault();
             $window.location.href = $window.sessionStorage.href;
           }

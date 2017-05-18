@@ -2,9 +2,9 @@
 
 import express from 'express';
 import passport from 'passport';
-import {setTokenCookie} from '../auth.service';
+import {setFacebookTokenCookie} from '../auth.service';
 
-var router = express.Router();
+let router = express.Router();
 
 router
     .get('/', passport.authenticate('facebook', {
@@ -15,6 +15,6 @@ router
     .get('/callback', passport.authenticate('facebook', {
         failureRedirect: '/signup',
         session: false
-    }), setTokenCookie);
+    }), setFacebookTokenCookie);
 
 export default router;
