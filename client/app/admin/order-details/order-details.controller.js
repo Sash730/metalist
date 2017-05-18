@@ -19,9 +19,7 @@
       this.message = '';
 
       this.CartService.getOrderByPrivateId(this.privateId)
-        .then( response => {
-          return this.order = response.data;
-        })
+        .then( response => this.order = response.data )
         .catch(err => {
           if(err.status === 404) {
             this.message = 'Ордер не найден.';

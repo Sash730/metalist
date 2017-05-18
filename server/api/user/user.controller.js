@@ -153,7 +153,7 @@ export function generatePassword(req, res, next) {
   return User.findOne({email: email}).exec()
     .then(user => {
       if (user && user.name) {
-        return res.status(200).json({message: 'Вы уже зарегистрированы.'});
+        return res.status(409).end();
       }
       if (user && !user.name) {
         newUser = user;
